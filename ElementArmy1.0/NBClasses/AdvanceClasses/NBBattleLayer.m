@@ -20,12 +20,13 @@ static Boolean isAutoStart = NO;
 // NBBattleLayer implementation
 @implementation NBBattleLayer
 
-@synthesize menu;
-@synthesize characterSpritesBatchNode;
-@synthesize allySquads, enemySquads;
-
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
-+(CCScene *) scene
++(CCScene*)scene
+{
+    return [NBBattleLayer sceneAndSetAsDefault:NO];
+}
+
++(CCScene*)sceneAndSetAsDefault:(BOOL)makeDefault
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -35,6 +36,11 @@ static Boolean isAutoStart = NO;
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
+    
+    if (makeDefault)
+        [NBBasicScreenLayer setDefaultScreen:scene];
+    
+    [NBBasicScreenLayer resetMenuIndex];
 	
 	// return the scene
 	return scene;
@@ -50,7 +56,7 @@ static Boolean isAutoStart = NO;
         CGSize size = [[CCDirector sharedDirector] winSize];
 
 		// ask director for the window size
-        battleStarted = false;
+        /*battleStarted = false;
         ccColor4B startColor;
         startColor.r = 200;
         startColor.g = 200;
@@ -59,7 +65,7 @@ static Boolean isAutoStart = NO;
         CCLayerColor *backgroundColor = [CCLayerColor layerWithColor:startColor];
         [self addChild:backgroundColor];
         self.isTouchEnabled = YES;
-        [self scheduleUpdate];
+        [self scheduleUpdate];*/
 		
         //Prepare Sprite Batch Node
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
@@ -68,8 +74,8 @@ static Boolean isAutoStart = NO;
 		
         //Prepare unit slots/arrays
         [NBSquad setupBatteFieldDimension:CGSizeMake(size.width, size.height)];
-        if (!allySquads) allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
-        if (!enemySquads) enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
+        if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
+        if (!self.enemySquads) self.enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
         [self prepareUnits];
         
         if (!isAutoStart)
@@ -168,6 +174,38 @@ static Boolean isAutoStart = NO;
 -(void)update:(ccTime)delta
 {
     [NBBasicObject update:delta];
+    
+    //Simple game rule
+    NBSquad* tempSquad = nil;
+    
+    CCARRAY_FOREACH(self.allySquads, tempSquad)
+    {
+        if (!tempSquad.allUnitAreDead)
+        {
+            self.allAllyUnitAnnihilated = false;
+            break;
+        }
+    }
+    
+    CCARRAY_FOREACH(self.enemySquads, tempSquad)
+    {
+        if (!tempSquad.allUnitAreDead)
+        {
+            self.allEnemyUnitAnnihilated = false;
+            break;
+        }
+    }
+    
+    if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
+    {
+        [self gotoMapSelectionScreen];
+    }
+}
+
+-(void)gotoMapSelectionScreen
+{
+    self.nextScene = @"NBMapSelectionScreen";
+    [self changeToScene:self.nextScene transitionWithDuration:3.0];
 }
 
 -(void)performanceTest
@@ -181,37 +219,37 @@ static Boolean isAutoStart = NO;
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [allySquads addObject:tempSquad];
+    [self.allySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [allySquads addObject:tempSquad];
+    [self.allySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [allySquads addObject:tempSquad];
+    [self.allySquads addObject:tempSquad];
     
     //Testing single NBSoldier Squad on Enemy
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [enemySquads addObject:tempSquad];
+    [self.enemySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [enemySquads addObject:tempSquad];
+    [self.enemySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
     tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
-    [enemySquads addObject:tempSquad];
+    [self.enemySquads addObject:tempSquad];
 }
 
 -(void)prepareUnits
@@ -224,11 +262,12 @@ static Boolean isAutoStart = NO;
 {
     //Test below
     [self startBattle];
+    [self scheduleUpdate];
 }
 
 -(void)startBattle
 {
-    if (self.menu) menu.visible = NO;
+    if (self.menu) self.menu.visible = NO;
     
     battleStarted = true;
     

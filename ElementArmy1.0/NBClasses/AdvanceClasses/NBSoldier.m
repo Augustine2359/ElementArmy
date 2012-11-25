@@ -28,6 +28,7 @@ static CCArray* soldierList = nil;
     self = [super initWithFrameName:METAL_SOLDIER_FILE andSpriteBatchNode:spriteBatchNode onLayer:layer onSide:(EnumCharacterSide)side];
     
     [soldierList addObject:self];
+    [layer addChild:self z:3];
     
     return self;
 }

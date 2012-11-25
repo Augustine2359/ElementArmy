@@ -10,7 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "NBBattleLayer.h"
-
+#import "NBBasicScreenLayer.h"
 
 #pragma mark - IntroLayer
 
@@ -60,6 +60,6 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[NBBattleLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[NBBasicScreenLayer loadCurrentScene] withColor:ccWHITE]];
 }
 @end

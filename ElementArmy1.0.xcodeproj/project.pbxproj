@@ -11,6 +11,11 @@
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC06C254163A297500F091F0 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C253163A297500F091F0 /* NBFireball.m */; };
 		BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C256163A31B100F091F0 /* NBFireMage.m */; };
+		BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */; };
+		BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */; };
+		BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */; };
+		BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */; };
+		BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -148,6 +153,7 @@
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
 		BCBC73E71633B06400B5A141 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D81633B06400B5A141 /* CharacterSprites.plist */; };
 		BCBC73E81633B06400B5A141 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D91633B06400B5A141 /* CharacterSprites.png */; };
+		BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +165,16 @@
 		BC06C253163A297500F091F0 /* NBFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireball.m; sourceTree = "<group>"; };
 		BC06C255163A31B100F091F0 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
 		BC06C256163A31B100F091F0 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
+		BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
+		BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
+		BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMainMenuScreen.h; sourceTree = "<group>"; };
+		BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMainMenuScreen.m; sourceTree = "<group>"; };
+		BCBC5A2116626BA40009DCF3 /* NBStoryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreen.h; sourceTree = "<group>"; };
+		BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreen.m; sourceTree = "<group>"; };
+		BCBC5A241662728D0009DCF3 /* NBMapSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMapSelectionScreen.h; sourceTree = "<group>"; };
+		BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMapSelectionScreen.m; sourceTree = "<group>"; };
+		BCBC5A27166275D80009DCF3 /* NBBattleSetupScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupScreen.h; sourceTree = "<group>"; };
+		BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupScreen.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -441,6 +457,8 @@
 		BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BCBC73D81633B06400B5A141 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
 		BCBC73D91633B06400B5A141 /* CharacterSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterSprites.png; sourceTree = "<group>"; };
+		BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBBasicScreenLayer.h; path = ../AdvanceClasses/NBBasicScreenLayer.h; sourceTree = "<group>"; };
+		BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBBasicScreenLayer.m; path = ../AdvanceClasses/NBBasicScreenLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -886,6 +904,8 @@
 				BCBC73B21633AA7700B5A141 /* NBAnimationDefinition.m */,
 				BCBC73B31633AA7700B5A141 /* NBBasicObject.h */,
 				BCBC73B41633AA7700B5A141 /* NBBasicObject.m */,
+				BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */,
+				BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */,
 				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
@@ -905,16 +925,26 @@
 		BCBC73CE1633AA8100B5A141 /* AdvanceClasses */ = {
 			isa = PBXGroup;
 			children = (
-				BC06C255163A31B100F091F0 /* NBFireMage.h */,
-				BC06C256163A31B100F091F0 /* NBFireMage.m */,
 				BC06C24D1633B68D00F091F0 /* NBBattleLayer.h */,
 				BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */,
-				BCBC73B91633AA7700B5A141 /* NBFireExplosion.h */,
-				BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */,
-				BCBC73D11633AA8100B5A141 /* NBSoldier.h */,
-				BCBC73D21633AA8100B5A141 /* NBSoldier.m */,
+				BCBC5A27166275D80009DCF3 /* NBBattleSetupScreen.h */,
+				BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */,
 				BC06C252163A297500F091F0 /* NBFireball.h */,
 				BC06C253163A297500F091F0 /* NBFireball.m */,
+				BCBC73B91633AA7700B5A141 /* NBFireExplosion.h */,
+				BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */,
+				BC06C255163A31B100F091F0 /* NBFireMage.h */,
+				BC06C256163A31B100F091F0 /* NBFireMage.m */,
+				BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */,
+				BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */,
+				BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */,
+				BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */,
+				BCBC5A241662728D0009DCF3 /* NBMapSelectionScreen.h */,
+				BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */,
+				BCBC73D11633AA8100B5A141 /* NBSoldier.h */,
+				BCBC73D21633AA8100B5A141 /* NBSoldier.m */,
+				BCBC5A2116626BA40009DCF3 /* NBStoryScreen.h */,
+				BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */,
 			);
 			name = AdvanceClasses;
 			path = NBClasses/AdvanceClasses;
@@ -1122,6 +1152,12 @@
 				BC06C251163461E700F091F0 /* NBProjectile.m in Sources */,
 				BC06C254163A297500F091F0 /* NBFireball.m in Sources */,
 				BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */,
+				BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */,
+				BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */,
+				BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */,
+				BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */,
+				BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */,
+				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,7 +1179,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1162,7 +1198,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1218,7 +1254,7 @@
 				BCBC73AA1633A98900B5A141 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		BCBC73AB1633A98900B5A141 /* Build configuration list for PBXNativeTarget "ElementArmy1.0" */ = {
 			isa = XCConfigurationList;
@@ -1227,7 +1263,7 @@
 				BCBC73AD1633A98900B5A141 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

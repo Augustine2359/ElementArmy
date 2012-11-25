@@ -88,7 +88,7 @@ static int enemySquadPositionIndex = 0;
             
             if (side == Ally)
             {
-                [tempCharacter setPosition:CGPointMake((battleFieldWidth * FIRST_UNIT_X_FRONTLINE_PERCENTAGE) - (tempXPadding * self.squadPositionIndex), (battleFieldHeight * FIRST_UNIT_Y_BOTTOM_PERCENTAGE) + ((i + 1) * tempYPadding))];
+                [tempCharacter setPosition:CGPointMake((battleFieldWidth * FIRST_UNIT_X_FRONTLINE_PERCENTAGE) - (tempXPadding * self.squadPositionIndex), (battleFieldHeight * FIRST_UNIT_Y_BOTTOM_PERCENTAGE) - (i * 10) + ((i + 1) * tempYPadding))];
             }
             else
             {
@@ -97,6 +97,8 @@ static int enemySquadPositionIndex = 0;
             
             objectCount++;
         }
+        
+        self.allUnitAreDead = false;
     }
     
     return self;
@@ -106,12 +108,20 @@ static int enemySquadPositionIndex = 0;
 {
     NBSquad* tempSquad;
     
+    self.allUnitAreDead = true;
+    
     CCARRAY_FOREACH(enemySquads, tempSquad)
     {
         for (int i = 0; i < [self.unitArray count]; i++)
         {
             id tempUnit = [self.unitArray objectAtIndex:i];
             [tempUnit updateWithAllyUnits:self.unitArray andEnemyUnits:tempSquad.unitArray withDelta:delta];
+            
+            NBCharacter* tempCharacter = (NBCharacter*)tempUnit;
+            if (tempCharacter.currentState != Dead)
+            {
+                self.allUnitAreDead = false;
+            }
         }
     }
 }

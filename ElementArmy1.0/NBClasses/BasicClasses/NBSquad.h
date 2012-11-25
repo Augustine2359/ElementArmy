@@ -31,5 +31,6 @@
 @property (nonatomic, retain) CCArray* unitArray;
 @property (nonatomic, assign) Class unitClass;
 @property (nonatomic, assign) int squadPositionIndex;
+@property (nonatomic, assign) bool allUnitAreDead;
 
 @end

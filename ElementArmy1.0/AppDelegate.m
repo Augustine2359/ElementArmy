@@ -11,6 +11,10 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "NBBattleLayer.h"
+#import "NBIntroScreen.h"
+#import "NBMainMenuScreen.h"
+
+static CCScene* introScreen = nil;
 
 @implementation AppController
 
@@ -72,9 +76,12 @@
 
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+    
+    introScreen = [NBIntroScreen sceneAndSetAsDefault:YES];
+    [NBBasicScreenLayer setCurrentScreen:introScreen];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]];
+	[director_ pushScene: [NBBasicScreenLayer loadCurrentScene]];
 
 	
 	// Create a Navigation Controller with the Director

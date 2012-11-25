@@ -440,7 +440,7 @@ static CCArray* enemyUnitList = nil;
 //Events
 -(void)onTouched
 {
-    NSLog(@"%@ is touched", self.name);
+    [super onTouched];
 }
 
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState

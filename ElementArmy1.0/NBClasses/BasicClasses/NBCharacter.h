@@ -45,7 +45,7 @@ typedef enum
     Enemy
 } EnumCharacterSide;
 
-@interface NBCharacter : NBBasicObject <NBUpdatableCharacter>
+@interface NBCharacter : NBBasicObject
 {
     bool deadEventTriggered;
     bool updateIsActive;
