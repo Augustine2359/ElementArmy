@@ -45,8 +45,8 @@
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
-    //Display Title in the middle of the screen
-    [self displayLayerTitle:@"Map Select Scene"];
+    //Display background
+    [self setCurrentBackgroundWithFileName:@"NB_worldMap_960x480.png" stretchToScreen:NO];
     
     [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
     [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
