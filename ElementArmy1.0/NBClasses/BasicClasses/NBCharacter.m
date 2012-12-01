@@ -134,6 +134,8 @@ static CCArray* enemyUnitList = nil;
     
     [characterList addObject:self];
     
+    [layer addChild:self z:[characterList count]];
+    
     return self;
 }
 
@@ -189,6 +191,10 @@ static CCArray* enemyUnitList = nil;
             if (self.timeUntilNextAttack <= 0)
                 self.isAttackReady = true;
         }
+    }
+    else
+    {
+        if (self.visible) [self setVisible:NO];
     }
     
     //Check if enemy is still alive

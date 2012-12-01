@@ -29,37 +29,30 @@
     
     if (makeDefault)
         [NBBasicScreenLayer setDefaultScreen:scene];
-	
-    [NBBasicScreenLayer resetMenuIndex];
     
 	// return the scene
 	return scene;
 }
 
--(id)init
+-(void) onEnter
 {
-    if ((self = [super init]))
-    {
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        
-        //Prepare Sprite Batch Node
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
-        self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
-        [self addChild:self.characterSpritesBatchNode z:0 tag:0];
-        
-        //Display Title in the middle of the screen
-        self.layerTitle = [CCLabelTTF labelWithString:@"Story Scene" fontName:@"Zapfino" fontSize:32];
-        self.layerTitle.position = CGPointMake(size.width / 2, size.height / 2);
-        [self addChild:self.layerTitle];
-        
-        [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
-        [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
-        [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
-        [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-        [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
-    }
+	[super onEnter];
     
-    return self;
+    UI_USER_INTERFACE_IDIOM();
+    
+    //Prepare Sprite Batch Node
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
+    self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
+    [self addChild:self.characterSpritesBatchNode z:0 tag:0];
+    
+    //Display Title in the middle of the screen
+    [self displayLayerTitle:@"Story Scene"];
+    
+    [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
+    [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
+    [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
+    [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
+    [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
 }
 
 -(void)gotoIntroScreen

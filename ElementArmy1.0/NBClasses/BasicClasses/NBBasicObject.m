@@ -255,6 +255,31 @@ static CGSize worldSize;
 -(void)isCollidedWith:(NBBasicObject*)object
 {
     NSLog(@"%@ is collided with %@", self.name, object.name);
+    
+    if (self.position.y > object.position.y)
+    {
+        if (self.zOrder > object.zOrder)
+        {
+            int tempZOrder = self.zOrder;
+            [self setZOrder:object.zOrder];
+            [object setZOrder:tempZOrder];
+        }
+        
+        if (self.zOrder == object.zOrder)
+            [self setZOrder:(self.zOrder - 1)];
+    }
+    else
+    {
+        if (self.zOrder < object.zOrder)
+        {
+            int tempZOrder = self.zOrder;
+            [self setZOrder:object.zOrder];
+            [object setZOrder:tempZOrder];
+        }
+        
+        if (self.zOrder == object.zOrder)
+            [self setZOrder:(self.zOrder + 1)];
+    }
 }
 
 @end

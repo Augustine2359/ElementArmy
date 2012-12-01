@@ -1,18 +1,18 @@
 //
-//  NBMainMenuScreen.h
+//  NBGameLoadingScreen.h
 //  ElementArmy1.0
 //
-//  Created by Romy Irawaty on 25/11/12.
+//  Created by Romy Irawaty on 1/12/12.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
 
-@interface NBMainMenuScreen : NBBasicScreenLayer
+@interface NBGameLoadingScreen : NBBasicScreenLayer
 
 -(void)gotoIntroScreen;
--(void)gotoLoadingScreen;
+-(void)gotoMainMenuScreen;
 -(void)gotoStoryScreen;
 -(void)gotoMapSelectionScreen;
 -(void)gotoBattleSetupScreen;

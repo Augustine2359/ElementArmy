@@ -15,6 +15,8 @@
 
 #pragma mark - NBBattleLayer
 
+#define UNIT_COUNT_PER_SQUAD 8
+
 static Boolean isAutoStart = NO;
 
 // NBBattleLayer implementation
@@ -39,8 +41,6 @@ static Boolean isAutoStart = NO;
     
     if (makeDefault)
         [NBBasicScreenLayer setDefaultScreen:scene];
-    
-    [NBBasicScreenLayer resetMenuIndex];
 	
 	// return the scene
 	return scene;
@@ -216,37 +216,37 @@ static Boolean isAutoStart = NO;
     NBSquad* tempSquad;
     
     //Testing single NBSoldier Squad on Enemy
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.allySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.allySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.allySquads addObject:tempSquad];
     
     //Testing single NBSoldier Squad on Enemy
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.enemySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.enemySquads addObject:tempSquad];
     
     //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:6 onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
     [tempSquad retain];
     [tempSquad startUpdate];
     [self.enemySquads addObject:tempSquad];

@@ -88,7 +88,7 @@ static int enemySquadPositionIndex = 0;
             
             if (side == Ally)
             {
-                [tempCharacter setPosition:CGPointMake((battleFieldWidth * FIRST_UNIT_X_FRONTLINE_PERCENTAGE) - (tempXPadding * self.squadPositionIndex), (battleFieldHeight * FIRST_UNIT_Y_BOTTOM_PERCENTAGE) - (i * 10) + ((i + 1) * tempYPadding))];
+                [tempCharacter setPosition:CGPointMake((battleFieldWidth * FIRST_UNIT_X_FRONTLINE_PERCENTAGE) - (tempXPadding * self.squadPositionIndex), (battleFieldHeight * FIRST_UNIT_Y_BOTTOM_PERCENTAGE)/* - (i * 10) */+ ((i + 1) * tempYPadding))];
             }
             else
             {
@@ -122,6 +122,24 @@ static int enemySquadPositionIndex = 0;
             {
                 self.allUnitAreDead = false;
             }
+            
+            [tempCharacter setZOrder:i + 1];
+
+            for (int j = i - 1; j >= 0; i--)
+            {
+                id tempUnit1 = [self.unitArray objectAtIndex:j];
+                [tempUnit1 updateWithAllyUnits:self.unitArray andEnemyUnits:tempSquad.unitArray withDelta:delta];
+                
+                NBCharacter* tempCharacter1 = (NBCharacter*)tempUnit1;
+                
+                if (tempCharacter.position.y > tempCharacter1.position.y)
+                {
+                    [tempCharacter setZOrder:(tempCharacter.zOrder - 1)];
+                    [tempCharacter1 setZOrder:(tempCharacter1.zOrder + 1)];
+                }
+            }
+            
+            NSLog(@"ZORDER = %i", tempCharacter.zOrder);
         }
     }
 }

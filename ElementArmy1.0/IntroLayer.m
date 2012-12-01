@@ -10,9 +10,10 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "NBBattleLayer.h"
-#import "NBBasicScreenLayer.h"
 
 #pragma mark - IntroLayer
+
+static CCScene* introScreen = nil;
 
 // HelloWorldLayer implementation
 @implementation IntroLayer
@@ -60,6 +61,6 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[NBBasicScreenLayer loadCurrentScene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:introScreen  withColor:ccWHITE]];
 }
 @end

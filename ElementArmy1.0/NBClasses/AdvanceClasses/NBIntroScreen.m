@@ -29,18 +29,17 @@
     
     if (makeDefault)
         [NBBasicScreenLayer setDefaultScreen:scene];
-    
-    [NBBasicScreenLayer resetMenuIndex];
 	
 	// return the scene
 	return scene;
 }
 
--(id)init
+/*-(id)init
 {
     if ((self = [super init]))
     {
         CGSize size = [[CCDirector sharedDirector] winSize];
+        self.background.rotation = 90;
         
         //Prepare Sprite Batch Node
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
@@ -48,9 +47,7 @@
         [self addChild:self.characterSpritesBatchNode z:0 tag:0];
         
         //Display Title in the middle of the screen
-        self.layerTitle = [CCLabelTTF labelWithString:@"Intro Scene" fontName:@"Zapfino" fontSize:32];
-        self.layerTitle.position = CGPointMake(size.width / 2, size.height / 2);
-        [self addChild:self.layerTitle];
+        [self displayLayerTitle:@"Intro Scene"];
         
         [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
         [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
@@ -60,7 +57,7 @@
     }
     
     return self;
-}
+}*/
 
 -(void)gotoMainMenuScreen
 {
@@ -90,6 +87,27 @@
 {
     self.nextScene = @"NBBattleLayer";
     [self changeToScene:self.nextScene];
+}
+
+-(void) onEnter
+{
+	[super onEnter];
+    
+    UI_USER_INTERFACE_IDIOM();
+    
+    //Prepare Sprite Batch Node
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
+    self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
+    [self addChild:self.characterSpritesBatchNode z:0 tag:0];
+    
+    //Display Title in the middle of the screen
+    [self displayLayerTitle:@"Intro Scene"];
+    
+    [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
+    [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
+    [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
+    [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
+    [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
 }
 
 @end

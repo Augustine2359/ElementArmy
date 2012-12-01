@@ -1,19 +1,19 @@
 //
-//  NBMapSelectionScreen.m
+//  NBGameLoadingScreen.m
 //  ElementArmy1.0
 //
-//  Created by Romy Irawaty on 25/11/12.
+//  Created by Romy Irawaty on 1/12/12.
 //
 //
 
-#import "NBMapSelectionScreen.h"
+#import "NBGameLoadingScreen.h"
 
-@implementation NBMapSelectionScreen
+@implementation NBGameLoadingScreen
 
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
 +(CCScene*)scene
 {
-    return [NBMapSelectionScreen sceneAndSetAsDefault:NO];
+    return [NBGameLoadingScreen sceneAndSetAsDefault:NO];
 }
 
 +(CCScene*)sceneAndSetAsDefault:(BOOL)makeDefault
@@ -22,7 +22,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	NBMapSelectionScreen *layer = [NBMapSelectionScreen node];
+	NBGameLoadingScreen *layer = [NBGameLoadingScreen node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -45,14 +45,15 @@
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
-    //Display Title in the middle of the screen
-    [self displayLayerTitle:@"Map Select Scene"];
+    ccColor4B startColor;
+    startColor.r = 0;
+    startColor.g = 0;
+    startColor.b = 0;
+    startColor.a = 255;
+    [self setLayerColor:startColor];
+    [self setCurrentBackgroundWithFileName:@"nowloading1.png" stretchToScreen:NO];
     
-    [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
-    [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
-    [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
-    [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-    [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
+    [self addStandardMenuString:@"Tap to continue..." withSelector:@selector(gotoStoryScreen)];
 }
 
 -(void)gotoIntroScreen
@@ -70,6 +71,12 @@
 -(void)gotoStoryScreen
 {
     self.nextScene = @"NBStoryScreen";
+    [self changeToScene:self.nextScene];
+}
+
+-(void)gotoMapSelectionScreen
+{
+    self.nextScene = @"NBMapSelectionScreen";
     [self changeToScene:self.nextScene];
 }
 

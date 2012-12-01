@@ -153,6 +153,7 @@
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
 		BCBC73E71633B06400B5A141 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D81633B06400B5A141 /* CharacterSprites.plist */; };
 		BCBC73E81633B06400B5A141 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D91633B06400B5A141 /* CharacterSprites.png */; };
+		BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */; };
 		BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */; };
 /* End PBXBuildFile section */
 
@@ -457,6 +458,8 @@
 		BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BCBC73D81633B06400B5A141 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
 		BCBC73D91633B06400B5A141 /* CharacterSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterSprites.png; sourceTree = "<group>"; };
+		BCDF8EE61669983900B229B3 /* NBGameLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameLoadingScreen.h; sourceTree = "<group>"; };
+		BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameLoadingScreen.m; sourceTree = "<group>"; };
 		BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBBasicScreenLayer.h; path = ../AdvanceClasses/NBBasicScreenLayer.h; sourceTree = "<group>"; };
 		BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBBasicScreenLayer.m; path = ../AdvanceClasses/NBBasicScreenLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -935,6 +938,8 @@
 				BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */,
 				BC06C255163A31B100F091F0 /* NBFireMage.h */,
 				BC06C256163A31B100F091F0 /* NBFireMage.m */,
+				BCDF8EE61669983900B229B3 /* NBGameLoadingScreen.h */,
+				BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */,
 				BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */,
 				BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */,
 				BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */,
@@ -1158,6 +1163,7 @@
 				BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */,
 				BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */,
 				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
+				BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
