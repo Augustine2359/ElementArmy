@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56190EF71677631700E92081 /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 56190EF61677631700E92081 /* test.m */; };
 		BC06C24E1633B68D00F091F0 /* NBBattleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC06C254163A297500F091F0 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C253163A297500F091F0 /* NBFireball.m */; };
@@ -159,8 +158,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		56190EF51677631700E92081 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
-		56190EF61677631700E92081 /* test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
 		BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleLayer.m; sourceTree = "<group>"; };
 		BC06C24D1633B68D00F091F0 /* NBBattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleLayer.h; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
@@ -953,8 +950,6 @@
 				BCBC73D21633AA8100B5A141 /* NBSoldier.m */,
 				BCBC5A2116626BA40009DCF3 /* NBStoryScreen.h */,
 				BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */,
-				56190EF51677631700E92081 /* test.h */,
-				56190EF61677631700E92081 /* test.m */,
 			);
 			name = AdvanceClasses;
 			path = NBClasses/AdvanceClasses;
@@ -1169,7 +1164,6 @@
 				BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */,
 				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
 				BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */,
-				56190EF71677631700E92081 /* test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
