@@ -8,6 +8,17 @@
 
 #import "test.h"
 
+@interface test()
+
+- (void)newMethods;
+
+@end
+
 @implementation test
+
+- (void)newMethods
+{
+    NSLog(@"hello");
+}
 
 @end
