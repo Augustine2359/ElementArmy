@@ -38,6 +38,8 @@
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 
 	director_.wantsFullScreenLayout = YES;
+    
+    NSLog(@"test");
 
 	// Display FSP and SPF
 	[director_ setDisplayStats:YES];
