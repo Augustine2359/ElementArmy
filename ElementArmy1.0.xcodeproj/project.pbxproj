@@ -11,6 +11,9 @@
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC06C254163A297500F091F0 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C253163A297500F091F0 /* NBFireball.m */; };
 		BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C256163A31B100F091F0 /* NBFireMage.m */; };
+		BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065B616874A7900745FB0 /* NBStaticObject.m */; };
+		BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B8168757FD00745FB0 /* CharacterSprites.plist */; };
+		BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B9168757FD00745FB0 /* CharacterSprites.png */; };
 		BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */; };
 		BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */; };
 		BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */; };
@@ -151,8 +154,6 @@
 		BCBC73CD1633AA7700B5A141 /* NBSquad.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73C21633AA7700B5A141 /* NBSquad.m */; };
 		BCBC73D41633AA8100B5A141 /* NBSoldier.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73D21633AA8100B5A141 /* NBSoldier.m */; };
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
-		BCBC73E71633B06400B5A141 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D81633B06400B5A141 /* CharacterSprites.plist */; };
-		BCBC73E81633B06400B5A141 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D91633B06400B5A141 /* CharacterSprites.png */; };
 		BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */; };
 		BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */; };
 /* End PBXBuildFile section */
@@ -166,6 +167,10 @@
 		BC06C253163A297500F091F0 /* NBFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireball.m; sourceTree = "<group>"; };
 		BC06C255163A31B100F091F0 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
 		BC06C256163A31B100F091F0 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
+		BC2065B516874A7900745FB0 /* NBStaticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStaticObject.h; sourceTree = "<group>"; };
+		BC2065B616874A7900745FB0 /* NBStaticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStaticObject.m; sourceTree = "<group>"; };
+		BC2065B8168757FD00745FB0 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
+		BC2065B9168757FD00745FB0 /* CharacterSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterSprites.png; sourceTree = "<group>"; };
 		BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
 		BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
 		BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMainMenuScreen.h; sourceTree = "<group>"; };
@@ -456,8 +461,6 @@
 		BCBC73D11633AA8100B5A141 /* NBSoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldier.h; sourceTree = "<group>"; };
 		BCBC73D21633AA8100B5A141 /* NBSoldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldier.m; sourceTree = "<group>"; };
 		BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		BCBC73D81633B06400B5A141 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
-		BCBC73D91633B06400B5A141 /* CharacterSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterSprites.png; sourceTree = "<group>"; };
 		BCDF8EE61669983900B229B3 /* NBGameLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameLoadingScreen.h; sourceTree = "<group>"; };
 		BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameLoadingScreen.m; sourceTree = "<group>"; };
 		BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBBasicScreenLayer.h; path = ../AdvanceClasses/NBBasicScreenLayer.h; sourceTree = "<group>"; };
@@ -920,6 +923,8 @@
 				BCBC73C11633AA7700B5A141 /* NBSquad.h */,
 				BCBC73C21633AA7700B5A141 /* NBSquad.m */,
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
+				BC2065B516874A7900745FB0 /* NBStaticObject.h */,
+				BC2065B616874A7900745FB0 /* NBStaticObject.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -958,8 +963,8 @@
 		BCBC73D71633B06400B5A141 /* CharacterSprites */ = {
 			isa = PBXGroup;
 			children = (
-				BCBC73D81633B06400B5A141 /* CharacterSprites.plist */,
-				BCBC73D91633B06400B5A141 /* CharacterSprites.png */,
+				BC2065B8168757FD00745FB0 /* CharacterSprites.plist */,
+				BC2065B9168757FD00745FB0 /* CharacterSprites.png */,
 			);
 			name = CharacterSprites;
 			path = Resources/CharacterSprites;
@@ -1029,8 +1034,8 @@
 				BCBC72421633A98700B5A141 /* iTunesArtwork in Resources */,
 				BCBC73801633A98900B5A141 /* ChangeLog in Resources */,
 				BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */,
-				BCBC73E71633B06400B5A141 /* CharacterSprites.plist in Resources */,
-				BCBC73E81633B06400B5A141 /* CharacterSprites.png in Resources */,
+				BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */,
+				BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,6 +1169,7 @@
 				BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */,
 				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
 				BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */,
+				BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1220,12 +1226,13 @@
 				GCC_PREFIX_HEADER = ElementArmy1.0/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"ElementArmy1.0/libs/kazmath/include\"";
 				INFOPLIST_FILE = ElementArmy1.0/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1239,7 +1246,7 @@
 				GCC_PREFIX_HEADER = ElementArmy1.0/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"ElementArmy1.0/libs/kazmath/include\"";
 				INFOPLIST_FILE = ElementArmy1.0/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",

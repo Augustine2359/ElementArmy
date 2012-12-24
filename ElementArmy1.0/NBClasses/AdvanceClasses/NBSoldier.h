@@ -11,8 +11,8 @@
 #import "NBUpdatableCharacter.h"
 
 #define MAXIMUM_SOLDIER_CAPACITY 50
-#define METAL_SOLDIER_FILE @"metal_soldier1_IDLEanim_1.png"
-#define METAL_SOLDIER_FILE_IDLE @"metal_soldier1_IDLEanim"
+#define METAL_SOLDIER_FILE @"metal_soldier_IDLEanim_1.png"
+#define METAL_SOLDIER_FILE_IDLE @"metal_soldier_IDLEanim"
 #define METAL_SOLDIER_FILE_ATTACK @"metal_soldier_ATTACKanim"
 #define FIRE_MAGE_FILE_IDLE @"fire_mage_IDLEanim"
 #define FIRE_MAGE_FILE_ATTACK @"fire_mage_ATTACKanim"

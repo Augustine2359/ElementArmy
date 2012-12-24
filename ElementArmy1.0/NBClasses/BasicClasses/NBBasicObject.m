@@ -14,13 +14,6 @@ static CGSize worldSize;
 
 @implementation NBBasicObject
 
-@synthesize objectIndex;
-@synthesize name;
-@synthesize currentLayer;
-@synthesize sprite;
-@synthesize currentTargetPosition, currentDirection;
-@synthesize basicSpeedPoint;
-
 +(void)update:(ccTime)delta
 {
     if (!worldObjectList) return;
@@ -48,14 +41,45 @@ static CGSize worldSize;
     return CGPointMake(xPerFrame, yPerFrame);
 }
 
--(void)setFacing:(EnumFacing)facing
+-(void)setFacing:(EnumFacing)newFacing
 {
-    _facing = facing;
+    _facing = newFacing;
     
     if (self.facing == Left)
         self.sprite.flipX = YES;
     else
         self.sprite.flipX = NO;
+}
+
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position setRotation:(CGFloat)rotation
+{
+    if ([self initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer])
+    {
+        self.position = position;
+        self.rotation = rotation;
+    }
+    
+    return self;
+}
+
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position
+{
+    if ([self initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer])
+    {
+        self.position = position;
+    }
+    
+    return self;
+}
+
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setRotation:(CGFloat)rotation
+{
+    if ([self initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer])
+    {
+        self.rotation = rotation;
+    }
+    
+    return self;
 }
 
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer

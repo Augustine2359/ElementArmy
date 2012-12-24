@@ -30,6 +30,9 @@ typedef enum
 +(CGPoint)createDirectionFrom:(CGPoint)startPoint to:(CGPoint)destinationPoint;
 
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer;
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position;
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setRotation:(CGFloat)rotation;
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position setRotation:(CGFloat)rotation;
 -(void)moveToPosition:(CGPoint)newPosition withDelta:(ccTime)delta;
 -(void)moveToDirection:(CGPoint)direction withDelta:(ccTime)delta;
 -(BOOL)isTouchingMe:(CGPoint)touchLocation;

@@ -14,34 +14,6 @@ static CCArray* enemyUnitList = nil;
 
 @implementation NBCharacter
 
-//@synthesize characterSprite;
-//@synthesize objectIndex;
-@synthesize level;
-@synthesize hitPoint;
-@synthesize spiritPoint;
-@synthesize attackPoint;
-@synthesize defensePoint;
-@synthesize dexterityPoint;
-@synthesize intelligencePoint;
-@synthesize evasionPoint;
-@synthesize skillSlots;
-@synthesize magicSlots;
-@synthesize isAlive;
-@synthesize currentState;
-@synthesize previousState;
-@synthesize animation;
-@synthesize currentActiveSkill;
-@synthesize currentActiveMagic;
-//@synthesize currentLayer;
-//@synthesize sprite;
-@synthesize characterSide = characterSide_;
-@synthesize characterSideString;
-@synthesize currentTarget;
-@synthesize isAttackReady;
-@synthesize timeUntilNextAttack;
-@synthesize targetPreviousPosition;
-@synthesize projectileArrayList;
-
 +(CCArray*)getEnemyList:(NBCharacter*)unit
 {
     if (unit.characterSide == Ally) return enemyUnitList; else return allyUnitList;
@@ -134,7 +106,7 @@ static CCArray* enemyUnitList = nil;
     
     [characterList addObject:self];
     
-    [layer addChild:self z:[characterList count]];
+    //[layer addChild:self z:[characterList count]];
     
     return self;
 }
@@ -321,7 +293,7 @@ static CCArray* enemyUnitList = nil;
 
 -(void)attackWithAnimation:(NBCharacter*)target withAnimation:(NSString*)animationName
 {
-    [animation playAnimation:animationName withDelay:0.1 andRepeatForever:NO withTarget:nil andSelector:nil];
+    [self.animation playAnimation:animationName withDelay:0.1 andRepeatForever:NO withTarget:nil andSelector:nil];
     //[self attack:target];
 }
 
@@ -353,7 +325,7 @@ static CCArray* enemyUnitList = nil;
 
 -(void)moveToWithAnimation:(CGPoint)newPosition forDurationOf:(float)duration withAnimation:(NSString*)animationName
 {
-    [animation playAnimation:animationName withDelay:0.1 andRepeatForever:YES withTarget:nil andSelector:nil];
+    [self.animation playAnimation:animationName withDelay:0.1 andRepeatForever:YES withTarget:nil andSelector:nil];
     [self moveToPosition:newPosition forDurationOf:duration];
 }
 
