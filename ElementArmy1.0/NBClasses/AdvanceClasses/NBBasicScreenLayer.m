@@ -78,7 +78,7 @@ static CCScene* defaultScreen = nil;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if ((self = [super init]))
     {
-        //CGSize size = [[CCDirector sharedDirector] winSize];
+        self.layerSize = [[CCDirector sharedDirector] winSize];
         
 		// ask director for the window size
         /*ccColor4B startColor;

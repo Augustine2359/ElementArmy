@@ -13,4 +13,16 @@
 
 @interface NBStaticObject : NBBasicObject
 
++(void)initializeWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode andLayer:(CCLayer*)layer andWindowsSize:(CGSize)size;
++(void)setCurrentSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode;
++(CCSpriteBatchNode*)getCurrentSpriteBatchNode;
++(void)setCurrentLayer:(CCLayer*)layer;
++(CCLayer*)getCurrentLayer;
++(void)setWinSize:(CGSize)size;
++(CGSize)getWinSize;
++(id)createStaticObject:(NSString*)frameName;
++(id)createStaticObject:(NSString*)frameName atPosition:(CGPoint)newPosition;
+
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer atPosition:(CGPoint)position;
+
 @end

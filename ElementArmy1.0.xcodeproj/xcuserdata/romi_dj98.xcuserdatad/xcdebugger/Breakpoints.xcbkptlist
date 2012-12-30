@@ -305,11 +305,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
+         startingLineNumber = "206"
+         endingLineNumber = "206"
          landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -318,11 +318,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -656,12 +656,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "218"
-         endingLineNumber = "218"
-         landmarkName = "-isTouchingMe:"
+         startingLineNumber = "227"
+         endingLineNumber = "227"
+         landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -721,12 +721,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "221"
-         endingLineNumber = "221"
-         landmarkName = "-isTouchingMe:"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -734,12 +734,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "219"
-         endingLineNumber = "219"
-         landmarkName = "-isTouchingMe:"
+         startingLineNumber = "228"
+         endingLineNumber = "228"
+         landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -747,12 +747,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "272"
-         endingLineNumber = "272"
-         landmarkName = "-onTouched"
+         startingLineNumber = "281"
+         endingLineNumber = "281"
+         landmarkName = "-checkWithinWorld"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -942,12 +942,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "263"
-         endingLineNumber = "263"
-         landmarkName = "-checkWithinWorld"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
+         landmarkName = "-checkCollisionWith:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -981,11 +981,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "306"
-         endingLineNumber = "306"
+         startingLineNumber = "315"
+         endingLineNumber = "315"
          landmarkName = "-isCollidedWith:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -994,12 +994,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
-         timestampString = "377970455.431474"
+         timestampString = "378571183.627432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "222"
-         endingLineNumber = "222"
-         landmarkName = "-isTouchingMe:"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
+         landmarkName = "-moveToDirection:withDelta:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1195,6 +1195,149 @@
          startingLineNumber = "85"
          endingLineNumber = "85"
          landmarkName = "-createSquadOf:withUnitCount:onSide:andSpriteBatchNode:onLayer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBIntroScreen.m"
+         timestampString = "378570958.697206"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
+         landmarkName = "-onEnter"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBButton.m"
+         timestampString = "378569421.386282"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "22"
+         endingLineNumber = "22"
+         landmarkName = "+createWithSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBButton.m"
+         timestampString = "378570046.094103"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-addStateFrame:usingFrame:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBIntroScreen.m"
+         timestampString = "378570425.219351"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "112"
+         endingLineNumber = "112"
+         landmarkName = "-onEnter"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBIntroScreen.m"
+         timestampString = "378572574.745732"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "-onEnter"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBButton.m"
+         timestampString = "378570611.824286"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "+createWithSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
+         timestampString = "378571179.922961"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
+         landmarkName = "-setToCustomSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/BasicClasses/NBBasicObject.m"
+         timestampString = "378571251.68602"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "-setToCustomSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBIntroScreen.m"
+         timestampString = "378572832.249922"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
+         landmarkName = "-onEnter"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBBasicScreenLayer.m"
+         timestampString = "378572335.863189"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "81"
+         endingLineNumber = "81"
+         landmarkName = "-init"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ElementArmy1.0/NBClasses/AdvanceClasses/NBBasicScreenLayer.m"
+         timestampString = "378572469.228207"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "82"
+         endingLineNumber = "82"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

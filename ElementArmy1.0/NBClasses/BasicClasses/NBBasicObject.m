@@ -123,6 +123,26 @@ static CGSize worldSize;
     objectCount--;
 }
 
+-(void)setToCustomSize:(CGSize)newSize
+{
+    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height);
+    
+    [self setScaleX:(newSize.width / self.sprite.contentSize.width)];
+    [self setScaleY:(newSize.height / self.sprite.contentSize.height)];
+}
+
+-(void)setCurrentFrame:(NSString *)frameName
+{
+    CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    CCSpriteFrame* frame = [cache spriteFrameByName:frameName];
+    [self.sprite setDisplayFrame:frame];
+}
+
+-(void)setToDefaultSize
+{
+    [self setScale:1];
+}
+
 -(void)update:(ccTime)delta
 {
 }

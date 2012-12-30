@@ -17,4 +17,7 @@
 -(void)gotoBattleSetupScreen;
 -(void)gotoBattleScreen;
 
+@property (nonatomic, retain) NBButton* testButton;
+@property (nonatomic, retain) NBStaticObject* sampleStaticObject;
+
 @end

@@ -39,6 +39,9 @@ typedef enum
 -(bool)checkCollisionWith:(NBBasicObject*)otherObject;
 -(bool)checkWithinWorld;
 -(void)update:(ccTime)delta;
+-(void)setToCustomSize:(CGSize)newSize;
+-(void)setToDefaultSize;
+-(void)setCurrentFrame:(NSString*)frameName;
 
 //Events
 -(void)onTouched;

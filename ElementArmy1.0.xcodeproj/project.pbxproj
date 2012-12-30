@@ -14,6 +14,9 @@
 		BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065B616874A7900745FB0 /* NBStaticObject.m */; };
 		BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B8168757FD00745FB0 /* CharacterSprites.plist */; };
 		BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B9168757FD00745FB0 /* CharacterSprites.png */; };
+		BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065BD168B44E000745FB0 /* NBMessageBox.m */; };
+		BC2065C1168B494600745FB0 /* NBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C0168B494500745FB0 /* NBButton.m */; };
+		BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C3168B4A4200745FB0 /* NBUserInterface.m */; };
 		BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */; };
 		BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */; };
 		BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */; };
@@ -171,6 +174,12 @@
 		BC2065B616874A7900745FB0 /* NBStaticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStaticObject.m; sourceTree = "<group>"; };
 		BC2065B8168757FD00745FB0 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
 		BC2065B9168757FD00745FB0 /* CharacterSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterSprites.png; sourceTree = "<group>"; };
+		BC2065BC168B44E000745FB0 /* NBMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMessageBox.h; sourceTree = "<group>"; };
+		BC2065BD168B44E000745FB0 /* NBMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMessageBox.m; sourceTree = "<group>"; };
+		BC2065BF168B494500745FB0 /* NBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBButton.h; sourceTree = "<group>"; };
+		BC2065C0168B494500745FB0 /* NBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBButton.m; sourceTree = "<group>"; };
+		BC2065C2168B4A4200745FB0 /* NBUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserInterface.h; sourceTree = "<group>"; };
+		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
 		BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
 		BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
 		BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMainMenuScreen.h; sourceTree = "<group>"; };
@@ -925,6 +934,12 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065B516874A7900745FB0 /* NBStaticObject.h */,
 				BC2065B616874A7900745FB0 /* NBStaticObject.m */,
+				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
+				BC2065BD168B44E000745FB0 /* NBMessageBox.m */,
+				BC2065BF168B494500745FB0 /* NBButton.h */,
+				BC2065C0168B494500745FB0 /* NBButton.m */,
+				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
+				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1170,6 +1185,9 @@
 				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
 				BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */,
 				BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */,
+				BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */,
+				BC2065C1168B494600745FB0 /* NBButton.m in Sources */,
+				BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
