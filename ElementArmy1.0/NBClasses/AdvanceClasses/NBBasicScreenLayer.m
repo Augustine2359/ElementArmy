@@ -79,6 +79,8 @@ static CCScene* defaultScreen = nil;
 	if ((self = [super init]))
     {
         self.layerSize = [[CCDirector sharedDirector] winSize];
+        self.UI = [[NBUserInterface alloc] init];
+        [self scheduleUpdate];
         
 		// ask director for the window size
         /*ccColor4B startColor;
@@ -191,5 +193,9 @@ static CCScene* defaultScreen = nil;
     [self addChild:self.background];
 }
 
+-(void)update:(ccTime)delta
+{
+    [self.UI update:delta];
+}
 
 @end

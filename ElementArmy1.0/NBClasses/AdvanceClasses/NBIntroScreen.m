@@ -110,8 +110,8 @@
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
     
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
-    //self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
-    //self.testButton.position = CGPointMake(200, 200);
+    self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
+    self.testButton.position = CGPointMake(200, 200);
     
     //Sample for NBStaticObject using frame named frame_item.png
     self.sampleStaticObject = [NBStaticObject createStaticObject:@"frame_item.png" atPosition:CGPointMake(160, 300)];

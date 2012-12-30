@@ -72,6 +72,16 @@ static CGSize winSize = {0, 0};
     return [[NBStaticObject alloc] initWithFrameName:frameName andSpriteBatchNode:currentSpriteBatchNode onLayer:currentLayer atPosition:newPosition];
 }
 
++(void)update:(ccTime)delta
+{
+    NBStaticObject* object;
+    
+    CCARRAY_FOREACH(staticObjectList, object)
+    {
+        [object update:delta];
+    }
+}
+
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer atPosition:(CGPoint)position
 {
     if (!staticObjectList)

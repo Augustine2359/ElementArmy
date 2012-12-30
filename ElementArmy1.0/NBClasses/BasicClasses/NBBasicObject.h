@@ -58,5 +58,6 @@ typedef enum
 @property (nonatomic, assign) CGPoint currentDirection;
 @property (nonatomic, assign) EnumFacing facing;
 @property (nonatomic, assign) bool isActive;
+@property (nonatomic, assign) CGSize sizeOnScreen;
 
 @end

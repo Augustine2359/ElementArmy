@@ -262,7 +262,7 @@ static Boolean isAutoStart = NO;
 {
     //Test below
     [self startBattle];
-    [self scheduleUpdate];
+    //[self scheduleUpdate];
 }
 
 -(void)startBattle

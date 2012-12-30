@@ -24,17 +24,16 @@
     return tempButton;
 }
 
--(id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer
+-(id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer atPosition:(CGPoint)position
 {
-    if ((self = [super initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer]))
+    if ((self = [super initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer atPosition:position]))
     {
         self.state = Released;
-        self.stateArray = [[CCArray alloc] initWithCapacity:Reserved];
+        self.stateArray = [[CCArray alloc] initWithCapacity:Reserved + 1];
         
-        for (int i = 0; i < Reserved; i++)
-        {
-            [self.stateArray addObject:DEFAULT_BUTTON_RELEASED_FRAME_NAME];
-        }
+        [self.stateArray addObject:DEFAULT_BUTTON_RELEASED_FRAME_NAME];
+        [self.stateArray addObject:DEFAULT_BUTTON_PRESSED_FRAME_NAME];
+        [self.stateArray addObject:DEFAULT_BUTTON_DISABLED_FRAME_NAME];
     }
     
     return self;
@@ -55,6 +54,8 @@
 
 -(void)onPressed
 {
+    NSLog(@"button pressed");
+    
     self.state = Pressed;
     pressedDuration = DEFAULT_PRESSED_DURATION;
     
@@ -72,7 +73,7 @@
     
     if (self.state == Pressed)
     {
-        pressedDuration -= (delta * 60);
+        pressedDuration -= (delta * 1000);
         if (pressedDuration <= 0)
         {
             self.state = Released;

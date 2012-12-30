@@ -98,6 +98,7 @@ static CGSize worldSize;
         self.currentSpriteBatchNode = spriteBatchNode;
         self.objectIndex = [layer.children count];
         self.basicSpeedPoint = OBJECT_SPEED_PIXEL_PER_SECOND;
+        self.sizeOnScreen = self.sprite.contentSize;
         
         //Add to the world object list for update
         [worldObjectList addObject:self];
@@ -125,10 +126,21 @@ static CGSize worldSize;
 
 -(void)setToCustomSize:(CGSize)newSize
 {
-    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height);
+    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
     
     [self setScaleX:(newSize.width / self.sprite.contentSize.width)];
     [self setScaleY:(newSize.height / self.sprite.contentSize.height)];
+    
+    self.sizeOnScreen = newSize;
+    
+    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+}
+
+-(void)setToDefaultSize
+{
+    [self setScale:1];
+    
+    self.sizeOnScreen = self.sprite.contentSize;
 }
 
 -(void)setCurrentFrame:(NSString *)frameName
@@ -136,11 +148,6 @@ static CGSize worldSize;
     CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
     CCSpriteFrame* frame = [cache spriteFrameByName:frameName];
     [self.sprite setDisplayFrame:frame];
-}
-
--(void)setToDefaultSize
-{
-    [self setScale:1];
 }
 
 -(void)update:(ccTime)delta
@@ -236,11 +243,17 @@ static CGSize worldSize;
 {
     BOOL isTouched = false;
     
-    //NSLog(@"touch location x = %f y = %f", touchLocation.x, touchLocation.y);
-    //NSLog(@"%@ location x = %f y = %f width = %f", self.name, self.position.x, self.position.y, self.characterSprite.contentSize.width);
+    NSLog(@"touch location x = %f y = %f", touchLocation.x, touchLocation.y);
+    NSLog(@"%@ location x = %f y = %f width = %f height = %f", self.name, self.position.x, self.position.y, self.sizeOnScreen.width, self.sizeOnScreen.height);
     
-    if (((touchLocation.x >= (self.position.x - (self.sprite.contentSize.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sprite.contentSize.width / 2.5)))) &&
+    /*if (((touchLocation.x >= (self.position.x - (self.sprite.contentSize.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sprite.contentSize.width / 2.5)))) &&
         ((touchLocation.y >= (self.position.y - (self.sprite.contentSize.height / 4))) && (touchLocation.y <= (self.position.y + (self.sprite.contentSize.height / 4)))))
+    {
+        isTouched = YES;
+    }*/
+    
+    if (((touchLocation.x >= (self.position.x - (self.sizeOnScreen.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sizeOnScreen.width / 2.5)))) &&
+        ((touchLocation.y >= (self.position.y - (self.sizeOnScreen.height / 4))) && (touchLocation.y <= (self.position.y + (self.sizeOnScreen.height / 4)))))
     {
         isTouched = YES;
     }

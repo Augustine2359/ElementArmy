@@ -36,5 +36,6 @@
 @property (nonatomic, retain) CCSpriteBatchNode* characterSpritesBatchNode;
 @property (nonatomic, retain) NSString* nextScene;
 @property (nonatomic, retain) CCSprite* background;
+@property (nonatomic, retain) NBUserInterface* UI;
 
 @end

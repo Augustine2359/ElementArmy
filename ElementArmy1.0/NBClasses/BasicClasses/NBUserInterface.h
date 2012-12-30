@@ -10,6 +10,8 @@
 #import "NBButton.h"
 #import "NBMessageBox.h"
 
-@interface NBUserInterface
+@interface NBUserInterface : NSObject
+
+-(void)update:(ccTime)delta;
 
 @end
