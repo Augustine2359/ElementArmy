@@ -99,6 +99,8 @@ static CGSize worldSize;
         self.objectIndex = [layer.children count];
         self.basicSpeedPoint = OBJECT_SPEED_PIXEL_PER_SECOND;
         self.sizeOnScreen = self.sprite.contentSize;
+        self.isSwallowingTouch = YES;
+        self.isCurrentlyTouched = NO;
         
         //Add to the world object list for update
         [worldObjectList addObject:self];
@@ -113,6 +115,11 @@ static CGSize worldSize;
     }
     
     return self;
+}
+
+-(void)initialize
+{
+    [self.currentLayer addChild:self];
 }
 
 -(void)dealloc
@@ -263,16 +270,35 @@ static CGSize worldSize;
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    BOOL returnValue = NO;
-    
     CGPoint touchLocation = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
     //NSLog(@"%@ current origin x = %f, y = %f with size = %f", self.name, [self.characterSprite boundingBox].origin.x, [self.characterSprite boundingBox].origin.y, [self.characterSprite boundingBox].size.width);
-    returnValue = [self isTouchingMe:touchLocation];
     
-    if (returnValue == YES)
-        [self onTouched];
+    self.isCurrentlyTouched = [self isTouchingMe:touchLocation];
     
-    return returnValue;
+    [self onTouched];
+    
+    //NSLog(@"Object Touch started");
+    
+    return self.isSwallowingTouch;
+}
+
+-(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    self.isCurrentlyTouched = NO;
+    
+    //NSLog(@"Object Touch cancelled");
+}
+
+-(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
+-(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    self.isCurrentlyTouched = NO;
+    
+    //NSLog(@"Object Touch ended");
 }
 
 -(bool)checkCollisionWith:(NBBasicObject*)otherObject

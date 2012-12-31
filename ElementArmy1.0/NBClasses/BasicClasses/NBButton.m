@@ -4,86 +4,84 @@
 //
 //  Created by Romy Irawaty on 26/12/12.
 //
-//
+// Features:
+// 1. Use CCMenuItemSprite component
+// 2. Need all 3 state sprite frame: normal, selected, and disabled
+
+// How to use: see sample on NBIntroScreen, button called wastedMyTimeButton :)
 
 #import "NBButton.h"
 
+static CCArray* buttonList = nil;
+
 @implementation NBButton
 
-+(id)create
++(id)createOnLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    return [NBButton createWithSize:CGSizeMake(100, 40)];
+    return [NBButton createWithSize:CGSizeZero onLayer:layer selector:selector];
 }
 
-+(id)createWithSize:(CGSize)size
++(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    NBButton* tempButton = [[NBButton alloc] initWithFrameName:DEFAULT_BUTTON_FRAME_NAME andSpriteBatchNode:[NBStaticObject getCurrentSpriteBatchNode] onLayer:[NBStaticObject getCurrentLayer] atPosition:CGPointZero];
+    CCSprite* normalSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_NORMAL_FRAME_NAME];
+    CCSprite* selectedSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_SELECTED_FRAME_NAME];
+    CCSprite* disabledSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_DISABLED_FRAME_NAME];
     
-    [tempButton setToCustomSize:size];
+    NBButton* tempButton = [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite];
+    
+    if (!CGSizeEqualToSize(size, CGSizeZero))
+    {
+        [tempButton.buttonObject setScaleX:(size.width / tempButton.buttonObject.contentSize.width)];
+        [tempButton.buttonObject setScaleY:(size.height / tempButton.buttonObject.contentSize.height)];
+    }
     
     return tempButton;
 }
 
--(id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer atPosition:(CGPoint)position
++(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    if ((self = [super initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer atPosition:position]))
+    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite];
+}
+
+-(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite
+{
+    if (!buttonList)
     {
-        self.state = Released;
-        self.stateArray = [[CCArray alloc] initWithCapacity:Reserved + 1];
-        
-        [self.stateArray addObject:DEFAULT_BUTTON_RELEASED_FRAME_NAME];
-        [self.stateArray addObject:DEFAULT_BUTTON_PRESSED_FRAME_NAME];
-        [self.stateArray addObject:DEFAULT_BUTTON_DISABLED_FRAME_NAME];
+        buttonList = [[CCArray alloc] initWithCapacity:50];
     }
+    
+    self.normalSprite = normalSprite;
+    self.selectedSprite = selectedSprite;
+    self.disabledSprite = disabledSprite;
+    
+    self.buttonObject = [CCMenuItemSprite itemWithNormalSprite:self.normalSprite selectedSprite:self.selectedSprite disabledSprite:self.disabledSprite target:layer selector:selector];
+    self.menu = [CCMenu menuWithItems:self.buttonObject, nil];
+    [self hide];
+    self.name = [NSString stringWithFormat:@"Button%i", [buttonList count]];
+    
+    [layer addChild:self.menu];
     
     return self;
 }
 
--(void)addStateFrame:(EnumButtonState)state usingFrame:(NSString*)frameName
+-(void)setPosition:(CGPoint)position
 {
-    if (!self.stateArray) self.stateArray = [[CCArray alloc] initWithCapacity:Reserved];
-    
-    [self.stateArray replaceObjectAtIndex:state withObject:frameName];
+    self.menu.position = position;
 }
 
--(void)addHandler:(id)target selector:(SEL)handler
+-(CGPoint)getPosition
 {
-    self.owner = target;
-    self.handler = handler;
+    return self.menu.position;
 }
 
--(void)onPressed
+-(void)show
 {
-    NSLog(@"button pressed");
-    
-    self.state = Pressed;
-    pressedDuration = DEFAULT_PRESSED_DURATION;
-    
-    [self.owner performSelector:self.handler];
+    self.menu.visible = YES;
 }
 
--(void)onReleased
+-(void)hide
 {
-    
-}
-
--(void)update:(ccTime)delta
-{
-    [self setCurrentFrame:[self.stateArray objectAtIndex:self.state]];
-    
-    if (self.state == Pressed)
-    {
-        pressedDuration -= (delta * 1000);
-        if (pressedDuration <= 0)
-        {
-            self.state = Released;
-        }
-    }
-}
-
--(void)onTouched
-{
-    [self onPressed];
+    self.menu.visible = NO;
 }
 
 @end

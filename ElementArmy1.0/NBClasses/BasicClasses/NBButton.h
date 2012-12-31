@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "NBStaticObject.h"
 
-#define DEFAULT_BUTTON_FRAME_NAME @"staticbox_blue.png"
-#define DEFAULT_BUTTON_RELEASED_FRAME_NAME @"staticbox_blue.png"
-#define DEFAULT_BUTTON_PRESSED_FRAME_NAME @"staticbox_red.png"
-#define DEFAULT_BUTTON_DISABLED_FRAME_NAME @"staticbox_blue.png"
+#define DEFAULT_BUTTON_NORMAL_FRAME_NAME @"staticbox_blue.png"
+#define DEFAULT_BUTTON_SELECTED_FRAME_NAME @"staticbox_red.png"
+#define DEFAULT_BUTTON_DISABLED_FRAME_NAME @"staticbox_gray.png"
 #define DEFAULT_PRESSED_DURATION 250
 
 typedef enum
@@ -20,25 +19,23 @@ typedef enum
     Released = 0,
     Pressed = 1,
     Disabled = 2,
-    Reserved = 3
+    Reserved
 } EnumButtonState;
 
-@interface NBButton : NBStaticObject
-{
-    int pressedDuration;
-}
+@interface NBButton : NBBasicObject
 
-+(id)create;
-+(id)createWithSize:(CGSize)size;
--(void)addStateFrame:(EnumButtonState)state usingFrame:(NSString*)frameName;
--(void)addHandler:(id)target selector:(SEL)handler;
--(void)onPressed;
--(void)onReleased;
++(id)createOnLayer:(CCLayer*)layer selector:(SEL)selector;
++(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer selector:(SEL)selector;
++(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector;
+-(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite;
+-(CGPoint)getPosition;
+-(void)show;
+-(void)hide;
 
-@property (nonatomic, retain) NSString* text;
-@property (nonatomic, assign) EnumButtonState state;
-@property (nonatomic, retain) CCArray* stateArray;
-@property (nonatomic, retain) id owner;
-@property (nonatomic, assign) SEL handler;
+@property (nonatomic, retain) CCMenu* menu;
+@property (nonatomic, retain) CCMenuItemSprite* buttonObject;
+@property (nonatomic, retain) CCSprite* normalSprite;
+@property (nonatomic, retain) CCSprite* selectedSprite;
+@property (nonatomic, retain) CCSprite* disabledSprite;
 
 @end

@@ -13,8 +13,8 @@
 #import "cocos2d.h"
 #import "NBSquad.h"
 #import "NBProjectile.h"
-#import "NBUpdatableCharacter.h"
 #import "NBBasicScreenLayer.h"
+#import "NBUserInterface.h"
 
 // HelloWorldLayer
 @interface NBBattleLayer : NBBasicScreenLayer
@@ -28,6 +28,7 @@
 -(void)performanceTest;
 -(void)prepareUnits;
 -(void)prepareBattlefield;
+-(void)prepareUI;
 -(void)startBattle;
 -(void)gotoMapSelectionScreen;
 
@@ -38,5 +39,25 @@
 @property (nonatomic, retain) CCArray* enemySquads;
 @property (nonatomic, assign) bool allAllyUnitAnnihilated;
 @property (nonatomic, assign) bool allEnemyUnitAnnihilated;
+
+//UI
+
+-(void)onClassGroupSkillButtonSelected;
+-(void)onClassSkillAButtonSelected;
+-(void)onClassSkillBButtonSelected;
+-(void)onClassSkillCButtonSelected;
+-(void)onComboGroupSkillButtonSelected;
+-(void)onComboSkillAButtonSelected;
+-(void)onComboSkillBButtonSelected;
+-(void)onComboSkillCButtonSelected;
+
+@property (nonatomic, retain) NBButton* classGroupSkillButton;
+@property (nonatomic, retain) NBButton* comboGroupSkillButton;
+@property (nonatomic, retain) NBButton* classSkillAButton;
+@property (nonatomic, retain) NBButton* classSkillBButton;
+@property (nonatomic, retain) NBButton* classSkillCButton;
+@property (nonatomic, retain) NBButton* comboSkillAButton;
+@property (nonatomic, retain) NBButton* comboSkillBButton;
+@property (nonatomic, retain) NBButton* comboSkillCButton;
 
 @end

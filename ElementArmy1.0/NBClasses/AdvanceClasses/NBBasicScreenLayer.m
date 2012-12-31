@@ -134,7 +134,7 @@ static CCScene* defaultScreen = nil;
     [CCMenuItemFont setFontName:@"Zapfino"];
     
     // create and initialize a Label
-    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 22) hAlignment:UITextAlignmentLeft fontName:@"Zapfino" fontSize:10];
+    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 22) hAlignment:CCTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
     CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithLabel:label target:self selector:selectedMethod];
     self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
     [self.menu setColor:ccWHITE];

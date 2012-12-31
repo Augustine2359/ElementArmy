@@ -77,6 +77,7 @@ static Boolean isAutoStart = NO;
         if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
         if (!self.enemySquads) self.enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
         [self prepareUnits];
+        [self prepareUI];
         
         if (!isAutoStart)
         {
@@ -265,6 +266,17 @@ static Boolean isAutoStart = NO;
     //[self scheduleUpdate];
 }
 
+-(void)prepareUI
+{
+    CCSprite* groupClassButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
+    CCSprite* groupClassButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
+    CCSprite* groupClassButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
+    
+    self.classGroupSkillButton = [NBButton createWithCustomImageHavingNormal:groupClassButtonNormalSprite havingSelected:groupClassButtonSelectedSprite havingDisabled:groupClassButtonDisabledSprite onLayer:self selector:@selector(onClassGroupSkillButtonSelected)];
+    [self.classGroupSkillButton setPosition:CGPointMake(20, 20)];
+    [self.classGroupSkillButton show];
+}
+
 -(void)startBattle
 {
     if (self.menu) self.menu.visible = NO;
@@ -278,7 +290,47 @@ static Boolean isAutoStart = NO;
         tempCharacter.currentState = Idle;
     }
 }
-//************************************************************************************************
 
+//UI Control Event Handler
+-(void)onClassGroupSkillButtonSelected
+{
+    NSLog(@"Class Group Button Selected");
+}
+
+-(void)onClassSkillAButtonSelected
+{
+    NSLog(@"Class Skill A Button Selected");
+}
+
+-(void)onClassSkillBButtonSelected
+{
+    NSLog(@"Class Skill B Button Selected");
+}
+
+-(void)onClassSkillCButtonSelected
+{
+    NSLog(@"Class Skill C Button Selected");
+}
+
+-(void)onComboGroupSkillButtonSelected
+{
+    NSLog(@"Combo Group Button Selected");
+}
+
+-(void)onComboSkillAButtonSelected
+{
+    NSLog(@"Combo Skill A Button Selected");
+}
+
+-(void)onComboSkillBButtonSelected
+{
+    NSLog(@"Combo Skill B Button Selected");
+}
+
+-(void)onComboSkillCButtonSelected
+{
+    NSLog(@"Combo Skill C Button Selected");
+}
+//************************************************************************************************
 
 @end

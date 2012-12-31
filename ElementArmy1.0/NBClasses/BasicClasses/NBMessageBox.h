@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NBStaticObject.h"
+#import "NBButton.h"
 
 #define MESSAGE_BOX_FRAME_NAME @"static_box.png"
 
@@ -16,6 +17,6 @@
 +(void)show:(NSString*)message;
 
 @property (nonatomic, retain) NSString* message;
-@property (nonatomic, retain) NBBasicObject* buttonOK;
+@property (nonatomic, retain) NBButton* buttonOK;
 
 @end

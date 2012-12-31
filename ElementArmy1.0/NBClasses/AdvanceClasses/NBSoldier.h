@@ -20,7 +20,6 @@
 
 @interface NBSoldier : NBCharacter
 
--(void)initialize;
 -(void)attack:(NBCharacter*)target;
 -(void)attackWithAnimation:(NBCharacter*)target withAnimation:(NSString*)animationName;
 

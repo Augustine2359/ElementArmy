@@ -109,12 +109,30 @@
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
     
+    //Must be called everytime entering a layer
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
-    self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
-    self.testButton.position = CGPointMake(200, 200);
+    
+    //Sample for NBButton
+    //self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
+    //self.testButton.position = CGPointMake(200, 200);
+    //[self.testButton addHandler:self selector:@selector(onTestButtonPressed)];
+    
+    //Sample for wastedMyTimeButton
+    //self.wastedMyTimeButton = [NBButton createOnLayer:self selector:@selector(onTestButtonPressed)];
+    self.wastedMyTimeButton = [NBButton createWithSize:CGSizeMake(100, 40) onLayer:self selector:@selector(onTestButtonPressed)];
+    self.wastedMyTimeButton.menu.position = CGPointMake(200, 200);
+    [self.wastedMyTimeButton show];
     
     //Sample for NBStaticObject using frame named frame_item.png
     self.sampleStaticObject = [NBStaticObject createStaticObject:@"frame_item.png" atPosition:CGPointMake(160, 300)];
+}
+
+//UI Control Events Handlers
+-(void)onTestButtonPressed
+{
+    NSLog(@"Test button clicked");
+    
+    //Do something here
 }
 
 @end

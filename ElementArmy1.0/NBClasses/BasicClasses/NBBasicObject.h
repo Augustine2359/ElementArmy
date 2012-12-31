@@ -29,6 +29,7 @@ typedef enum
 +(void)update:(ccTime)delta;
 +(CGPoint)createDirectionFrom:(CGPoint)startPoint to:(CGPoint)destinationPoint;
 
+-(void)initialize;
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer;
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position;
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setRotation:(CGFloat)rotation;
@@ -59,5 +60,7 @@ typedef enum
 @property (nonatomic, assign) EnumFacing facing;
 @property (nonatomic, assign) bool isActive;
 @property (nonatomic, assign) CGSize sizeOnScreen;
+@property (nonatomic, assign) BOOL isSwallowingTouch;
+@property (nonatomic, assign) BOOL isCurrentlyTouched;
 
 @end

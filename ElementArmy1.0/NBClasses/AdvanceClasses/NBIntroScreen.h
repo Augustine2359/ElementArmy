@@ -17,7 +17,11 @@
 -(void)gotoBattleSetupScreen;
 -(void)gotoBattleScreen;
 
+//UI Control
+-(void)onTestButtonPressed;
+
 @property (nonatomic, retain) NBButton* testButton;
 @property (nonatomic, retain) NBStaticObject* sampleStaticObject;
+@property (nonatomic, retain) NBButton* wastedMyTimeButton;
 
 @end
