@@ -268,13 +268,11 @@ static Boolean isAutoStart = NO;
 
 -(void)prepareUI
 {
-    CCSprite* groupClassButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    CCSprite* groupClassButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    CCSprite* groupClassButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
+  self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] init];
 
-    self.classGroupSkillButton = [NBButton createWithCustomImageHavingNormal:groupClassButtonNormalSprite havingSelected:groupClassButtonSelectedSprite havingDisabled:groupClassButtonDisabledSprite onLayer:self selector:@selector(onClassGroupSkillButtonSelected)];
-    [self.classGroupSkillButton setPosition:CGPointMake(20, 20)];
-    [self.classGroupSkillButton show];
+  self.classGroupSkillMenuLayer.layerSize = CGSizeMake(100, 50);
+  self.classGroupSkillMenuLayer.contentSize = CGSizeMake(100, 50);
+  [self addChild:self.classGroupSkillMenuLayer];
 }
 
 -(void)startBattle

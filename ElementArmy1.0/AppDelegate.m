@@ -39,7 +39,7 @@
 
 	director_.wantsFullScreenLayout = YES;
     
-    NSLog(@"test hello");
+    DLog(@"test hello");
 
 	// Display FSP and SPF
 	[director_ setDisplayStats:YES];
