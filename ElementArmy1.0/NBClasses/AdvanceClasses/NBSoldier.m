@@ -5,7 +5,7 @@
 //  Created by Romy Irawaty on 30/9/12.
 //
 // Notes:
-// - All NSLog is mostly covered by this if condition "if ([self.name isEqualToString:TEST_OBJECT_NAME])"
+// - All DLog is mostly covered by this if condition "if ([self.name isEqualToString:TEST_OBJECT_NAME])"
 //   reason is because sometimes we want to track only 1 object, and so that the debugger log would not be too flooded
 // - You can define your own log definition if needed. Take a look at the example on NBCharacter where I defined ENABLE_REMAINING_ATK_TIME_LOG
 //   the reason is i would like to be able to turn on and off the remaining time for attack log which is a lot
@@ -56,7 +56,7 @@ static CCArray* soldierList = nil;
         self.name = [NSString stringWithFormat:@"Enemy%@%i", NSStringFromClass([self class]), [soldierList count]];
     }
     
-    NSLog(@"%@ added", self.name);
+    DLog(@"%@ added", self.name);
     //*****************************
     
     //Initialize your class here
@@ -124,7 +124,7 @@ static CCArray* soldierList = nil;
             else
             {
                 if ([self.name isEqualToString:TEST_OBJECT_NAME])
-                    NSLog(@"%@ found new target %@", self.name, self.currentTarget.name);
+                    DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
                 
                 self.currentState = Targetting;
             }
@@ -182,7 +182,7 @@ static CCArray* soldierList = nil;
 -(void)onAttackCompleted
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ attack animation completed", self.name);
+        DLog(@"%@ attack animation completed", self.name);
     
     self.animation.currentPlayingAnimation = @"";
     
@@ -202,7 +202,7 @@ static CCArray* soldierList = nil;
     self.hitPoint -= damage;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+        DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
     
     //Don't remove below
     [super onAttacked:attacker];
@@ -216,7 +216,7 @@ static CCArray* soldierList = nil;
     self.hitPoint -= damage;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+        DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
     
     //Don't remove below
     [super onAttackedByProjectile:projectile];

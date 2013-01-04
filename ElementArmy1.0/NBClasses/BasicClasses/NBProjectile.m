@@ -167,7 +167,7 @@ static CCArray* projectileList = nil;
 //Events
 -(void)onStateChangedTo:(EnumProjectileState)newState from:(EnumProjectileState)oldState
 {
-    NSLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
+    DLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
 }
 
 -(void)onMoveCompleted

@@ -47,7 +47,7 @@
     animationDefinition->AnimationFrames = frames;
     [self.animationList addObject:animationDefinition];
     [self.animationList retain];
-    NSLog(@"count of animation : %i", [self.animationList count]);
+    DLog(@"count of animation : %i", [self.animationList count]);
 }
 
 -(bool)playAnimation:(NSString*)animationName withDelay:(CGFloat)delay andRepeatForever:(bool)repeatForever withTarget:(id)target andSelector:(SEL)selector;
@@ -136,7 +136,7 @@
     
     if (currentAnimationTarget && currentAnimationResponseSelector)
         [currentAnimationTarget performSelector:currentAnimationResponseSelector];
-    //NSLog(@"Animation completed");
+    //DLog(@"Animation completed");
 }
 
 -(void)dealloc

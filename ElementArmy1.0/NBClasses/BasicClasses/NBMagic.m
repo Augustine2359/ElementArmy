@@ -30,7 +30,7 @@ static int objectCount = 0;
 //Events
 -(void)onTouched
 {
-    NSLog(@"%@ is touched", self.name);
+    DLog(@"%@ is touched", self.name);
 }
 
 @end

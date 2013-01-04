@@ -54,7 +54,7 @@ static int enemySquadPositionIndex = 0;
         //If battlefield size has not been setup (0 and cannot be smaller than w(480) h(320), inform debug and exit
         if ((battleFieldWidth < 480) || (battleFieldHeight < 320))
         {
-            NSLog(@"Please setup battlefield dimension before creating squad unit.");
+            DLog(@"Please setup battlefield dimension before creating squad unit.");
             return nil;
         }
         
@@ -71,7 +71,7 @@ static int enemySquadPositionIndex = 0;
         //There can be only 4 layers of squad fo now. Perhaps for a more epid battle, we can increase this in the future.
         if (self.squadPositionIndex > MAXIMUM_SQUAD_PER_SIDE)
         {
-            NSLog(@"Cannot create more squad unit more than %i at this moment.", MAXIMUM_SQUAD_PER_SIDE);
+            DLog(@"Cannot create more squad unit more than %i at this moment.", MAXIMUM_SQUAD_PER_SIDE);
             return nil;
         }
         
@@ -139,7 +139,7 @@ static int enemySquadPositionIndex = 0;
                 }
             }
             
-            NSLog(@"ZORDER = %i", tempCharacter.zOrder);
+            DLog(@"ZORDER = %i", tempCharacter.zOrder);
         }
     }
 }
