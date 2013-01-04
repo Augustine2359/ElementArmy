@@ -54,7 +54,7 @@
 		}
 		
 		// self draw
-		NSLog(@"walk tree: %s> %@ %p", buf, self, self);
+		DLog(@"walk tree: %s> %@ %p", buf, self, self);
 		
 		// draw children zOrder >= 0
 		for( ; i < arrayData->num; i++ ) {
@@ -63,7 +63,7 @@
 		}
 		
 	} else
-		NSLog(@"walk tree: %s> %@ %p", buf, self, self);
+		DLog(@"walk tree: %s> %@ %p", buf, self, self);
 	
 }
 @end

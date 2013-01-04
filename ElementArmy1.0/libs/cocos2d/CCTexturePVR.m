@@ -409,9 +409,9 @@ typedef struct _PVRTexHeader
 			
 			if( pixelFormat == kCCTexture2DPixelFormat_RGB888 ) {
 				printf("\n");
-				NSLog(@"cocos2d: WARNING. Using RGB888 texture. Convert it to RGB565 or RGBA8888 in order to reduce memory");
-				NSLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
-				NSLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
+				DLog(@"cocos2d: WARNING. Using RGB888 texture. Convert it to RGB565 or RGBA8888 in order to reduce memory");
+				DLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
+				DLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
 				printf("\n");
 			}
 
@@ -437,9 +437,9 @@ typedef struct _PVRTexHeader
 
 					NSUInteger neededBytes = (4 - mod ) / (bpp/8);
 					printf("\n");
-					NSLog(@"cocos2d: WARNING. Current texture size=(%d,%d). Convert it to size=(%d,%d) in order to save memory", width_, height_, width_ + neededBytes, height_ );
-					NSLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
-					NSLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
+					DLog(@"cocos2d: WARNING. Current texture size=(%d,%d). Convert it to size=(%d,%d) in order to save memory", width_, height_, width_ + neededBytes, height_ );
+					DLog(@"cocos2d: WARNING: File: %@", [path lastPathComponent] );
+					DLog(@"cocos2d: WARNING: For furhter info visit: http://www.cocos2d-iphone.org/forum/topic/31092");
 					printf("\n");
 				}
 			}

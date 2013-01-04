@@ -341,7 +341,7 @@ typedef struct _hashSelectorEntry
 	}
 
 	// Not Found
-//	NSLog(@"CCScheduler#unscheduleSelector:forTarget: selector not found: %@", selString);
+//	DLog(@"CCScheduler#unscheduleSelector:forTarget: selector not found: %@", selString);
 
 }
 
