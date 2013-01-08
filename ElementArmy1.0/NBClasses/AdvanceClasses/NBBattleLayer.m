@@ -426,6 +426,16 @@ static Boolean isAutoStart = NO;
     self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png" atPosition:CGPointMake(110, 30)];
     self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png" atPosition:CGPointMake(self.layerSize.width - 110, 30)];
     //**********************************************************************
+    
+    
+    //Augustine's Code below
+    //**********************
+    self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] init];
+
+    self.classGroupSkillMenuLayer.layerSize = CGSizeMake(100, 50);
+    self.classGroupSkillMenuLayer.contentSize = CGSizeMake(100, 50);
+    [self addChild:self.classGroupSkillMenuLayer];
+    //**********************
 }
 
 -(void)startBattle
@@ -445,7 +455,7 @@ static Boolean isAutoStart = NO;
 //UI Control Event Handler
 -(void)onClassGroupSkillButtonSelected
 {
-    NSLog(@"Class Group Button Selected");
+    DLog(@"Class Group Button Selected");
     
     if (groupClassSkillOpened) groupClassSkillOpened = false; else groupClassSkillOpened = true;
     
@@ -463,11 +473,6 @@ static Boolean isAutoStart = NO;
     }
 }
 
--(void)onClassSkillAButtonSelected
-{
-    DLog(@"Class Skill A Button Selected");
-}
-
 -(void)onClassSkillBButtonSelected
 {
     DLog(@"Class Skill B Button Selected");
@@ -480,7 +485,7 @@ static Boolean isAutoStart = NO;
 
 -(void)onComboGroupSkillButtonSelected
 {
-    NSLog(@"Combo Group Button Selected");
+    DLog(@"Combo Group Button Selected");
     
     if (groupComboSkillOpened) groupComboSkillOpened = false; else groupComboSkillOpened = true;
     
@@ -496,11 +501,6 @@ static Boolean isAutoStart = NO;
         [self.comboSkillBButton moveToPosition:CGPointMake(self.layerSize.width - 20, 20) withDuration:.25];
         [self.comboSkillCButton moveToPosition:CGPointMake(self.layerSize.width - 20, 20) withDuration:.25];
     }
-}
-
--(void)onComboSkillAButtonSelected
-{
-    DLog(@"Combo Skill A Button Selected");
 }
 
 -(void)onComboSkillBButtonSelected

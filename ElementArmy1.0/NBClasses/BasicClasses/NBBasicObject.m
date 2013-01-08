@@ -133,18 +133,14 @@ static CGSize worldSize;
 
 -(void)setToCustomSize:(CGSize)newSize
 {
-#if DEBUG
-    //NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
-#endif
+    DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
     
     [self setScaleX:(newSize.width / self.sprite.contentSize.width)];
     [self setScaleY:(newSize.height / self.sprite.contentSize.height)];
     
     self.sizeOnScreen = newSize;
     
-#if DEBUG
-    //NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
-#endif
+    DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
 }
 
 -(void)setToDefaultSize
