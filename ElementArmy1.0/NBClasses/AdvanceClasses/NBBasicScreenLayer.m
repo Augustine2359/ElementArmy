@@ -49,7 +49,7 @@ static CCScene* defaultScreen = nil;
 {
     if (!currentScreen)
     {
-        NSLog(@"No default screen has been initialized!");
+        DLog(@"No default screen has been initialized!");
     }
     
     return currentScreen;

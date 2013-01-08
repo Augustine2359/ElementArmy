@@ -275,8 +275,8 @@ static CGSize worldSize;
 {
     BOOL isTouched = false;
     
-    NSLog(@"touch location x = %f y = %f", touchLocation.x, touchLocation.y);
-    NSLog(@"%@ location x = %f y = %f width = %f height = %f", self.name, self.position.x, self.position.y, self.sizeOnScreen.width, self.sizeOnScreen.height);
+    DLog(@"touch location x = %f y = %f", touchLocation.x, touchLocation.y);
+    DLog(@"%@ location x = %f y = %f width = %f height = %f", self.name, self.position.x, self.position.y, self.sizeOnScreen.width, self.sizeOnScreen.height);
     
     /*if (((touchLocation.x >= (self.position.x - (self.sprite.contentSize.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sprite.contentSize.width / 2.5)))) &&
         ((touchLocation.y >= (self.position.y - (self.sprite.contentSize.height / 4))) && (touchLocation.y <= (self.position.y + (self.sprite.contentSize.height / 4)))))
@@ -296,13 +296,13 @@ static CGSize worldSize;
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchLocation = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
-    //NSLog(@"%@ current origin x = %f, y = %f with size = %f", self.name, [self.characterSprite boundingBox].origin.x, [self.characterSprite boundingBox].origin.y, [self.characterSprite boundingBox].size.width);
+    //DLog(@"%@ current origin x = %f, y = %f with size = %f", self.name, [self.characterSprite boundingBox].origin.x, [self.characterSprite boundingBox].origin.y, [self.characterSprite boundingBox].size.width);
     
     self.isCurrentlyTouched = [self isTouchingMe:touchLocation];
     
     [self onTouched];
     
-    //NSLog(@"Object Touch started");
+    //DLog(@"Object Touch started");
     
     return self.isSwallowingTouch;
 }
@@ -311,7 +311,7 @@ static CGSize worldSize;
 {
     self.isCurrentlyTouched = NO;
     
-    //NSLog(@"Object Touch cancelled");
+    //DLog(@"Object Touch cancelled");
 }
 
 -(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -323,7 +323,7 @@ static CGSize worldSize;
 {
     self.isCurrentlyTouched = NO;
     
-    //NSLog(@"Object Touch ended");
+    //DLog(@"Object Touch ended");
 }
 
 -(bool)checkCollisionWith:(NBBasicObject*)otherObject
@@ -352,17 +352,17 @@ static CGSize worldSize;
 //Events
 -(void)onTouched
 {
-    NSLog(@"%@ is touched", self.name);
+    DLog(@"%@ is touched", self.name);
 }
 
 -(void)onMoveCompleted
 {
-    NSLog(@"%@ move completed", self.name);
+    DLog(@"%@ move completed", self.name);
 }
 
 -(void)isCollidedWith:(NBBasicObject*)object
 {
-    NSLog(@"%@ is collided with %@", self.name, object.name);
+    DLog(@"%@ is collided with %@", self.name, object.name);
     
     if (self.position.y > object.position.y)
     {

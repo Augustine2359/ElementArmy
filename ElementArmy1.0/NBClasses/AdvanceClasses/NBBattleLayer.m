@@ -465,17 +465,17 @@ static Boolean isAutoStart = NO;
 
 -(void)onClassSkillAButtonSelected
 {
-    NSLog(@"Class Skill A Button Selected");
+    DLog(@"Class Skill A Button Selected");
 }
 
 -(void)onClassSkillBButtonSelected
 {
-    NSLog(@"Class Skill B Button Selected");
+    DLog(@"Class Skill B Button Selected");
 }
 
 -(void)onClassSkillCButtonSelected
 {
-    NSLog(@"Class Skill C Button Selected");
+    DLog(@"Class Skill C Button Selected");
 }
 
 -(void)onComboGroupSkillButtonSelected
@@ -500,17 +500,17 @@ static Boolean isAutoStart = NO;
 
 -(void)onComboSkillAButtonSelected
 {
-    NSLog(@"Combo Skill A Button Selected");
+    DLog(@"Combo Skill A Button Selected");
 }
 
 -(void)onComboSkillBButtonSelected
 {
-    NSLog(@"Combo Skill B Button Selected");
+    DLog(@"Combo Skill B Button Selected");
 }
 
 -(void)onComboSkillCButtonSelected
 {
-    NSLog(@"Combo Skill C Button Selected");
+    DLog(@"Combo Skill C Button Selected");
 }
 //************************************************************************************************
 

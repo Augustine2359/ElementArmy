@@ -15,6 +15,7 @@
 #import "NBProjectile.h"
 #import "NBBasicScreenLayer.h"
 #import "NBUserInterface.h"
+#import "NBFancySlidingMenuLayer.h"
 
 #define HP_BAR_LENGTH 130
 
@@ -60,7 +61,7 @@
 -(void)onComboSkillBButtonSelected;
 -(void)onComboSkillCButtonSelected;
 
-@property (nonatomic, retain) NBButton* classGroupSkillButton;
+@property (nonatomic, retain) NBFancySlidingMenuLayer *classGroupSkillMenuLayer;
 @property (nonatomic, retain) NBButton* comboGroupSkillButton;
 @property (nonatomic, retain) NBButton* classSkillAButton;
 @property (nonatomic, retain) NBButton* classSkillBButton;

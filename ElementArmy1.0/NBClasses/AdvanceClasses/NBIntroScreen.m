@@ -130,7 +130,7 @@
 //UI Control Events Handlers
 -(void)onTestButtonPressed
 {
-    NSLog(@"Test button clicked");
+    DLog(@"Test button clicked");
     
     //Do something here
 }

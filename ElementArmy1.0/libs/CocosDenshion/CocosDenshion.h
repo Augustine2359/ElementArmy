@@ -79,12 +79,12 @@ Requirements:
 #define CDLOGINFO(...) do {} while (0)
 
 #elif CD_DEBUG == 1
-#define CDLOG(...) NSLog(__VA_ARGS__)
+#define CDLOG(...) DLog(__VA_ARGS__)
 #define CDLOGINFO(...) do {} while (0)
 
 #elif CD_DEBUG > 1
-#define CDLOG(...) NSLog(__VA_ARGS__)
-#define CDLOGINFO(...) NSLog(__VA_ARGS__)
+#define CDLOG(...) DLog(__VA_ARGS__)
+#define CDLOGINFO(...) DLog(__VA_ARGS__)
 #endif // CD_DEBUG
 
 

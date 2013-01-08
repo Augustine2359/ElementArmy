@@ -175,7 +175,7 @@ static char * glExtensions;
 
 #if CC_ENABLE_GL_STATE_CACHE == 0
 	printf("\n");
-	NSLog(@"cocos2d: **** WARNING **** CC_ENABLE_GL_STATE_CACHE is disabled. To improve performance, enable it by editing ccConfig.h");
+	DLog(@"cocos2d: **** WARNING **** CC_ENABLE_GL_STATE_CACHE is disabled. To improve performance, enable it by editing ccConfig.h");
 	printf("\n");
 #endif
 

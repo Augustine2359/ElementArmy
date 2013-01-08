@@ -58,10 +58,10 @@
 
 
 #define __CCLOGWITHFUNCTION(s, ...) \
-NSLog(@"%s : %@",__FUNCTION__,[NSString stringWithFormat:(s), ##__VA_ARGS__])
+DLog(@"%s : %@",__FUNCTION__,[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 #define __CCLOG(s, ...) \
-NSLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
+DLog(@"%@",[NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0

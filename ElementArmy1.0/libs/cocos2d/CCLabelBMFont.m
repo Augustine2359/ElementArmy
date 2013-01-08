@@ -176,7 +176,7 @@ typedef struct _FontDefHashElement
 	NSString *contents = [NSString stringWithContentsOfFile:fullpath encoding:NSUTF8StringEncoding error:&error];
 
 	if( ! contents ) {
-		NSLog(@"cocos2d: Error parsing FNTfile %@: %@", fntFile, error);
+		DLog(@"cocos2d: Error parsing FNTfile %@: %@", fntFile, error);
 		return NO;
 	}
 

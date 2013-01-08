@@ -32,11 +32,11 @@ static CCArray* enemyUnitList = nil;
 +(bool)calculateAttackSuccessWithAttacker:(NBCharacter*)attacker andDefender:(NBCharacter*)defender
 {
     int totalDexAndEva = attacker.dexterityPoint + defender.evasionPoint;
-    //NSLog(@"totalDexAndEva = %i", totalDexAndEva);
+    //DLog(@"totalDexAndEva = %i", totalDexAndEva);
     float attackSuccessThreshold = (attacker.dexterityPoint * 100) / totalDexAndEva;
-    //NSLog(@"attackSuccessThreshold = %f", attackSuccessThreshold);
+    //DLog(@"attackSuccessThreshold = %f", attackSuccessThreshold);
     int randomNumber = arc4random() % 101;
-    //NSLog(@"randomNumber = %i", randomNumber);
+    //DLog(@"randomNumber = %i", randomNumber);
     
     if (randomNumber < attackSuccessThreshold)
         return true;
@@ -70,7 +70,7 @@ static CCArray* enemyUnitList = nil;
     //My intention is to create an interface so that this class can be the generic class to be used in NBSquad. NBSquad does not need to know
     //about any of the specific class like NBSoldier o NBFireMage. So this method must be impleneted by sub class instead.
     
-    NSLog(@"Cannot init directly using NBCharacter. Returning nil.");
+    DLog(@"Cannot init directly using NBCharacter. Returning nil.");
     
     return nil;
 }
@@ -145,7 +145,7 @@ static CCArray* enemyUnitList = nil;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
     {
-        NSLog(@"%@ is at position x = %f, y = %f", self.name, self.position.x, self.position.y);
+        DLog(@"%@ is at position x = %f, y = %f", self.name, self.position.x, self.position.y);
     }
     
     NSString *currentStateString = @"Other Unknown";
@@ -162,7 +162,7 @@ static CCArray* enemyUnitList = nil;
             
 #ifdef ENABLE_REMAINING_ATK_TIME_LOG
             if ([self.name isEqualToString:@"AllySoldier0"])
-                NSLog(@"remaining time until next attack = %f", self.timeUntilNextAttack);
+                DLog(@"remaining time until next attack = %f", self.timeUntilNextAttack);
 #endif
             
             if (self.timeUntilNextAttack <= 0)
@@ -278,13 +278,13 @@ static CCArray* enemyUnitList = nil;
 -(void)levelUp
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ level up", self.name);
+        DLog(@"%@ level up", self.name);
 }
 
 -(void)attack:(NBCharacter*)target
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ commence attack on %@", self.name, target.name);
+        DLog(@"%@ commence attack on %@", self.name, target.name);
     
     int randomDelay = 300 - (arc4random() % self.dexterityPoint);
     
@@ -310,13 +310,13 @@ static CCArray* enemyUnitList = nil;
 -(void)useSkill:(NBSkill*)skill
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ activates skill %@", self.name, skill.name);
+        DLog(@"%@ activates skill %@", self.name, skill.name);
 }
 
 -(void)useMagic:(NBMagic*)magic
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ activates magic %@", self.name, magic.name);
+        DLog(@"%@ activates magic %@", self.name, magic.name);
 }
 
 -(void)moveToPosition:(CGPoint)newPosition forDurationOf:(float)duration
@@ -428,7 +428,7 @@ static CCArray* enemyUnitList = nil;
 
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState
 {
-    NSLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
+    DLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
 }
 
 -(void)onMoveCompleted
@@ -440,13 +440,13 @@ static CCArray* enemyUnitList = nil;
 -(void)onAttackCompleted
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ attack completed", self.name);
+        DLog(@"%@ attack completed", self.name);
 }
 
 -(void)onDying
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        NSLog(@"%@ dying state commenced", self.name);
+        DLog(@"%@ dying state commenced", self.name);
 }
 
 -(void)onBeforeDeath
@@ -457,7 +457,7 @@ static CCArray* enemyUnitList = nil;
 -(void)onDeath
 {
 #if DEBUG
-    NSLog(@"%@ is dead", self.name);
+    DLog(@"%@ is dead", self.name);
 #endif
 }
 
@@ -466,7 +466,7 @@ static CCArray* enemyUnitList = nil;
     NBCharacter* tempAttacker = (NBCharacter*)attacker;
     
 #if DEBUG
-    NSLog(@"%@ is attacked", self.name);
+    DLog(@"%@ is attacked", self.name);
 #endif
     
     if (self.hitPoint <= 0)
@@ -483,7 +483,7 @@ static CCArray* enemyUnitList = nil;
     NBProjectile* tempProjectile = (NBProjectile*)projectile;
     
 #if DEBUG
-    NSLog(@"%@ is attacked", self.name);
+    DLog(@"%@ is attacked", self.name);
 #endif
     
     if (self.hitPoint <= 0)
@@ -501,7 +501,7 @@ static CCArray* enemyUnitList = nil;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
     {
-        NSLog(@"%@'s target, %@, is killed", self.name, tempTarget.name);
+        DLog(@"%@'s target, %@, is killed", self.name, tempTarget.name);
     }
     
     self.currentTarget = nil;
