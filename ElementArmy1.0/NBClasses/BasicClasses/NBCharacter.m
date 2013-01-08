@@ -57,7 +57,12 @@ static CCArray* enemyUnitList = nil;
         self.facing = Left;
     }
     
-    characterSide_ = characterSide;
+    _characterSide = characterSide;
+}
+
+-(long)getHitPoint
+{
+    return _hitPoint;
 }
 
 -(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side

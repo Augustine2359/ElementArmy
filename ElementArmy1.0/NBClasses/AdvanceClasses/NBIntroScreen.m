@@ -121,10 +121,10 @@
     //self.wastedMyTimeButton = [NBButton createOnLayer:self selector:@selector(onTestButtonPressed)];
     self.wastedMyTimeButton = [NBButton createWithSize:CGSizeMake(100, 40) onLayer:self selector:@selector(onTestButtonPressed)];
     self.wastedMyTimeButton.menu.position = CGPointMake(200, 200);
-    [self.wastedMyTimeButton show];
+    //[self.wastedMyTimeButton show];
     
     //Sample for NBStaticObject using frame named frame_item.png
-    self.sampleStaticObject = [NBStaticObject createStaticObject:@"frame_item.png" atPosition:CGPointMake(160, 300)];
+    //self.sampleStaticObject = [NBStaticObject createStaticObject:@"frame_item.png" atPosition:CGPointMake(160, 300)];
 }
 
 //UI Control Events Handlers

@@ -22,6 +22,7 @@
 +(CGSize)getWinSize;
 +(id)createStaticObject:(NSString*)frameName;
 +(id)createStaticObject:(NSString*)frameName atPosition:(CGPoint)newPosition;
++(id)createWithSize:(CGSize)size usingFrame:(NSString*)frameName atPosition:(CGPoint)newPosition;
 
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer atPosition:(CGPoint)position;
 

@@ -96,6 +96,7 @@ static int enemySquadPositionIndex = 0;
             }
             
             objectCount++;
+            self.totalAliveUnitHP += [tempCharacter getHitPoint];
         }
         
         self.allUnitAreDead = false;
@@ -104,11 +105,32 @@ static int enemySquadPositionIndex = 0;
     return self;
 }
 
+-(void)update
+{
+    self.allUnitAreDead = true;
+    self.totalAliveUnitHP = 0;
+    
+    for (int i = 0; i < [self.unitArray count]; i++)
+    {
+        id tempUnit = [self.unitArray objectAtIndex:i];
+        
+        NBCharacter* tempCharacter = (NBCharacter*)tempUnit;
+        
+        self.totalAliveUnitHP += tempCharacter.hitPoint;
+        
+        if (tempCharacter.currentState != Dead)
+        {
+            self.allUnitAreDead = false;
+        }
+    }
+}
+
 -(void)updateWithAllyUnits:(CCArray*)allySquads andEnemyUnits:(CCArray*)enemySquads withDelta:(ccTime)delta
 {
     NBSquad* tempSquad;
     
     self.allUnitAreDead = true;
+    self.totalAliveUnitHP = 0;
     
     CCARRAY_FOREACH(enemySquads, tempSquad)
     {
@@ -118,6 +140,9 @@ static int enemySquadPositionIndex = 0;
             [tempUnit updateWithAllyUnits:self.unitArray andEnemyUnits:tempSquad.unitArray withDelta:delta];
             
             NBCharacter* tempCharacter = (NBCharacter*)tempUnit;
+            
+            self.totalAliveUnitHP += tempCharacter.hitPoint;
+            
             if (tempCharacter.currentState != Dead)
             {
                 self.allUnitAreDead = false;

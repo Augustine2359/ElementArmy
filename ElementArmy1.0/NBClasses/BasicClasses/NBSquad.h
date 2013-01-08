@@ -26,11 +26,13 @@
 -(id)createSquadOf:(NSString*)unitClassName withUnitCount:(int)count onSide:(EnumCharacterSide)side andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer;
 -(void)updateWithAllyUnits:(CCArray*)allySquads andEnemyUnits:(CCArray*)enemySquads withDelta:(ccTime)delta;
 -(void)startUpdate;
+-(void)update;
 
 @property (nonatomic, retain) CCArray* skillSlot;
 @property (nonatomic, retain) CCArray* unitArray;
 @property (nonatomic, assign) Class unitClass;
 @property (nonatomic, assign) int squadPositionIndex;
 @property (nonatomic, assign) bool allUnitAreDead;
+@property (nonatomic, assign) long totalAliveUnitHP;
 
 @end

@@ -74,6 +74,13 @@ static CCArray* buttonList = nil;
     return self.menu.position;
 }
 
+-(void)moveToPosition:(CGPoint)newPosition withDuration:(ccTime)milliseconds
+{
+    CCMoveTo* move = [CCMoveTo actionWithDuration:milliseconds position:newPosition];
+    CCEaseIn* easeIn = [CCEaseIn actionWithAction:move rate:0.5];
+    [self.menu runAction:easeIn];
+}
+
 -(void)show
 {
     self.menu.visible = YES;

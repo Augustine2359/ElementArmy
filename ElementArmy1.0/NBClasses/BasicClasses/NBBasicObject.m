@@ -133,14 +133,18 @@ static CGSize worldSize;
 
 -(void)setToCustomSize:(CGSize)newSize
 {
-    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+#if DEBUG
+    //NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+#endif
     
     [self setScaleX:(newSize.width / self.sprite.contentSize.width)];
     [self setScaleY:(newSize.height / self.sprite.contentSize.height)];
     
     self.sizeOnScreen = newSize;
     
-    NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+#if DEBUG
+    //NSLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+#endif
 }
 
 -(void)setToDefaultSize
@@ -243,6 +247,27 @@ static CGSize worldSize;
     {
         self.isActive = false;
         self.visible = NO;
+    }
+}
+
+-(void)moveToPosition:(CGPoint)newPosition withDuration:(ccTime)milliseconds
+{
+    [self moveToPosition:newPosition withDuration:milliseconds informMoveCompleted:false];
+}
+
+-(void)moveToPosition:(CGPoint)newPosition withDuration:(ccTime)milliseconds informMoveCompleted:(bool)toInform
+{
+    CCMoveTo* move = [CCMoveTo actionWithDuration:milliseconds position:newPosition];
+    
+    if (toInform)
+    {
+        CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(onMoveCompleted)];
+        CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];
+        [self runAction:sequence];
+    }
+    else
+    {
+        [self runAction:move];
     }
 }
 

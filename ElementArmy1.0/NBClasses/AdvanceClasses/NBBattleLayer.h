@@ -16,10 +16,17 @@
 #import "NBBasicScreenLayer.h"
 #import "NBUserInterface.h"
 
+#define HP_BAR_LENGTH 130
+
 // HelloWorldLayer
 @interface NBBattleLayer : NBBasicScreenLayer
 {
     bool battleStarted;
+    bool groupClassSkillOpened;
+    bool groupComboSkillOpened;
+    
+    long totalAllyHPAtStartOfBattle;
+    long totalEnemyHPAtStartOfBattle;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
@@ -34,6 +41,8 @@
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, retain) CCMenu *menu;
+@property (nonatomic, retain) CCMenu *battleCompleteMenu;
+@property (nonatomic, retain) CCLabelTTF* battleResultText;
 @property (nonatomic, retain) CCSpriteBatchNode* characterSpritesBatchNode;
 @property (nonatomic, retain) CCArray* allySquads;
 @property (nonatomic, retain) CCArray* enemySquads;
@@ -59,5 +68,11 @@
 @property (nonatomic, retain) NBButton* comboSkillAButton;
 @property (nonatomic, retain) NBButton* comboSkillBButton;
 @property (nonatomic, retain) NBButton* comboSkillCButton;
+@property (nonatomic, retain) NBStaticObject* allyFlagLogo;
+@property (nonatomic, retain) NBStaticObject* enemyFlagLogo;
+@property (nonatomic, retain) NBStaticObject* allyHPBarPlaceholder;
+@property (nonatomic, retain) NBStaticObject* enemyHPBarPlaceholder;
+@property (nonatomic, retain) NBStaticObject* allyHPBar;
+@property (nonatomic, retain) NBStaticObject* enemyHPBar;
 
 @end

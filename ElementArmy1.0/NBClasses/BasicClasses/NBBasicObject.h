@@ -36,6 +36,8 @@ typedef enum
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setPosition:(CGPoint)position setRotation:(CGFloat)rotation;
 -(void)moveToPosition:(CGPoint)newPosition withDelta:(ccTime)delta;
 -(void)moveToDirection:(CGPoint)direction withDelta:(ccTime)delta;
+-(void)moveToPosition:(CGPoint)newPosition withDuration:(ccTime)milliseconds;
+-(void)moveToPosition:(CGPoint)newPosition withDuration:(ccTime)milliseconds informMoveCompleted:(bool)toInform;
 -(BOOL)isTouchingMe:(CGPoint)touchLocation;
 -(bool)checkCollisionWith:(NBBasicObject*)otherObject;
 -(bool)checkWithinWorld;

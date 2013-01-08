@@ -72,6 +72,26 @@ static CGSize winSize = {0, 0};
     return [[NBStaticObject alloc] initWithFrameName:frameName andSpriteBatchNode:currentSpriteBatchNode onLayer:currentLayer atPosition:newPosition];
 }
 
++(id)createWithSize:(CGSize)size usingFrame:(NSString*)frameName atPosition:(CGPoint)newPosition
+{
+    NBStaticObject* tempObject = [[NBStaticObject alloc] initWithFrameName:frameName andSpriteBatchNode:currentSpriteBatchNode onLayer:currentLayer atPosition:newPosition];
+    
+    if (!CGSizeEqualToSize(size, CGSizeZero))
+    {
+        NSLog(@"size.width = %f", size.width);
+        NSLog(@"size.height = %f", size.height);
+        NSLog(@"contentSize.width = %f", tempObject.sprite.contentSize.width);
+        NSLog(@"contentSize.height = %f", tempObject.sprite.contentSize.height);
+        
+        [tempObject setToCustomSize:size];
+        
+        //[tempObject setScaleX:(size.width / tempObject.sprite.contentSize.width)];
+        //[tempObject setScaleY:(size.height / tempObject.sprite.contentSize.height)];
+    }
+    
+    return tempObject;
+}
+
 +(void)update:(ccTime)delta
 {
     NBStaticObject* object;

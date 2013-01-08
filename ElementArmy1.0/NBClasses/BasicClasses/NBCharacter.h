@@ -57,6 +57,7 @@ typedef enum
 +(CCArray*)getAllyList:(NBCharacter*)unit;
 +(CCArray*)getAllUnitList;
 
+-(long)getHitPoint;
 -(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side;
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side;
 -(void)initialize;
