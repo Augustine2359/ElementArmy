@@ -17,4 +17,11 @@
 -(void)gotoStoryScreen;
 -(void)gotoBattleScreen;
 
+@property (nonatomic, retain) NBButton *battleSetupTitle;
+@property (nonatomic, retain) NBButton *battleSetupOk;
+@property (nonatomic, retain) NBButton *battleSetupCancel;
+@property (nonatomic, retain) NBButton *battleSetupItem1;
+@property (nonatomic, retain) NBButton *battleSetupItem2;
+@property (nonatomic, retain) NBButton *battleSetupItem3;
+
 @end

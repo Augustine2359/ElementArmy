@@ -47,14 +47,59 @@
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
-    //Display Title in the middle of the screen
-    [self displayLayerTitle:@"Battle Setup Scene"];
     
-    [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
-    [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
-    [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
-    [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-    [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
+    //Display Title
+    self.battleSetupTitle = [NBStaticObject createStaticObject:@"setup_title.png" atPosition:CGPointMake(240, 200)];
+//    [self.battleSetupTitle show];
+    
+    
+    //Display buttons Navigation
+    //OK
+    CCSprite* buttonOkNormal = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    CCSprite* buttonOkSelected = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    CCSprite* buttonOkDisabled = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    
+    self.battleSetupOk = [NBButton createWithCustomImageHavingNormal:buttonOkNormal havingSelected:buttonOkSelected havingDisabled:buttonOkDisabled onLayer:self selector:@selector(gotoBattleScreen)];
+    [self.battleSetupOk setPosition:CGPointMake(450, 50)];
+    [self.battleSetupOk show];
+    
+    //Cancel
+    CCSprite* buttonCancelNormal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonCancelSelected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonCancelDisabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    
+    self.battleSetupCancel = [NBButton createWithCustomImageHavingNormal:buttonCancelNormal havingSelected:buttonCancelSelected havingDisabled:buttonCancelDisabled onLayer:self selector:@selector(gotoMapSelectionScreen)];
+    [self.battleSetupCancel setPosition:CGPointMake(450, 100)];
+    [self.battleSetupCancel show];
+    
+    
+    //Display buttons Items
+    //Item 1
+    CCSprite* buttonItem1Normal = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    CCSprite* buttonItem1Selected = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    CCSprite* buttonItem1Disabled = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
+    
+    self.battleSetupItem1 = [NBButton createWithCustomImageHavingNormal:buttonItem1Normal havingSelected:buttonItem1Selected havingDisabled:buttonItem1Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    [self.battleSetupItem1 setPosition:CGPointMake(160, 50)];
+    [self.battleSetupItem1 show];
+    
+    //Item 2
+    CCSprite* buttonItem2Normal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonItem2Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonItem2Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    
+    self.battleSetupItem2 = [NBButton createWithCustomImageHavingNormal:buttonItem2Normal havingSelected:buttonItem2Selected havingDisabled:buttonItem2Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    [self.battleSetupItem2 setPosition:CGPointMake(240, 50)];
+    [self.battleSetupItem2 show];
+    
+    //Item 2
+    CCSprite* buttonItem3Normal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonItem3Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    CCSprite* buttonItem3Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
+    
+    self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
+    [self.battleSetupItem3 show];
 }
 
 -(void)gotoIntroScreen
