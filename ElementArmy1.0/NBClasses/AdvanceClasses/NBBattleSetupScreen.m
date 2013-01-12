@@ -7,6 +7,14 @@
 //
 
 #import "NBBattleSetupScreen.h"
+#import "NBBattleSetupUnitSelectorLayer.h"
+#import "NBBattleSetupUnitSelectorsContainerLayer.h"
+
+@interface NBBattleSetupScreen()
+
+@property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
+
+@end
 
 @implementation NBBattleSetupScreen
 
@@ -100,6 +108,20 @@
     self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
     [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
     [self.battleSetupItem3 show];
+
+  [self createUnitSelectors];
+}
+
+- (void)createUnitSelectors {
+  ccColor4B startColor;
+  startColor.r = 255;
+  startColor.g = 255;
+  startColor.b = 255;
+  startColor.a = 255;
+
+  self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:330 height:200];
+  self.unitSelectorsContainerLayer.position = CGPointMake(100, 100);
+  [self addChild:self.unitSelectorsContainerLayer];
 }
 
 -(void)gotoIntroScreen

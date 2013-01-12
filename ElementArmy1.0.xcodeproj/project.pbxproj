@@ -161,6 +161,8 @@
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
 		BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */; };
 		BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */; };
+		F9299FBE169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */; };
+		F9299FC2169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */; };
 		F9F30B671696AC1A0018F723 /* NBFancySlidingMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */; };
 /* End PBXBuildFile section */
 
@@ -481,6 +483,10 @@
 		BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameLoadingScreen.m; sourceTree = "<group>"; };
 		BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBBasicScreenLayer.h; path = ../AdvanceClasses/NBBasicScreenLayer.h; sourceTree = "<group>"; };
 		BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBBasicScreenLayer.m; path = ../AdvanceClasses/NBBasicScreenLayer.m; sourceTree = "<group>"; };
+		F9299FBC169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorLayer.h; sourceTree = "<group>"; };
+		F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorLayer.m; sourceTree = "<group>"; };
+		F9299FC0169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorsContainerLayer.h; sourceTree = "<group>"; };
+		F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorsContainerLayer.m; sourceTree = "<group>"; };
 		F9F30B651696AC170018F723 /* NBFancySlidingMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFancySlidingMenuLayer.h; sourceTree = "<group>"; };
 		F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFancySlidingMenuLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -985,6 +991,10 @@
 				BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */,
 				F9F30B651696AC170018F723 /* NBFancySlidingMenuLayer.h */,
 				F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */,
+				F9299FC0169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */,
+				F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */,
+				F9299FBC169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.h */,
+				F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */,
 			);
 			name = AdvanceClasses;
 			path = NBClasses/AdvanceClasses;
@@ -1206,6 +1216,8 @@
 				F9F30B671696AC1A0018F723 /* NBFancySlidingMenuLayer.m in Sources */,
 				BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */,
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
+				F9299FBE169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */,
+				F9299FC2169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
