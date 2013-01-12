@@ -24,4 +24,6 @@
 @property (nonatomic, retain) NBButton *battleSetupItem2;
 @property (nonatomic, retain) NBButton *battleSetupItem3;
 
+@property (nonatomic, retain) NBButton* battleSetupItemSample;
+
 @end

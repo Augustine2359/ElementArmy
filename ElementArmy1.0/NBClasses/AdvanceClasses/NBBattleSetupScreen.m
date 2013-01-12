@@ -59,7 +59,7 @@
     CCSprite* buttonOkSelected = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
     CCSprite* buttonOkDisabled = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
     
-    self.battleSetupOk = [NBButton createWithCustomImageHavingNormal:buttonOkNormal havingSelected:buttonOkSelected havingDisabled:buttonOkDisabled onLayer:self selector:@selector(gotoBattleScreen)];
+    self.battleSetupOk = [NBButton createWithCustomImageHavingNormal:buttonOkNormal havingSelected:buttonOkSelected havingDisabled:buttonOkDisabled onLayer:self selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
     [self.battleSetupOk setPosition:CGPointMake(450, 50)];
     [self.battleSetupOk show];
     
@@ -68,7 +68,7 @@
     CCSprite* buttonCancelSelected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     CCSprite* buttonCancelDisabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     
-    self.battleSetupCancel = [NBButton createWithCustomImageHavingNormal:buttonCancelNormal havingSelected:buttonCancelSelected havingDisabled:buttonCancelDisabled onLayer:self selector:@selector(gotoMapSelectionScreen)];
+    self.battleSetupCancel = [NBButton createWithCustomImageHavingNormal:buttonCancelNormal havingSelected:buttonCancelSelected havingDisabled:buttonCancelDisabled onLayer:self selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     [self.battleSetupCancel setPosition:CGPointMake(450, 100)];
     [self.battleSetupCancel show];
     
@@ -79,7 +79,7 @@
     CCSprite* buttonItem1Selected = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
     CCSprite* buttonItem1Disabled = [CCSprite spriteWithSpriteFrameName:@"button_confirm.png"];
     
-    self.battleSetupItem1 = [NBButton createWithCustomImageHavingNormal:buttonItem1Normal havingSelected:buttonItem1Selected havingDisabled:buttonItem1Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    self.battleSetupItem1 = [NBButton createWithCustomImageHavingNormal:buttonItem1Normal havingSelected:buttonItem1Selected havingDisabled:buttonItem1Disabled onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
     [self.battleSetupItem1 setPosition:CGPointMake(160, 50)];
     [self.battleSetupItem1 show];
     
@@ -88,7 +88,7 @@
     CCSprite* buttonItem2Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     CCSprite* buttonItem2Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     
-    self.battleSetupItem2 = [NBButton createWithCustomImageHavingNormal:buttonItem2Normal havingSelected:buttonItem2Selected havingDisabled:buttonItem2Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    self.battleSetupItem2 = [NBButton createWithCustomImageHavingNormal:buttonItem2Normal havingSelected:buttonItem2Selected havingDisabled:buttonItem2Disabled onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
     [self.battleSetupItem2 setPosition:CGPointMake(240, 50)];
     [self.battleSetupItem2 show];
     
@@ -97,9 +97,14 @@
     CCSprite* buttonItem3Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     CCSprite* buttonItem3Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
     
-    self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
     [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
     [self.battleSetupItem3 show];
+    
+    //Item Sample
+    self.battleSetupItemSample = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
+    [self.battleSetupItemSample setPosition:CGPointMake(self.battleSetupItemSample.buttonObject.contentSize.width / 2, (self.layerSize.height - self.battleSetupItemSample.buttonObject.contentSize.height / 2))];
+    [self.battleSetupItemSample show];
 }
 
 -(void)gotoIntroScreen
