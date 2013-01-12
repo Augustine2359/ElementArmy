@@ -11,6 +11,8 @@
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC06C254163A297500F091F0 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C253163A297500F091F0 /* NBFireball.m */; };
 		BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C256163A31B100F091F0 /* NBFireMage.m */; };
+		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
+		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
 		BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065B616874A7900745FB0 /* NBStaticObject.m */; };
 		BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B8168757FD00745FB0 /* CharacterSprites.plist */; };
 		BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B9168757FD00745FB0 /* CharacterSprites.png */; };
@@ -171,6 +173,10 @@
 		BC06C253163A297500F091F0 /* NBFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireball.m; sourceTree = "<group>"; };
 		BC06C255163A31B100F091F0 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
 		BC06C256163A31B100F091F0 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
+		BC14894116A0F74C00DAAA19 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDataManager.h; sourceTree = "<group>"; };
+		BC14894216A0F74C00DAAA19 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDataManager.m; sourceTree = "<group>"; };
+		BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicClassData.h; sourceTree = "<group>"; };
+		BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicClassData.m; sourceTree = "<group>"; };
 		BC2065B516874A7900745FB0 /* NBStaticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStaticObject.h; sourceTree = "<group>"; };
 		BC2065B616874A7900745FB0 /* NBStaticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStaticObject.m; sourceTree = "<group>"; };
 		BC2065B8168757FD00745FB0 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
@@ -943,6 +949,10 @@
 				BC2065C0168B494500745FB0 /* NBButton.m */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
+				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
+				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
+				BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */,
+				BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1194,6 +1204,8 @@
 				BC2065C1168B494600745FB0 /* NBButton.m in Sources */,
 				BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */,
 				F9F30B671696AC1A0018F723 /* NBFancySlidingMenuLayer.m in Sources */,
+				BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */,
+				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

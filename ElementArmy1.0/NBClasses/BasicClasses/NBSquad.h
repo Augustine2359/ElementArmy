@@ -22,6 +22,7 @@
 
 @interface NBSquad : NSObject
 
++(void)resetSquadPositionIndex;
 +(void)setupBatteFieldDimension:(CGSize)size;
 -(id)createSquadOf:(NSString*)unitClassName withUnitCount:(int)count onSide:(EnumCharacterSide)side andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer;
 -(void)updateWithAllyUnits:(CCArray*)allySquads andEnemyUnits:(CCArray*)enemySquads withDelta:(ccTime)delta;
@@ -34,5 +35,6 @@
 @property (nonatomic, assign) int squadPositionIndex;
 @property (nonatomic, assign) bool allUnitAreDead;
 @property (nonatomic, assign) long totalAliveUnitHP;
+@property (nonatomic, assign) int totalCurrentAliveUnit;
 
 @end

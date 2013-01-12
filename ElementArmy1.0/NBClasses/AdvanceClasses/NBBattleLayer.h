@@ -38,6 +38,7 @@
 -(void)prepareBattlefield;
 -(void)prepareUI;
 -(void)startBattle;
+-(void)endBattle;
 -(void)gotoMapSelectionScreen;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
@@ -62,14 +63,14 @@
 -(void)onComboSkillCButtonSelected;
 
 @property (nonatomic, retain) NBFancySlidingMenuLayer *classGroupSkillMenuLayer;
-@property (nonatomic, retain) NBButton* classGroupSkillButton;
+/*@property (nonatomic, retain) NBButton* classGroupSkillButton;
 @property (nonatomic, retain) NBButton* comboGroupSkillButton;
 @property (nonatomic, retain) NBButton* classSkillAButton;
 @property (nonatomic, retain) NBButton* classSkillBButton;
 @property (nonatomic, retain) NBButton* classSkillCButton;
 @property (nonatomic, retain) NBButton* comboSkillAButton;
 @property (nonatomic, retain) NBButton* comboSkillBButton;
-@property (nonatomic, retain) NBButton* comboSkillCButton;
+@property (nonatomic, retain) NBButton* comboSkillCButton;*/
 @property (nonatomic, retain) NBStaticObject* allyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* enemyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* allyHPBarPlaceholder;

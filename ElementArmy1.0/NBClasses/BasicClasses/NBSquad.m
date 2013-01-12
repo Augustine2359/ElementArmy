@@ -17,6 +17,12 @@ static int objectCount = 0;
 static int allySquadPositionIndex = 0;
 static int enemySquadPositionIndex = 0;
 
++(void)resetSquadPositionIndex
+{
+    allySquadPositionIndex = 0;
+    enemySquadPositionIndex = 0;
+}
+
 +(void)setupBatteFieldDimension:(CGSize)size
 {
     battleFieldWidth = size.width;
@@ -38,7 +44,7 @@ static int enemySquadPositionIndex = 0;
     }
     else if (count <= 0)
     {
-        unitCount = 1;
+        return nil;
     }
     else
     {
@@ -97,6 +103,7 @@ static int enemySquadPositionIndex = 0;
             
             objectCount++;
             self.totalAliveUnitHP += [tempCharacter getHitPoint];
+            self.totalCurrentAliveUnit++;
         }
         
         self.allUnitAreDead = false;
@@ -105,10 +112,23 @@ static int enemySquadPositionIndex = 0;
     return self;
 }
 
+-(void)dealloc
+{
+    NBCharacter* characterObject;
+    
+    CCARRAY_FOREACH(self.unitArray, characterObject)
+    {
+        [characterObject dealloc];
+    }
+    
+    [super dealloc];
+}
+
 -(void)update
 {
     self.allUnitAreDead = true;
     self.totalAliveUnitHP = 0;
+    self.totalCurrentAliveUnit = 0;
     
     for (int i = 0; i < [self.unitArray count]; i++)
     {
@@ -121,6 +141,7 @@ static int enemySquadPositionIndex = 0;
         if (tempCharacter.currentState != Dead)
         {
             self.allUnitAreDead = false;
+            self.totalCurrentAliveUnit++;
         }
     }
 }

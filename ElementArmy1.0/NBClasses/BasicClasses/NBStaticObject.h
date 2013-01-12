@@ -10,6 +10,7 @@
 #import "NBBasicObject.h"
 
 #define MAXIMUM_STATIC_OBJECT_CAPACITY 50
+//#define ENABLE_DEBUG
 
 @interface NBStaticObject : NBBasicObject
 

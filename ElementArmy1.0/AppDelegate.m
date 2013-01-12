@@ -13,8 +13,15 @@
 #import "NBBattleLayer.h"
 #import "NBIntroScreen.h"
 #import "NBMainMenuScreen.h"
+#import "NBDataManager.h"
 
-//static CCScene* introScreen = nil;
+static NBDataManager* dataManager = nil;
+
+@interface AppController()
+
+-(void)loadGameData;
+
+@end
 
 @implementation AppController
 
@@ -78,6 +85,8 @@
 
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
+    
+    [self loadGameData];
     
     //introScreen = [NBIntroScreen sceneAndSetAsDefault:YES];
     [NBBasicScreenLayer setCurrentScreen:[NBIntroScreen sceneAndSetAsDefault:YES]];
@@ -157,6 +166,76 @@
 	[navController_ release];
 
 	[super dealloc];
+}
+
+-(void)loadGameData
+{
+    if (!dataManager)
+        dataManager = [NBDataManager dataManager];
+    
+    //Temporary Code
+    //-------------------------------------------------------------------------------
+    CCArray* arrayOfAllyData = [CCArray arrayWithCapacity:3];
+    CCArray* arrayOfEnemyData = [CCArray arrayWithCapacity:3];
+    
+    NBBasicClassData* basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBSoldier";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 3;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfAllyData addObject:basicClassData];
+    
+    basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBSoldier";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 3;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfAllyData addObject:basicClassData];
+    
+    basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBFireMage";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 4;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfAllyData addObject:basicClassData];
+    
+    basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBSoldier";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 1;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfEnemyData addObject:basicClassData];
+    
+    basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBFireMage";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 1;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfEnemyData addObject:basicClassData];
+    
+    basicClassData = [[NBBasicClassData alloc] init];
+    basicClassData.className = @"NBFireMage";
+    basicClassData.level = 1;
+    basicClassData.availableUnit = 8;
+    basicClassData.totalUnit = 8;
+    basicClassData.timeLastBattleCompleted = [NSDate date];
+    
+    [arrayOfEnemyData addObject:basicClassData];
+    
+    dataManager.arrayOfAllySquad = arrayOfAllyData;
+    dataManager.arrayOfEnemySquad = arrayOfEnemyData;
+    //-------------------------------------------------------------------------------
+
 }
 @end
 

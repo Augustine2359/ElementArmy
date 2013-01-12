@@ -53,52 +53,6 @@ static Boolean isAutoStart = NO;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self = [super init]))
     {
-        CGSize size = [[CCDirector sharedDirector] winSize];
-
-		// ask director for the window size
-        /*battleStarted = false;
-        ccColor4B startColor;
-        startColor.r = 200;
-        startColor.g = 200;
-        startColor.b = 200;
-        startColor.a = 250;
-        CCLayerColor *backgroundColor = [CCLayerColor layerWithColor:startColor];
-        [self addChild:backgroundColor];
-        self.isTouchEnabled = YES;
-        [self scheduleUpdate];*/
-		
-        //Prepare Sprite Batch Node
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
-        self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
-        [self addChild:self.characterSpritesBatchNode z:0 tag:0];
-		
-        //Prepare unit slots/arrays
-        [NBSquad setupBatteFieldDimension:CGSizeMake(size.width, size.height)];
-        if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
-        if (!self.enemySquads) self.enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
-        [self prepareUnits];
-        [self prepareUI];
-        
-        if (!isAutoStart)
-        {
-            // Default font size will be 28 points.
-            [CCMenuItemFont setFontSize:28];
-            
-            // create and initialize a Label
-            CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
-            self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
-            
-            [self.menu alignItemsHorizontallyWithPadding:20];
-            [self.menu setPosition:ccp(size.width / 2, size.height / 2 - 50)];
-            
-            // Add the menu to the layer
-            [self addChild:self.menu];
-        }
-        else
-        {
-            [self prepareBattlefield];
-        }
-		
 		/*//
 		// Leaderboards and Achievements
 		//
@@ -140,7 +94,6 @@ static Boolean isAutoStart = NO;
 		
 		// Add the menu to the layer
 		[self addChild:menu];*/
-
 	}
 	return self;
 }
@@ -156,22 +109,83 @@ static Boolean isAutoStart = NO;
 	[super dealloc];
 }
 
-#pragma mark GameKit delegate
-
--(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
-
--(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
-}
-
 //NB ElementArmy Specific
 //************************************************************************************************
+-(void)onEnter
+{
+    [super onEnter];
+    
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    
+    // ask director for the window size
+    /*battleStarted = false;
+     ccColor4B startColor;
+     startColor.r = 200;
+     startColor.g = 200;
+     startColor.b = 200;
+     startColor.a = 250;
+     CCLayerColor *backgroundColor = [CCLayerColor layerWithColor:startColor];
+     [self addChild:backgroundColor];
+     self.isTouchEnabled = YES;
+     [self scheduleUpdate];*/
+    
+    //Prepare Sprite Batch Node
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
+    self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
+    [self addChild:self.characterSpritesBatchNode z:0 tag:0];
+    
+    //Prepare unit slots/arrays
+    [NBSquad setupBatteFieldDimension:CGSizeMake(size.width, size.height)];
+    if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
+    if (!self.enemySquads) self.enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
+    [self prepareUnits];
+    [self prepareUI];
+    
+    if (!isAutoStart)
+    {
+        // Default font size will be 28 points.
+        [CCMenuItemFont setFontSize:28];
+        
+        // create and initialize a Label
+        CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
+        self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
+        
+        [self.menu alignItemsHorizontallyWithPadding:20];
+        [self.menu setPosition:ccp(size.width / 2, size.height / 2 - 50)];
+        
+        // Add the menu to the layer
+        [self addChild:self.menu];
+    }
+    else
+    {
+        [self prepareBattlefield];
+    }
+}
+
+-(void)onExit
+{
+    [self.children removeAllObjects];
+    battleStarted = false;
+    
+    /*[self.menu dealloc];
+    [self.battleCompleteMenu dealloc];
+    [self.battleResultText dealloc];*/
+    
+    NBSquad* squad;
+    CCARRAY_FOREACH(self.allySquads, squad)
+    {
+        [squad dealloc];
+    }
+    
+    CCARRAY_FOREACH(self.enemySquads, squad)
+    {
+        [squad dealloc];
+    }
+    
+    self.allySquads = nil;
+    self.enemySquads = nil;
+}
+
 -(void)update:(ccTime)delta
 {
     [NBBasicObject update:delta];
@@ -208,15 +222,9 @@ static Boolean isAutoStart = NO;
             }
         }
         
-        NSLog(@"Ally HP = %f", allyTotalHP);
-        NSLog(@"Enemy HP = %f", enemyTotalHP);
-        NSLog(@"totalAllyHPAtStartOfBattle = %ld", totalAllyHPAtStartOfBattle);
-        NSLog(@"totalEnemyHPAtStartOfBattle = %ld", totalEnemyHPAtStartOfBattle);
-        
         if (totalAllyHPAtStartOfBattle > 0)
         {
             long newAllyHPBarWidth = (allyTotalHP / totalAllyHPAtStartOfBattle) * HP_BAR_LENGTH;
-            NSLog(@"newAllyHPBarWidth = %ld", newAllyHPBarWidth);
             [self.allyHPBar setToCustomSize:CGSizeMake(newAllyHPBarWidth, self.allyHPBar.sizeOnScreen.height)];
         }
         
@@ -244,6 +252,39 @@ static Boolean isAutoStart = NO;
         {
             battleStarted = false;
             
+            NBSquad* squadObject = nil;
+            int index = 0;
+            
+            CCARRAY_FOREACH(self.allySquads, squadObject)
+            {
+                NBBasicClassData* squadClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
+                
+                squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+                squadClassData.timeLastBattleCompleted = [NSDate date];
+                
+                [self.dataManager.arrayOfAllySquad replaceObjectAtIndex:index withObject:squadClassData];
+                
+                NBBasicClassData* testClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
+                DLog(@"%@ available unit = %i", testClassData.className, testClassData.availableUnit);
+                
+                index++;
+            }
+            
+            //For enemy dont reset for now, simulating next stage will be full of enemy again
+            /*
+            index = 0;
+            CCARRAY_FOREACH(self.enemySquads, squadObject)
+            {
+                NBBasicClassData* squadClassData = [self.dataManager.arrayOfEnemySquad objectAtIndex:index];
+                
+                squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+                squadClassData.timeLastBattleCompleted = [NSDate date];
+                
+                [self.dataManager.arrayOfEnemySquad replaceObjectAtIndex:index withObject:squadClassData];
+                index++;
+            }
+             */
+            
             [CCMenuItemFont setFontSize:16];
             
             // create and initialize a Label
@@ -262,7 +303,7 @@ static Boolean isAutoStart = NO;
 -(void)gotoMapSelectionScreen
 {
     self.nextScene = @"NBMapSelectionScreen";
-    [self changeToScene:self.nextScene transitionWithDuration:3.0];
+    [self changeToScene:self.nextScene transitionWithDuration:1.0];
 }
 
 -(void)performanceTest
@@ -271,42 +312,40 @@ static Boolean isAutoStart = NO;
     //I want to test how Fire Mage fights (respond) against NBSoldier and vica versa.
     
     NBSquad* tempSquad;
+    [NBSquad resetSquadPositionIndex];
     
-    //Testing single NBSoldier Squad on Enemy
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.allySquads addObject:tempSquad];
+    for (int i = 0; i < [self.dataManager.arrayOfAllySquad count]; i++)
+    {
+        NBBasicClassData* squadClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:i];
+        DLog(@"%@ available unit = %i", squadClassData.className, squadClassData.availableUnit);
+                                    
+        if (squadClassData)
+        {
+            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            
+            if (tempSquad)
+            {
+                [tempSquad startUpdate];
+                [self.allySquads addObject:tempSquad];
+            }
+        }
+    }
     
-    //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.allySquads addObject:tempSquad];
-    
-    //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.allySquads addObject:tempSquad];
-    
-    //Testing single NBSoldier Squad on Enemy
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBSoldier" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.enemySquads addObject:tempSquad];
-    
-    //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.enemySquads addObject:tempSquad];
-    
-    //Testing single NBFireMage Squad on Ally
-    tempSquad = [[NBSquad alloc] createSquadOf:@"NBFireMage" withUnitCount:UNIT_COUNT_PER_SQUAD onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
-    [tempSquad retain];
-    [tempSquad startUpdate];
-    [self.enemySquads addObject:tempSquad];
+    for (int i = 0; i < [self.dataManager.arrayOfEnemySquad count]; i++)
+    {
+        NBBasicClassData* squadClassData = [self.dataManager.arrayOfEnemySquad objectAtIndex:i];
+        
+        if (squadClassData)
+        {
+            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            
+            if (tempSquad)
+            {
+                [tempSquad startUpdate];
+                [self.enemySquads addObject:tempSquad];
+            }
+        }
+    }
 }
 
 -(void)prepareUnits
@@ -320,7 +359,7 @@ static Boolean isAutoStart = NO;
     {
         totalAllyHPAtStartOfBattle += tempSquad.totalAliveUnitHP;
         
-        NSLog(@"totalAllyHPAtStartOfBattle = %ld", totalAllyHPAtStartOfBattle);
+        //DLog(@"totalAllyHPAtStartOfBattle = %ld", totalAllyHPAtStartOfBattle);
     }
     
     CCARRAY_FOREACH(self.enemySquads, tempSquad)
@@ -333,81 +372,11 @@ static Boolean isAutoStart = NO;
 {
     //Test below
     [self startBattle];
-    //[self scheduleUpdate];
 }
 
 -(void)prepareUI
 {
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
-    
-    CCSprite* classAButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_normal.png"];
-    CCSprite* classAButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_selected.png"];
-    CCSprite* classAButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_normal.png"];
-    
-    self.classSkillAButton = [NBButton createWithCustomImageHavingNormal:classAButtonNormalSprite havingSelected:classAButtonSelectedSprite havingDisabled:classAButtonDisabledSprite onLayer:self selector:@selector(onClassSkillAButtonSelected)];
-    [self.classSkillAButton setPosition:CGPointMake(20, 20)];
-    [self.classSkillAButton show];
-    
-    CCSprite* classBButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_normal.png"];
-    CCSprite* classBButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_selected.png"];
-    CCSprite* classBButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_normal.png"];
-    
-    self.classSkillBButton = [NBButton createWithCustomImageHavingNormal:classBButtonNormalSprite havingSelected:classBButtonSelectedSprite havingDisabled:classBButtonDisabledSprite onLayer:self selector:@selector(onClassSkillBButtonSelected)];
-    [self.classSkillBButton setPosition:CGPointMake(20, 20)];
-    [self.classSkillBButton show];
-    
-    CCSprite* classCButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_normal.png"];
-    CCSprite* classCButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_selected.png"];
-    CCSprite* classCButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_normal.png"];
-    
-    self.classSkillCButton = [NBButton createWithCustomImageHavingNormal:classCButtonNormalSprite havingSelected:classCButtonSelectedSprite havingDisabled:classCButtonDisabledSprite onLayer:self selector:@selector(onClassGroupSkillButtonSelected)];
-    [self.classSkillCButton setPosition:CGPointMake(20, 20)];
-    [self.classSkillCButton show];
-    
-    CCSprite* comboAButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_normal.png"];
-    CCSprite* comboAButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_selected.png"];
-    CCSprite* comboAButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_normal.png"];
-    
-    self.comboSkillAButton = [NBButton createWithCustomImageHavingNormal:comboAButtonNormalSprite havingSelected:comboAButtonSelectedSprite havingDisabled:comboAButtonDisabledSprite onLayer:self selector:@selector(onComboSkillAButtonSelected)];
-    [self.comboSkillAButton setPosition:CGPointMake(self.layerSize.width - 20, 20)];
-    [self.comboSkillAButton show];
-    
-    CCSprite* comboBButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_normal.png"];
-    CCSprite* comboBButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_selected.png"];
-    CCSprite* comboBButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_normal.png"];
-    
-    self.comboSkillBButton = [NBButton createWithCustomImageHavingNormal:comboBButtonNormalSprite havingSelected:comboBButtonSelectedSprite havingDisabled:comboBButtonDisabledSprite onLayer:self selector:@selector(onComboSkillBButtonSelected)];
-    [self.comboSkillBButton setPosition:CGPointMake(self.layerSize.width - 20, 20)];
-    [self.comboSkillBButton show];
-    
-    CCSprite* comboCButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_normal.png"];
-    CCSprite* comboCButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_selected.png"];
-    CCSprite* comboCButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"skillCbutton_normal.png"];
-    
-    self.comboSkillCButton = [NBButton createWithCustomImageHavingNormal:comboCButtonNormalSprite havingSelected:comboCButtonSelectedSprite havingDisabled:comboCButtonDisabledSprite onLayer:self selector:@selector(onComboGroupSkillButtonSelected)];
-    [self.comboSkillCButton setPosition:CGPointMake(self.layerSize.width - 20, 20)];
-    [self.comboSkillCButton show];
-    
-    CCSprite* groupClassButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    CCSprite* groupClassButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    CCSprite* groupClassButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    
-    self.classGroupSkillButton = [NBButton createWithCustomImageHavingNormal:groupClassButtonNormalSprite havingSelected:groupClassButtonSelectedSprite havingDisabled:groupClassButtonDisabledSprite onLayer:self selector:@selector(onClassGroupSkillButtonSelected)];
-    [self.classGroupSkillButton setPosition:CGPointMake(20, 20)];
-    [self.classGroupSkillButton show];
-    
-    //[self.classGroupSkillButton moveToPosition:CGPointMake(20, 20) withDuration:1.50];
-    
-    CCSprite* groupComboButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    CCSprite* groupComboButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    CCSprite* groupComboButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    
-    self.comboGroupSkillButton = [NBButton createWithCustomImageHavingNormal:groupComboButtonNormalSprite havingSelected:groupComboButtonSelectedSprite havingDisabled:groupComboButtonDisabledSprite onLayer:self selector:@selector(onComboGroupSkillButtonSelected)];
-    [self.comboGroupSkillButton setPosition:CGPointMake(self.layerSize.width - 20, 20)];
-    [self.comboGroupSkillButton show];
-    
-    groupClassSkillOpened = false;
-    groupComboSkillOpened = false;
     
     //The placeholder. This should be something like transparent tube later.
     //**********************************************************************
@@ -452,12 +421,48 @@ static Boolean isAutoStart = NO;
     }
 }
 
+-(void)endBattle
+{
+    /*NBDataManager* dataManager = [NBDataManager dataManager];
+    NBSquad* squadObject = nil;
+    int index = 0;
+    
+    CCARRAY_FOREACH(self.allySquads, squadObject)
+    {
+        NBBasicClassData* squadClassData = [dataManager.arrayOfAllySquad objectAtIndex:index];
+        
+        squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+        squadClassData.timeLastBattleCompleted = [NSDate date];
+    }
+    
+    index = 0;
+    CCARRAY_FOREACH(self.enemySquads, squadObject)
+    {
+        NBBasicClassData* squadClassData = [dataManager.arrayOfEnemySquad objectAtIndex:index];
+        
+        squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+        squadClassData.timeLastBattleCompleted = [NSDate date];
+    }
+    
+    [CCMenuItemFont setFontSize:16];
+    
+    // create and initialize a Label
+    CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoMapSelectionScreen)];
+    self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
+    
+    [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
+    [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 100)];
+    
+    // Add the menu to the layer
+    [self addChild:self.battleCompleteMenu];*/
+}
+
 //UI Control Event Handler
 -(void)onClassGroupSkillButtonSelected
 {
     DLog(@"Class Group Button Selected");
     
-    if (groupClassSkillOpened) groupClassSkillOpened = false; else groupClassSkillOpened = true;
+    /*if (groupClassSkillOpened) groupClassSkillOpened = false; else groupClassSkillOpened = true;
     
     if (groupClassSkillOpened)
     {
@@ -470,7 +475,12 @@ static Boolean isAutoStart = NO;
         [self.classSkillAButton moveToPosition:CGPointMake(20, 20) withDuration:.25];
         [self.classSkillBButton moveToPosition:CGPointMake(20, 20) withDuration:.25];
         [self.classSkillCButton moveToPosition:CGPointMake(20, 20) withDuration:.25];
-    }
+    }*/
+}
+
+-(void)onClassSkillAButtonSelected
+{
+    DLog(@"Class Skill B Button Selected");
 }
 
 -(void)onClassSkillBButtonSelected
@@ -487,7 +497,7 @@ static Boolean isAutoStart = NO;
 {
     DLog(@"Combo Group Button Selected");
     
-    if (groupComboSkillOpened) groupComboSkillOpened = false; else groupComboSkillOpened = true;
+    /*if (groupComboSkillOpened) groupComboSkillOpened = false; else groupComboSkillOpened = true;
     
     if (groupComboSkillOpened)
     {
@@ -500,7 +510,12 @@ static Boolean isAutoStart = NO;
         [self.comboSkillAButton moveToPosition:CGPointMake(self.layerSize.width - 20, 20) withDuration:.25];
         [self.comboSkillBButton moveToPosition:CGPointMake(self.layerSize.width - 20, 20) withDuration:.25];
         [self.comboSkillCButton moveToPosition:CGPointMake(self.layerSize.width - 20, 20) withDuration:.25];
-    }
+    }*/
+}
+
+-(void)onComboSkillAButtonSelected
+{
+    DLog(@"Combo Skill B Button Selected");
 }
 
 -(void)onComboSkillBButtonSelected

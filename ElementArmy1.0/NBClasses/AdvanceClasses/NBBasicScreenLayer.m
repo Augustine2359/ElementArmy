@@ -78,6 +78,9 @@ static CCScene* defaultScreen = nil;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if ((self = [super init]))
     {
+        if (!self.dataManager)
+            self.dataManager = [NBDataManager dataManager];
+        
         self.layerSize = [[CCDirector sharedDirector] winSize];
         self.UI = [[NBUserInterface alloc] init];
         [self scheduleUpdate];
@@ -108,9 +111,16 @@ static CCScene* defaultScreen = nil;
 	[super dealloc];
 }
 
--(void) onEnter
+-(void)onEnter
 {
 	[super onEnter];
+}
+
+-(void)onExit
+{
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
+    
+    [super onExit];
 }
 
 #pragma mark GameKit delegate
@@ -118,13 +128,13 @@ static CCScene* defaultScreen = nil;
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
+	[[app navController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-	[[app navController] dismissModalViewControllerAnimated:YES];
+	[[app navController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)addStandardMenuString:(NSString*)menuTitle withSelector:(SEL)selectedMethod
@@ -134,7 +144,7 @@ static CCScene* defaultScreen = nil;
     [CCMenuItemFont setFontName:@"Zapfino"];
     
     // create and initialize a Label
-    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 22) hAlignment:CCTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
+    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 22) hAlignment:NSTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
     CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithLabel:label target:self selector:selectedMethod];
     self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
     [self.menu setColor:ccWHITE];
