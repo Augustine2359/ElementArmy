@@ -7,6 +7,14 @@
 //
 
 #import "NBBattleSetupScreen.h"
+#import "NBBattleSetupUnitSelectorLayer.h"
+#import "NBBattleSetupUnitSelectorsContainerLayer.h"
+
+@interface NBBattleSetupScreen()
+
+@property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
+
+@end
 
 @implementation NBBattleSetupScreen
 
