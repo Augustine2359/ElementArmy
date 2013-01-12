@@ -108,11 +108,25 @@
     self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
     [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
     [self.battleSetupItem3 show];
+
+    [self createUnitSelectors];
     
     //Item Sample
     self.battleSetupItemSample = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
     [self.battleSetupItemSample setPosition:CGPointMake(self.battleSetupItemSample.buttonObject.contentSize.width / 2, (self.layerSize.height - self.battleSetupItemSample.buttonObject.contentSize.height / 2))];
     [self.battleSetupItemSample show];
+}
+
+- (void)createUnitSelectors {
+  ccColor4B startColor;
+  startColor.r = 255;
+  startColor.g = 255;
+  startColor.b = 255;
+  startColor.a = 255;
+
+  self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:330 height:200];
+  self.unitSelectorsContainerLayer.position = CGPointMake(100, 100);
+  [self addChild:self.unitSelectorsContainerLayer];
 }
 
 -(void)gotoIntroScreen
