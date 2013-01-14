@@ -46,6 +46,26 @@
   return self;
 }
 
+- (void)visit {
+
+  CGPoint origin = [self convertToWorldSpace:CGPointZero];
+
+  //increase the dimensions for retina
+  CGRect rectToClipTo = CGRectMake(origin.x, origin.y, self.contentSize.width, self.contentSize.height);
+  if ([[CCDirector sharedDirector] enableRetinaDisplay:YES]) {
+    rectToClipTo.origin.x *= 2;
+    rectToClipTo.origin.y *= 2;
+    rectToClipTo.size.width *= 2;
+    rectToClipTo.size.height *= 2;
+  }
+
+  //clips the layer so that the sprites inside don't appear outside of the layer
+	glEnable(GL_SCISSOR_TEST);
+  glScissor(rectToClipTo.origin.x, rectToClipTo.origin.y, rectToClipTo.size.width, rectToClipTo.size.height);
+	[super visit];
+	glDisable(GL_SCISSOR_TEST);
+}
+
 - (void)prepareElementsArray {
   self.elementsArray = [CCArray array];
   CCArray *elementArray = [CCArray array];
@@ -89,13 +109,13 @@
     if ([self.children containsObject:self.currentUnitSprite] == NO)
     [self addChild:self.currentUnitSprite];
     CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.y += self.contentSize.height/2;
+    position.y += self.contentSize.height;
     self.currentUnitSprite.position = position;
 
     position = self.previousUnitSprite.position;
     id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.currentUnitSprite runAction:move];
-    position.y -= self.contentSize.height/2;
+    position.y -= self.contentSize.height;
     move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.previousUnitSprite runAction:move];
   }
@@ -115,13 +135,13 @@
     if ([self.children containsObject:self.currentUnitSprite] == NO)
       [self addChild:self.currentUnitSprite];
     CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.x += self.contentSize.width/2;
+    position.x += self.contentSize.width;
     self.currentUnitSprite.position = position;
 
     position = self.previousUnitSprite.position;
     id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.currentUnitSprite runAction:move];
-    position.x -= self.contentSize.width/2;
+    position.x -= self.contentSize.width;
     move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.previousUnitSprite runAction:move];
   }
@@ -141,13 +161,13 @@
     if ([self.children containsObject:self.currentUnitSprite] == NO)
       [self addChild:self.currentUnitSprite];
     CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.x -= self.contentSize.width/2;
+    position.x -= self.contentSize.width;
     self.currentUnitSprite.position = position;
 
     position = self.previousUnitSprite.position;
     id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.currentUnitSprite runAction:move];
-    position.x += self.contentSize.width/2;
+    position.x += self.contentSize.width;
     move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.previousUnitSprite runAction:move];
   }
@@ -167,13 +187,13 @@
     if ([self.children containsObject:self.currentUnitSprite] == NO)
     [self addChild:self.currentUnitSprite];
     CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.y -= self.contentSize.height/2;
+    position.y -= self.contentSize.height;
     self.currentUnitSprite.position = position;
 
     position = self.previousUnitSprite.position;
     id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.currentUnitSprite runAction:move];
-    position.y += self.contentSize.height/2;
+    position.y += self.contentSize.height;
     move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
     [self.previousUnitSprite runAction:move];
   }
