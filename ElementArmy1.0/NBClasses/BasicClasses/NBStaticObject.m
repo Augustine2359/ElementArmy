@@ -78,10 +78,12 @@ static CGSize winSize = {0, 0};
     
     if (!CGSizeEqualToSize(size, CGSizeZero))
     {
+#if ENABLE_DEBUG
         NSLog(@"size.width = %f", size.width);
         NSLog(@"size.height = %f", size.height);
         NSLog(@"contentSize.width = %f", tempObject.sprite.contentSize.width);
         NSLog(@"contentSize.height = %f", tempObject.sprite.contentSize.height);
+#endif
         
         [tempObject setToCustomSize:size];
         

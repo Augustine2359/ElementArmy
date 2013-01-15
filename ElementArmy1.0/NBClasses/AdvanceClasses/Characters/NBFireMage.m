@@ -37,6 +37,13 @@ static CCArray* classObjectList = nil;
 {
     //Don't change below at this moment, HOWEVER, if you do allocate array for your own use, please dealloc here as well
     [classObjectList removeObject:self];
+    
+    NBProjectile* projectile;
+    CCARRAY_FOREACH(self.projectileArrayList, projectile)
+    {
+        [projectile dealloc];
+    }
+    
     [super dealloc];
     
     //Your own deallocation

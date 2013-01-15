@@ -12,6 +12,7 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "NBDataManager.h"
 
 @interface NBBasicScreenLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 
@@ -37,5 +38,6 @@
 @property (nonatomic, retain) NSString* nextScene;
 @property (nonatomic, retain) CCSprite* background;
 @property (nonatomic, retain) NBUserInterface* UI;
+@property (nonatomic, retain) NBDataManager* dataManager;
 
 @end

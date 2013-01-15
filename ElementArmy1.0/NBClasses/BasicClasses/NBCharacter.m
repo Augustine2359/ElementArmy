@@ -118,9 +118,13 @@ static CCArray* enemyUnitList = nil;
 
 -(void)dealloc
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
-    [characterList removeObject:self];
+    if (self.characterSide == Ally)
+        [allyUnitList removeObject:self];
     
+    if (self.characterSide == Enemy)
+        [enemyUnitList removeObject:self];
+    
+    [characterList removeObject:self];
     [super dealloc];
 }
 
@@ -466,7 +470,7 @@ static CCArray* enemyUnitList = nil;
     NBCharacter* tempAttacker = (NBCharacter*)attacker;
     
 #if DEBUG
-    DLog(@"%@ is attacked", self.name);
+    //DLog(@"%@ is attacked", self.name);
 #endif
     
     if (self.hitPoint <= 0)

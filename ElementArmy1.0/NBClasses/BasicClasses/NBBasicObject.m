@@ -127,20 +127,21 @@ static CGSize worldSize;
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     //[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
     
+    [worldObjectList removeObject:self];
     [super dealloc];
     objectCount--;
 }
 
 -(void)setToCustomSize:(CGSize)newSize
 {
-    DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+    //DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
     
     [self setScaleX:(newSize.width / self.sprite.contentSize.width)];
     [self setScaleY:(newSize.height / self.sprite.contentSize.height)];
     
     self.sizeOnScreen = newSize;
     
-    DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
+    //DLog(@"newsize width = %f, height = %f, contentsize width = %f, height = %f, sizeOnScreen width = %f, height = %f", newSize.width, newSize.height, self.sprite.contentSize.width, self.sprite.contentSize.height, self.sizeOnScreen.width, self.sizeOnScreen.height);
 }
 
 -(void)setToDefaultSize

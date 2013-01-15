@@ -27,23 +27,24 @@ static CCArray* buttonList = nil;
     CCSprite* selectedSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_SELECTED_FRAME_NAME];
     CCSprite* disabledSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_DISABLED_FRAME_NAME];
     
-    NBButton* tempButton = [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite];
-    
-    if (!CGSizeEqualToSize(size, CGSizeZero))
-    {
-        [tempButton.buttonObject setScaleX:(size.width / tempButton.buttonObject.contentSize.width)];
-        [tempButton.buttonObject setScaleY:(size.height / tempButton.buttonObject.contentSize.height)];
-    }
-    
-    return tempButton;
+    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
-+(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector
++(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size
 {
-    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite];
+    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
--(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size
+{
+    CCSprite* normalSprite = [CCSprite spriteWithSpriteFrameName:normalSpriteString];
+    CCSprite* selectedSprite = [CCSprite spriteWithSpriteFrameName:selectedSpriteString];
+    CCSprite* disabledSprite = [CCSprite spriteWithSpriteFrameName:disabledSpriteString];
+    
+    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
+}
+
+-(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size
 {
     if (!buttonList)
     {
@@ -58,6 +59,12 @@ static CCArray* buttonList = nil;
     self.menu = [CCMenu menuWithItems:self.buttonObject, nil];
     [self hide];
     self.name = [NSString stringWithFormat:@"Button%i", [buttonList count]];
+    
+    if (!CGSizeEqualToSize(size, CGSizeZero))
+    {
+        [self.buttonObject setScaleX:(size.width / self.buttonObject.contentSize.width)];
+        [self.buttonObject setScaleY:(size.height / self.buttonObject.contentSize.height)];
+    }
     
     [layer addChild:self.menu];
     

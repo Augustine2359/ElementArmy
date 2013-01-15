@@ -23,6 +23,18 @@
 
 typedef enum
 {
+    elUnknown = 0,
+    elFire = 1,
+    elWater = 2,
+    elEarth = 3,
+    elWood = 4,
+    elMetal = 5,
+    elLight = 6,
+    elDark = 7
+} EnumElementType;
+
+typedef enum
+{
     Unknown         = 0,
     Loaded          = 1,
     EnteringScene   = 2,
@@ -92,6 +104,7 @@ typedef enum
 -(void)onTargetKilled:(id)target;
 
 @property (nonatomic, assign) int objectIndex;
+@property (nonatomic, assign) EnumElementType elementType;
 @property (nonatomic, assign) int level;
 @property (nonatomic, assign) int hitPoint;
 @property (nonatomic, assign) int spiritPoint;
