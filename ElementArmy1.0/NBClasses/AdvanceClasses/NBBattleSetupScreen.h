@@ -11,6 +11,10 @@
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
+-(void)initialiseItemSelection;
+-(void)toggleItemSelection;
+-(NBButton*)tempCreateButton:(NSString*)normalImage selected:(NSString*)selectedImage disabled:(NSString*)disabledImage atPosition:(CGPoint)position selector:(SEL)selector;
+
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;
 -(void)gotoMapSelectionScreen;
@@ -41,5 +45,13 @@
 @property (nonatomic, retain) NBButton *battleSetupItem1;
 @property (nonatomic, retain) NBButton *battleSetupItem2;
 @property (nonatomic, retain) NBButton *battleSetupItem3;
+
+//Item selection
+@property (nonatomic, retain) NBStaticObject *itemSelectionFrame;
+@property (nonatomic, retain) NBButton *item01;
+@property (nonatomic, retain) NBButton *item02;
+@property (nonatomic, retain) NBButton *item03;
+@property (nonatomic, retain) NBButton *item04;
+@property (nonatomic, retain) NBButton *item05;
 
 @end

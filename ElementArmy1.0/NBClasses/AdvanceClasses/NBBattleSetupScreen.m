@@ -8,8 +8,11 @@
 
 #import "NBBattleSetupScreen.h"
 
-@implementation NBBattleSetupScreen
+float slideDuration = 0.5f;
+bool itemSelectionOpen = NO;
 
+
+@implementation NBBattleSetupScreen
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
 +(CCScene*)scene
 {
@@ -172,28 +175,70 @@
     
     //Display buttons Items
     //Item 1
-    CCSprite* buttonItem1Normal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem1Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem1Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    self.battleSetupItem1 = [NBButton createWithCustomImageHavingNormal:buttonItem1Normal havingSelected:buttonItem1Selected havingDisabled:buttonItem1Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    CCSprite* buttonItem1Normal = [CCSprite spriteWithSpriteFrameName:@"Potion.png"];
+    CCSprite* buttonItem1Selected = [CCSprite spriteWithSpriteFrameName:@"Potion.png"];
+    CCSprite* buttonItem1Disabled = [CCSprite spriteWithSpriteFrameName:@"Potion.png"];
+    self.battleSetupItem1 = [NBButton createWithCustomImageHavingNormal:buttonItem1Normal havingSelected:buttonItem1Selected havingDisabled:buttonItem1Disabled onLayer:self selector:@selector(toggleItemSelection)];
     [self.battleSetupItem1 setPosition:CGPointMake(160, 50)];
     [self.battleSetupItem1 show];
     
     //Item 2
-    CCSprite* buttonItem2Normal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem2Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem2Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    self.battleSetupItem2 = [NBButton createWithCustomImageHavingNormal:buttonItem2Normal havingSelected:buttonItem2Selected havingDisabled:buttonItem2Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    CCSprite* buttonItem2Normal = [CCSprite spriteWithSpriteFrameName:@"Fury_pill.png"];
+    CCSprite* buttonItem2Selected = [CCSprite spriteWithSpriteFrameName:@"Fury_pill.png"];
+    CCSprite* buttonItem2Disabled = [CCSprite spriteWithSpriteFrameName:@"Fury_pill.png"];
+    self.battleSetupItem2 = [NBButton createWithCustomImageHavingNormal:buttonItem2Normal havingSelected:buttonItem2Selected havingDisabled:buttonItem2Disabled onLayer:self selector:@selector(toggleItemSelection)];
     [self.battleSetupItem2 setPosition:CGPointMake(240, 50)];
     [self.battleSetupItem2 show];
     
     //Item 3
-    CCSprite* buttonItem3Normal = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem3Selected = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    CCSprite* buttonItem3Disabled = [CCSprite spriteWithSpriteFrameName:@"button_cancel.png"];
-    self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(gotoMainMenuScreen)];
+    CCSprite* buttonItem3Normal = [CCSprite spriteWithSpriteFrameName:@"Winged_boots.png"];
+    CCSprite* buttonItem3Selected = [CCSprite spriteWithSpriteFrameName:@"Winged_boots.png"];
+    CCSprite* buttonItem3Disabled = [CCSprite spriteWithSpriteFrameName:@"Winged_boots.png"];
+    self.battleSetupItem3 = [NBButton createWithCustomImageHavingNormal:buttonItem3Normal havingSelected:buttonItem3Selected havingDisabled:buttonItem3Disabled onLayer:self selector:@selector(toggleItemSelection)];
     [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
     [self.battleSetupItem3 show];
+    
+    [self initialiseItemSelection];
+}
+
+-(NBButton*)tempCreateButton:(NSString*)normalImage selected:(NSString*)selectedImage disabled:(NSString*)disabledImage atPosition:(CGPoint)position selector:(SEL)selector{
+    CCSprite* normal = [CCSprite spriteWithSpriteFrameName:normalImage];
+    CCSprite* selected = [CCSprite spriteWithSpriteFrameName:selectedImage];
+    CCSprite* disabled = [CCSprite spriteWithSpriteFrameName:disabledImage];
+    NBButton* newButton = [NBButton createWithCustomImageHavingNormal:normal havingSelected:selected havingDisabled:disabled onLayer:self selector:@selector(selector)];
+    [newButton setPosition:position];
+    [newButton show];
+    
+    return newButton;
+}
+
+-(void)initialiseItemSelection{
+    self.itemSelectionFrame = [NBStaticObject createWithSize:CGSizeMake(400, 300) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, -300)];
+    self.item01 = [self tempCreateButton:@"Potion.png" selected:@"Potion.png" disabled:@"Potion.png" atPosition:CGPointMake(100, -300) selector:@selector(toggleItemSelection)];
+    self.item02 = [self tempCreateButton:@"Potion.png" selected:@"Potion.png" disabled:@"Potion.png" atPosition:CGPointMake(150, -300) selector:@selector(toggleItemSelection)];
+    self.item03 = [self tempCreateButton:@"Potion.png" selected:@"Potion.png" disabled:@"Potion.png" atPosition:CGPointMake(200, -300) selector:@selector(toggleItemSelection)];
+    self.item04 = [self tempCreateButton:@"Potion.png" selected:@"Potion.png" disabled:@"Potion.png" atPosition:CGPointMake(250, -300) selector:@selector(toggleItemSelection)];
+    self.item05 = [self tempCreateButton:@"Potion.png" selected:@"Potion.png" disabled:@"Potion.png" atPosition:CGPointMake(300, -300) selector:@selector(toggleItemSelection)];
+    self.item01.parent = self.itemSelectionFrame;
+    self.item02.parent = self.itemSelectionFrame;
+    self.item03.parent = self.itemSelectionFrame;
+    self.item04.parent = self.itemSelectionFrame;
+    self.item05.parent = self.itemSelectionFrame;
+}
+
+-(void)toggleItemSelection{
+    //Closed
+    if (!itemSelectionOpen) {
+        id open = [CCMoveTo actionWithDuration:slideDuration position:CGPointMake(240, 150)];
+        [self.itemSelectionFrame runAction:open];
+        itemSelectionOpen = YES;
+    }
+    //Opened
+    else{
+        id close = [CCMoveTo actionWithDuration:slideDuration position:CGPointMake(240, -300)];
+        [self.itemSelectionFrame runAction:close];
+        itemSelectionOpen = NO;
+    }
 }
 
 -(void)gotoIntroScreen
