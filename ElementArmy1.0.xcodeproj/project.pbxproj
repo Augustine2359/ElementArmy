@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC06C24E1633B68D00F091F0 /* NBBattleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */; };
+		569CC7F016A56C2700818B56 /* BattleSetupItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CC7EF16A56C2700818B56 /* BattleSetupItems.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
-		BC06C254163A297500F091F0 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C253163A297500F091F0 /* NBFireball.m */; };
-		BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C256163A31B100F091F0 /* NBFireMage.m */; };
 		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
 		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
 		BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894D16A2C01B00DAAA19 /* NBStage.m */; };
@@ -21,11 +19,6 @@
 		BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065BD168B44E000745FB0 /* NBMessageBox.m */; };
 		BC2065C1168B494600745FB0 /* NBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C0168B494500745FB0 /* NBButton.m */; };
 		BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C3168B4A4200745FB0 /* NBUserInterface.m */; };
-		BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */; };
-		BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */; };
-		BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */; };
-		BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */; };
-		BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -155,28 +148,32 @@
 		BCBC73C51633AA7700B5A141 /* NBAnimationDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73B21633AA7700B5A141 /* NBAnimationDefinition.m */; };
 		BCBC73C61633AA7700B5A141 /* NBBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73B41633AA7700B5A141 /* NBBasicObject.m */; };
 		BCBC73C81633AA7700B5A141 /* NBCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73B81633AA7700B5A141 /* NBCharacter.m */; };
-		BCBC73C91633AA7700B5A141 /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */; };
 		BCBC73CA1633AA7700B5A141 /* NBMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73BC1633AA7700B5A141 /* NBMagic.m */; };
 		BCBC73CB1633AA7700B5A141 /* NBSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73BE1633AA7700B5A141 /* NBSkill.m */; };
 		BCBC73CD1633AA7700B5A141 /* NBSquad.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73C21633AA7700B5A141 /* NBSquad.m */; };
-		BCBC73D41633AA8100B5A141 /* NBSoldier.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73D21633AA8100B5A141 /* NBSoldier.m */; };
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
-		BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */; };
-		BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */; };
-		F9299FBE169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */; };
-		F9299FC2169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */; };
-		F9F30B671696AC1A0018F723 /* NBFancySlidingMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */; };
+		F9299FD816A2FB9000C9DD61 /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */; };
+		F9299FFE16A2FBA300C9DD61 /* NBBattleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */; };
+		F9299FFF16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */; };
+		F929A00016A2FBA300C9DD61 /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
+		F929A00116A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */; };
+		F929A00216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */; };
+		F929A00316A2FBA300C9DD61 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE716A2FBA300C9DD61 /* NBFireMage.m */; };
+		F929A00416A2FBA300C9DD61 /* NBSoldier.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE916A2FBA300C9DD61 /* NBSoldier.m */; };
+		F929A00516A2FBA300C9DD61 /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */; };
+		F929A00616A2FBA300C9DD61 /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FEF16A2FBA300C9DD61 /* NBGameLoadingScreen.m */; };
+		F929A00716A2FBA300C9DD61 /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF216A2FBA300C9DD61 /* NBMainMenuScreen.m */; };
+		F929A00816A2FBA300C9DD61 /* NBMapSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */; };
+		F929A00916A2FBA300C9DD61 /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF816A2FBA300C9DD61 /* NBFireball.m */; };
+		F929A00A16A2FBA300C9DD61 /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */; };
+		F929A00B16A2FBA300C9DD61 /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleLayer.m; sourceTree = "<group>"; };
-		BC06C24D1633B68D00F091F0 /* NBBattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleLayer.h; sourceTree = "<group>"; };
+		569CC7EE16A56C2700818B56 /* BattleSetupItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleSetupItems.h; sourceTree = "<group>"; };
+		569CC7EF16A56C2700818B56 /* BattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleSetupItems.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
 		BC06C250163461E700F091F0 /* NBProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectile.m; sourceTree = "<group>"; };
-		BC06C252163A297500F091F0 /* NBFireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireball.h; sourceTree = "<group>"; };
-		BC06C253163A297500F091F0 /* NBFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireball.m; sourceTree = "<group>"; };
-		BC06C255163A31B100F091F0 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
-		BC06C256163A31B100F091F0 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
 		BC14894116A0F74C00DAAA19 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDataManager.h; sourceTree = "<group>"; };
 		BC14894216A0F74C00DAAA19 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDataManager.m; sourceTree = "<group>"; };
 		BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicClassData.h; sourceTree = "<group>"; };
@@ -195,16 +192,6 @@
 		BC2065C0168B494500745FB0 /* NBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBButton.m; sourceTree = "<group>"; };
 		BC2065C2168B4A4200745FB0 /* NBUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserInterface.h; sourceTree = "<group>"; };
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
-		BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
-		BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
-		BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMainMenuScreen.h; sourceTree = "<group>"; };
-		BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMainMenuScreen.m; sourceTree = "<group>"; };
-		BCBC5A2116626BA40009DCF3 /* NBStoryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreen.h; sourceTree = "<group>"; };
-		BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreen.m; sourceTree = "<group>"; };
-		BCBC5A241662728D0009DCF3 /* NBMapSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMapSelectionScreen.h; sourceTree = "<group>"; };
-		BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMapSelectionScreen.m; sourceTree = "<group>"; };
-		BCBC5A27166275D80009DCF3 /* NBBattleSetupScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupScreen.h; sourceTree = "<group>"; };
-		BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupScreen.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -473,8 +460,6 @@
 		BCBC73B41633AA7700B5A141 /* NBBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicObject.m; sourceTree = "<group>"; };
 		BCBC73B71633AA7700B5A141 /* NBCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCharacter.h; sourceTree = "<group>"; };
 		BCBC73B81633AA7700B5A141 /* NBCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCharacter.m; sourceTree = "<group>"; };
-		BCBC73B91633AA7700B5A141 /* NBFireExplosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBFireExplosion.h; path = ../BasicClasses/NBFireExplosion.h; sourceTree = "<group>"; };
-		BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBFireExplosion.m; path = ../BasicClasses/NBFireExplosion.m; sourceTree = "<group>"; };
 		BCBC73BB1633AA7700B5A141 /* NBMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMagic.h; sourceTree = "<group>"; };
 		BCBC73BC1633AA7700B5A141 /* NBMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMagic.m; sourceTree = "<group>"; };
 		BCBC73BD1633AA7700B5A141 /* NBSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSkill.h; sourceTree = "<group>"; };
@@ -482,19 +467,37 @@
 		BCBC73C11633AA7700B5A141 /* NBSquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSquad.h; sourceTree = "<group>"; };
 		BCBC73C21633AA7700B5A141 /* NBSquad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSquad.m; sourceTree = "<group>"; };
 		BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUpdatableCharacter.h; sourceTree = "<group>"; };
-		BCBC73D11633AA8100B5A141 /* NBSoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldier.h; sourceTree = "<group>"; };
-		BCBC73D21633AA8100B5A141 /* NBSoldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldier.m; sourceTree = "<group>"; };
 		BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		BCDF8EE61669983900B229B3 /* NBGameLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameLoadingScreen.h; sourceTree = "<group>"; };
-		BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameLoadingScreen.m; sourceTree = "<group>"; };
-		BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBBasicScreenLayer.h; path = ../AdvanceClasses/NBBasicScreenLayer.h; sourceTree = "<group>"; };
-		BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBBasicScreenLayer.m; path = ../AdvanceClasses/NBBasicScreenLayer.m; sourceTree = "<group>"; };
-		F9299FBC169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorLayer.h; sourceTree = "<group>"; };
-		F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorLayer.m; sourceTree = "<group>"; };
-		F9299FC0169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorsContainerLayer.h; sourceTree = "<group>"; };
-		F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorsContainerLayer.m; sourceTree = "<group>"; };
-		F9F30B651696AC170018F723 /* NBFancySlidingMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFancySlidingMenuLayer.h; sourceTree = "<group>"; };
-		F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFancySlidingMenuLayer.m; sourceTree = "<group>"; };
+		F9299FD616A2FB8C00C9DD61 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicScreenLayer.h; sourceTree = "<group>"; };
+		F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicScreenLayer.m; sourceTree = "<group>"; };
+		F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleLayer.h; sourceTree = "<group>"; };
+		F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleLayer.m; sourceTree = "<group>"; };
+		F9299FDC16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFancySlidingMenuLayer.h; sourceTree = "<group>"; };
+		F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFancySlidingMenuLayer.m; sourceTree = "<group>"; };
+		F9299FDF16A2FBA300C9DD61 /* NBBattleSetupScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupScreen.h; sourceTree = "<group>"; };
+		F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupScreen.m; sourceTree = "<group>"; };
+		F9299FE116A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorLayer.h; sourceTree = "<group>"; };
+		F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorLayer.m; sourceTree = "<group>"; };
+		F9299FE316A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorsContainerLayer.h; sourceTree = "<group>"; };
+		F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorsContainerLayer.m; sourceTree = "<group>"; };
+		F9299FE616A2FBA300C9DD61 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
+		F9299FE716A2FBA300C9DD61 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
+		F9299FE816A2FBA300C9DD61 /* NBSoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldier.h; sourceTree = "<group>"; };
+		F9299FE916A2FBA300C9DD61 /* NBSoldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldier.m; sourceTree = "<group>"; };
+		F9299FEB16A2FBA300C9DD61 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
+		F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
+		F9299FEE16A2FBA300C9DD61 /* NBGameLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameLoadingScreen.h; sourceTree = "<group>"; };
+		F9299FEF16A2FBA300C9DD61 /* NBGameLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameLoadingScreen.m; sourceTree = "<group>"; };
+		F9299FF116A2FBA300C9DD61 /* NBMainMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMainMenuScreen.h; sourceTree = "<group>"; };
+		F9299FF216A2FBA300C9DD61 /* NBMainMenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMainMenuScreen.m; sourceTree = "<group>"; };
+		F9299FF416A2FBA300C9DD61 /* NBMapSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMapSelectionScreen.h; sourceTree = "<group>"; };
+		F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMapSelectionScreen.m; sourceTree = "<group>"; };
+		F9299FF716A2FBA300C9DD61 /* NBFireball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireball.h; sourceTree = "<group>"; };
+		F9299FF816A2FBA300C9DD61 /* NBFireball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireball.m; sourceTree = "<group>"; };
+		F9299FF916A2FBA300C9DD61 /* NBFireExplosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireExplosion.h; sourceTree = "<group>"; };
+		F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireExplosion.m; sourceTree = "<group>"; };
+		F9299FFC16A2FBA300C9DD61 /* NBStoryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreen.h; sourceTree = "<group>"; };
+		F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -940,8 +943,8 @@
 				BCBC73B21633AA7700B5A141 /* NBAnimationDefinition.m */,
 				BCBC73B31633AA7700B5A141 /* NBBasicObject.h */,
 				BCBC73B41633AA7700B5A141 /* NBBasicObject.m */,
-				BCF8BE76165D2A400048E591 /* NBBasicScreenLayer.h */,
-				BCF8BE77165D2A400048E591 /* NBBasicScreenLayer.m */,
+				F9299FD616A2FB8C00C9DD61 /* NBBasicScreenLayer.h */,
+				F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */,
 				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
@@ -977,34 +980,15 @@
 		BCBC73CE1633AA8100B5A141 /* AdvanceClasses */ = {
 			isa = PBXGroup;
 			children = (
-				BC06C24D1633B68D00F091F0 /* NBBattleLayer.h */,
-				BC06C24C1633B68D00F091F0 /* NBBattleLayer.m */,
-				BCBC5A27166275D80009DCF3 /* NBBattleSetupScreen.h */,
-				BCBC5A28166275D80009DCF3 /* NBBattleSetupScreen.m */,
-				BC06C252163A297500F091F0 /* NBFireball.h */,
-				BC06C253163A297500F091F0 /* NBFireball.m */,
-				BCBC73B91633AA7700B5A141 /* NBFireExplosion.h */,
-				BCBC73BA1633AA7700B5A141 /* NBFireExplosion.m */,
-				BC06C255163A31B100F091F0 /* NBFireMage.h */,
-				BC06C256163A31B100F091F0 /* NBFireMage.m */,
-				BCDF8EE61669983900B229B3 /* NBGameLoadingScreen.h */,
-				BCDF8EE71669983900B229B3 /* NBGameLoadingScreen.m */,
-				BCBC5A1B166206BA0009DCF3 /* NBIntroScreen.h */,
-				BCBC5A1C166206BA0009DCF3 /* NBIntroScreen.m */,
-				BCBC5A1E16620F830009DCF3 /* NBMainMenuScreen.h */,
-				BCBC5A1F16620F830009DCF3 /* NBMainMenuScreen.m */,
-				BCBC5A241662728D0009DCF3 /* NBMapSelectionScreen.h */,
-				BCBC5A251662728D0009DCF3 /* NBMapSelectionScreen.m */,
-				BCBC73D11633AA8100B5A141 /* NBSoldier.h */,
-				BCBC73D21633AA8100B5A141 /* NBSoldier.m */,
-				BCBC5A2116626BA40009DCF3 /* NBStoryScreen.h */,
-				BCBC5A2216626BA40009DCF3 /* NBStoryScreen.m */,
-				F9F30B651696AC170018F723 /* NBFancySlidingMenuLayer.h */,
-				F9F30B661696AC180018F723 /* NBFancySlidingMenuLayer.m */,
-				F9299FC0169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */,
-				F9299FC1169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */,
-				F9299FBC169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.h */,
-				F9299FBD169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m */,
+				F9299FD916A2FBA300C9DD61 /* Battle Screen */,
+				F9299FDE16A2FBA300C9DD61 /* Battle Setup Screen */,
+				F9299FE516A2FBA300C9DD61 /* Characters */,
+				F9299FEA16A2FBA300C9DD61 /* Intro Screen */,
+				F9299FED16A2FBA300C9DD61 /* Loading Screen */,
+				F9299FF016A2FBA300C9DD61 /* Main Menu Screen */,
+				F9299FF316A2FBA300C9DD61 /* Map Selection Screen */,
+				F9299FF616A2FBA300C9DD61 /* Special Effects */,
+				F9299FFB16A2FBA300C9DD61 /* Story Screen */,
 			);
 			name = AdvanceClasses;
 			path = NBClasses/AdvanceClasses;
@@ -1018,6 +1002,99 @@
 			);
 			name = CharacterSprites;
 			path = Resources/CharacterSprites;
+			sourceTree = "<group>";
+		};
+		F9299FD916A2FBA300C9DD61 /* Battle Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
+				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
+				F9299FDC16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.h */,
+				F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */,
+			);
+			path = "Battle Screen";
+			sourceTree = "<group>";
+		};
+		F9299FDE16A2FBA300C9DD61 /* Battle Setup Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FDF16A2FBA300C9DD61 /* NBBattleSetupScreen.h */,
+				F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */,
+				F9299FE116A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.h */,
+				F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */,
+				F9299FE316A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */,
+				F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */,
+				569CC7EE16A56C2700818B56 /* BattleSetupItems.h */,
+				569CC7EF16A56C2700818B56 /* BattleSetupItems.m */,
+			);
+			path = "Battle Setup Screen";
+			sourceTree = "<group>";
+		};
+		F9299FE516A2FBA300C9DD61 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FE616A2FBA300C9DD61 /* NBFireMage.h */,
+				F9299FE716A2FBA300C9DD61 /* NBFireMage.m */,
+				F9299FE816A2FBA300C9DD61 /* NBSoldier.h */,
+				F9299FE916A2FBA300C9DD61 /* NBSoldier.m */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		F9299FEA16A2FBA300C9DD61 /* Intro Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FEB16A2FBA300C9DD61 /* NBIntroScreen.h */,
+				F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */,
+			);
+			path = "Intro Screen";
+			sourceTree = "<group>";
+		};
+		F9299FED16A2FBA300C9DD61 /* Loading Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FEE16A2FBA300C9DD61 /* NBGameLoadingScreen.h */,
+				F9299FEF16A2FBA300C9DD61 /* NBGameLoadingScreen.m */,
+			);
+			path = "Loading Screen";
+			sourceTree = "<group>";
+		};
+		F9299FF016A2FBA300C9DD61 /* Main Menu Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FF116A2FBA300C9DD61 /* NBMainMenuScreen.h */,
+				F9299FF216A2FBA300C9DD61 /* NBMainMenuScreen.m */,
+			);
+			path = "Main Menu Screen";
+			sourceTree = "<group>";
+		};
+		F9299FF316A2FBA300C9DD61 /* Map Selection Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FF416A2FBA300C9DD61 /* NBMapSelectionScreen.h */,
+				F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */,
+			);
+			path = "Map Selection Screen";
+			sourceTree = "<group>";
+		};
+		F9299FF616A2FBA300C9DD61 /* Special Effects */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FF716A2FBA300C9DD61 /* NBFireball.h */,
+				F9299FF816A2FBA300C9DD61 /* NBFireball.m */,
+				F9299FF916A2FBA300C9DD61 /* NBFireExplosion.h */,
+				F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */,
+			);
+			path = "Special Effects";
+			sourceTree = "<group>";
+		};
+		F9299FFB16A2FBA300C9DD61 /* Story Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FFC16A2FBA300C9DD61 /* NBStoryScreen.h */,
+				F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */,
+			);
+			path = "Story Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1203,27 +1280,14 @@
 				BCBC73C51633AA7700B5A141 /* NBAnimationDefinition.m in Sources */,
 				BCBC73C61633AA7700B5A141 /* NBBasicObject.m in Sources */,
 				BCBC73C81633AA7700B5A141 /* NBCharacter.m in Sources */,
-				BCBC73C91633AA7700B5A141 /* NBFireExplosion.m in Sources */,
 				BCBC73CA1633AA7700B5A141 /* NBMagic.m in Sources */,
 				BCBC73CB1633AA7700B5A141 /* NBSkill.m in Sources */,
 				BCBC73CD1633AA7700B5A141 /* NBSquad.m in Sources */,
-				BCBC73D41633AA8100B5A141 /* NBSoldier.m in Sources */,
-				BC06C24E1633B68D00F091F0 /* NBBattleLayer.m in Sources */,
 				BC06C251163461E700F091F0 /* NBProjectile.m in Sources */,
-				BC06C254163A297500F091F0 /* NBFireball.m in Sources */,
-				BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */,
-				BCF8BE78165D2A400048E591 /* NBBasicScreenLayer.m in Sources */,
-				BCBC5A1D166206BA0009DCF3 /* NBIntroScreen.m in Sources */,
-				BCBC5A2016620F830009DCF3 /* NBMainMenuScreen.m in Sources */,
-				BCBC5A2316626BA40009DCF3 /* NBStoryScreen.m in Sources */,
-				BCBC5A261662728D0009DCF3 /* NBMapSelectionScreen.m in Sources */,
-				BCBC5A29166275D80009DCF3 /* NBBattleSetupScreen.m in Sources */,
-				BCDF8EE81669983A00B229B3 /* NBGameLoadingScreen.m in Sources */,
 				BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */,
 				BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */,
 				BC2065C1168B494600745FB0 /* NBButton.m in Sources */,
 				BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */,
-				F9F30B671696AC1A0018F723 /* NBFancySlidingMenuLayer.m in Sources */,
 				BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */,
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				F9299FBE169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */,
