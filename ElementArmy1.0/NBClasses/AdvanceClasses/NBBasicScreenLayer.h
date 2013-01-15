@@ -36,7 +36,7 @@
 @property (nonatomic, retain) CCMenu *menu;
 @property (nonatomic, retain) CCSpriteBatchNode* characterSpritesBatchNode;
 @property (nonatomic, retain) NSString* nextScene;
-@property (nonatomic, retain) CCSprite* background;
+@property (nonatomic, retain) NBStaticObject* background;
 @property (nonatomic, retain) NBUserInterface* UI;
 @property (nonatomic, retain) NBDataManager* dataManager;
 

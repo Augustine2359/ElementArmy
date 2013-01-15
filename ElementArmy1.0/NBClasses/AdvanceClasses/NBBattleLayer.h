@@ -73,9 +73,9 @@
 @property (nonatomic, retain) NBButton* comboSkillCButton;*/
 @property (nonatomic, retain) NBStaticObject* allyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* enemyFlagLogo;
-@property (nonatomic, retain) NBStaticObject* allyHPBarPlaceholder;
-@property (nonatomic, retain) NBStaticObject* enemyHPBarPlaceholder;
+@property (nonatomic, retain) NBStaticObject* HPBarPlaceholder;
 @property (nonatomic, retain) NBStaticObject* allyHPBar;
 @property (nonatomic, retain) NBStaticObject* enemyHPBar;
+@property (nonatomic, retain) NBButton* startBattleButton;
 
 @end

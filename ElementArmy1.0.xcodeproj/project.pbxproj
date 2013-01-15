@@ -13,6 +13,8 @@
 		BC06C257163A31B100F091F0 /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C256163A31B100F091F0 /* NBFireMage.m */; };
 		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
 		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
+		BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894D16A2C01B00DAAA19 /* NBStage.m */; };
+		BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */; };
 		BC2065B716874A7900745FB0 /* NBStaticObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065B616874A7900745FB0 /* NBStaticObject.m */; };
 		BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B8168757FD00745FB0 /* CharacterSprites.plist */; };
 		BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2065B9168757FD00745FB0 /* CharacterSprites.png */; };
@@ -179,6 +181,10 @@
 		BC14894216A0F74C00DAAA19 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDataManager.m; sourceTree = "<group>"; };
 		BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicClassData.h; sourceTree = "<group>"; };
 		BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicClassData.m; sourceTree = "<group>"; };
+		BC14894C16A2C01B00DAAA19 /* NBStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStage.h; sourceTree = "<group>"; };
+		BC14894D16A2C01B00DAAA19 /* NBStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStage.m; sourceTree = "<group>"; };
+		BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCountryStageGrid.h; sourceTree = "<group>"; };
+		BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountryStageGrid.m; sourceTree = "<group>"; };
 		BC2065B516874A7900745FB0 /* NBStaticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStaticObject.h; sourceTree = "<group>"; };
 		BC2065B616874A7900745FB0 /* NBStaticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStaticObject.m; sourceTree = "<group>"; };
 		BC2065B8168757FD00745FB0 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
@@ -959,6 +965,10 @@
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
 				BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */,
 				BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */,
+				BC14894C16A2C01B00DAAA19 /* NBStage.h */,
+				BC14894D16A2C01B00DAAA19 /* NBStage.m */,
+				BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */,
+				BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1218,6 +1228,8 @@
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				F9299FBE169F062900C9DD61 /* NBBattleSetupUnitSelectorLayer.m in Sources */,
 				F9299FC2169FC7C300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */,
+				BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */,
+				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
