@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569CC7F016A56C2700818B56 /* BattleSetupItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CC7EF16A56C2700818B56 /* BattleSetupItems.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
 		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
@@ -167,6 +168,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		569CC7EE16A56C2700818B56 /* BattleSetupItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleSetupItems.h; sourceTree = "<group>"; };
+		569CC7EF16A56C2700818B56 /* BattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleSetupItems.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
 		BC06C250163461E700F091F0 /* NBProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectile.m; sourceTree = "<group>"; };
 		BC14894116A0F74C00DAAA19 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDataManager.h; sourceTree = "<group>"; };
@@ -1011,6 +1014,8 @@
 				F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */,
 				F9299FE316A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */,
 				F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */,
+				569CC7EE16A56C2700818B56 /* BattleSetupItems.h */,
+				569CC7EF16A56C2700818B56 /* BattleSetupItems.m */,
 			);
 			path = "Battle Setup Screen";
 			sourceTree = "<group>";
@@ -1290,6 +1295,7 @@
 				F929A00916A2FBA300C9DD61 /* NBFireball.m in Sources */,
 				F929A00A16A2FBA300C9DD61 /* NBFireExplosion.m in Sources */,
 				F929A00B16A2FBA300C9DD61 /* NBStoryScreen.m in Sources */,
+				569CC7F016A56C2700818B56 /* BattleSetupItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

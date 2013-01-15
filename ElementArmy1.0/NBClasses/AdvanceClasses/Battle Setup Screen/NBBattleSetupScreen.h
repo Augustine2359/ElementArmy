@@ -13,7 +13,6 @@
 
 -(void)initialiseItemSelection;
 -(void)toggleItemSelection;
--(NBButton*)tempCreateButton:(NSString*)normalImage selected:(NSString*)selectedImage disabled:(NSString*)disabledImage atPosition:(CGPoint)position selector:(SEL)selector;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;
