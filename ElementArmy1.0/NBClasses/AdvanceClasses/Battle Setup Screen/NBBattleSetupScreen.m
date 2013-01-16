@@ -180,6 +180,7 @@ bool itemSelectionOpen = NO;
     [self.item05 setPosition:CGPointMake(300, -300)];
     [self.item05 show];
     
+    [self.itemSelectionFrame setZOrder:0];
     [self.itemSelectionFrame addChild:self.item01 z:1];
     [self.itemSelectionFrame addChild:self.item02 z:1];
     [self.itemSelectionFrame addChild:self.item03 z:1];
