@@ -167,6 +167,8 @@
 		BCBC73CB1633AA7700B5A141 /* NBSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73BE1633AA7700B5A141 /* NBSkill.m */; };
 		BCBC73CD1633AA7700B5A141 /* NBSquad.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBC73C21633AA7700B5A141 /* NBSquad.m */; };
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
+		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
+		F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -498,6 +500,10 @@
 		F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireExplosion.m; sourceTree = "<group>"; };
 		F9299FFC16A2FBA300C9DD61 /* NBStoryScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreen.h; sourceTree = "<group>"; };
 		F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreen.m; sourceTree = "<group>"; };
+		F948EDE816A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreenScrollingPicturesLayer.h; sourceTree = "<group>"; };
+		F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingPicturesLayer.m; sourceTree = "<group>"; };
+		F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreenScrollingTextLayer.h; sourceTree = "<group>"; };
+		F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingTextLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1093,6 +1099,10 @@
 			children = (
 				F9299FFC16A2FBA300C9DD61 /* NBStoryScreen.h */,
 				F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */,
+				F948EDE816A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.h */,
+				F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */,
+				F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */,
+				F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */,
 			);
 			path = "Story Screen";
 			sourceTree = "<group>";
@@ -1308,6 +1318,8 @@
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */,
 				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,
+				F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */,
+				F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
