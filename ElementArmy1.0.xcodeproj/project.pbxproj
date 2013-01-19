@@ -34,6 +34,7 @@
 		BC336A2A16A665DD0079596C /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF816A2FBA300C9DD61 /* NBFireball.m */; };
 		BC336A2B16A665DD0079596C /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */; };
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
+		BC336A3116A847F60079596C /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BC336A3016A847F60079596C /* NBTestScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -192,6 +193,8 @@
 		BC2065C0168B494500745FB0 /* NBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBButton.m; sourceTree = "<group>"; };
 		BC2065C2168B4A4200745FB0 /* NBUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserInterface.h; sourceTree = "<group>"; };
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
+		BC336A2F16A847F60079596C /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBTestScreen.h; path = "Test Screen/NBTestScreen.h"; sourceTree = "<group>"; };
+		BC336A3016A847F60079596C /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTestScreen.m; path = "Test Screen/NBTestScreen.m"; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -520,6 +523,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC336A2D16A847890079596C /* Test Screen */ = {
+			isa = PBXGroup;
+			children = (
+				BC336A2F16A847F60079596C /* NBTestScreen.h */,
+				BC336A3016A847F60079596C /* NBTestScreen.m */,
+			);
+			name = "Test Screen";
+			sourceTree = "<group>";
+		};
 		BCBC72071633A98700B5A141 = {
 			isa = PBXGroup;
 			children = (
@@ -941,37 +953,37 @@
 				BCBC73B01633AA7700B5A141 /* NBAnimatedSprite.m */,
 				BCBC73B11633AA7700B5A141 /* NBAnimationDefinition.h */,
 				BCBC73B21633AA7700B5A141 /* NBAnimationDefinition.m */,
+				BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */,
+				BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */,
 				BCBC73B31633AA7700B5A141 /* NBBasicObject.h */,
 				BCBC73B41633AA7700B5A141 /* NBBasicObject.m */,
 				F9299FD616A2FB8C00C9DD61 /* NBBasicScreenLayer.h */,
 				F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */,
+				BC2065BF168B494500745FB0 /* NBButton.h */,
+				BC2065C0168B494500745FB0 /* NBButton.m */,
 				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
+				BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */,
+				BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */,
+				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
+				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
 				BCBC73BC1633AA7700B5A141 /* NBMagic.m */,
+				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
+				BC2065BD168B44E000745FB0 /* NBMessageBox.m */,
 				BC06C24F163461E700F091F0 /* NBProjectile.h */,
 				BC06C250163461E700F091F0 /* NBProjectile.m */,
 				BCBC73BD1633AA7700B5A141 /* NBSkill.h */,
 				BCBC73BE1633AA7700B5A141 /* NBSkill.m */,
 				BCBC73C11633AA7700B5A141 /* NBSquad.h */,
 				BCBC73C21633AA7700B5A141 /* NBSquad.m */,
-				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
-				BC2065B516874A7900745FB0 /* NBStaticObject.h */,
-				BC2065B616874A7900745FB0 /* NBStaticObject.m */,
-				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
-				BC2065BD168B44E000745FB0 /* NBMessageBox.m */,
-				BC2065BF168B494500745FB0 /* NBButton.h */,
-				BC2065C0168B494500745FB0 /* NBButton.m */,
-				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
-				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
-				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
-				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
-				BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */,
-				BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */,
 				BC14894C16A2C01B00DAAA19 /* NBStage.h */,
 				BC14894D16A2C01B00DAAA19 /* NBStage.m */,
-				BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */,
-				BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */,
+				BC2065B516874A7900745FB0 /* NBStaticObject.h */,
+				BC2065B616874A7900745FB0 /* NBStaticObject.m */,
+				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
+				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
+				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -980,6 +992,7 @@
 		BCBC73CE1633AA8100B5A141 /* AdvanceClasses */ = {
 			isa = PBXGroup;
 			children = (
+				BC336A2D16A847890079596C /* Test Screen */,
 				F9299FD916A2FBA300C9DD61 /* Battle Screen */,
 				F9299FDE16A2FBA300C9DD61 /* Battle Setup Screen */,
 				F9299FE516A2FBA300C9DD61 /* Characters */,
@@ -1308,6 +1321,7 @@
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */,
 				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,
+				BC336A3116A847F60079596C /* NBTestScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

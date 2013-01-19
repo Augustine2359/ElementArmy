@@ -140,11 +140,11 @@ static CCScene* defaultScreen = nil;
 -(void)addStandardMenuString:(NSString*)menuTitle withSelector:(SEL)selectedMethod
 {
     // Default font size will be 28 points.
-    [CCMenuItemFont setFontSize:9];
+    [CCMenuItemFont setFontSize:10];
     [CCMenuItemFont setFontName:@"Zapfino"];
     
     // create and initialize a Label
-    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 22) hAlignment:NSTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
+    CCLabelTTF* label = [CCLabelTTF labelWithString:menuTitle dimensions:CGSizeMake(120, 24) hAlignment:NSTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
     CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithLabel:label target:self selector:selectedMethod];
     self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
     [self.menu setColor:ccWHITE];

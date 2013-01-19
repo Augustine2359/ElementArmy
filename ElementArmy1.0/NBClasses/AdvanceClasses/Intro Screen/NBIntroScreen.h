@@ -16,6 +16,7 @@
 -(void)gotoStoryScreen;
 -(void)gotoBattleSetupScreen;
 -(void)gotoBattleScreen;
+-(void)gotoTestScreen;
 
 //UI Control
 -(void)onTestButtonPressed;

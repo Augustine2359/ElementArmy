@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSString* countryID;
 @property (nonatomic, retain) NSString* countryName;
 @property (nonatomic, retain) CCArray* stageGrid;
+@property (nonatomic, retain) CCArray* stageList;
+@property (nonatomic, retain) CCArray* lineList;
+
 
 -(void)displayAllStages;
 

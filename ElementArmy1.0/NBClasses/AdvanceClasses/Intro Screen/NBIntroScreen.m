@@ -89,6 +89,12 @@
     [self changeToScene:self.nextScene];
 }
 
+-(void)gotoTestScreen
+{
+    self.nextScene = @"NBTestScreen";
+    [self changeToScene:self.nextScene];
+}
+
 -(void) onEnter
 {
 	[super onEnter];
@@ -108,6 +114,7 @@
     [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
+    [self addStandardMenuString:@"Test Screen" withSelector:@selector(gotoTestScreen)];
     
     //Must be called everytime entering a layer
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];

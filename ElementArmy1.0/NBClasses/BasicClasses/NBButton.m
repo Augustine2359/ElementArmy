@@ -44,6 +44,14 @@ static CCArray* buttonList = nil;
     return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer
+{
+    NBButton* tempButton = [NBButton createWithStringHavingNormal:normalSpriteString havingSelected:selectedSpriteString havingDisabled:disabledSpriteString onLayer:layer selector:@selector(selector) withSize:size];
+    [tempButton changeParent:subLayer];
+    
+    return tempButton;
+}
+
 -(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size
 {
     if (!buttonList)
@@ -98,4 +106,9 @@ static CCArray* buttonList = nil;
     self.menu.visible = NO;
 }
 
+-(void)changeParent:(CCLayer*)layer
+{
+    [self.menu removeFromParentAndCleanup:NO];
+    [layer addChild:self.menu];
+}
 @end
