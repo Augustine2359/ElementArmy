@@ -1331,7 +1331,8 @@
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */,
 				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,
-				BC336A3116A847F60079596C /* NBTestScreen.m in Sources */,
+				F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */,
+				F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
