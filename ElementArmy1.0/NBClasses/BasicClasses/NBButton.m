@@ -46,7 +46,7 @@ static CCArray* buttonList = nil;
 
 +(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer
 {
-    NBButton* tempButton = [NBButton createWithStringHavingNormal:normalSpriteString havingSelected:selectedSpriteString havingDisabled:disabledSpriteString onLayer:layer selector:@selector(selector) withSize:size];
+    NBButton* tempButton = [NBButton createWithStringHavingNormal:normalSpriteString havingSelected:selectedSpriteString havingDisabled:disabledSpriteString onLayer:layer selector:selector withSize:size];
     [tempButton changeParent:subLayer];
     
     return tempButton;

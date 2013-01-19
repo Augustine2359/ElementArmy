@@ -34,7 +34,7 @@
 		BC336A2A16A665DD0079596C /* NBFireball.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF816A2FBA300C9DD61 /* NBFireball.m */; };
 		BC336A2B16A665DD0079596C /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */; };
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
-		BC336A3116A847F60079596C /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BC336A3016A847F60079596C /* NBTestScreen.m */; };
+		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -195,8 +195,8 @@
 		BC2065C0168B494500745FB0 /* NBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBButton.m; sourceTree = "<group>"; };
 		BC2065C2168B4A4200745FB0 /* NBUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserInterface.h; sourceTree = "<group>"; };
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
-		BC336A2F16A847F60079596C /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBTestScreen.h; path = "Test Screen/NBTestScreen.h"; sourceTree = "<group>"; };
-		BC336A3016A847F60079596C /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTestScreen.m; path = "Test Screen/NBTestScreen.m"; sourceTree = "<group>"; };
+		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
+		BCB258E416AA51430010BB36 /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTestScreen.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -532,8 +532,8 @@
 		BC336A2D16A847890079596C /* Test Screen */ = {
 			isa = PBXGroup;
 			children = (
-				BC336A2F16A847F60079596C /* NBTestScreen.h */,
-				BC336A3016A847F60079596C /* NBTestScreen.m */,
+				BCB258E316AA51430010BB36 /* NBTestScreen.h */,
+				BCB258E416AA51430010BB36 /* NBTestScreen.m */,
 			);
 			name = "Test Screen";
 			sourceTree = "<group>";
@@ -1333,6 +1333,7 @@
 				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,
 				F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */,
 				F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */,
+				BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
