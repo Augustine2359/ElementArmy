@@ -24,21 +24,27 @@ typedef enum
 
 @interface NBButton : NBBasicObject
 
-+(id)createOnLayer:(CCLayer*)layer selector:(SEL)selector;
-+(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer selector:(SEL)selector;
-+(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size;
-+(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size;
-+(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer;
--(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size;
++(id)createOnLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector;
++(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector;
++(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size;
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size;
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer;
+-(id)initOnLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size;
 -(CGPoint)getPosition;
 -(void)show;
 -(void)hide;
 -(void)changeParent:(CCLayer*)layer;
+-(void)disable;
+-(void)enable;
 
 @property (nonatomic, retain) CCMenu* menu;
 @property (nonatomic, retain) CCMenuItemSprite* buttonObject;
 @property (nonatomic, retain) CCSprite* normalSprite;
 @property (nonatomic, retain) CCSprite* selectedSprite;
 @property (nonatomic, retain) CCSprite* disabledSprite;
+@property (nonatomic, retain) CCLayer* listenerLayer;
+@property (nonatomic, retain) CCLayer* displayLayer;
+@property (nonatomic, assign) SEL handlerMethod;
+@property (nonatomic, assign) CGSize currentSize;
 
 @end

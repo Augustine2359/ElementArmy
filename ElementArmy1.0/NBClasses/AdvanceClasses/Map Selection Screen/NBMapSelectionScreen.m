@@ -49,7 +49,7 @@
     [self setCurrentBackgroundWithFileName:@"NB_worldMap_960x480.png" stretchToScreen:NO];
     
     [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
-    [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
+    [self addStandardMenuString:@"Stage Select" withSelector:@selector(gotoStageSelectionScreen)];
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
     [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
@@ -73,9 +73,9 @@
     [self changeToScene:self.nextScene];
 }
 
--(void)gotoBattleSetupScreen
+-(void)gotoStageSelectionScreen
 {
-    self.nextScene = @"NBBattleSetupScreen";
+    self.nextScene = @"NBStageSelectionScreen";
     [self changeToScene:self.nextScene];
 }
 
