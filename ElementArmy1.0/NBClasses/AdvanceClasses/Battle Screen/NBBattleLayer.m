@@ -138,8 +138,9 @@ static Boolean isAutoStart = NO;
     [NBSquad setupBatteFieldDimension:CGSizeMake(size.width, size.height)];
     if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
     if (!self.enemySquads) self.enemySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
-    [self prepareUnits];
+    
     [self prepareUI];
+    [self prepareUnits];
     
     if (!isAutoStart)
     {
@@ -147,14 +148,17 @@ static Boolean isAutoStart = NO;
         [CCMenuItemFont setFontSize:28];
         
         // create and initialize a Label
-        CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
-        self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
+        self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self selector:@selector(prepareBattlefield) withSize:CGSizeZero];
+        [self.startBattleButton setPosition:ccp(size.width / 2, size.height / 2 - 50)];
+        [self.startBattleButton show];
         
-        [self.menu alignItemsHorizontallyWithPadding:20];
-        [self.menu setPosition:ccp(size.width / 2, size.height / 2 - 50)];
+        //CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
+        //self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
+        //[self.menu alignItemsHorizontallyWithPadding:20];
+        //[self.menu setPosition:ccp(size.width / 2, size.height / 2 - 50)];
         
         // Add the menu to the layer
-        [self addChild:self.menu];
+        //[self addChild:self.menu];
     }
     else
     {
@@ -378,22 +382,23 @@ static Boolean isAutoStart = NO;
 {
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
-    //The placeholder. This should be something like transparent tube later.
-    //**********************************************************************
-    self.allyHPBarPlaceholder = [NBStaticObject createWithSize:CGSizeMake(HP_BAR_LENGTH, 16) usingFrame:@"staticemptybox_white.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    self.allyHPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
-    self.enemyHPBarPlaceholder = [NBStaticObject createWithSize:CGSizeMake(HP_BAR_LENGTH, 16) usingFrame:@"staticemptybox_white.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    self.enemyHPBarPlaceholder.sprite.anchorPoint = CGPointMake(0, 1);
-    //**********************************************************************
+    //background
+    self.background = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 160)];
     
     //The HP Bar
     //**********************************************************************
-    self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 16) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
+    self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
     self.allyHPBar.sprite.anchorPoint = CGPointMake(1, 1);
-    self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 16) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
+    self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
     self.enemyHPBar.sprite.anchorPoint = CGPointMake(0, 1);
     self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png" atPosition:CGPointMake(110, 30)];
     self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png" atPosition:CGPointMake(self.layerSize.width - 110, 30)];
+    //**********************************************************************
+    
+    //The placeholder. This should be something like transparent tube later.
+    //**********************************************************************
+    self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, 20)];
+    //self.HPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
     //**********************************************************************
     
     
@@ -409,7 +414,7 @@ static Boolean isAutoStart = NO;
 
 -(void)startBattle
 {
-    if (self.menu) self.menu.visible = NO;
+    if (self.startBattleButton) [self.startBattleButton hide];
     
     battleStarted = true;
     

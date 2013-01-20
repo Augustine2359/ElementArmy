@@ -28,10 +28,12 @@ typedef enum
 +(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer selector:(SEL)selector;
 +(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size;
 +(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size;
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer;
 -(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size;
 -(CGPoint)getPosition;
 -(void)show;
 -(void)hide;
+-(void)changeParent:(CCLayer*)layer;
 
 @property (nonatomic, retain) CCMenu* menu;
 @property (nonatomic, retain) CCMenuItemSprite* buttonObject;
