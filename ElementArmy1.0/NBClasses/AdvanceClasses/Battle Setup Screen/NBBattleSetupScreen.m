@@ -165,27 +165,34 @@ bool itemSelectionOpen = NO;
     self.itemSelectionFrame = [NBStaticObject createWithSize:CGSizeMake(400, 300) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, -300)];
     
     self.item01 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-    [self.item01 setPosition:CGPointMake(100, -300)];
+    [self.item01 setPosition:CGPointMake(0, 0)];
     [self.item01 show];
     self.item02 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-    [self.item02 setPosition:CGPointMake(150, -300)];
+    [self.item02 setPosition:CGPointMake(150, 0)];
     [self.item02 show];
     self.item03 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-    [self.item03 setPosition:CGPointMake(200, -300)];
+    [self.item03 setPosition:CGPointMake(200, 0)];
     [self.item03 show];
     self.item04 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-    [self.item04 setPosition:CGPointMake(250, -300)];
+    [self.item04 setPosition:CGPointMake(250, 0)];
     [self.item04 show];
     self.item05 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-    [self.item05 setPosition:CGPointMake(300, -300)];
+    [self.item05 setPosition:CGPointMake(300, 0)];
     [self.item05 show];
     
+    
     [self.itemSelectionFrame setZOrder:0];
-    [self.itemSelectionFrame addChild:self.item01 z:1];
-    [self.itemSelectionFrame addChild:self.item02 z:1];
-    [self.itemSelectionFrame addChild:self.item03 z:1];
-    [self.itemSelectionFrame addChild:self.item04 z:1];
-    [self.itemSelectionFrame addChild:self.item05 z:1];
+    [self.item01.menu removeFromParentAndCleanup:NO];
+    self.item01.menu.contentSize = CGSizeMake(100, 100);
+    self.item01.menu.scaleX = 0.5;
+    self.item01.menu.scaleY = 0.5;
+    
+    [self.itemSelectionFrame addChild:self.item01.menu z:1];
+    [self.itemSelectionFrame addChild:self.item02.buttonObject z:1];
+//    [self.itemSelectionFrame addChild:self.item02 z:1];
+//    [self.itemSelectionFrame addChild:self.item03 z:1];
+//    [self.itemSelectionFrame addChild:self.item04 z:1];
+//    [self.itemSelectionFrame addChild:self.item05 z:1];
 }
 
 -(void)toggleItemSelection{
