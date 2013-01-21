@@ -181,14 +181,15 @@ bool itemSelectionOpen = NO;
     [self.item05 show];
     
     
-    [self.itemSelectionFrame setZOrder:0];
-    [self.item01.menu removeFromParentAndCleanup:NO];
-    self.item01.menu.contentSize = CGSizeMake(100, 100);
-    self.item01.menu.scaleX = 0.5;
-    self.item01.menu.scaleY = 0.5;
-    
+//    [self.itemSelectionFrame setZOrder:0];
+//    [self.item01.menu removeFromParentAndCleanup:NO];
+//    self.item01.menu.contentSize = CGSizeMake(100, 100);
+//    self.item01.menu.scaleX = 0.5;
+//    self.item01.menu.scaleY = 0.5;
+//    
     [self.itemSelectionFrame addChild:self.item01.menu z:1];
-    [self.itemSelectionFrame addChild:self.item02.buttonObject z:1];
+//    [self.itemSelectionFrame addChild:self.item02.buttonObject z:1];
+    
 //    [self.itemSelectionFrame addChild:self.item02 z:1];
 //    [self.itemSelectionFrame addChild:self.item03 z:1];
 //    [self.itemSelectionFrame addChild:self.item04 z:1];
