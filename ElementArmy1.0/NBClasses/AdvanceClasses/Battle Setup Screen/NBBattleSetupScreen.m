@@ -129,29 +129,29 @@ bool itemSelectionOpen = NO;
     
     //Display buttons Navigation
     //OK
-    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
+    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
     [self.battleSetupOk setPosition:CGPointMake(450, 50)];
     [self.battleSetupOk show];
     
     //Cancel
-    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
+    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     [self.battleSetupCancel setPosition:CGPointMake(30, 50)];
     [self.battleSetupCancel show];
     
     
     //Display buttons Items
     //Item 1
-    self.battleSetupItem1 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
+    self.battleSetupItem1 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
     [self.battleSetupItem1 setPosition:CGPointMake(160, 50)];
     [self.battleSetupItem1 show];
     
     //Item 2
-    self.battleSetupItem2 = [NBButton createWithStringHavingNormal:@"Fury_pill.png" havingSelected:@"Fury_pill.png" havingDisabled:@"Fury_pill.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
+    self.battleSetupItem2 = [NBButton createWithStringHavingNormal:@"Fury_pill.png" havingSelected:@"Fury_pill.png" havingDisabled:@"Fury_pill.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
     [self.battleSetupItem2 setPosition:CGPointMake(240, 50)];
     [self.battleSetupItem2 show];
     
     //Item 3
-    self.battleSetupItem3 = [NBButton createWithStringHavingNormal:@"Winged_boots.png" havingSelected:@"Winged_boots.png" havingDisabled:@"Winged_boots.png" onLayer:self selector:@selector(toggleItemSelection) withSize:CGSizeZero];
+    self.battleSetupItem3 = [NBButton createWithStringHavingNormal:@"Winged_boots.png" havingSelected:@"Winged_boots.png" havingDisabled:@"Winged_boots.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
     [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
     [self.battleSetupItem3 show];
     

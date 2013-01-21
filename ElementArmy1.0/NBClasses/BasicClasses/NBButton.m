@@ -16,43 +16,43 @@ static CCArray* buttonList = nil;
 
 @implementation NBButton
 
-+(id)createOnLayer:(CCLayer*)layer selector:(SEL)selector
++(id)createOnLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector
 {
-    return [NBButton createWithSize:CGSizeZero onLayer:layer selector:selector];
+    return [NBButton createWithSize:CGSizeZero onLayer:layer respondTo:object selector:selector];
 }
 
-+(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer selector:(SEL)selector
++(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector
 {
     CCSprite* normalSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_NORMAL_FRAME_NAME];
     CCSprite* selectedSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_SELECTED_FRAME_NAME];
     CCSprite* disabledSprite = [CCSprite spriteWithSpriteFrameName:DEFAULT_BUTTON_DISABLED_FRAME_NAME];
     
-    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
+    return [[NBButton alloc] initOnLayer:layer respondTo:object selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
-+(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size
++(id)createWithCustomImageHavingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size
 {
-    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
+    return [[NBButton alloc] initOnLayer:layer respondTo:object selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
-+(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size
 {
     CCSprite* normalSprite = [CCSprite spriteWithSpriteFrameName:normalSpriteString];
     CCSprite* selectedSprite = [CCSprite spriteWithSpriteFrameName:selectedSpriteString];
     CCSprite* disabledSprite = [CCSprite spriteWithSpriteFrameName:disabledSpriteString];
     
-    return [[NBButton alloc] initOnLayer:layer selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
+    return [[NBButton alloc] initOnLayer:layer respondTo:object selector:selector havingNormal:normalSprite havingSelected:selectedSprite havingDisabled:disabledSprite withSize:size];
 }
 
-+(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer
++(id)createWithStringHavingNormal:(NSString*)normalSpriteString havingSelected:(NSString*)selectedSpriteString havingDisabled:(NSString*)disabledSpriteString onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector withSize:(CGSize)size onSubLayer:(CCLayer*)subLayer
 {
-    NBButton* tempButton = [NBButton createWithStringHavingNormal:normalSpriteString havingSelected:selectedSpriteString havingDisabled:disabledSpriteString onLayer:layer selector:selector withSize:size];
+    NBButton* tempButton = [NBButton createWithStringHavingNormal:normalSpriteString havingSelected:selectedSpriteString havingDisabled:disabledSpriteString onLayer:layer respondTo:object selector:selector withSize:size];
     [tempButton changeParent:subLayer];
     
     return tempButton;
 }
 
--(id)initOnLayer:(CCLayer*)layer selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size
+-(id)initOnLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector havingNormal:(CCSprite*)normalSprite havingSelected:(CCSprite*)selectedSprite havingDisabled:(CCSprite*)disabledSprite withSize:(CGSize)size
 {
     if (!buttonList)
     {
@@ -62,19 +62,33 @@ static CCArray* buttonList = nil;
     self.normalSprite = normalSprite;
     self.selectedSprite = selectedSprite;
     self.disabledSprite = disabledSprite;
+    self.displayLayer = layer;
     
-    self.buttonObject = [CCMenuItemSprite itemWithNormalSprite:self.normalSprite selectedSprite:self.selectedSprite disabledSprite:self.disabledSprite target:layer selector:selector];
+    if (object)
+    {
+        self.buttonObject = [CCMenuItemSprite itemWithNormalSprite:self.normalSprite selectedSprite:self.selectedSprite disabledSprite:self.disabledSprite target:object selector:selector];
+    }
+    else
+    {
+        self.buttonObject = [CCMenuItemSprite itemWithNormalSprite:self.normalSprite selectedSprite:self.selectedSprite disabledSprite:self.disabledSprite target:layer selector:selector];
+    }
+    
     self.menu = [CCMenu menuWithItems:self.buttonObject, nil];
     [self hide];
     self.name = [NSString stringWithFormat:@"Button%i", [buttonList count]];
     
     if (!CGSizeEqualToSize(size, CGSizeZero))
     {
+        self.currentSize = size;
         [self.buttonObject setScaleX:(size.width / self.buttonObject.contentSize.width)];
         [self.buttonObject setScaleY:(size.height / self.buttonObject.contentSize.height)];
     }
+    else
+    {
+        self.currentSize = CGSizeMake(self.normalSprite.contentSize.width, self.normalSprite.contentSize.height);
+    }
     
-    [layer addChild:self.menu];
+    [self.displayLayer addChild:self.menu];
     
     return self;
 }
@@ -109,6 +123,18 @@ static CCArray* buttonList = nil;
 -(void)changeParent:(CCLayer*)layer
 {
     [self.menu removeFromParentAndCleanup:NO];
+    self.displayLayer = layer;
+    
     [layer addChild:self.menu];
+}
+
+-(void)disable
+{
+    [self.menu setEnabled:NO];
+}
+
+-(void)enable
+{
+    [self.menu setEnabled:YES];
 }
 @end

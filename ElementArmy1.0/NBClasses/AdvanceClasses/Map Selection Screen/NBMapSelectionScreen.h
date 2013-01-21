@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
+#import "NBCountryStageGrid.h"
 
 @interface NBMapSelectionScreen : NBBasicScreenLayer
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;
 -(void)gotoStoryScreen;
--(void)gotoBattleSetupScreen;
+-(void)gotoStageSelectionScreen;
 -(void)gotoBattleScreen;
 
 @end

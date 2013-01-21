@@ -35,6 +35,7 @@
 		BC336A2B16A665DD0079596C /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */; };
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
+		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -183,8 +184,8 @@
 		BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicClassData.m; sourceTree = "<group>"; };
 		BC14894C16A2C01B00DAAA19 /* NBStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStage.h; sourceTree = "<group>"; };
 		BC14894D16A2C01B00DAAA19 /* NBStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStage.m; sourceTree = "<group>"; };
-		BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCountryStageGrid.h; sourceTree = "<group>"; };
-		BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountryStageGrid.m; sourceTree = "<group>"; };
+		BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBCountryStageGrid.h; path = ../../BasicClasses/NBCountryStageGrid.h; sourceTree = "<group>"; };
+		BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBCountryStageGrid.m; path = ../../BasicClasses/NBCountryStageGrid.m; sourceTree = "<group>"; };
 		BC2065B516874A7900745FB0 /* NBStaticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStaticObject.h; sourceTree = "<group>"; };
 		BC2065B616874A7900745FB0 /* NBStaticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStaticObject.m; sourceTree = "<group>"; };
 		BC2065B8168757FD00745FB0 /* CharacterSprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CharacterSprites.plist; sourceTree = "<group>"; };
@@ -197,6 +198,8 @@
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
 		BCB258E416AA51430010BB36 /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTestScreen.m; sourceTree = "<group>"; };
+		BCB258E616AB94220010BB36 /* NBStageSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageSelectionScreen.h; sourceTree = "<group>"; };
+		BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageSelectionScreen.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -969,8 +972,6 @@
 				BC2065C0168B494500745FB0 /* NBButton.m */,
 				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
-				BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */,
-				BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */,
 				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
@@ -1090,8 +1091,12 @@
 		F9299FF316A2FBA300C9DD61 /* Map Selection Screen */ = {
 			isa = PBXGroup;
 			children = (
+				BC14895016A5AA2E00DAAA19 /* NBCountryStageGrid.h */,
+				BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */,
 				F9299FF416A2FBA300C9DD61 /* NBMapSelectionScreen.h */,
 				F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */,
+				BCB258E616AB94220010BB36 /* NBStageSelectionScreen.h */,
+				BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */,
 			);
 			path = "Map Selection Screen";
 			sourceTree = "<group>";
@@ -1334,6 +1339,7 @@
 				F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */,
 				F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */,
 				BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */,
+				BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

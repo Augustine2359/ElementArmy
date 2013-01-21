@@ -33,6 +33,7 @@
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, assign) CGSize layerSize;
+@property (nonatomic, assign) CGSize layerSizeInPixels;
 @property (nonatomic, retain) CCMenu *menu;
 @property (nonatomic, retain) CCSpriteBatchNode* characterSpritesBatchNode;
 @property (nonatomic, retain) NSString* nextScene;

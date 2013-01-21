@@ -82,6 +82,8 @@ static CCScene* defaultScreen = nil;
             self.dataManager = [NBDataManager dataManager];
         
         self.layerSize = [[CCDirector sharedDirector] winSize];
+        self.layerSizeInPixels = [[CCDirector sharedDirector] winSizeInPixels];
+        DLog(@"Entering %@...window size: width (%f) height (%f)", NSStringFromClass([self class]), self.layerSizeInPixels.width, self.layerSizeInPixels.height);
         self.UI = [[NBUserInterface alloc] init];
         [self scheduleUpdate];
         
