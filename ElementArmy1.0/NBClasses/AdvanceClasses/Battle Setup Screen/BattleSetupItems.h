@@ -17,5 +17,7 @@
 @property (nonatomic, retain) NBButton *item04;
 @property (nonatomic, retain) NBButton *item05;
 
+-(void)toggleItemSelection;
+-(void)testOpen;
 
 @end

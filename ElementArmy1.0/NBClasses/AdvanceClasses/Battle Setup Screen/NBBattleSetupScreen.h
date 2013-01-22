@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
+#import "BattleSetupItems.h"
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
--(void)initialiseItemSelection;
--(void)toggleItemSelection;
+//-(void)initialiseItemSelection;
+//-(void)toggleItemSelection;
+-(void)openItemSelection;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;
@@ -46,11 +48,12 @@
 @property (nonatomic, retain) NBButton *battleSetupItem3;
 
 //Item selection
-@property (nonatomic, retain) NBStaticObject *itemSelectionFrame;
-@property (nonatomic, retain) NBButton *item01;
-@property (nonatomic, retain) NBButton *item02;
-@property (nonatomic, retain) NBButton *item03;
-@property (nonatomic, retain) NBButton *item04;
-@property (nonatomic, retain) NBButton *item05;
+//@property (nonatomic, retain) NBStaticObject *itemSelectionFrame;
+//@property (nonatomic, retain) NBButton *item01;
+//@property (nonatomic, retain) NBButton *item02;
+//@property (nonatomic, retain) NBButton *item03;
+//@property (nonatomic, retain) NBButton *item04;
+//@property (nonatomic, retain) NBButton *item05;
+@property (nonatomic, retain) BattleSetupItems* setupItemsFrame;
 
 @end
