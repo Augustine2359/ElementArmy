@@ -10,4 +10,6 @@
 
 @interface NBFancySlidingMenuLayer : NBBasicScreenLayer
 
+- (id)initOnLeftSide:(BOOL)onLeftSide;
+
 @end
