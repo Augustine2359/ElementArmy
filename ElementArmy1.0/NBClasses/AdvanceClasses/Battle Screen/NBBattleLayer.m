@@ -404,12 +404,16 @@ static Boolean isAutoStart = NO;
     
     //Augustine's Code below
     //**********************
-    self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] init];
-
+    self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:YES];
     self.classGroupSkillMenuLayer.layerSize = CGSizeMake(100, 50);
     self.classGroupSkillMenuLayer.contentSize = CGSizeMake(100, 50);
     [self addChild:self.classGroupSkillMenuLayer];
-    //**********************
+
+  self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
+  self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
+  self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
+  [self addChild:self.itemMenuLayer];
+  //**********************
 }
 
 -(void)startBattle

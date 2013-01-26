@@ -63,6 +63,7 @@
 -(void)onComboSkillCButtonSelected;
 
 @property (nonatomic, retain) NBFancySlidingMenuLayer *classGroupSkillMenuLayer;
+@property (nonatomic, retain) NBFancySlidingMenuLayer *itemMenuLayer;
 /*@property (nonatomic, retain) NBButton* classGroupSkillButton;
 @property (nonatomic, retain) NBButton* comboGroupSkillButton;
 @property (nonatomic, retain) NBButton* classSkillAButton;
