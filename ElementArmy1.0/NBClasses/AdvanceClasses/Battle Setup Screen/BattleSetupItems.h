@@ -17,7 +17,10 @@
 @property (nonatomic, retain) NBButton *item04;
 @property (nonatomic, retain) NBButton *item05;
 
+@property (nonatomic, retain) NSArray* itemNames;
+@property (nonatomic) bool itemSelectionOpen;
+
 -(void)toggleItemSelection;
--(void)testOpen;
+-(void)initialiseItemArray;
 
 @end

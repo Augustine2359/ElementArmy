@@ -11,13 +11,8 @@
 #import "NBBattleSetupUnitSelectorsContainerLayer.h"
 
 @interface NBBattleSetupScreen()
-
 @property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
-
 @end
-
-//float slideDuration = 0.5f;
-//bool itemSelectionOpen = NO;
 
 
 @implementation NBBattleSetupScreen
@@ -58,7 +53,6 @@
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
-    
     //Must be called everytime entering a layer
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
@@ -66,11 +60,8 @@
     //Display Title
     self.battleSetupTitle = [NBStaticObject createStaticObject:@"setup_title.png" atPosition:CGPointMake(240, 280)];
     
-    
     //Display Characters
-    self.battleSetupCharacter1 = [NBStaticObject createStaticObject:@"button_confirm.png" atPosition:CGPointMake(100, 180)];
-    self.battleSetupCharacter2 = [NBStaticObject createStaticObject:@"button_confirm.png" atPosition:CGPointMake(240, 180)];
-    self.battleSetupCharacter3 = [NBStaticObject createStaticObject:@"button_confirm.png" atPosition:CGPointMake(380, 180)];
+    [self createUnitSelectors];
     
     //Display buttons Navigation
     //OK
@@ -84,80 +75,39 @@
     [self.battleSetupCancel show];
     
     
+    //Temp hardcode
     //Display buttons Items
-    //Item 1
-    self.battleSetupItem1 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(openItemSelection) withSize:CGSizeZero];
-    [self.battleSetupItem1 setPosition:CGPointMake(160, 50)];
-    [self.battleSetupItem1 show];
+    self.selectedItemsArrayIndex = [NSArray new];
+    self.selectedItemsArrayIndex = [NSArray arrayWithObjects:@"Potion.png", @"Fury_pill.png", @"Winged_boots.png", nil];
+    self.tempNumberOfUnlockedItemsSlots = 2;
+    for (int x = 0; x < 3; x++) {
+        if (x < self.tempNumberOfUnlockedItemsSlots) {
+            NBButton* itemButton;
+            itemButton = [NBButton createWithStringHavingNormal:[self.selectedItemsArrayIndex objectAtIndex:x] havingSelected:[self.selectedItemsArrayIndex objectAtIndex:x] havingDisabled:[self.selectedItemsArrayIndex objectAtIndex:x] onLayer:self respondTo:nil selector:@selector(openItemSelection:) withSize:CGSizeZero];
+            itemButton.tag = x;
+            [itemButton setPosition:ccp(x*80 + 160, 50)];
+            [itemButton show];
+        }
+        else{
+            NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
+            [lockedButton setPosition:ccp(x*80 + 160, 50)];
+            [lockedButton show];
+        }
+    }
     
-    //Item 2
-    self.battleSetupItem2 = [NBButton createWithStringHavingNormal:@"Fury_pill.png" havingSelected:@"Fury_pill.png" havingDisabled:@"Fury_pill.png" onLayer:self respondTo:nil selector:@selector(openItemSelection) withSize:CGSizeZero];
-    [self.battleSetupItem2 setPosition:CGPointMake(240, 50)];
-    [self.battleSetupItem2 show];
-    
-    //Item 3
-    self.battleSetupItem3 = [NBButton createWithStringHavingNormal:@"Winged_boots.png" havingSelected:@"Winged_boots.png" havingDisabled:@"Winged_boots.png" onLayer:self respondTo:nil selector:@selector(openItemSelection) withSize:CGSizeZero];
-    [self.battleSetupItem3 setPosition:CGPointMake(320, 50)];
-    [self.battleSetupItem3 show];
-    
-    //[self initialiseItemSelection];
+    //Item selection
     self.setupItemsFrame = [BattleSetupItems new];
     [self addChild:self.setupItemsFrame z:1];
 }
 
-//-(void)initialiseItemSelection{
-////    self.itemLayer = [NBBattleSetupScreen node];
-////    [self addChild:self.itemLayer];
-//    
-//    self.itemSelectionFrame = [NBStaticObject createWithSize:CGSizeMake(400, 300) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, -300)];
-//    
-//    self.item01 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:self.itemSelectionFrame selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-//    [self.item01 setPosition:CGPointMake(100, 00)];
-//    [self.item01 show];
-//    self.item02 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-//    [self.item02 setPosition:CGPointMake(150, -300)];
-//    [self.item02 show];
-//    self.item03 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-//    [self.item03 setPosition:CGPointMake(200, -300)];
-//    [self.item03 show];
-//    self.item04 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-//    [self.item04 setPosition:CGPointMake(250, -300)];
-//    [self.item04 show];
-//    self.item05 = [NBButton createWithStringHavingNormal:@"Potion.png" havingSelected:@"Potion.png" havingDisabled:@"Potion.png" onLayer:self respondTo:nil selector:@selector(toggleItemSelection) withSize:CGSizeZero];
-//    [self.item05 setPosition:CGPointMake(300, -300)];
-//    [self.item05 show];
-//    
-//    [self.itemSelectionFrame addChild:self.item01.menu z:1];
-//    [self.itemSelectionFrame addChild:self.item02 z:1];
-//    [self.itemSelectionFrame addChild:self.item03 z:1];
-//    [self.itemSelectionFrame addChild:self.item04 z:1];
-//    [self.itemSelectionFrame addChild:self.item05 z:1];
-//}
-//
-//-(void)toggleItemSelection{
-//    //Closed
-//    if (!itemSelectionOpen) {
-//        id open = [CCMoveTo actionWithDuration:slideDuration position:CGPointMake(240, 150)];
-//        [self.itemSelectionFrame runAction:open];
-//        itemSelectionOpen = YES;
-//    }
-//    //Opened
-//    else{
-//        id close = [CCMoveTo actionWithDuration:slideDuration position:CGPointMake(240, -300)];
-//        [self.itemSelectionFrame runAction:close];
-//        itemSelectionOpen = NO;
-//    }
-
-//    [self createUnitSelectors];
-//    
-//    //Item Sample
-//    self.battleSetupItemSample = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self selector:@selector(gotoMainMenuScreen) withSize:CGSizeZero];
-//    [self.battleSetupItemSample setPosition:CGPointMake(self.battleSetupItemSample.buttonObject.contentSize.width / 2, (self.layerSize.height - self.battleSetupItemSample.buttonObject.contentSize.height / 2))];
-//    [self.battleSetupItemSample show];
-//}
-
--(void)openItemSelection{
-    [self.setupItemsFrame toggleItemSelection];
+-(void)openItemSelection:(NBButton*)selectedItemIndex{
+    if (!self.setupItemsFrame.itemSelectionOpen) {
+        self.currentSelectedItemIndex = selectedItemIndex.tag;
+        [self.setupItemsFrame toggleItemSelection];
+    }
+}
+-(void)updateSelectedItems{
+    
 }
 
 - (void)createUnitSelectors {
@@ -200,6 +150,10 @@
 {
     self.nextScene = @"NBBattleLayer";
     [self changeToScene:self.nextScene];
+}
+
+-(void)gotoAppStore{
+    DLog(@"Buy new slot with $$!");
 }
 
 @end
