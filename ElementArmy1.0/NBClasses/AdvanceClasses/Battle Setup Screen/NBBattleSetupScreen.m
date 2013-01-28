@@ -65,49 +65,60 @@
     
     //Display buttons Navigation
     //OK
-    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
+    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero intArgument:0];
     [self.battleSetupOk setPosition:CGPointMake(450, 50)];
     [self.battleSetupOk show];
     
     //Cancel
-    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
+    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero intArgument:0];
     [self.battleSetupCancel setPosition:CGPointMake(30, 50)];
     [self.battleSetupCancel show];
     
     
     //Temp hardcode
+    //Item selection
+    self.setupItemsFrame = [NBBattleSetupItems new];
+    [self addChild:self.setupItemsFrame z:1];
+    
     //Display buttons Items
-    self.selectedItemsArrayIndex = [NSArray new];
-    self.selectedItemsArrayIndex = [NSArray arrayWithObjects:@"Potion.png", @"Fury_pill.png", @"Winged_boots.png", nil];
+    self.selectedItemsArrayIndex = [NSMutableArray new];
+    self.selectedItemsArrayIndex = [NSMutableArray arrayWithObjects:0, 1, 2, nil];
+    //    self.selectedItemsArrayIndex = [NSArray arrayWithObjects:@"Potion.png", @"Fury_pill.png", @"Winged_boots.png", nil];
     self.tempNumberOfUnlockedItemsSlots = 2;
     for (int x = 0; x < 3; x++) {
         if (x < self.tempNumberOfUnlockedItemsSlots) {
             NBButton* itemButton;
-            itemButton = [NBButton createWithStringHavingNormal:[self.selectedItemsArrayIndex objectAtIndex:x] havingSelected:[self.selectedItemsArrayIndex objectAtIndex:x] havingDisabled:[self.selectedItemsArrayIndex objectAtIndex:x] onLayer:self respondTo:nil selector:@selector(openItemSelection:) withSize:CGSizeZero];
+            itemButton = [NBButton createWithStringHavingNormal:[self.setupItemsFrame.itemNames objectAtIndex:x] havingSelected:[self.setupItemsFrame.itemNames objectAtIndex:x] havingDisabled:[self.setupItemsFrame.itemNames objectAtIndex:x] onLayer:self respondTo:nil selector:@selector(openItemSelection:) withSize:CGSizeZero intArgument:x];
             itemButton.tag = x;
             [itemButton setPosition:ccp(x*80 + 160, 50)];
             [itemButton show];
         }
         else{
-            NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
+            NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero intArgument:x];
             [lockedButton setPosition:ccp(x*80 + 160, 50)];
             [lockedButton show];
         }
     }
+}
+
+-(void)update:(ccTime)delta
+{
+    //[NBBasicObject update:delta];
     
-    //Item selection
-    self.setupItemsFrame = [BattleSetupItems new];
-    [self addChild:self.setupItemsFrame z:1];
+//    if (self.setupItemsFrame && self.setupItemsFrame.itemSelectionOpen) {
+//        for (int x = 0; x < self.tempNumberOfUnlockedItemsSlots; x++) {
+//            [self.selectedItemsArrayIndex replaceObjectAtIndex:x withObject:[self.setupItemsFrame.selectedItemsIndexes objectAtIndex:x]];
+//        }
+//    }
 }
 
 -(void)openItemSelection:(NBButton*)selectedItemIndex{
     if (!self.setupItemsFrame.itemSelectionOpen) {
-        self.currentSelectedItemIndex = selectedItemIndex.tag;
-        [self.setupItemsFrame toggleItemSelection];
+//        self.setupItemsFrame.currentSelectedItemIndex = selectedItemIndex.tag;
+//        NSLog(@"%i", selectedItemIndex.tag);
+//        DLog(@"%i", selectedItemIndex.tempIntStorage);
+        [self.setupItemsFrame toggleItemSelection:selectedItemIndex];
     }
-}
--(void)updateSelectedItems{
-    
 }
 
 - (void)createUnitSelectors {

@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
-#import "BattleSetupItems.h"
+#import "NBBattleSetupItems.h"
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
 -(void)openItemSelection:(NBButton*)selectedItemIndex;
--(void)updateSelectedItems;
 -(void)gotoAppStore;
 
 -(void)gotoIntroScreen;
@@ -28,10 +27,9 @@
 @property (nonatomic, retain) NBButton *battleSetupCancel;
 
 //Item selection
-@property (nonatomic, retain) BattleSetupItems* setupItemsFrame;
+@property (nonatomic, retain) NBBattleSetupItems* setupItemsFrame;
 //Create array of 3 int here to store selected items
-@property (nonatomic, retain) NSArray* selectedItemsArrayIndex;
-@property (nonatomic) int currentSelectedItemIndex;
+@property (nonatomic, retain) NSMutableArray* selectedItemsArrayIndex;
 @property (nonatomic) int tempNumberOfUnlockedItemsSlots;
 
 @end
