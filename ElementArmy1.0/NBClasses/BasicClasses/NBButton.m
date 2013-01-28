@@ -81,8 +81,7 @@ static CCArray* buttonList = nil;
     {
         self.currentSize = size;
         [self.buttonObject setScaleX:(size.width / self.buttonObject.contentSize.width)];
-        [self.buttonObject setScaleY:(size.height / self.buttonObject.contentSize.height)];
-    }
+        [self.buttonObject setScaleY:(size.height / self.buttonObject.contentSize.height)];    }
     else
     {
         self.currentSize = CGSizeMake(self.normalSprite.contentSize.width, self.normalSprite.contentSize.height);
