@@ -54,26 +54,15 @@
 
 -(void)addStage:(NBStage*)stage
 {
+    //[stage changeParent:self];
     [stage.worldIcon changeParent:self];
     [stage.worldIconCompleted changeParent:self];
-    
     [self.stageList addObject:stage];
     
-    if (stage.previousStageID)
-    {
-        /*CCSprite* line = [CCSprite spriteWithSpriteFrameName:@"stageline.png"];
-        line.anchorPoint = ccp(0, 0);
-        [line setScaleX:(100 / line.contentSize.width)];
-        [line setScaleY:(5 / line.contentSize.height)];
-        
-        NBStage* previousStage = [self getStageByID:stage.previousStageID];
-        line.position = [previousStage getActualPosition];
-        [self addChild:line z:2];
-        [self reorderChild:previousStage.worldIcon.menu z:5];
-        [self reorderChild:stage.worldIcon.menu z:5];*/
-        
-        [stage createLineFrom:[self getStageByID:stage.previousStageID] onLayer:self];
-    }
+    //if (stage.previousStageID)
+    //{
+        //[stage createLineFrom:[self getStageByID:stage.previousStageID] onLayer:self];
+    //}
 }
 
 -(NBStage*)getStageByID:(NSString*)compareStageID
@@ -82,7 +71,7 @@
     
     CCARRAY_FOREACH(self.stageList, stage)
     {
-        if ([stage.stageID isEqualToString:compareStageID])
+        if ([stage.stageData.stageID isEqualToString:compareStageID])
             return stage;
     }
     
@@ -98,6 +87,44 @@
     CCARRAY_FOREACH(self.stageList, stage)
     {
         [stage update];
+        
+        NSString* nextStageID = nil;
+        int connectorIndex = 0;
+        
+        CCARRAY_FOREACH(stage.stageData.nextStageID, nextStageID)
+        {
+            if (stage.stageData.isCompleted)
+            {
+                NBStage* nextStage = [self getStageByID:nextStageID];
+                
+                CCSprite* connectorLine = nil;
+                
+                if (stage.connectorLines)
+                {
+                    if ([stage.connectorLines count] > connectorIndex)
+                    {
+                        connectorLine = [stage.connectorLines objectAtIndex:connectorIndex];
+                        
+                        if (connectorLine)
+                        {
+                            connectorIndex++;
+                            continue;
+                        }
+                    }
+                }
+                
+                if (nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting)
+                {
+                    if (!stage.isUpdatingScaleX && !stage.isUpdatingScaleY)
+                    {
+                        //[stage createLineTo:[self getStageByID:stage.nextStageID] onLayer:self];
+                        [stage animateLineTo:nextStage onLayer:self];
+                    }
+                }
+                
+                connectorIndex++;
+            }
+        }
     }
 }
 
@@ -118,7 +145,7 @@
     CGPoint newPos = ccpAdd(self.position, translation);
     
     //Set maximum move for the layer so it does not dissapear from screen :p
-    if ((newPos.x >= GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET) || (self.currentLayer.contentSize.width - (newPos.x + self.contentSize.width) >= GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET))
+    if ((newPos.x + 2 >= GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET) || (self.currentLayer.contentSize.width - (newPos.x + self.contentSize.width + 2) >= GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET))
         newPos = self.position;
         
     self.position = newPos;

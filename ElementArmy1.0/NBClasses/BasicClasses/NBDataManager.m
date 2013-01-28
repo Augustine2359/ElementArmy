@@ -31,6 +31,7 @@ static NBDataManager* dataManager = nil;
     {
         self.arrayOfAllySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
+        self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
     }
     
     return self;

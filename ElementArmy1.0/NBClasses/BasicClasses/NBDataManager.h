@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain) NSString* userID;
 
+@property (nonatomic, retain) CCArray* listOfCreatedStagesID;
 @property (nonatomic, retain) CCArray* listOfCompletedStageID;
 @property (nonatomic, retain) CCArray* listOfUnlockedSkillID;
 @property (nonatomic, retain) CCArray* listOfUnlockedItemID;

@@ -12,6 +12,7 @@
 
 @interface NBStageSelectionScreen : NBBasicScreenLayer
 
+-(void)readFromDataManager;
 -(void)readStagesFromFile;
 -(void)onStageSelected;
 -(void)gotoBattleSetupScreen;
