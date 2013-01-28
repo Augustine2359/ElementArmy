@@ -19,6 +19,8 @@
 
 @interface NBFancySlidingMenuLayer()
 
+@property (nonatomic) BOOL onLeftSide;
+
 @property (nonatomic, strong) CCSprite *groupClassButtonNormalSprite;
 @property (nonatomic, strong) CCSprite *groupClassButtonSelectedSprite;
 @property (nonatomic, strong) CCSprite *groupClassButtonDisabledSprite;
@@ -35,6 +37,8 @@
 @property (nonatomic, strong) CCSprite *classSkillCButtonSelectedSprite;
 @property (nonatomic, strong) CCSprite *classSkillCButtonDisabledSprite;
 
+@property (nonatomic, strong) CCSprite *backgroundSprite;
+
 @end
 
 @implementation NBFancySlidingMenuLayer
@@ -46,6 +50,14 @@
 - (id)init {
   self = [super init];
   if (self) {
+    self.onLeftSide = YES;
+
+    self.backgroundSprite = [CCSprite spriteWithSpriteFrameName:@"lifebar.png"];
+    self.backgroundSprite.opacity = 0;
+    self.backgroundSprite.scaleY = 2;
+    self.backgroundSprite.position = CGPointMake(self.backgroundSprite.contentSize.width/2, 60);
+    [self addChild:self.backgroundSprite];
+
     self.groupClassButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
     CGPoint position = CGPointMake(20, 20);
     self.groupClassButtonNormalSprite.position = position;
@@ -117,6 +129,31 @@
   return self;
 }
 
+- (id)initOnLeftSide:(BOOL)onLeftSide {
+  self = [self init];
+  if (self) {
+    self.onLeftSide = onLeftSide;
+    if (onLeftSide == NO) {
+      self.backgroundSprite.position = CGPointMake(self.contentSize.width - self.backgroundSprite.contentSize.width/2, 60);
+
+      CGPoint position = CGPointMake(self.contentSize.width - 20, 20);
+      self.groupClassButtonNormalSprite.position = position;
+      self.groupClassButtonSelectedSprite.position = position;
+      self.groupClassButtonDisabledSprite.position = position;
+      self.classSkillAButtonNormalSprite.position = position;
+      self.classSkillAButtonSelectedSprite.position = position;
+      self.classSkillAButtonDisabledSprite.position = position;
+      self.classSkillBButtonNormalSprite.position = position;
+      self.classSkillBButtonSelectedSprite.position = position;
+      self.classSkillBButtonDisabledSprite.position = position;
+      self.classSkillCButtonNormalSprite.position = position;
+      self.classSkillCButtonSelectedSprite.position = position;
+      self.classSkillCButtonDisabledSprite.position = position;
+    }
+  }
+  return self;
+}
+
 -(void) registerWithTouchDispatcher
 {
 	CCDirector *director = [CCDirector sharedDirector];
@@ -150,6 +187,8 @@
 
   BOOL isTouchingMe = [self isTouchingMe:touchLocation];
   if (isTouchingMe) {
+    [self.backgroundSprite runAction:[CCFadeIn actionWithDuration:BUTTON_SLIDING_DURATION]];
+
     self.groupClassButtonNormalSprite.tag = SELECTED_TAG;
     self.groupClassButtonNormalSprite.visible = NO;
     self.groupClassButtonSelectedSprite.visible = YES;
@@ -163,7 +202,10 @@
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
     [self.classSkillAButtonDisabledSprite runAction:move];
     
-    position.x += self.classSkillAButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
+    if (self.onLeftSide)
+      position.x += self.classSkillAButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
+    else
+      position.x -= self.classSkillAButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
     [self.classSkillBButtonNormalSprite runAction:move];
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
@@ -171,7 +213,10 @@
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
     [self.classSkillBButtonDisabledSprite runAction:move];
 
-    position.x += self.classSkillBButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
+    if (self.onLeftSide)
+      position.x += self.classSkillBButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
+    else
+      position.x -= self.classSkillBButtonNormalSprite.contentSize.width + HORIZONTAL_SPACING_BETWEEN_BUTTONS;
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
     [self.classSkillCButtonNormalSprite runAction:move];
     move = [CCMoveTo actionWithDuration:BUTTON_SLIDING_DURATION position:position];
@@ -184,6 +229,8 @@
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+  [self.backgroundSprite runAction:[CCFadeOut actionWithDuration:BUTTON_SLIDING_DURATION]];
+
   self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
   self.groupClassButtonNormalSprite.visible = YES;
   self.groupClassButtonSelectedSprite.visible = NO;
