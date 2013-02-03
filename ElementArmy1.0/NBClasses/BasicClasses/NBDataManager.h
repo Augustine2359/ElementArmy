@@ -22,6 +22,9 @@
 @property (nonatomic, retain) CCArray* listOfUnlockedItemID;
 @property (nonatomic, retain) CCArray* listOfUnlockedWeaponID;
 
+@property (nonatomic, retain) CCArray* listOfStages;
+@property (nonatomic, retain) CCArray* listOfItems;
+
 @property (nonatomic, retain) NSString* currentStageID;
 @property (nonatomic, retain) NSString* selectedStageID;
 @property (nonatomic, retain) NSString* selectedItemID;

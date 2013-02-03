@@ -66,13 +66,10 @@
 
 -(void)readFromDataManager
 {
-    NBStage* stage = nil;
-    
-    CCARRAY_FOREACH(self.dataManager.listOfCreatedStagesID, stage)
-    {
-        [self.currentCountryStage addStage:stage];
-        [stage createCompletedLines];
-    }
+  for (NBStage *stage in self.dataManager.listOfStages) {
+    [self.currentCountryStage addStage:stage];
+    [stage createCompletedLines];
+  }
 }
 
 -(void)readStagesFromFile
