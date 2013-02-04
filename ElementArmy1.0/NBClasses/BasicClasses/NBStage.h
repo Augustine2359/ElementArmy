@@ -26,9 +26,13 @@ typedef enum
 
 @interface NBStage : NSObject
 
++(NBStage*)getStageByID:(NSString*)stageID;
++(CCArray*)getAllStageList;
 +(id)createStageWithStageData:(NBStageData*)newStageData;
 +(id)createStageWithStageData:(NBStageData *)newStageData onLayer:(CCLayer*)layer dataManager:(NBDataManager*)dataManager;
 +(id)getCurrentlySelectedStage;
+-(void)onEnteringStageGrid:(CCLayer*)layer;
+-(void)setupIconAndDisplayOnLayer:(CCLayer*)layer selector:(SEL)selector;
 -(void)setAvailableImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector;
 -(void)setCompletedImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector;
 -(bool)setupGrid;
@@ -36,11 +40,11 @@ typedef enum
 -(void)update;
 -(void)onIconSelected;
 -(void)createLineFrom:(NBStage*)previousStage onLayer:(CCLayer*)layer;
--(void)createLineTo:(NBStage*)nextStage onLayer:(CCLayer*)layer;
+-(void)createLineTo:(NBStage*)stage onLayer:(CCLayer*)layer;
 -(void)createCompletedLines;
 -(void)animateLineTo:(NBStage*)nextStage onLayer:(CCLayer*)layer;
--(void)updateScaleX:(int)connectorID;
--(void)updateScaleY:(int)connectorID;
+-(void)updateScaleHorizontal;
+-(void)updateScaleVertical;
 -(void)changeParent:(CCLayer*)layer;
 
 @property (nonatomic, retain) NBStageData* stageData;
@@ -59,14 +63,12 @@ typedef enum
 @property (nonatomic, assign) CGPoint positionInWorldGrid;
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, retain) CCArray* connectorLines;
-@property (nonatomic, retain) CCSprite* connectorLine2;
-@property (nonatomic, retain) CCSprite* connectorLine3;
 
 @property (nonatomic, retain) id listenerLayer;
 @property (nonatomic, assign) SEL selector;
 
-@property (nonatomic, retain) CCArray* enemyList;
 @property (nonatomic, retain) CCLayer* currentLayer;
 @property (nonatomic, retain) NBDataManager* currentDataManager;
+@property (nonatomic, retain) NBStage* currentlyConnectingToStage;
 
 @end

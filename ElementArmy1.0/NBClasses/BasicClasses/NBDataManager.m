@@ -37,4 +37,18 @@ static NBDataManager* dataManager = nil;
     return self;
 }
 
+-(NBStageData*)getStageDataByStageID:(NSString*)stageID
+{
+    NBStageData* stageData = nil;
+    
+    CCARRAY_FOREACH(self.listOfCreatedStagesID, stageData)
+    {
+        if ([stageData.stageID isEqualToString:stageID])
+        {
+            return stageData;
+        }
+    }
+    
+    return nil;
+}
 @end

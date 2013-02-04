@@ -21,16 +21,16 @@
     
     if (self = [super initWithColor:ccc4(200, 200, 125, 255) width:size.width height:size.height])
     {
-        self.stageGrid = [CCArray arrayWithCapacity:STAGE_VERTICAL_CAPACITY];
+        self.stageGrid = [[CCArray alloc] initWithCapacity:STAGE_VERTICAL_CAPACITY];
         
         for (int i = 0; i < STAGE_VERTICAL_CAPACITY; i++)
         {
-            CCArray* stageHorizontalGrid = [CCArray arrayWithCapacity:STAGE_HORIZONTAL_CAPACITY];
+            CCArray* stageHorizontalGrid = [[CCArray alloc] initWithCapacity:STAGE_HORIZONTAL_CAPACITY];
             [self.stageGrid addObject:stageHorizontalGrid];
         }
         
         self.currentLayer = layer;
-        self.stageList = [CCArray arrayWithCapacity:STAGE_VERTICAL_CAPACITY * STAGE_HORIZONTAL_CAPACITY];
+        self.stageList = [[CCArray alloc] initWithCapacity:STAGE_VERTICAL_CAPACITY * STAGE_HORIZONTAL_CAPACITY];
         self.position = CGPointMake((winSize.width / 2) - (self.contentSize.width / 2), (winSize.height / 2) - (self.contentSize.height / 2));
         [layer addChild:self z:0];
         
@@ -39,6 +39,16 @@
     }
     
     return self;
+}
+
+-(void)onEnter:(CCLayer*)mainLayer
+{
+    NBStage* stage = nil;
+    
+    CCARRAY_FOREACH(self.stageList, stage)
+    {
+        [stage onEnteringStageGrid:self];
+    }
 }
 
 -(void)dealloc
@@ -113,7 +123,7 @@
                     }
                 }
                 
-                if (nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting)
+                if (nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting && stage.stageData.winCount == 1)
                 {
                     if (!stage.isUpdatingScaleX && !stage.isUpdatingScaleY)
                     {

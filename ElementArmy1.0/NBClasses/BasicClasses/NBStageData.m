@@ -8,14 +8,38 @@
 
 #import "NBStageData.h"
 
+static CCArray* stageDataList = nil;
+
 @implementation NBStageData
+
++(NBStageData*)getStageDataByID:(NSString*)stageID
+{
+    if (stageDataList)
+    {
+        NBStageData* stageData = nil;
+        
+        CCARRAY_FOREACH(stageDataList, stageData)
+        {
+            if ([stageData.stageID isEqualToString:stageID])
+            {
+                return stageData;
+            }
+        }
+    }
+    
+    return nil;
+}
 
 -(id)init
 {
     if ((self = [super init]))
     {
+        stageDataList = [[CCArray alloc] initWithCapacity:100];
+        
         self.gridPoint = CGPointZero;
         self.nextStageID = [[CCArray alloc] initWithCapacity:3];
+        self.connectedStageID = [[CCArray alloc]initWithCapacity:3];
+        self.willUnlockStageID = [[CCArray alloc]initWithCapacity:3];
     }
     
     return self;

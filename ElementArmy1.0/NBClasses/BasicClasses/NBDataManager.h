@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "NBBasicClassData.h"
+#import "NBStageData.h"
 
 @interface NBDataManager : NSObject
 
 +(id)dataManager;
+-(NBStageData*)getStageDataByStageID:(NSString*)stageID;
 
 @property (nonatomic, retain) NSString* userID;
 
@@ -23,7 +25,7 @@
 @property (nonatomic, retain) CCArray* listOfUnlockedWeaponID;
 
 @property (nonatomic, retain) NSString* currentStageID;
-@property (nonatomic, retain) NSString* selectedStageID;
+@property (nonatomic, retain) NBStageData* selectedStageData;
 @property (nonatomic, retain) NSString* selectedItemID;
 @property (nonatomic, assign) int numberOfItem;
 @property (nonatomic, retain) NSString* selectedWeaponID;
@@ -34,5 +36,7 @@
 
 @property (nonatomic, retain) CCArray* arrayOfAllySquad;
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;
+
+@property (nonatomic, assign) bool battleWon;
 
 @end
