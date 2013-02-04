@@ -15,6 +15,8 @@
 
 +(id)dataManager;
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID;
+-(void)createStages;
+-(void)createItems;
 
 @property (nonatomic, retain) NSString* userID;
 

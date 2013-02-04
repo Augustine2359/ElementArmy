@@ -109,6 +109,12 @@
             }
         }
     }
+    
+    /*for (NBStage *stage in self.dataManager.listOfStages)
+    {
+        [self.currentCountryStage addStage:stage];
+        [stage createCompletedLines];
+    }*/
 }
 
 -(void)readStagesFromFile
