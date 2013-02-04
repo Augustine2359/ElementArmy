@@ -7,6 +7,9 @@
 //
 
 #import "NBDataManager.h"
+#import "NBStage.h"
+#import "NBStageData.h"
+#import "NBItemData.h"
 
 #define SQUAD_COUNT_ALLOWED 3
 
@@ -32,8 +35,11 @@ static NBDataManager* dataManager = nil;
         self.arrayOfAllySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
+
+      [self createStages];
+      [self createItems];
     }
-    
+
     return self;
 }
 
