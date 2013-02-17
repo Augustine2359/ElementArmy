@@ -148,7 +148,7 @@ static Boolean isAutoStart = NO;
         [CCMenuItemFont setFontSize:28];
         
         // create and initialize a Label
-        self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self respondTo:nil selector:@selector(prepareBattlefield) withSize:CGSizeZero];
+        self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self respondTo:nil selector:@selector(prepareBattlefield) withSize:CGSizeZero intArgument:0];
         [self.startBattleButton setPosition:ccp(size.width / 2, size.height / 2 - 50)];
         [self.startBattleButton show];
         

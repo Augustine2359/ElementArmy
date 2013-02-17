@@ -38,6 +38,8 @@ static NBDataManager* dataManager = nil;
 
         //[self createStages];
         [self createItems];
+        
+        self.selectedItems = [CCArray arrayWithCapacity:3];
     }
 
     return self;

@@ -8,49 +8,34 @@
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
+#import "NBBattleSetupItems.h"
+#import "NBItem.h"
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
--(void)initialiseItemSelection;
--(void)toggleItemSelection;
+-(void)gotoAppStore;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;
 -(void)gotoMapSelectionScreen;
 -(void)gotoStoryScreen;
 -(void)gotoBattleScreen;
+-(void)itemSelected:(NBItem*)item;
 
 @property (nonatomic, retain) NBStaticObject *battleSetupTitle;
-@property (nonatomic, retain) NBStaticObject *battleSetupCharacter1;
-@property (nonatomic, retain) NBStaticObject *battleSetupCharacter2;
-@property (nonatomic, retain) NBStaticObject *battleSetupCharacter3;
-@property (nonatomic, retain) NBButton *battleSetupCharacter1Up;
-@property (nonatomic, retain) NBButton *battleSetupCharacter1Right;
-@property (nonatomic, retain) NBButton *battleSetupCharacter1Down;
-@property (nonatomic, retain) NBButton *battleSetupCharacter1Left;
-
-@property (nonatomic, retain) NBButton *battleSetupCharacter2Up;
-@property (nonatomic, retain) NBButton *battleSetupCharacter2Right;
-@property (nonatomic, retain) NBButton *battleSetupCharacter2Down;
-@property (nonatomic, retain) NBButton *battleSetupCharacter2Left;
-
-@property (nonatomic, retain) NBButton *battleSetupCharacter3Up;
-@property (nonatomic, retain) NBButton *battleSetupCharacter3Right;
-@property (nonatomic, retain) NBButton *battleSetupCharacter3Down;
-@property (nonatomic, retain) NBButton *battleSetupCharacter3Left;
 
 @property (nonatomic, retain) NBButton *battleSetupOk;
 @property (nonatomic, retain) NBButton *battleSetupCancel;
-@property (nonatomic, retain) NBButton *battleSetupItem1;
-@property (nonatomic, retain) NBButton *battleSetupItem2;
-@property (nonatomic, retain) NBButton *battleSetupItem3;
 
 //Item selection
-@property (nonatomic, retain) NBStaticObject *itemSelectionFrame;
-@property (nonatomic, retain) NBButton *item01;
-@property (nonatomic, retain) NBButton *item02;
-@property (nonatomic, retain) NBButton *item03;
-@property (nonatomic, retain) NBButton *item04;
-@property (nonatomic, retain) NBButton *item05;
+@property (nonatomic, retain) NBBattleSetupItems* setupItemsFrame;
+//Create array of 3 int here to store selected items
+@property (nonatomic, retain) NSMutableArray* selectedItemsArrayIndex;
+@property (nonatomic) int tempNumberOfUnlockedItemsSlots;
+
+@property(nonatomic, retain) NBItem* selectedItem1;
+@property(nonatomic, retain) NBItem* selectedItem2;
+@property(nonatomic, retain) NBItem* selectedItem3;
+@property(nonatomic, retain) NSMutableArray* selectedItemsArray;
 
 @end

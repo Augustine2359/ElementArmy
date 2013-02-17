@@ -35,16 +35,16 @@
   startColor.b = 0;
   startColor.a = 255;
   
-  self.unitSelectorA = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:100 height:200];
+  self.unitSelectorA = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
   self.unitSelectorA.position = CGPointMake(5, 5);
   [self addChild:self.unitSelectorA];
   
-  self.unitSelectorB = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:100 height:200];
-  self.unitSelectorB.position = CGPointMake(115, 5);
+  self.unitSelectorB = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+  self.unitSelectorB.position = CGPointMake(95, 5);
   [self addChild:self.unitSelectorB];
   
-  self.unitSelectorC = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:100 height:200];
-  self.unitSelectorC.position = CGPointMake(225, 5);
+  self.unitSelectorC = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+  self.unitSelectorC.position = CGPointMake(185, 5);
   [self addChild:self.unitSelectorC];
 }
 
