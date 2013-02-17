@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
 #import "NBBattleSetupItems.h"
+#import "NBItem.h"
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
--(void)openItemSelection:(NBButton*)selectedItemIndex;
 -(void)gotoAppStore;
 
 -(void)gotoIntroScreen;
@@ -20,6 +20,7 @@
 -(void)gotoMapSelectionScreen;
 -(void)gotoStoryScreen;
 -(void)gotoBattleScreen;
+-(void)itemSelected:(NBItem*)item;
 
 @property (nonatomic, retain) NBStaticObject *battleSetupTitle;
 
@@ -31,5 +32,10 @@
 //Create array of 3 int here to store selected items
 @property (nonatomic, retain) NSMutableArray* selectedItemsArrayIndex;
 @property (nonatomic) int tempNumberOfUnlockedItemsSlots;
+
+@property(nonatomic, retain) NBItem* selectedItem1;
+@property(nonatomic, retain) NBItem* selectedItem2;
+@property(nonatomic, retain) NBItem* selectedItem3;
+@property(nonatomic, retain) NSMutableArray* selectedItemsArray;
 
 @end

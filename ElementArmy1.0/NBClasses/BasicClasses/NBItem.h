@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NBItemData* itemData;
 @property (nonatomic, retain) NBButton* itemIcon;
 
+@property (nonatomic, retain) NSString* image;
+
 @end

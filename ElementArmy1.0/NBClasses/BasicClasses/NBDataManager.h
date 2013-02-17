@@ -35,4 +35,7 @@
 @property (nonatomic, retain) CCArray* arrayOfAllySquad;
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;
 
+//Eric testing
+@property (nonatomic, retain) CCArray* selectedItems;
+
 @end
