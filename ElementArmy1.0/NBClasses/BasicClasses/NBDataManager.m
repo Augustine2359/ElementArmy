@@ -101,6 +101,8 @@ static NBDataManager* dataManager = nil;
                 basicClassData.totalUnit = 1;
                 basicClassData.availableUnit = 1;
                 basicClassData.timeLastBattleCompleted = [NSDate date];
+                basicClassData.scale = [[enemy objectForKey:@"scale"] floatValue];
+                if (basicClassData.scale == 0) basicClassData.scale = 1;
                 
                 [arrayOfEnemyData addObject:basicClassData];
             }

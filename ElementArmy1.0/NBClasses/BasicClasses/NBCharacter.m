@@ -75,7 +75,7 @@ static CCArray* enemyUnitList = nil;
     return nil;
 }
 
--(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:basicClassData
 {
     if (!characterList)
     {
@@ -96,6 +96,7 @@ static CCArray* enemyUnitList = nil;
     {
         //self.sprite = [[CCSprite alloc] initWithSpriteFrameName:frameName];
         //[self addChild:self.sprite];
+        self.basicClassData = basicClassData;
         self.characterSide = side;
         [self initialize];
         self.currentLayer = layer;
@@ -139,6 +140,12 @@ static CCArray* enemyUnitList = nil;
     self.timeUntilNextAttack = MAXIMUM_ATTACK_REFRESH_DURATION;
     self.animation = [[NBAnimatedSprite alloc] initWithAnimationCount:50 withImagePointer:self.sprite];
     self.projectileArrayList = [[CCArray alloc] initWithCapacity:MAXIMUM_PROJECTILE_COUNT];
+    self.currentNumberOfMeleeEnemiesAttackingMe = 0;
+    self.listOfEnemiesAttackingMe = [[CCArray alloc] initWithCapacity:50];
+    self.listOfMeleeEnemiesAttackingMe = [[CCArray alloc] initWithCapacity:50];
+    self.currentAttackPost = -1; //-1 means not in position
+    
+    [self setScale:self.basicClassData.scale];
 }
 
 -(void)update:(ccTime)delta
@@ -157,6 +164,13 @@ static CCArray* enemyUnitList = nil;
     if (self.hitPoint <= 0 && self.currentState != Dying && self.currentState != Dead)
         [self dead];
     
+    if (self.previousTarget)
+    {
+        if (self.previousTarget != self.currentTarget)
+        {
+            [self.previousTarget onTargettedByMeleeReleased:self];
+        }
+    }
     
     if (self.currentState != Dead)
     {
@@ -182,6 +196,7 @@ static CCArray* enemyUnitList = nil;
     if (self.currentTarget.hitPoint <= 0 || self.currentTarget.currentState == Dead)
     {
         self.currentTarget = nil;
+        self.currentAttackPost = -1;
     }
     
     //Update facing
@@ -198,6 +213,12 @@ static CCArray* enemyUnitList = nil;
             self.facing = Right;
         else
             self.facing = Left;
+    }
+    
+    //Update Z
+    if (self.position.y != self.previousPosition.y)
+    {
+        [self reorderMe:self.position.y];
     }
     
     switch (self.currentState)
@@ -277,6 +298,9 @@ static CCArray* enemyUnitList = nil;
         [self onStateChangedTo:self.currentState from:self.previousState];
         self.previousState = self.currentState;
     }
+    
+    self.previousTarget = self.currentTarget;
+    self.previousPosition = self.position;
 }
 
 -(void)levelUp
@@ -386,6 +410,12 @@ static CCArray* enemyUnitList = nil;
     
     CCARRAY_FOREACH(enemyUnits, tempEnemy)
     {
+        if (self.basicClassData.attackType == atMelee)
+        {
+            if (tempEnemy.currentNumberOfMeleeEnemiesAttackingMe >= tempEnemy.basicClassData.maximumAttackedStack)
+                return nil;
+        }
+        
         if (tempEnemy.currentState != Dead)
         {
             float distance = ccpDistance(self.position, tempEnemy.position);
@@ -405,14 +435,32 @@ static CCArray* enemyUnitList = nil;
 -(CGPoint)getAttackedPosition:(NBCharacter*)attacker
 {
     CGPoint tempPosition;
+    CGFloat verticalGap = (self.sprite.contentSize.height / 2) / (self.basicClassData.maximumAttackedStack / 2);
+    CGFloat yPos = 0;
     
-    if (attacker.position.x < self.position.x)
+    if (attacker.currentAttackPost == 0)
     {
-        tempPosition = CGPointMake(self.position.x - attacker.sprite.contentSize.width, self.position.y);
+        yPos = self.position.y;
     }
     else
     {
-        tempPosition = CGPointMake(self.position.x + attacker.sprite.contentSize.width, self.position.y);
+        if (fmodf(attacker.currentAttackPost, 2) == 0)
+        {
+            yPos = self.position.y - ((verticalGap * (attacker.currentAttackPost / 2)) * self.basicClassData.scale);
+        }
+        else
+        {
+            yPos = self.position.y + ((verticalGap * ((attacker.currentAttackPost + 1) / 2)) * self.basicClassData.scale);
+        }
+    }
+    
+    if (attacker.position.x < self.position.x)
+    {
+        tempPosition = CGPointMake(self.position.x - (attacker.sprite.contentSize.width * self.basicClassData.scale), yPos);
+    }
+    else
+    {
+        tempPosition = CGPointMake(self.position.x + (attacker.sprite.contentSize.width * self.basicClassData.scale), yPos);
     }
     
     return tempPosition;
@@ -510,6 +558,80 @@ static CCArray* enemyUnitList = nil;
     
     self.currentTarget = nil;
     self.currentState = Idle;
+}
+
+-(void)onTargettedBy:(id)attacker
+{
+    NBCharacter* attackerObject = (NBCharacter*)attacker;
+    
+    [self.listOfEnemiesAttackingMe addObject:attacker];
+    
+    if (attackerObject.basicClassData.attackType == atMelee)
+    {
+        self.currentNumberOfMeleeEnemiesAttackingMe++;
+        
+        NSInteger listOfPost[50];
+        
+        for (NSInteger i = 0; i < 50; i++)
+            listOfPost[i] = 0;
+        
+        NBCharacter* tempAttackerObject = nil;
+        
+        if ([self.listOfMeleeEnemiesAttackingMe count] > 0)
+        {
+            for (int i = 0; i < [self.listOfMeleeEnemiesAttackingMe count]; i++)
+            {
+                tempAttackerObject = (NBCharacter*)[self.listOfMeleeEnemiesAttackingMe objectAtIndex:i];
+                
+                if (tempAttackerObject)
+                {
+                    listOfPost[tempAttackerObject.currentAttackPost] = 1;
+                }
+            }
+            
+            for (NSInteger i = 0; i < 50; i++)
+            {
+                if (listOfPost[i] == 0)
+                {
+                    if (i >= [self.listOfMeleeEnemiesAttackingMe count])
+                    {
+                        [self.listOfMeleeEnemiesAttackingMe addObject:attacker];
+                    }
+                    else
+                    {
+                        [self.listOfMeleeEnemiesAttackingMe insertObject:attacker atIndex:i];
+                    }
+                    
+                    attackerObject.currentAttackPost = i;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            [self.listOfMeleeEnemiesAttackingMe addObject:attacker];
+            attackerObject.currentAttackPost = 0; //first to attack the target
+        }
+        
+        if (self.currentTarget == attackerObject)
+        {
+            attackerObject.currentAttackPost = 0;
+            self.currentAttackPost = 0;
+        }
+    }
+}
+
+-(void)onTargettedByMeleeReleased:(id)attacker
+{
+    NBCharacter* attackerObject = (NBCharacter*)attacker;
+    
+    [self.listOfEnemiesAttackingMe removeObject:attacker];
+    
+    if (attackerObject.basicClassData.attackType == atMelee)
+    {
+        self.currentNumberOfMeleeEnemiesAttackingMe--;
+        [self.listOfMeleeEnemiesAttackingMe removeObject:attacker];
+    }
 }
 
 @end

@@ -97,13 +97,13 @@ static CCArray* allStageList = nil;
     {
         if (self.stageData.availableNormalImageName && self.stageData.availableDisabledImageName && self.stageData.completedNormalImageName && self.stageData.completedDisabledImageName)
         {
-            self.worldIcon = [NBButton createWithStringHavingNormal:self.stageData.availableNormalImageName havingSelected:self.stageData.availableNormalImageName havingDisabled:self.stageData.availableDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero];
+            self.worldIcon = [NBButton createWithStringHavingNormal:self.stageData.availableNormalImageName havingSelected:self.stageData.availableNormalImageName havingDisabled:self.stageData.availableDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(32, 32)];
             self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
             //[self.worldIcon show];
             
-            self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero];
+            self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(32, 32)];
             self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;

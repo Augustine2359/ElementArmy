@@ -17,7 +17,7 @@ static CCArray* classObjectList = nil;
 
 @implementation NBFireMage
 
--(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side
+-(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:(NBBasicClassData*)basicClassData
 {
     //Implement below, but mostly you would be only changing the sprite name
     //use DEFAULT_MAXIMUM_OBJECT_CAPACITY if you dont have any specific maximum number of object you want to create for this class
@@ -26,7 +26,7 @@ static CCArray* classObjectList = nil;
         classObjectList = [[CCArray alloc] initWithCapacity:DEFAULT_MAXIMUM_OBJECT_CAPACITY];
     }
     
-    self = [super initWithFrameName:FIRE_MAGE_FILE andSpriteBatchNode:spriteBatchNode onLayer:layer onSide:(EnumCharacterSide)side];
+    self = [super initWithFrameName:FIRE_MAGE_FILE andSpriteBatchNode:spriteBatchNode onLayer:layer onSide:(EnumCharacterSide)side usingBasicClassData:basicClassData];
     
     [classObjectList addObject:self];
     
@@ -74,7 +74,8 @@ static CCArray* classObjectList = nil;
     [self.animation addAnimation:@"Attack" withFileHeaderName:FIRE_MAGE_FILE_ATTACK withAnimationCount:3];
     
     //Set basic attributes value below
-    self.level = 1;
+    self.basicClassData.level = 1;
+    self.basicClassData.maximumAttackedStack = 6;
     self.hitPoint = 100;
     self.spiritPoint = 100;
     self.attackPoint = 10;
@@ -180,6 +181,7 @@ static CCArray* classObjectList = nil;
                     DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
                 
                 self.currentState = Targetting;
+                [self.currentTarget onTargettedBy:self];
             }
         }
         

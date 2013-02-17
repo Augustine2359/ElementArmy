@@ -14,6 +14,7 @@
 #import "NBAnimatedSprite.h"
 #import "NBProjectile.h"
 #import "NBUpdatableCharacter.h"
+#import "NBBasicClassData.h"
 
 #define MAXIMUM_CHARACTER_CAPACITY 100
 #define MAXIMUM_PROJECTILE_COUNT 50
@@ -70,8 +71,8 @@ typedef enum
 +(CCArray*)getAllUnitList;
 
 -(long)getHitPoint;
--(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side;
--(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side;
+-(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:(NBBasicClassData*)basicClassData;
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:(NBBasicClassData*)basicClassData;
 -(void)initialize;
 -(void)update:(ccTime)delta;
 -(void)levelUp;
@@ -102,10 +103,12 @@ typedef enum
 -(void)onAttacked:(id)attacker;
 -(void)onAttackedByProjectile:(id)projectile;
 -(void)onTargetKilled:(id)target;
+-(void)onTargettedBy:(id)attacker;
+-(void)onTargettedByMeleeReleased:(id)attacker;
 
+@property (nonatomic, retain) NBBasicClassData* basicClassData;
 @property (nonatomic, assign) int objectIndex;
 @property (nonatomic, assign) EnumElementType elementType;
-@property (nonatomic, assign) int level;
 @property (nonatomic, assign) int hitPoint;
 @property (nonatomic, assign) int spiritPoint;
 @property (nonatomic, assign) int attackPoint;
@@ -124,10 +127,16 @@ typedef enum
 @property (nonatomic, assign) EnumCharacterSide characterSide;
 @property (nonatomic, retain) NSString* characterSideString;
 @property (nonatomic, retain) NBCharacter* currentTarget;
+@property (nonatomic, retain) NBCharacter* previousTarget;
 @property (nonatomic, assign) bool isAttackReady;
 @property (nonatomic, assign) ccTime timeUntilNextAttack;
 @property (nonatomic, assign) CGPoint targetPreviousPosition;
 @property (nonatomic, assign) EnumCharacterState nextState;
+@property (nonatomic, assign) int currentNumberOfMeleeEnemiesAttackingMe;
+@property (nonatomic, retain) CCArray* listOfEnemiesAttackingMe;
+@property (nonatomic, retain) CCArray* listOfMeleeEnemiesAttackingMe;
+@property (nonatomic, assign) int currentAttackPost;
+@property (nonatomic, assign) CGPoint previousPosition;
 
 //Adding capabilities for projectile shooter type character
 @property (nonatomic, retain) CCArray* projectileArrayList;

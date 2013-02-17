@@ -346,6 +346,14 @@ static CGSize worldSize;
     }
 }
 
+-(void)reorderMe:(int)z
+{
+    if (self.sprite)
+    {
+        [self.currentLayer reorderChild:self.sprite z:z];
+    }
+}
+
 //Events
 -(void)onTouched
 {

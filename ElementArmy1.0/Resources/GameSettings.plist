@@ -23,13 +23,13 @@
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
-			<string>water_stageA.png</string>
+			<string>nebula stage buttons.jpg</string>
 			<key>availableDisabledImageName</key>
-			<string>water_stageA_locked.png</string>
+			<string>nebula stage buttons.jpg</string>
 			<key>completedNormalImageName</key>
-			<string>water_stageA.png</string>
+			<string>nebula stage buttons.jpg</string>
 			<key>completedDisabledImageName</key>
-			<string>water_stageA_locked.png</string>
+			<string>nebula stage buttons.jpg</string>
 			<key>gridPoint</key>
 			<dict>
 				<key>x</key>
@@ -119,35 +119,19 @@
 			<true/>
 			<key>Enemy List</key>
 			<array>
+				<dict/>
+				<dict/>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>NBSoldierBoss</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
-				</dict>
-				<dict>
-					<key>enemyClass</key>
-					<string>NBSoldier</string>
-					<key>level</key>
-					<string>1</string>
-					<key>totalUnit</key>
-					<string>1</string>
-					<key>availableUnit</key>
-					<string>1</string>
-				</dict>
-				<dict>
-					<key>enemyClass</key>
-					<string>NBFireMage</string>
-					<key>level</key>
-					<string>1</string>
-					<key>totalUnit</key>
-					<string>1</string>
-					<key>availableUnit</key>
-					<string>1</string>
+					<key>scale</key>
+					<string>4</string>
 				</dict>
 			</array>
 		</dict>

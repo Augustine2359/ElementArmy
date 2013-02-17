@@ -17,7 +17,7 @@ static CCArray* soldierList = nil;
 
 @implementation NBSoldier
 
--(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side
+-(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:(NBBasicClassData*)basicClassData
 {
     //Implement below, but mostly you would be only changing the sprite name
     if (!soldierList)
@@ -25,7 +25,7 @@ static CCArray* soldierList = nil;
         soldierList = [[CCArray alloc] initWithCapacity:MAXIMUM_SOLDIER_CAPACITY];
     }
     
-    self = [super initWithFrameName:METAL_SOLDIER_FILE andSpriteBatchNode:spriteBatchNode onLayer:layer onSide:(EnumCharacterSide)side];
+    self = [super initWithFrameName:METAL_SOLDIER_FILE andSpriteBatchNode:spriteBatchNode onLayer:layer onSide:(EnumCharacterSide)side usingBasicClassData:basicClassData];
     
     [soldierList addObject:self];
     
@@ -66,7 +66,8 @@ static CCArray* soldierList = nil;
     [self.animation addAnimation:@"Attack" withFileHeaderName:METAL_SOLDIER_FILE_ATTACK withAnimationCount:2];
     
     //Set basic attributes value below
-    self.level = 1;
+    self.basicClassData.level = 1;
+    self.basicClassData.maximumAttackedStack = 6;
     self.hitPoint = 100;
     self.spiritPoint = 100;
     self.attackPoint = 20;
@@ -127,6 +128,7 @@ static CCArray* soldierList = nil;
                     DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
                 
                 self.currentState = Targetting;
+                [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
             }
         }
         
@@ -136,18 +138,45 @@ static CCArray* soldierList = nil;
             case Targetting:
             {
                 [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                self.currentState = Moving;
-                [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                
+                //if (self.characterSide == Ally || (self.characterSide == Enemy && (self.basicClassData.enemyType != etBoss && self.basicClassData.enemyType != etSecretBoss)))
+                //{
+                    self.currentState = Moving;
+                    [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                /*}
+                else
+                {
+                    self.currentState = Waiting;
+                }*/
                 
                 break;
             }
             case Moving:
             {
                 [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                
+                CGFloat distance = ccpDistance(self.position, self.currentTarget.position);
+                
+                if (distance < 50)
+                {
+                    if ((self.characterSide == Ally) || (self.currentNumberOfMeleeEnemiesAttackingMe < 1))
+                    {
+                        [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                    }
+                    else
+                    {
+                        self.currentState = Waiting;
+                    }
+                }
+                else
+                {
+                    [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                }
                 
                 break;
             }
+            case Waiting:
+                break;
             case Engaged:
             {
                 if (self.isAttackReady)
@@ -203,6 +232,11 @@ static CCArray* soldierList = nil;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+    
+    if (self.currentState == Waiting)
+    {
+        self.currentState = Engaged;
+    }
     
     //Don't remove below
     [super onAttacked:attacker];

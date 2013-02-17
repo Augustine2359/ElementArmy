@@ -337,7 +337,7 @@ static Boolean isAutoStart = NO;
                                     
         if (squadClassData)
         {
-            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            tempSquad = [[NBSquad alloc] createSquadUsingBasicClassData:squadClassData onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
             
             if (tempSquad)
             {
@@ -353,7 +353,7 @@ static Boolean isAutoStart = NO;
         
         if (squadClassData)
         {
-            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            tempSquad = [[NBSquad alloc] createSquadUsingBasicClassData:squadClassData onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
             
             if (tempSquad)
             {

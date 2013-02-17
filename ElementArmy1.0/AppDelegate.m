@@ -181,7 +181,7 @@ static NBDataManager* dataManager = nil;
     NBBasicClassData* basicClassData = [[NBBasicClassData alloc] init];
     basicClassData.className = @"NBSoldier";
     basicClassData.level = 1;
-    basicClassData.availableUnit = 3;
+    basicClassData.availableUnit = 2;
     basicClassData.totalUnit = 8;
     basicClassData.timeLastBattleCompleted = [NSDate date];
     
@@ -190,7 +190,7 @@ static NBDataManager* dataManager = nil;
     basicClassData = [[NBBasicClassData alloc] init];
     basicClassData.className = @"NBSoldier";
     basicClassData.level = 1;
-    basicClassData.availableUnit = 3;
+    basicClassData.availableUnit = 1;
     basicClassData.totalUnit = 8;
     basicClassData.timeLastBattleCompleted = [NSDate date];
     
