@@ -42,6 +42,7 @@
 @property (nonatomic, retain) CCArray* arrayOfAllySquad;
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;
 
+@property (nonatomic, assign) bool battleWon;
 //Eric testing
 @property (nonatomic, retain) CCArray* selectedItems;
 
