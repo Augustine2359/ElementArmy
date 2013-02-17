@@ -21,6 +21,7 @@
 -(void)addStage:(NBStage*)stage;
 -(NBStage*)getStageByID:(NSString*)compareStageID;
 -(void)update;
+-(void)onEnter:(CCLayer*)mainLayer;
 
 @property (nonatomic, retain) NSString* countryID;
 @property (nonatomic, retain) NSString* countryName;

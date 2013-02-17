@@ -7,8 +7,10 @@
 //
 
 #import "NBStage.h"
+#import "NBBasicClassData.h"
 
 static NBStage* currentlySelectedStage = nil;
+static CCArray* allStageList = nil;
 
 @interface NBStage()
 
@@ -22,6 +24,37 @@ static NBStage* currentlySelectedStage = nil;
 
 @implementation NBStage
 
++(NBStage*)getStageByID:(NSString*)stageID
+{
+    if (allStageList)
+    {
+        NBStage* stage = nil;
+        
+        CCARRAY_FOREACH(allStageList, stage)
+        {
+            if ([stage isKindOfClass:[NBStage class]])
+            {
+                if ([stage.stageData.stageID isEqualToString:stageID])
+                {
+                    return stage;
+                }
+            }
+        }
+    }
+    
+    return nil;
+}
+
++(CCArray*)getAllStageList
+{
+    if (!allStageList)
+    {
+        allStageList = [[CCArray alloc] initWithCapacity:100];
+    }
+    
+    return allStageList;
+}
+
 +(id)createStageWithStageData:(NBStageData*)newStageData
 {
     NBStage* stage = [[NBStage alloc] init];
@@ -33,6 +66,13 @@ static NBStage* currentlySelectedStage = nil;
     stage.isConnecting = false;
     stage.nextStageLineCreatedStatus = [CCArray arrayWithNSArray:[NSArray arrayWithObjects:@"0", @"0", @"0", nil]];
     stage.connectorLines = [[CCArray alloc] initWithCapacity:3];
+    
+    if (!allStageList)
+    {
+        allStageList = [[CCArray alloc] initWithCapacity:100];
+    }
+    
+    [allStageList addObject:stage];
     
     return stage;
 }
@@ -51,12 +91,35 @@ static NBStage* currentlySelectedStage = nil;
     return currentlySelectedStage;
 }
 
+-(void)setupIconAndDisplayOnLayer:(CCLayer*)layer selector:(SEL)selector
+{
+    if (self.stageData)
+    {
+        if (self.stageData.availableNormalImageName && self.stageData.availableDisabledImageName && self.stageData.completedNormalImageName && self.stageData.completedDisabledImageName)
+        {
+            self.worldIcon = [NBButton createWithStringHavingNormal:self.stageData.availableNormalImageName havingSelected:self.stageData.availableNormalImageName havingDisabled:self.stageData.availableDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero];
+            self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
+            self.listenerLayer = layer;
+            self.selector = selector;
+            [self.worldIcon show];
+            
+            self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero];
+            self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
+            self.listenerLayer = layer;
+            self.selector = selector;
+            [self.worldIconCompleted hide];
+        }
+    }
+    
+}
+
 -(void)setAvailableImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
 {
     self.worldIcon = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero intArgument:0];
     self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
+    [self.worldIcon show];
 }
 
 -(void)setCompletedImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
@@ -65,6 +128,7 @@ static NBStage* currentlySelectedStage = nil;
     self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
+    [self.worldIconCompleted show];
 }
 
 -(bool)setupGrid
@@ -86,40 +150,64 @@ static NBStage* currentlySelectedStage = nil;
     return self.worldIcon.menu.position;
 }
 
--(void)update
+-(void)onEnteringStageGrid:(CCLayer*)layer
 {
-    if (self.status != self.previousStatus)
+    NSString* connectedStageID = nil;
+    
+    CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
     {
-        switch (self.status)
+        NBStage* nextStage = [NBStage getStageByID:connectedStageID];
+        [self createLineTo:nextStage onLayer:layer];
+    }
+    
+    NSString* nextStageID = nil;
+    
+    CCARRAY_FOREACH(self.stageData.nextStageID, nextStageID)
+    {
+        bool alreadyConnected = false;
+        
+        CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
         {
-            case ssHidden:
-                [self.worldIcon hide];
+            if ([connectedStageID isEqualToString:nextStageID])
+            {
+                alreadyConnected = true;
                 break;
-            case ssLocked:
-                [self.worldIcon show];
-                [self.worldIcon disable];
-                break;
-            case ssCompleted:
-            case ssUnlocked:
-                [self.worldIcon show];
-                [self.worldIcon enable];
-                break;
-                
-            default:
-                break;
+            }
         }
         
-        self.previousStatus = self.status;
+        if (!alreadyConnected)
+        {
+            NBStage* nextStage = [NBStage getStageByID:nextStageID];
+            
+            if (nextStage.stageData.isUnlocked)
+            {
+                [self animateLineTo:[NBStage getStageByID:nextStageID] onLayer:layer];
+            }
+        }
+    }
+}
+
+-(void)update
+{
+    if (self.stageData.isUnlocked)
+    {
+        [self.worldIcon show];
+        [self.worldIcon enable];
+    }
+    else
+    {
+        [self.worldIcon hide];
+        [self.worldIcon disable];
     }
     
     if (self.isUpdatingScaleX)
     {
-        [self updateScaleX];
+        [self updateScaleHorizontal];
     }
     
     if (self.isUpdatingScaleY)
     {
-        [self updateScaleY];
+        [self updateScaleVertical];
     }
 }
 
@@ -142,6 +230,37 @@ static NBStage* currentlySelectedStage = nil;
     [layer reorderChild:previousStage.worldIcon.menu z:5];
     [layer reorderChild:self.worldIcon.menu z:5];
 }*/
+
+-(void)createLineTo:(NBStage*)stage onLayer:(CCLayer*)layer
+{
+    CCSprite* connectorLine = [CCSprite spriteWithSpriteFrameName:@"stageline.png"];
+    
+    if (stage.worldIcon.menu.position.x < self.worldIcon.menu.position.x)
+    {
+        connectorLine.anchorPoint = ccp(1, 0);
+        connectorLine.position = CGPointMake(self.origin.x + (connectorLine.contentSize.width / 2), self.origin.y - (connectorLine.contentSize.height / 2));
+    }
+    else if (stage.worldIcon.menu.position.y < self.worldIcon.menu.position.y)
+    {
+        connectorLine.anchorPoint = ccp(0, 1);
+        connectorLine.position = CGPointMake(self.origin.x - (connectorLine.contentSize.width / 2), self.origin.y + (connectorLine.contentSize.height / 2));
+    }
+    else
+    {
+        connectorLine.anchorPoint = ccp(0, 0);
+        connectorLine.position = CGPointMake(self.origin.x - (connectorLine.contentSize.width / 2), self.origin.y - (connectorLine.contentSize.height / 2));
+    }
+    
+    CGFloat targetScaleX = (abs(stage.worldIcon.menu.position.x - self.worldIcon.menu.position.x) + connectorLine.contentSize.width) / connectorLine.contentSize.width;
+    [connectorLine setScaleX:targetScaleX];
+    
+    CGFloat targetScaleY = (abs(stage.worldIcon.menu.position.y - self.worldIcon.menu.position.y) + connectorLine.contentSize.height) / connectorLine.contentSize.height;
+    [connectorLine setScaleY:targetScaleY];
+
+    [layer addChild:connectorLine z:5];
+    [layer reorderChild:stage.worldIcon.menu z:6];
+    [layer reorderChild:self.worldIcon.menu z:6];
+}
 
 -(void)createCompletedLines
 {
@@ -196,6 +315,7 @@ static NBStage* currentlySelectedStage = nil;
         self.isUpdatingScaleY = true;
     }
     
+    self.currentlyConnectingToStage = nextStage;
     [layer addChild:connectorLine z:5];
     [layer reorderChild:nextStage.worldIcon.menu z:6];
     [layer reorderChild:self.worldIcon.menu z:6];
@@ -203,7 +323,7 @@ static NBStage* currentlySelectedStage = nil;
     [self.connectorLines addObject:connectorLine];
 }
 
--(void)updateScaleX
+-(void)updateScaleHorizontal
 {
     bool scaleTargetReached = false;
     
@@ -236,11 +356,12 @@ static NBStage* currentlySelectedStage = nil;
         self.isConnecting = false;
         self.targetScaleX = 0;
         self.currentLineScaleX = 0;
+        [self.stageData.connectedStageID addObject:self.currentlyConnectingToStage.stageData.stageID];
         return;
     }
 }
 
--(void)updateScaleY
+-(void)updateScaleVertical
 {
     bool scaleTargetReached = false;
     
@@ -273,6 +394,7 @@ static NBStage* currentlySelectedStage = nil;
         self.isConnecting = false;
         self.targetScaleY = 0;
         self.currentLineScaleY = 0;
+        [self.stageData.connectedStageID addObject:self.currentlyConnectingToStage.stageData.stageID];
         return;
     }
 }

@@ -174,6 +174,7 @@
 		BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC0F60116B6C846006A1C88 /* NBItem.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
 		F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */; };
+		F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9B870FE16BE906500F9321A /* GameSettings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -519,6 +520,7 @@
 		F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingPicturesLayer.m; sourceTree = "<group>"; };
 		F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreenScrollingTextLayer.h; sourceTree = "<group>"; };
 		F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingTextLayer.m; sourceTree = "<group>"; };
+		F9B870FE16BE906500F9321A /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameSettings.plist; path = Resources/GameSettings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,6 +618,7 @@
 				BCBC723C1633A98700B5A141 /* Icon.png */,
 				BCBC723E1633A98700B5A141 /* Icon@2x.png */,
 				BCBC72401633A98700B5A141 /* Info.plist */,
+				F9B870FE16BE906500F9321A /* GameSettings.plist */,
 				BCBC72411633A98700B5A141 /* iTunesArtwork */,
 			);
 			name = Resources;
@@ -983,6 +986,10 @@
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
 				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
+				BCC0F60016B6C846006A1C88 /* NBItem.h */,
+				BCC0F60116B6C846006A1C88 /* NBItem.m */,
+				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
+				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
 				BCBC73BC1633AA7700B5A141 /* NBMagic.m */,
 				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
@@ -1002,10 +1009,6 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
-				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
-				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
-				BCC0F60016B6C846006A1C88 /* NBItem.h */,
-				BCC0F60116B6C846006A1C88 /* NBItem.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1207,6 +1210,7 @@
 				BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */,
 				BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */,
 				BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */,
+				F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,7 @@
 -(void)startBattle;
 -(void)endBattle;
 -(void)gotoMapSelectionScreen;
+-(void)gotoStageSelectionScreen;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, retain) CCMenu *menu;

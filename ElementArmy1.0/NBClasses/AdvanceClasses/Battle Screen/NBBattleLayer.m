@@ -240,6 +240,9 @@ static Boolean isAutoStart = NO;
         
         if (self.allAllyUnitAnnihilated)
         {
+            self.dataManager.battleWon = false;
+            self.dataManager.selectedStageData.loseCount++;
+            
             self.battleResultText = [CCLabelTTF labelWithString:@"Defeat" fontName:@"Zapfino" fontSize:28];
             self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
             [self addChild:self.battleResultText];
@@ -247,6 +250,9 @@ static Boolean isAutoStart = NO;
         }
         else if (self.allEnemyUnitAnnihilated)
         {
+            self.dataManager.battleWon = true;
+            self.dataManager.selectedStageData.winCount++;
+            
             self.battleResultText = [CCLabelTTF labelWithString:@"Victory" fontName:@"Zapfino" fontSize:28];
             self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
             [self addChild:self.battleResultText];
@@ -292,7 +298,7 @@ static Boolean isAutoStart = NO;
             [CCMenuItemFont setFontSize:16];
             
             // create and initialize a Label
-            CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoMapSelectionScreen)];
+            CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoStageSelectionScreen)];
             self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
             
             [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
@@ -308,6 +314,12 @@ static Boolean isAutoStart = NO;
 {
     self.nextScene = @"NBMapSelectionScreen";
     [self changeToScene:self.nextScene transitionWithDuration:1.0];
+}
+
+-(void)gotoStageSelectionScreen
+{
+    self.nextScene = @"NBStageSelectionScreen";
+    [self changeToScene:self.nextScene];
 }
 
 -(void)performanceTest
@@ -335,9 +347,9 @@ static Boolean isAutoStart = NO;
         }
     }
     
-    for (int i = 0; i < [self.dataManager.arrayOfEnemySquad count]; i++)
+    for (int i = 0; i < [self.dataManager.selectedStageData.enemyList count]; i++)
     {
-        NBBasicClassData* squadClassData = [self.dataManager.arrayOfEnemySquad objectAtIndex:i];
+        NBBasicClassData* squadClassData = [self.dataManager.selectedStageData.enemyList objectAtIndex:i];
         
         if (squadClassData)
         {

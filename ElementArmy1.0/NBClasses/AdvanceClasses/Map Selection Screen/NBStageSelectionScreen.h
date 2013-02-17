@@ -16,9 +16,13 @@
 -(void)readStagesFromFile;
 -(void)onStageSelected;
 -(void)gotoBattleSetupScreen;
+-(void)gotoBattleScreen;
+-(void)gotoMapSelectionScreen;
 
 @property (nonatomic, retain) NBCountryStageGrid* currentCountryStage;
 @property (nonatomic, assign) int horizontalGridCount;
 @property (nonatomic, assign) int verticalGridCount;
+@property (nonatomic, retain) NBButton* gotoBattleButton;
+@property (nonatomic, retain) NBButton* backToWorldSelectionButton;
 
 @end
