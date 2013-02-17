@@ -101,13 +101,13 @@ static CCArray* allStageList = nil;
             self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
-            [self.worldIcon show];
+            //[self.worldIcon show];
             
             self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero];
             self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
-            [self.worldIconCompleted hide];
+            //[self.worldIconCompleted hide];
         }
     }
     
@@ -119,7 +119,7 @@ static CCArray* allStageList = nil;
     self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
-    [self.worldIcon show];
+    //[self.worldIcon show];
 }
 
 -(void)setCompletedImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
@@ -128,7 +128,7 @@ static CCArray* allStageList = nil;
     self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
-    [self.worldIconCompleted show];
+    //[self.worldIconCompleted show];
 }
 
 -(bool)setupGrid
@@ -139,6 +139,7 @@ static CCArray* allStageList = nil;
         self.worldIcon.menu.position = CGPointMake(self.stageData.gridPoint.x * STAGE_ICON_WIDTH / 2, self.stageData.gridPoint.y * STAGE_ICON_HEIGHT / 2);
         self.worldIconCompleted.menu.position = CGPointMake(self.stageData.gridPoint.x * STAGE_ICON_WIDTH / 2, self.stageData.gridPoint.y * STAGE_ICON_HEIGHT / 2);
         self.origin = CGPointMake(self.worldIcon.menu.position.x + (self.worldIcon.currentSize.width / 2), self.worldIcon.menu.position.y + (self.worldIcon.currentSize.height / 2));
+        
         return true;
     }
     
@@ -153,6 +154,17 @@ static CCArray* allStageList = nil;
 -(void)onEnteringStageGrid:(CCLayer*)layer
 {
     NSString* connectedStageID = nil;
+    
+    if (self.stageData.isCompleted)
+    {
+        NSString* nextStageID = nil;
+        self.stageData.connectedStageID = [CCArray arrayWithCapacity:3];
+        
+        CCARRAY_FOREACH(self.stageData.nextStageID, nextStageID)
+        {
+            [self.stageData.connectedStageID addObject:nextStageID];
+        }
+    }
     
     CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
     {
@@ -191,13 +203,24 @@ static CCArray* allStageList = nil;
 {
     if (self.stageData.isUnlocked)
     {
-        [self.worldIcon show];
-        [self.worldIcon enable];
+        if (self.stageData.isCompleted)
+        {
+            [self.worldIconCompleted show];
+            [self.worldIcon hide];
+        }
+        else
+        {
+            [self.worldIcon show];
+            [self.worldIconCompleted hide];
+        }
     }
     else
     {
-        [self.worldIcon hide];
-        [self.worldIcon disable];
+        /*if (self.worldIcon.menu.visible || self.worldIconCompleted.menu.visible)
+        {*/
+            [self.worldIcon hide];
+            [self.worldIconCompleted hide];
+        //}
     }
     
     if (self.isUpdatingScaleX)
@@ -273,7 +296,8 @@ static CCArray* allStageList = nil;
             [connectorLine removeFromParentAndCleanup:YES];
         }
         
-        [self.currentLayer addChild:connectorLine z:6];
+        [self.currentLayer addChild:connectorLine z:5];
+        [self.currentLayer reorderChild:self.worldIcon.menu z:6];
     }
 }
 

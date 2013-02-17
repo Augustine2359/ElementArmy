@@ -24,5 +24,6 @@
 @property (nonatomic, assign) int verticalGridCount;
 @property (nonatomic, retain) NBButton* gotoBattleButton;
 @property (nonatomic, retain) NBButton* backToWorldSelectionButton;
+@property (nonatomic, assign) bool stageCreated;
 
 @end

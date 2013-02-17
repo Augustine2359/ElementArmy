@@ -18,4 +18,6 @@
 -(void)gotoStageSelectionScreen;
 -(void)gotoBattleScreen;
 
+@property (nonatomic, retain) CCArray* countryList;
+
 @end

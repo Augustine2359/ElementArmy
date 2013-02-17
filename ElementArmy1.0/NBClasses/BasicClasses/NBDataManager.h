@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "NBBasicClassData.h"
 #import "NBStageData.h"
+#import "NBCountryData.h"
 
 @interface NBDataManager : NSObject
 
@@ -28,9 +29,11 @@
 
 @property (nonatomic, retain) CCArray* listOfStages;
 @property (nonatomic, retain) CCArray* listOfItems;
+@property (nonatomic, retain) CCArray* listOfCountries;
 
 @property (nonatomic, retain) NSString* currentStageID;
 @property (nonatomic, retain) NBStageData* selectedStageData;
+@property (nonatomic, retain) NBCountryData* selectedCountryData;
 @property (nonatomic, retain) NSString* selectedItemID;
 @property (nonatomic, assign) int numberOfItem;
 @property (nonatomic, retain) NSString* selectedWeaponID;

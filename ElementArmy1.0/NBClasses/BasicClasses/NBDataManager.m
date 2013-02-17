@@ -36,7 +36,7 @@ static NBDataManager* dataManager = nil;
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
 
-        [self createStages];
+        //[self createStages];
         [self createItems];
     }
 
@@ -60,6 +60,9 @@ static NBDataManager* dataManager = nil;
 
 -(void)createStages
 {
+    NBBasicClassData* basicClassData = nil;
+    CCArray* arrayOfEnemyData = nil;
+    
     self.listOfStages = [CCArray array];
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
@@ -77,9 +80,34 @@ static NBDataManager* dataManager = nil;
         CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
         CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
         stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
-        stageData.nextStageID = [stageDataDictionary objectForKey:@"nextStageID"];
+        NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageID"];
+        stageData.nextStageID = [CCArray arrayWithNSArray:tempArray];
+        tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+        stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
         stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
         stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+        
+        NSArray* enemyList = [stageDataDictionary objectForKey:@"Enemy List"];
+        
+        if (enemyList)
+        {
+            arrayOfEnemyData = [[CCArray alloc] initWithCapacity:3];
+            
+            for (NSDictionary* enemy in enemyList)
+            {
+                basicClassData = [[NBBasicClassData alloc] init];
+                basicClassData.className = [enemy objectForKey:@"enemyClass"];
+                basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
+                basicClassData.totalUnit = 1;
+                basicClassData.availableUnit = 1;
+                basicClassData.timeLastBattleCompleted = [NSDate date];
+                
+                [arrayOfEnemyData addObject:basicClassData];
+            }
+        }
+        
+        stageData.enemyList = arrayOfEnemyData;
+        
         NBStage *stage = [NBStage createStageWithStageData:stageData];
         [self.listOfStages addObject:stage];
     }
