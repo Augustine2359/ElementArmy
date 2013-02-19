@@ -65,12 +65,14 @@
     
     //Display buttons Navigation
     //OK
-    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero intArgument:0];
+    self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
+    [self.battleSetupOk setIntStorage:0];
     [self.battleSetupOk setPosition:CGPointMake(450, 50)];
     [self.battleSetupOk show];
     
     //Cancel
-    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero intArgument:0];
+    self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
+    [self.battleSetupCancel setIntStorage:0];
     [self.battleSetupCancel setPosition:CGPointMake(30, 50)];
     [self.battleSetupCancel show];
     
@@ -113,7 +115,8 @@
     [self.selectedItem2.itemIcon setPosition:ccp(240, 50)];
     [self.selectedItem2 displayItemIcon];
     
-    NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero intArgument:0];
+    NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
+    [lockedButton setIntStorage:0];
     [lockedButton setPosition:ccp(320, 50)];
     [lockedButton show];
 }

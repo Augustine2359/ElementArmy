@@ -41,6 +41,8 @@
 -(void)endBattle;
 -(void)gotoMapSelectionScreen;
 -(void)gotoStageSelectionScreen;
+-(void)entranceAnimation;
+-(void)onBackgroundMoveCompleted;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, retain) CCMenu *menu;
@@ -79,5 +81,7 @@
 @property (nonatomic, retain) NBStaticObject* allyHPBar;
 @property (nonatomic, retain) NBStaticObject* enemyHPBar;
 @property (nonatomic, retain) NBButton* startBattleButton;
+@property (nonatomic, retain) NBStaticObject* fieldBackground;
+@property (nonatomic, retain) NBStaticObject* skyBackground;
 
 @end
