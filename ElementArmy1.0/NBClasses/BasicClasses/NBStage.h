@@ -16,6 +16,9 @@
 #define STAGE_ICON_HEIGHT 32
 #define LINE_CONNECTOR_SPEED 0.05
 
+#define LINE_Z 5
+#define WORLD_ICON_Z 6
+
 typedef enum
 {
     ssLocked = 0,

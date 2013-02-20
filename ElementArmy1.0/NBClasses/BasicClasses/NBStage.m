@@ -257,7 +257,7 @@ static CCArray* allStageList = nil;
 -(void)createLineTo:(NBStage*)stage onLayer:(CCLayer*)layer
 {
     CCSprite* connectorLine = [CCSprite spriteWithSpriteFrameName:@"stageline.png"];
-    
+
     if (stage.worldIcon.menu.position.x < self.worldIcon.menu.position.x)
     {
         connectorLine.anchorPoint = ccp(1, 0);
@@ -280,9 +280,9 @@ static CCArray* allStageList = nil;
     CGFloat targetScaleY = (abs(stage.worldIcon.menu.position.y - self.worldIcon.menu.position.y) + connectorLine.contentSize.height) / connectorLine.contentSize.height;
     [connectorLine setScaleY:targetScaleY];
 
-    [layer addChild:connectorLine z:5];
-    [layer reorderChild:stage.worldIcon.menu z:6];
-    [layer reorderChild:self.worldIcon.menu z:6];
+    [layer addChild:connectorLine z:LINE_Z];
+    [layer reorderChild:stage.worldIcon.menu z:WORLD_ICON_Z];
+    [layer reorderChild:self.worldIcon.menu z:WORLD_ICON_Z];
 }
 
 -(void)createCompletedLines
@@ -296,8 +296,8 @@ static CCArray* allStageList = nil;
             [connectorLine removeFromParentAndCleanup:YES];
         }
         
-        [self.currentLayer addChild:connectorLine z:5];
-        [self.currentLayer reorderChild:self.worldIcon.menu z:6];
+        [self.currentLayer addChild:connectorLine z:LINE_Z];
+        [self.currentLayer reorderChild:self.worldIcon.menu z:WORLD_ICON_Z];
     }
 }
 
@@ -340,9 +340,9 @@ static CCArray* allStageList = nil;
     }
     
     self.currentlyConnectingToStage = nextStage;
-    [layer addChild:connectorLine z:5];
-    [layer reorderChild:nextStage.worldIcon.menu z:6];
-    [layer reorderChild:self.worldIcon.menu z:6];
+    [layer addChild:connectorLine z:LINE_Z];
+    [layer reorderChild:nextStage.worldIcon.menu z:WORLD_ICON_Z];
+    [layer reorderChild:self.worldIcon.menu z:WORLD_ICON_Z];
         
     [self.connectorLines addObject:connectorLine];
 }
