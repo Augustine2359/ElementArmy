@@ -66,8 +66,18 @@ static NBDataManager* dataManager = nil;
     CCArray* arrayOfEnemyData = nil;
     
     self.listOfStages = [CCArray array];
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+
+    //read from the app documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+
+    //if it doesn't exist yet, use the default one
+    if (dictionary == nil) {
+      plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+      dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    }
+
     NSArray *stages = [dictionary objectForKey:@"Stage data"];
     
     for (NSDictionary *stageDataDictionary in stages)
@@ -130,6 +140,37 @@ static NBDataManager* dataManager = nil;
         itemData.itemID = [itemDataDictionary objectForKey:@"itemID"];
         [self.listOfItems addObject:itemData];
     }
+}
+
+- (void)saveStages {
+  if (self.listOfStages == nil)
+    return;
+
+  //Grab the default stage data
+  NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+  NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+  NSArray *stages = [dictionary objectForKey:@"Stage data"];
+
+  NSInteger index = 0;
+  for (NSMutableDictionary *stageDataDictionary in stages) {
+    NBStage *stage = [self.listOfStages objectAtIndex:index];
+    index++;
+
+    //update the default stage data with any changes to the game state
+    NBStageData *stageData = stage.stageData;
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+  }
+
+  [dictionary setObject:stages forKey:@"Stage data"];
+  NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+
+  //save the changes to the app documents directory
+  NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+  NSString *path = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
+
+  if (plistData)
+    [plistData writeToFile:path atomically:YES];
 }
 
 @end

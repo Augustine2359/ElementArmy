@@ -18,6 +18,8 @@
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID;
 -(void)createStages;
 -(void)createItems;
+-(void)saveStages;
+-(void)saveItems;
 
 @property (nonatomic, retain) NSString* userID;
 
