@@ -102,9 +102,9 @@
     
     //With NBitem
     self.tempNumberOfUnlockedItemsSlots = 2;
-    self.selectedItem1 = [NBItem createItem:@"Potion"];
-    self.selectedItem2 = [NBItem createItem:@"FuryPill"];
-    self.selectedItem3 = [NBItem createItem:@"WingedBoots"];
+    self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:nil onSelector:nil];
+    self.selectedItem2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
+    self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(selectTargetItem)];
     
     [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self respondTo:self.setupItemsFrame selector:@selector(toggleItemSelection:)];
     [self.selectedItem1.itemIcon setPosition:ccp(160, 50)];

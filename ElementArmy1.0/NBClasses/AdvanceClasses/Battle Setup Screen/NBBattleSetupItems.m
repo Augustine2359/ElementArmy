@@ -48,15 +48,15 @@ float slideDuration = 0.5f;
     
     [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
     
-    NBItem* item1 = [NBItem createItem:@"Potion"];
+    NBItem* item1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
     [item1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self respondTo:nil selector:@selector(selectTargetItem:)];
-    NBItem* item2 = [NBItem createItem:@"FuryPill"];
-    [item2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self respondTo:nil selector:@selector(selectTargetItem:)];
-    NBItem* item3 = [NBItem createItem:@"WingedBoots"];
+    NBItem* item2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
+    [item2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self respondTo:item2 selector:@selector(onItemSelected)];
+    NBItem* item3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(selectTargetItem)];
     [item3 setItemIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self respondTo:nil selector:@selector(selectTargetItem:)];
-    NBItem* item4 = [NBItem createItem:@"FuryPill"];
+    NBItem* item4 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
     [item4 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self respondTo:nil selector:@selector(selectTargetItem:)];
-    NBItem* item5 = [NBItem createItem:@"Potion"];
+    NBItem* item5 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
     [item5 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self respondTo:nil selector:@selector(selectTargetItem:)];
     
     self.allItems = [NSMutableArray new];
@@ -106,21 +106,23 @@ float slideDuration = 0.5f;
         [self runAction:close];
         self.itemSelectionOpen = NO;
         
-//        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData.itemID];
-//        [newItem setItemIconWithNormalImage:selectedItemButton.image selectedImage:selectedItemButton.image disabledImage:selectedItemButton.image onLayer:self.mainLayer respondTo:nil selector:@selector(toggleItemSelection:)];
-//        [newItem.itemIcon setPosition:ccp(self.changingTargetItem.itemIcon.position.x, self.changingTargetItem.itemIcon.position.y)];
-        //        [newItem displayItemIcon];
-        NBItem* newItem = [NBItem createItem:@"WingedBoots"];
-        [newItem setItemIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self.mainLayer respondTo:nil selector:@selector(toggleItemSelection:)];
-        [newItem.itemIcon setPosition:ccp(160, 50)];
-        [newItem displayItemIcon];
+        DLog(@"%@", selectedItemButton.itemData.itemID);
+        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData.itemID onLayer:self.mainLayer onSelector:@selector(toggleItemSelection)];
+        [newItem setItemIconWithNormalImage:selectedItemButton.image selectedImage:selectedItemButton.image disabledImage:selectedItemButton.image onLayer:self.mainLayer respondTo:nil selector:@selector(toggleItemSelection:)];
+        [newItem.itemIcon setPosition:ccp(self.changingTargetItem.itemIcon.position.x, self.changingTargetItem.itemIcon.position.y)];
+                [newItem displayItemIcon];
+//        NBItem* newItem = [NBItem createItem:@"WingedBoots"];
+//        [newItem setItemIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self.mainLayer respondTo:nil selector:@selector(toggleItemSelection:)];
+//        [newItem.itemIcon setPosition:ccp(160, 50)];
+//        [newItem displayItemIcon];
         
 //        [self.changingTargetItem hideItemIcon];
     }
 }
 
--(void)selectTargetItem:(NBItem*)targetItem{
-    [self toggleItemSelection:targetItem];
+-(void)selectTargetItem{
+    NBItem *item = [NBItem getCurrentlySelectedItem];
+    [self toggleItemSelection:item];
 }
 
 -(void)test{

@@ -27,7 +27,7 @@
 -(void)initialiseItemArray;
 -(void)initialiseItemUI;
 -(void)toggleItemSelection:(NBItem*)selectedItemButton;
--(void)selectTargetItem:(NBItem*)targetItem;
+-(void)selectTargetItem;
 -(void)test;
 
 @end

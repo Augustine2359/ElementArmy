@@ -8,13 +8,22 @@
 
 #import "NBItem.h"
 
+static NBItem* currentlySelectedItemInBattleSetup = nil;
+
 @implementation NBItem
 
-+(id)createItem:(NSString*)itemID
++(NBItem*)getCurrentlySelectedItem
+{
+    return currentlySelectedItemInBattleSetup;
+}
+
++(id)createItem:(NSString*)itemID onLayer:(id)layer onSelector:(SEL)selector
 {
     NBItem* item = [[NBItem alloc] init];
     item.itemData = [[NBItemData alloc] init];
     item.itemData.itemID = itemID;
+    item.currentLayer = layer;
+    item.currentSelector = selector;
     
     return item;
 }
@@ -25,6 +34,12 @@
     
     self.image = normalImage;
     return self;
+}
+
+-(void)onItemSelected
+{
+    currentlySelectedItemInBattleSetup = self;
+    [self.currentLayer performSelector:self.currentSelector];
 }
 
 -(void)displayItemIcon
