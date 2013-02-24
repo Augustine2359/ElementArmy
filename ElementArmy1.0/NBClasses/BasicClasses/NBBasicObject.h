@@ -45,6 +45,7 @@ typedef enum
 -(void)setToCustomSize:(CGSize)newSize;
 -(void)setToDefaultSize;
 -(void)setCurrentFrame:(NSString*)frameName;
+-(void)reorderMe:(int)z;
 
 //Events
 -(void)onTouched;

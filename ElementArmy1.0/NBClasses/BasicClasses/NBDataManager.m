@@ -36,7 +36,7 @@ static NBDataManager* dataManager = nil;
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
 
-        [self createStages];
+        //[self createStages];
         [self createItems];
         
         self.selectedItems = [CCArray arrayWithCapacity:3];
@@ -62,9 +62,22 @@ static NBDataManager* dataManager = nil;
 
 -(void)createStages
 {
+    NBBasicClassData* basicClassData = nil;
+    CCArray* arrayOfEnemyData = nil;
+    
     self.listOfStages = [CCArray array];
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+
+    //read from the app documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+
+    //if it doesn't exist yet, use the default one
+    if (dictionary == nil) {
+      plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+      dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    }
+
     NSArray *stages = [dictionary objectForKey:@"Stage data"];
     
     for (NSDictionary *stageDataDictionary in stages)
@@ -79,9 +92,36 @@ static NBDataManager* dataManager = nil;
         CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
         CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
         stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
-        stageData.nextStageID = [stageDataDictionary objectForKey:@"nextStageID"];
+        NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageID"];
+        stageData.nextStageID = [CCArray arrayWithNSArray:tempArray];
+        tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+        stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
         stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
         stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+        
+        NSArray* enemyList = [stageDataDictionary objectForKey:@"Enemy List"];
+        
+        if (enemyList)
+        {
+            arrayOfEnemyData = [[CCArray alloc] initWithCapacity:3];
+            
+            for (NSDictionary* enemy in enemyList)
+            {
+                basicClassData = [[NBBasicClassData alloc] init];
+                basicClassData.className = [enemy objectForKey:@"enemyClass"];
+                basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
+                basicClassData.totalUnit = 1;
+                basicClassData.availableUnit = 1;
+                basicClassData.timeLastBattleCompleted = [NSDate date];
+                basicClassData.scale = [[enemy objectForKey:@"scale"] floatValue];
+                if (basicClassData.scale == 0) basicClassData.scale = 1;
+                
+                [arrayOfEnemyData addObject:basicClassData];
+            }
+        }
+        
+        stageData.enemyList = arrayOfEnemyData;
+        
         NBStage *stage = [NBStage createStageWithStageData:stageData];
         [self.listOfStages addObject:stage];
     }
@@ -100,6 +140,37 @@ static NBDataManager* dataManager = nil;
         itemData.itemID = [itemDataDictionary objectForKey:@"itemID"];
         [self.listOfItems addObject:itemData];
     }
+}
+
+- (void)saveStages {
+  if (self.listOfStages == nil)
+    return;
+
+  //Grab the default stage data
+  NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+  NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+  NSArray *stages = [dictionary objectForKey:@"Stage data"];
+
+  NSInteger index = 0;
+  for (NSMutableDictionary *stageDataDictionary in stages) {
+    NBStage *stage = [self.listOfStages objectAtIndex:index];
+    index++;
+
+    //update the default stage data with any changes to the game state
+    NBStageData *stageData = stage.stageData;
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+  }
+
+  [dictionary setObject:stages forKey:@"Stage data"];
+  NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+
+  //save the changes to the app documents directory
+  NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+  NSString *path = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
+
+  if (plistData)
+    [plistData writeToFile:path atomically:YES];
 }
 
 @end

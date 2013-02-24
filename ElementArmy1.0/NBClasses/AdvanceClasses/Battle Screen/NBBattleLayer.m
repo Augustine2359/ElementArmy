@@ -148,9 +148,8 @@ static Boolean isAutoStart = NO;
         [CCMenuItemFont setFontSize:28];
         
         // create and initialize a Label
-        self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self respondTo:nil selector:@selector(prepareBattlefield) withSize:CGSizeZero intArgument:0];
+        self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self respondTo:nil selector:@selector(prepareBattlefield) withSize:CGSizeZero];
         [self.startBattleButton setPosition:ccp(size.width / 2, size.height / 2 - 50)];
-        [self.startBattleButton show];
         
         //CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
         //self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
@@ -337,7 +336,7 @@ static Boolean isAutoStart = NO;
                                     
         if (squadClassData)
         {
-            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            tempSquad = [[NBSquad alloc] createSquadUsingBasicClassData:squadClassData onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
             
             if (tempSquad)
             {
@@ -353,7 +352,7 @@ static Boolean isAutoStart = NO;
         
         if (squadClassData)
         {
-            tempSquad = [[NBSquad alloc] createSquadOf:squadClassData.className withUnitCount:squadClassData.availableUnit onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+            tempSquad = [[NBSquad alloc] createSquadUsingBasicClassData:squadClassData onSide:Enemy andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
             
             if (tempSquad)
             {
@@ -394,22 +393,30 @@ static Boolean isAutoStart = NO;
 {
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
+    self.position = CGPointMake(self.position.x, -320);
     //background
-    self.background = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 160)];
+    //self.background = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 160)];
+    self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height / 2) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 80)];
+    self.skyBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 1.5) usingFrame:@"staticbox_blue.png" atPosition:CGPointMake(240, 400)];
     
     //The HP Bar
     //**********************************************************************
     self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
     self.allyHPBar.sprite.anchorPoint = CGPointMake(1, 1);
+    self.allyHPBar.visible = NO;
     self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
     self.enemyHPBar.sprite.anchorPoint = CGPointMake(0, 1);
+    self.enemyHPBar.visible = NO;
     self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png" atPosition:CGPointMake(110, 30)];
+    self.allyFlagLogo.visible = NO;
     self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png" atPosition:CGPointMake(self.layerSize.width - 110, 30)];
+    self.enemyFlagLogo.visible = NO;
     //**********************************************************************
     
     //The placeholder. This should be something like transparent tube later.
     //**********************************************************************
     self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, 20)];
+    self.HPBarPlaceholder.visible = NO;
     //self.HPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
     //**********************************************************************
     
@@ -426,6 +433,27 @@ static Boolean isAutoStart = NO;
   self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
   [self addChild:self.itemMenuLayer];
   //**********************
+    
+    [self entranceAnimation];
+}
+
+-(void)entranceAnimation
+{
+    CCMoveTo* move = [CCMoveTo actionWithDuration:3.0 position:CGPointMake(self.position.x, 0)];
+    
+    CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(onBackgroundMoveCompleted)];
+    CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];
+    [self runAction:sequence];
+}
+
+-(void)onBackgroundMoveCompleted
+{
+    self.allyHPBar.visible = YES;
+    self.enemyHPBar.visible = YES;
+    self.allyFlagLogo.visible = YES;
+    self.enemyFlagLogo.visible = YES;
+    self.HPBarPlaceholder.visible = YES;
+    [self.startBattleButton show];
 }
 
 -(void)startBattle

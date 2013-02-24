@@ -30,8 +30,8 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
 
 -(id)setItemIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector
 {
-    self.itemIcon = [NBButton createWithStringHavingNormal:normalImage havingSelected:selectedImage havingDisabled:disabledImage onLayer:layer respondTo:object selector:selector withSize:CGSizeZero intArgument:0];
-    
+    self.itemIcon = [NBButton createWithStringHavingNormal:normalImage havingSelected:selectedImage havingDisabled:disabledImage onLayer:layer respondTo:object selector:selector withSize:CGSizeZero];
+    [self.itemIcon setIntStorage:0];
     self.image = normalImage;
     return self;
 }

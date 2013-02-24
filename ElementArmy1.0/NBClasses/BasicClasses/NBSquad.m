@@ -34,21 +34,21 @@ static int enemySquadPositionIndex = 0;
     squadPerSide = squadCount;
 }
 
--(id)createSquadOf:(NSString*)unitClassName withUnitCount:(int)count onSide:(EnumCharacterSide)side andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer
+-(id)createSquadUsingBasicClassData:(NBBasicClassData*)basicClassData onSide:(EnumCharacterSide)side andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer
 {
     int unitCount;
     
-    if (count > MAXIMUM_UNIT_COUNT)
+    if (basicClassData.availableUnit > MAXIMUM_UNIT_COUNT)
     {
         unitCount = MAXIMUM_UNIT_COUNT;
     }
-    else if (count <= 0)
+    else if (basicClassData.availableUnit <= 0)
     {
         return nil;
     }
     else
     {
-        unitCount = count;
+        unitCount = basicClassData.availableUnit;
     }
 
     //Determine padding pixel between units
@@ -84,10 +84,10 @@ static int enemySquadPositionIndex = 0;
         self.skillSlot = [[CCArray alloc] initWithCapacity:MAGIC_SLOT_CAPACITY];
         self.unitArray = [[CCArray alloc] initWithCapacity:MAXIMUM_UNIT_COUNT];
         
-        self.unitClass = NSClassFromString(unitClassName);
+        self.unitClass = NSClassFromString(basicClassData.className);
         for (int i = 0; i < unitCount; i++)
         {
-            id tempCharacter = [[self.unitClass alloc] initWithSpriteBatchNode:spriteBatchNode onLayer:layer onSide:side];
+            id tempCharacter = [[self.unitClass alloc] initWithSpriteBatchNode:spriteBatchNode onLayer:layer onSide:side usingBasicClassData:basicClassData];
             
             //[layer addChild:tempCharacter z:0 tag:[tempCharacter objectIndex]];
             [self.unitArray addObject:tempCharacter];
@@ -134,14 +134,17 @@ static int enemySquadPositionIndex = 0;
     {
         id tempUnit = [self.unitArray objectAtIndex:i];
         
-        NBCharacter* tempCharacter = (NBCharacter*)tempUnit;
-        
-        self.totalAliveUnitHP += tempCharacter.hitPoint;
-        
-        if (tempCharacter.currentState != Dead)
+        if (tempUnit)
         {
-            self.allUnitAreDead = false;
-            self.totalCurrentAliveUnit++;
+            NBCharacter* tempCharacter = (NBCharacter*)tempUnit;
+            
+            self.totalAliveUnitHP += tempCharacter.hitPoint;
+            
+            if (tempCharacter.currentState != Dead)
+            {
+                self.allUnitAreDead = false;
+                self.totalCurrentAliveUnit++;
+            }
         }
     }
 }

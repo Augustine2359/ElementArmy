@@ -18,7 +18,7 @@
 
 @interface NBFireMage : NBCharacter
 
--(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side;
+-(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer onSide:(EnumCharacterSide)side usingBasicClassData:(NBBasicClassData*)basicClassData;
 -(void)attack:(NBCharacter*)target;
 -(void)attackWithAnimation:(NBCharacter*)target withAnimation:(NSString*)animationName;
 

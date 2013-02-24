@@ -35,6 +35,8 @@
 		BC336A2B16A665DD0079596C /* NBFireExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */; };
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 		BC8A720816B511D400D890A1 /* NBStageData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A720716B511D400D890A1 /* NBStageData.m */; };
+		BC938FFD16CA6B5700C313D1 /* NBCountryData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC938FFC16CA6B5700C313D1 /* NBCountryData.m */; };
+		BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
@@ -202,6 +204,10 @@
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
 		BC8A720716B511D400D890A1 /* NBStageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageData.m; sourceTree = "<group>"; };
+		BC938FFB16CA6B5700C313D1 /* NBCountryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCountryData.h; sourceTree = "<group>"; };
+		BC938FFC16CA6B5700C313D1 /* NBCountryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountryData.m; sourceTree = "<group>"; };
+		BC9F0F9216D0EF8F00BD17B2 /* NBSoldierBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldierBoss.h; sourceTree = "<group>"; };
+		BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldierBoss.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
 		BCB258E416AA51430010BB36 /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTestScreen.m; sourceTree = "<group>"; };
 		BCB258E616AB94220010BB36 /* NBStageSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageSelectionScreen.h; sourceTree = "<group>"; };
@@ -1009,6 +1015,8 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
+				BC938FFB16CA6B5700C313D1 /* NBCountryData.h */,
+				BC938FFC16CA6B5700C313D1 /* NBCountryData.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1075,6 +1083,8 @@
 				F9299FE716A2FBA300C9DD61 /* NBFireMage.m */,
 				F9299FE816A2FBA300C9DD61 /* NBSoldier.h */,
 				F9299FE916A2FBA300C9DD61 /* NBSoldier.m */,
+				BC9F0F9216D0EF8F00BD17B2 /* NBSoldierBoss.h */,
+				BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -1170,7 +1180,7 @@
 		BCBC72091633A98700B5A141 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = BCBC720C1633A98700B5A141 /* Build configuration list for PBXProject "ElementArmy1.0" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1379,6 +1389,8 @@
 				BC8A720816B511D400D890A1 /* NBStageData.m in Sources */,
 				BCC0F5FE16B6C7E0006A1C88 /* NBItemData.m in Sources */,
 				BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */,
+				BC938FFD16CA6B5700C313D1 /* NBCountryData.m in Sources */,
+				BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,6 +1401,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1399,6 +1415,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
@@ -1410,6 +1427,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1418,6 +1439,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
