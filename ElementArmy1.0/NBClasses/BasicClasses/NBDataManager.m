@@ -227,6 +227,38 @@ static CCArray* listOfProjectiles = nil;
     }
 }
 
+- (void)saveStages
+{
+    if (self.listOfStages == nil)
+        return;
+    
+  //Grab the default stage data
+  NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+  NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+  NSArray *stages = [dictionary objectForKey:@"Stage data"];
+
+  NSInteger index = 0;
+  for (NSMutableDictionary *stageDataDictionary in stages) {
+    NBStage *stage = [self.listOfStages objectAtIndex:index];
+    index++;
+
+    //update the default stage data with any changes to the game state
+    NBStageData *stageData = stage.stageData;
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
+    [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+  }
+
+  [dictionary setObject:stages forKey:@"Stage data"];
+  NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+
+  //save the changes to the app documents directory
+  NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+  NSString *path = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
+
+  if (plistData)
+    [plistData writeToFile:path atomically:YES];
+}
+
 +(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className
 {
     if (listOfCharacters && [listOfCharacters count] > 0)
