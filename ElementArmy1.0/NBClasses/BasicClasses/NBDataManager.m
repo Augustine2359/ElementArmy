@@ -71,8 +71,18 @@ static CCArray* listOfProjectiles = nil;
     CCArray* arrayOfEnemyData = nil;
     
     self.listOfStages = [CCArray array];
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+
+    //read from the app documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+
+    //if it doesn't exist yet, use the default one
+    if (dictionary == nil) {
+      plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+      dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    }
+
     NSArray *stages = [dictionary objectForKey:@"Stage data"];
     
     for (NSDictionary *stageDataDictionary in stages)

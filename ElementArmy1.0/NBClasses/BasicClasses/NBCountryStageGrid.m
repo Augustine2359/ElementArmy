@@ -67,6 +67,8 @@
     //[stage changeParent:self];
     [stage.worldIcon changeParent:self];
     [stage.worldIconCompleted changeParent:self];
+    stage.worldIcon.menu.zOrder = WORLD_ICON_Z;
+    stage.worldIconCompleted.menu.zOrder = WORLD_ICON_Z;
     [self.stageList addObject:stage];
     
     //if (stage.previousStageID)
