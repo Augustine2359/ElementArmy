@@ -3,7 +3,73 @@
 <plist version="1.0">
 <dict>
 	<key>Character data</key>
-	<array/>
+	<array>
+		<dict>
+			<key>className</key>
+			<string>metalsoldier</string>
+			<key>elementID</key>
+			<integer>5</integer>
+			<key>startLevel</key>
+			<integer>1</integer>
+			<key>basicHP</key>
+			<integer>100</integer>
+			<key>basicSP</key>
+			<integer>0</integer>
+			<key>basicSTR</key>
+			<integer>20</integer>
+			<key>basicDEF</key>
+			<integer>10</integer>
+			<key>basicINT</key>
+			<integer>0</integer>
+			<key>basicDEX</key>
+			<integer>70</integer>
+			<key>basicEVA</key>
+			<string>5</string>
+			<key>minHPAdd</key>
+			<integer>8</integer>
+			<key>maxHPAdd</key>
+			<integer>12</integer>
+			<key>minSPAdd</key>
+			<integer>0</integer>
+			<key>maxSPAdd</key>
+			<integer>0</integer>
+			<key>minSTRAdd</key>
+			<integer>0</integer>
+			<key>maxSTRAdd</key>
+			<integer>0</integer>
+			<key>minDEFAdd</key>
+			<integer>0</integer>
+			<key>maxDEFAdd</key>
+			<integer>0</integer>
+			<key>minINTAdd</key>
+			<integer>0</integer>
+			<key>maxINTAdd</key>
+			<integer>0</integer>
+			<key>minDEXAdd</key>
+			<integer>0</integer>
+			<key>maxDEXAdd</key>
+			<integer>0</integer>
+			<key>minEVAAdd</key>
+			<integer>0</integer>
+			<key>maxEVAAdd</key>
+			<integer>0</integer>
+			<key>attackType</key>
+			<integer>0</integer>
+			<key>maximumAttackedStack</key>
+			<integer>6</integer>
+			<key>frames</key>
+			<dict>
+				<key>idleFrame</key>
+				<string>metal_soldier_IDLEanim_1.png</string>
+				<key>idleAnimFrame</key>
+				<string>metal_soldier_IDLEanim</string>
+				<key>attackAnimFrame</key>
+				<string>metal_soldier_ATTACKanim</string>
+			</dict>
+			<key>useProjectileName</key>
+			<string>fireball</string>
+		</dict>
+	</array>
 	<key>Item data</key>
 	<array>
 		<dict>
@@ -46,40 +112,91 @@
 				<string>stage1</string>
 			</array>
 			<key>isCompleted</key>
-			<true/>
+			<false/>
 			<key>isUnlocked</key>
 			<true/>
 			<key>Enemy List</key>
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -114,26 +231,95 @@
 				<string>stage2</string>
 			</array>
 			<key>isCompleted</key>
-			<true/>
+			<false/>
 			<key>isUnlocked</key>
-			<true/>
+			<false/>
 			<key>Enemy List</key>
 			<array>
-				<dict/>
-				<dict/>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldierBoss</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
-					<key>scale</key>
-					<string>4</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>enemyClass</key>
+					<string>metalsoldier</string>
+					<key>level</key>
+					<string>1</string>
+					<key>totalUnit</key>
+					<string>1</string>
+					<key>availableUnit</key>
+					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>enemyClass</key>
+					<string>metalsoldier</string>
+					<key>level</key>
+					<string>1</string>
+					<key>totalUnit</key>
+					<string>1</string>
+					<key>availableUnit</key>
+					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
+			<key>winCount</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>stageID</key>
@@ -164,40 +350,91 @@
 				<string>stage3</string>
 			</array>
 			<key>isCompleted</key>
-			<true/>
+			<false/>
 			<key>isUnlocked</key>
-			<true/>
+			<false/>
 			<key>Enemy List</key>
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -232,40 +469,91 @@
 				<string>stage4</string>
 			</array>
 			<key>isCompleted</key>
-			<true/>
+			<false/>
 			<key>isUnlocked</key>
-			<true/>
+			<false/>
 			<key>Enemy List</key>
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -302,38 +590,89 @@
 			<key>isCompleted</key>
 			<false/>
 			<key>isUnlocked</key>
-			<true/>
+			<false/>
 			<key>Enemy List</key>
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -375,33 +714,84 @@
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -445,33 +835,84 @@
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -513,33 +954,84 @@
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -577,33 +1069,84 @@
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -641,33 +1184,84 @@
 			<array>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBSoldier</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 				<dict>
 					<key>enemyClass</key>
-					<string>NBFireMage</string>
+					<string>metalsoldier</string>
 					<key>level</key>
 					<string>1</string>
 					<key>totalUnit</key>
 					<string>1</string>
 					<key>availableUnit</key>
 					<string>1</string>
+					<key>attributes</key>
+					<dict>
+						<key>HP</key>
+						<integer>100</integer>
+						<key>SP</key>
+						<integer>100</integer>
+						<key>STR</key>
+						<integer>10</integer>
+						<key>DEF</key>
+						<integer>10</integer>
+						<key>INT</key>
+						<integer>10</integer>
+						<key>DEX</key>
+						<integer>10</integer>
+						<key>EVA</key>
+						<integer>10</integer>
+					</dict>
 				</dict>
 			</array>
 			<key>winCount</key>
@@ -701,5 +1295,18 @@
 	</array>
 	<key>Weapon data</key>
 	<array/>
+	<key>Projectile data</key>
+	<array>
+		<dict>
+			<key>projectileName</key>
+			<string>fireball</string>
+			<key>frames</key>
+			<string>fireball_anim_1.png</string>
+			<key>defaultPower</key>
+			<integer>10</integer>
+			<key>defaultSpeed</key>
+			<integer>10</integer>
+		</dict>
+	</array>
 </dict>
 </plist>

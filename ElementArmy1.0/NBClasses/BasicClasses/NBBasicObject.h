@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "NBDataManager.h"
 
 #define MAXIMUM_COLLISION_ALLOWED 3
 #define MAXIMUM_OBJECT_IN_WORLD 1000
@@ -52,6 +53,7 @@ typedef enum
 -(void)onMoveCompleted;
 -(void)isCollidedWith:(NBBasicObject*)object;
 
+@property (nonatomic, retain) NBDataManager* dataManager;
 @property (nonatomic, assign) int objectIndex;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, assign) int basicSpeedPoint;

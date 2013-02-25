@@ -18,6 +18,10 @@
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID;
 -(void)createStages;
 -(void)createItems;
+-(void)createCharacterList;
+-(void)createProjectileList;
+
++(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
 @property (nonatomic, retain) NSString* userID;
 
@@ -30,6 +34,9 @@
 @property (nonatomic, retain) CCArray* listOfStages;
 @property (nonatomic, retain) CCArray* listOfItems;
 @property (nonatomic, retain) CCArray* listOfCountries;
+
+@property (nonatomic, retain) CCArray* listOfCharacters;
+@property (nonatomic, retain) CCArray* listOfProjectiles;
 
 @property (nonatomic, retain) NSString* currentStageID;
 @property (nonatomic, retain) NBStageData* selectedStageData;

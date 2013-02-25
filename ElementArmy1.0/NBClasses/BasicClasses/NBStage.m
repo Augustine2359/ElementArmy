@@ -115,7 +115,7 @@ static CCArray* allStageList = nil;
 
 -(void)setAvailableImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    self.worldIcon = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero intArgument:0];
+    self.worldIcon = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero];
     self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
@@ -124,7 +124,7 @@ static CCArray* allStageList = nil;
 
 -(void)setCompletedImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    self.worldIconCompleted = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero intArgument:0];
+    self.worldIconCompleted = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero];
     self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
@@ -239,20 +239,6 @@ static CCArray* allStageList = nil;
     currentlySelectedStage = self;
     [self.listenerLayer performSelector:self.selector];
 }
-
-/*-(void)createLineFrom:(NBStage*)previousStage onLayer:(CCLayer*)layer
-{
-    self.connectorLine1 = [CCSprite spriteWithSpriteFrameName:@"stageline.png"];
-    self.connectorLine1.anchorPoint = ccp(0, 0);
-    self.currentLineScaleX = (self.worldIcon.menu.position.x - previousStage.worldIcon.menu.position.x + self.connectorLine1.contentSize.width) / self.connectorLine1.contentSize.width;
-    [self.connectorLine1 setScaleX:self.currentLineScaleX];
-    [self.connectorLine1 setScaleY:(5 / self.connectorLine1.contentSize.height)];
-    
-    self.connectorLine1.position = CGPointMake(previousStage.origin.x - (self.connectorLine1.contentSize.width / 2), previousStage.origin.y - (self.connectorLine1.contentSize.height / 2));
-    [layer addChild:self.connectorLine1 z:6];
-    [layer reorderChild:previousStage.worldIcon.menu z:5];
-    [layer reorderChild:self.worldIcon.menu z:5];
-}*/
 
 -(void)createLineTo:(NBStage*)stage onLayer:(CCLayer*)layer
 {

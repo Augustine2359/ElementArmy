@@ -1,10 +1,9 @@
 //
-//  NBCharacter.h
-//  NebulaGame1_2
+//  NBCharacterV2.h
+//  ElementArmy1.0
 //
-//  Created by Romy Irawaty on 17/9/12.
-//  2/22/2013: Major change to support reading behavior from database. Avoiding Subclasses.
-//  2/22/2013: Original NBCharacter is backed up on NBCharacterV2
+//  Created by Romy Irawaty on 23/2/13.
+//  This is backup from NBCharacter
 //
 
 #import <Foundation/Foundation.h>
@@ -21,18 +20,18 @@
 #define MAXIMUM_PROJECTILE_COUNT 50
 #define MAXIMUM_ATTACK_REFRESH_DURATION 1800    //2 Seconds??
 #define TEST_OBJECT_NAME @"EnemyNBSoldier"
-#define ENABLE_REMAINING_ATK_TIME_LOG
+//#define ENABLE_REMAINING_ATK_TIME_LOG
 
-@interface NBCharacter : NBBasicObject
+@interface NBCharacterV2 : NBBasicObject
 {
     bool deadEventTriggered;
     bool updateIsActive;
     EnumCharacterSide characterSide_;
 }
 
-+(bool)calculateAttackSuccessWithAttacker:(NBCharacter*)attacker andDefender:(NBCharacter*)defender;
-+(CCArray*)getEnemyList:(NBCharacter*)unit;
-+(CCArray*)getAllyList:(NBCharacter*)unit;
++(bool)calculateAttackSuccessWithAttacker:(NBCharacterV2*)attacker andDefender:(NBCharacterV2*)defender;
++(CCArray*)getEnemyList:(NBCharacterV2*)unit;
++(CCArray*)getAllyList:(NBCharacterV2*)unit;
 +(CCArray*)getAllUnitList;
 
 -(long)getHitPoint;
@@ -41,22 +40,22 @@
 -(void)initialize;
 -(void)update:(ccTime)delta;
 -(void)levelUp;
--(void)attack:(NBCharacter*)target;
--(void)attackWithAnimation:(NBCharacter*)target withAnimation:(NSString*)animationName;
+-(void)attack:(NBCharacterV2*)target;
+-(void)attackWithAnimation:(NBCharacterV2*)target withAnimation:(NSString*)animationName;
 -(void)shootProjectile;
 -(void)useSkill:(NBSkill*)skill;
 -(void)useMagic:(NBMagic*)magic;
 -(void)moveToPosition:(CGPoint)newPosition forDurationOf:(float)duration;
 -(void)moveToWithAnimation:(CGPoint)newPosition forDurationOf:(float)duration withAnimation:(NSString*)animationName;
--(void)moveToAttackTargetPosition:(NBCharacter*)target;
+-(void)moveToAttackTargetPosition:(NBCharacterV2*)target;
 -(void)MoveToPosition:(CGPoint)newPosition withDelta:(ccTime)delta setNextState:(EnumCharacterState)nextState;
 -(void)startUpdate;
 -(void)dead;
 -(void)appear;
 -(void)dissapear;
 //-(BOOL)isTouchingMe:(CGPoint)touchLocation;
--(NBCharacter*)findNewTarget:(CCArray*)enemyUnits;
--(CGPoint)getAttackedPosition:(NBCharacter*)attacker;
+-(NBCharacterV2*)findNewTarget:(CCArray*)enemyUnits;
+-(CGPoint)getAttackedPosition:(NBCharacterV2*)attacker;
 -(void)useNextState;
 
 //Events
@@ -91,8 +90,8 @@
 @property (nonatomic, retain) NBMagic* currentActiveMagic;
 @property (nonatomic, assign) EnumCharacterSide characterSide;
 @property (nonatomic, retain) NSString* characterSideString;
-@property (nonatomic, retain) NBCharacter* currentTarget;
-@property (nonatomic, retain) NBCharacter* previousTarget;
+@property (nonatomic, retain) NBCharacterV2* currentTarget;
+@property (nonatomic, retain) NBCharacterV2* previousTarget;
 @property (nonatomic, assign) bool isAttackReady;
 @property (nonatomic, assign) ccTime timeUntilNextAttack;
 @property (nonatomic, assign) CGPoint targetPreviousPosition;

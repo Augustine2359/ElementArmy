@@ -36,9 +36,9 @@ static CCArray* objectList = nil;
     //The intention is to give initial value, but basically the attributes of such class should be determine by the projectile owner.
     //See NBFireMage class for example on how to set.override the default power of this class.
     self.name = [NSString stringWithFormat:@"%@%i", NSStringFromClass([self class]), [objectList count]];
-    self.power = FIREBALL_MINIMUM_POWER;
-    self.speed = FIREBALL_TRAVELLING_SPEED;
-    self.basicSpeedPoint = self.speed;
+    self.currentPower = self.projectileBasicData.defaultPower;
+    self.currentSpeed = self.projectileBasicData.defaultSpeed;
+    self.basicSpeedPoint = self.currentSpeed;
 }
 
 -(void)update:(ccTime)delta

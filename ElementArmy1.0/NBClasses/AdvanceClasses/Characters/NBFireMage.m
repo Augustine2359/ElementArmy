@@ -89,7 +89,7 @@ static CCArray* classObjectList = nil;
     {
         NBFireball* tempFireball = [[NBFireball alloc] initWithSpriteBatchNode:self.currentSpriteBatchNode onLayer:self.currentLayer setOwner:self];
         [tempFireball initialize];
-        tempFireball.power = self.intelligencePoint;
+        tempFireball.currentPower = self.intelligencePoint;
         [self.projectileArrayList addObject:tempFireball];
     }
 }
@@ -266,7 +266,7 @@ static CCArray* classObjectList = nil;
 {
     //Implement below
     NBProjectile* tempAttacker = (NBProjectile*)projectile;
-    int damage = (tempAttacker.power - self.defensePoint);
+    int damage = (tempAttacker.currentPower - self.defensePoint);
     self.hitPoint -= damage;
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
