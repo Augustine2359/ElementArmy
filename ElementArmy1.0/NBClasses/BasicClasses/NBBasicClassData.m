@@ -28,4 +28,66 @@
     return self;
 }
 
+-(NBBasicClassData*)copy
+{
+    NBBasicClassData* tempBasicData = [[NBBasicClassData alloc] init];
+    
+    NSData* tempData = [NSKeyedArchiver archivedDataWithRootObject:self.className];
+    tempBasicData.className = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.idleFrame];
+    tempBasicData.idleFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.idleAnimFrame];
+    tempBasicData.idleAnimFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.attackAnimFrame];
+    tempBasicData.attackAnimFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.useProjectileName];
+    tempBasicData.useProjectileName = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempBasicData.startLevel = self.startLevel;
+    tempBasicData.basicHP = self.basicHP;
+    tempBasicData.basicSP = self.basicSP;
+    tempBasicData.basicSTR = self.basicSTR;
+    tempBasicData.basicDEF = self.basicDEF;
+    tempBasicData.basicINT = self.basicINT;
+    tempBasicData.basicDEX = self.basicDEX;
+    tempBasicData.basicEVA = self.basicEVA;
+    tempBasicData.minHPAdd = self.minHPAdd;
+    tempBasicData.maxHPAdd = self.maxHPAdd;
+    tempBasicData.minSPAdd = self.minSPAdd;
+    tempBasicData.maxSPAdd = self.maxSPAdd;
+    tempBasicData.minSTRAdd = self.minSTRAdd;
+    tempBasicData.maxSTRAdd = self.maxSTRAdd;
+    tempBasicData.minDEFAdd = self.minDEFAdd;
+    tempBasicData.maxDEFAdd = self.maxDEFAdd;
+    tempBasicData.minINTAdd = self.minINTAdd;
+    tempBasicData.maxINTAdd = self.maxINTAdd;
+    tempBasicData.minDEXAdd = self.minDEXAdd;
+    tempBasicData.maxDEXAdd = self.maxDEXAdd;
+    tempBasicData.minEVAAdd = self.minEVAAdd;
+    tempBasicData.maxEVAAdd = self.maxEVAAdd;
+    tempBasicData.maximumAttackedStack = self.maximumAttackedStack;
+    tempBasicData.attackType = self.attackType;
+    tempBasicData.isEnemy = self.isEnemy;
+    
+    tempBasicData.level = self.level;
+    tempBasicData.currentHP = self.currentHP;
+    tempBasicData.currentSP = self.currentSP;
+    tempBasicData.currentSTR = self.currentSTR;
+    tempBasicData.currentDEF = self.currentDEF;
+    tempBasicData.currentINT = self.currentINT;
+    tempBasicData.currentDEX = self.currentDEX;
+    tempBasicData.currentEVA = self.currentEVA;
+    tempBasicData.availableUnit = self.availableUnit;
+    tempBasicData.totalUnit = self.totalUnit;
+    tempBasicData.timeLastBattleCompleted = self.timeLastBattleCompleted;
+    tempBasicData.enemyType = self.enemyType;
+    tempBasicData.scale = self.scale;
+    
+    return tempBasicData;
+}
+
 @end

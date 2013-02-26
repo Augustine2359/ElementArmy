@@ -48,6 +48,20 @@
   [self addChild:self.unitSelectorC];
 }
 
+- (NBBasicClassData *)basicClassDataInUnitSelector:(NSInteger)selector {
+  switch (selector) {
+    case 0:
+      return [self.unitSelectorA basicClassData];
+    case 1:
+      return [self.unitSelectorB basicClassData];
+    case 2:
+      return [self.unitSelectorC basicClassData];
+    default:
+      return [self.unitSelectorA basicClassData];
+  }
+  return [self.unitSelectorA basicClassData];
+}
+
 - (void)addSwipeGestureRecognizers {
   UISwipeGestureRecognizer *downSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
   downSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;

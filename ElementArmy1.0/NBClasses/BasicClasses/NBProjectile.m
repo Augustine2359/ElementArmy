@@ -30,15 +30,16 @@ static CCArray* projectileList = nil;
     }
 }
 
--(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBCharacter*)owner
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBCharacter*)owner withBasicData:(NBProjectileBasicData*)basicData
 {
     if (!projectileList)
     {
         projectileList = [[CCArray alloc] initWithCapacity:PROJECTILE_MAX_CAPACITY_PER_CHARACTER];
     }
     
-    if (self == [super initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer])
+    if (self == [super initWithFrameName:basicData.idleFrame andSpriteBatchNode:spriteBatchNode onLayer:layer])
     {
+        self.projectileBasicData = basicData;
         self.currentOwner = owner;
         self.currentLayer = layer;
         self.objectIndex = [layer.children count];
@@ -107,7 +108,7 @@ static CCArray* projectileList = nil;
         
         self.position = ccpAdd(self.position, self.paddingPosition);
         
-        if (self.shootType == ProjectileTargettedShot)
+        if (self.projectileBasicData.shootType == ProjectileTargettedShot)
         {
             if (self.currentTarget != nil)
             {

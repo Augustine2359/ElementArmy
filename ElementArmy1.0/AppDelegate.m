@@ -173,13 +173,15 @@ static NBDataManager* dataManager = nil;
     if (!dataManager)
         dataManager = [NBDataManager dataManager];
     
+    [dataManager createCharacterList];
+    [dataManager createItems];
+    [dataManager createProjectileList];
+    
     //Temporary Code
     //-------------------------------------------------------------------------------
     CCArray* arrayOfAllyData = [CCArray arrayWithCapacity:3];
-    CCArray* arrayOfEnemyData = [CCArray arrayWithCapacity:3];
     
-    NBBasicClassData* basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBSoldier";
+    NBBasicClassData* basicClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 2;
     basicClassData.totalUnit = 8;
@@ -187,8 +189,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBSoldier";
+    basicClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 1;
     basicClassData.totalUnit = 8;
@@ -196,8 +197,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBFireMage";
+    basicClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 4;
     basicClassData.totalUnit = 8;
@@ -205,35 +205,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBSoldier";
-    basicClassData.level = 1;
-    basicClassData.availableUnit = 1;
-    basicClassData.totalUnit = 8;
-    basicClassData.timeLastBattleCompleted = [NSDate date];
-    
-    [arrayOfEnemyData addObject:basicClassData];
-    
-    basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBFireMage";
-    basicClassData.level = 1;
-    basicClassData.availableUnit = 1;
-    basicClassData.totalUnit = 8;
-    basicClassData.timeLastBattleCompleted = [NSDate date];
-    
-    [arrayOfEnemyData addObject:basicClassData];
-    
-    basicClassData = [[NBBasicClassData alloc] init];
-    basicClassData.className = @"NBFireMage";
-    basicClassData.level = 1;
-    basicClassData.availableUnit = 8;
-    basicClassData.totalUnit = 8;
-    basicClassData.timeLastBattleCompleted = [NSDate date];
-    
-    [arrayOfEnemyData addObject:basicClassData];
-    
     dataManager.arrayOfAllySquad = arrayOfAllyData;
-    dataManager.arrayOfEnemySquad = arrayOfEnemyData;
     //-------------------------------------------------------------------------------
 
 }

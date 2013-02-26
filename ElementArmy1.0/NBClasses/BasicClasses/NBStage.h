@@ -42,7 +42,6 @@ typedef enum
 -(CGPoint)getActualPosition;
 -(void)update;
 -(void)onIconSelected;
--(void)createLineFrom:(NBStage*)previousStage onLayer:(CCLayer*)layer;
 -(void)createLineTo:(NBStage*)stage onLayer:(CCLayer*)layer;
 -(void)createCompletedLines;
 -(void)animateLineTo:(NBStage*)nextStage onLayer:(CCLayer*)layer;

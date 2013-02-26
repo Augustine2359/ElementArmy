@@ -92,6 +92,7 @@ static CGSize worldSize;
         
     if (self = [super init])
     {
+        self.dataManager = [NBDataManager dataManager];
         self.sprite = [[CCSprite alloc] initWithSpriteFrameName:frameName];
         [self addChild:self.sprite];
         self.currentLayer = layer;

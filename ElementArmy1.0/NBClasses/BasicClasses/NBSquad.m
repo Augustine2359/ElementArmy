@@ -83,11 +83,11 @@ static int enemySquadPositionIndex = 0;
         
         self.skillSlot = [[CCArray alloc] initWithCapacity:MAGIC_SLOT_CAPACITY];
         self.unitArray = [[CCArray alloc] initWithCapacity:MAXIMUM_UNIT_COUNT];
+        //self.unitClass = NSClassFromString(basicClassData.className);
         
-        self.unitClass = NSClassFromString(basicClassData.className);
         for (int i = 0; i < unitCount; i++)
         {
-            id tempCharacter = [[self.unitClass alloc] initWithSpriteBatchNode:spriteBatchNode onLayer:layer onSide:side usingBasicClassData:basicClassData];
+            NBCharacter* tempCharacter = [[NBCharacter alloc] initWithSpriteBatchNode:spriteBatchNode onLayer:layer onSide:side usingBasicClassData:basicClassData];
             
             //[layer addChild:tempCharacter z:0 tag:[tempCharacter objectIndex]];
             [self.unitArray addObject:tempCharacter];

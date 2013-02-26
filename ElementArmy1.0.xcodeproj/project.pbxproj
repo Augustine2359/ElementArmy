@@ -37,6 +37,8 @@
 		BC8A720816B511D400D890A1 /* NBStageData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A720716B511D400D890A1 /* NBStageData.m */; };
 		BC938FFD16CA6B5700C313D1 /* NBCountryData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC938FFC16CA6B5700C313D1 /* NBCountryData.m */; };
 		BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */; };
+		BC9F0F9716D8597900BD17B2 /* NBCharacterV2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */; };
+		BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
@@ -208,6 +210,10 @@
 		BC938FFC16CA6B5700C313D1 /* NBCountryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountryData.m; sourceTree = "<group>"; };
 		BC9F0F9216D0EF8F00BD17B2 /* NBSoldierBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldierBoss.h; sourceTree = "<group>"; };
 		BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldierBoss.m; sourceTree = "<group>"; };
+		BC9F0F9516D8597800BD17B2 /* NBCharacterV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCharacterV2.h; sourceTree = "<group>"; };
+		BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCharacterV2.m; sourceTree = "<group>"; };
+		BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectileBasicData.h; sourceTree = "<group>"; };
+		BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectileBasicData.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
 		BCB258E416AA51430010BB36 /* NBTestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTestScreen.m; sourceTree = "<group>"; };
 		BCB258E616AB94220010BB36 /* NBStageSelectionScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageSelectionScreen.h; sourceTree = "<group>"; };
@@ -990,6 +996,10 @@
 				BC2065C0168B494500745FB0 /* NBButton.m */,
 				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
 				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
+				BC9F0F9516D8597800BD17B2 /* NBCharacterV2.h */,
+				BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */,
+				BC938FFB16CA6B5700C313D1 /* NBCountryData.h */,
+				BC938FFC16CA6B5700C313D1 /* NBCountryData.m */,
 				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
 				BCC0F60016B6C846006A1C88 /* NBItem.h */,
@@ -1002,6 +1012,8 @@
 				BC2065BD168B44E000745FB0 /* NBMessageBox.m */,
 				BC06C24F163461E700F091F0 /* NBProjectile.h */,
 				BC06C250163461E700F091F0 /* NBProjectile.m */,
+				BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */,
+				BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */,
 				BCBC73BD1633AA7700B5A141 /* NBSkill.h */,
 				BCBC73BE1633AA7700B5A141 /* NBSkill.m */,
 				BCBC73C11633AA7700B5A141 /* NBSquad.h */,
@@ -1015,8 +1027,6 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
-				BC938FFB16CA6B5700C313D1 /* NBCountryData.h */,
-				BC938FFC16CA6B5700C313D1 /* NBCountryData.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1391,6 +1401,8 @@
 				BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */,
 				BC938FFD16CA6B5700C313D1 /* NBCountryData.m in Sources */,
 				BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */,
+				BC9F0F9716D8597900BD17B2 /* NBCharacterV2.m in Sources */,
+				BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
