@@ -13,7 +13,7 @@
 
 +(NBItem*)getCurrentlySelectedItem;
 +(id)createItem:(NSString*)itemID onLayer:(id)layer onSelector:(SEL)selector;
--(id)setItemIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector;
+-(id)setItemIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer;
 -(void)displayItemIcon;
 -(void)hideItemIcon;
 -(void)onItemSelected;

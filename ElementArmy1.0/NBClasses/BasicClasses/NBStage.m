@@ -115,7 +115,7 @@ static CCArray* allStageList = nil;
 
 -(void)setAvailableImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    self.worldIcon = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero intArgument:0];
+    self.worldIcon = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeZero];
     self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;
@@ -124,7 +124,7 @@ static CCArray* allStageList = nil;
 
 -(void)setCompletedImage:(NSString*)selectedFrame withDisabledImage:(NSString*)disabledFrame onLayer:(CCLayer*)layer selector:(SEL)selector
 {
-    self.worldIconCompleted = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero intArgument:0];
+    self.worldIconCompleted = [NBButton createWithStringHavingNormal:selectedFrame havingSelected:selectedFrame havingDisabled:disabledFrame onLayer:layer respondTo:nil selector:@selector(onIconSelected) withSize:CGSizeZero];
     self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
     self.listenerLayer = layer;
     self.selector = selector;

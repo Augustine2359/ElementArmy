@@ -28,10 +28,9 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
     return item;
 }
 
--(id)setItemIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector
+-(id)setItemIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer
 {
-    self.itemIcon = [NBButton createWithStringHavingNormal:normalImage havingSelected:selectedImage havingDisabled:disabledImage onLayer:layer respondTo:object selector:selector withSize:CGSizeZero];
-    [self.itemIcon setIntStorage:0];
+    self.itemIcon = [NBButton createWithStringHavingNormal:normalImage havingSelected:selectedImage havingDisabled:disabledImage onLayer:layer respondTo:self selector:@selector(onItemSelected) withSize:CGSizeZero];
     self.image = normalImage;
     return self;
 }
