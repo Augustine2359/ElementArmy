@@ -9,6 +9,7 @@
 #import "NBBattleSetupScreen.h"
 #import "NBBattleSetupUnitSelectorLayer.h"
 #import "NBBattleSetupUnitSelectorsContainerLayer.h"
+#import "NBUnitRespawnContainerLayer.h"
 
 @interface NBBattleSetupScreen()
 @property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
@@ -62,7 +63,8 @@
     
     //Display Characters
     [self createUnitSelectors];
-    
+    [self createUnitRespawnContainerLayer];
+
     //Display buttons Navigation
     //OK
     self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
@@ -111,6 +113,18 @@
   self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
   self.unitSelectorsContainerLayer.position = CGPointMake(10, 100);
   [self addChild:self.unitSelectorsContainerLayer];
+}
+
+- (void)createUnitRespawnContainerLayer {
+  ccColor4B startColor;
+  startColor.r = 255;
+  startColor.g = 255;
+  startColor.b = 255;
+  startColor.a = 255;
+
+  NBUnitRespawnContainerLayer *unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
+  unitRespawnContainerLayer.position = CGPointMake(285, 100);
+  [self addChild:unitRespawnContainerLayer];
 }
 
 -(void)gotoIntroScreen
