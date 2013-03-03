@@ -15,6 +15,8 @@
 
 -(void)openItemSelection;
 -(void)gotoAppStore;
+-(void)initialiseTransition;
+-(void)updateObjectsLeftToTransit;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;

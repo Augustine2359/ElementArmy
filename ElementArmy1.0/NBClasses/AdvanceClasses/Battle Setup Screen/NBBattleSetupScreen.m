@@ -13,8 +13,10 @@
 
 @interface NBBattleSetupScreen()
 @property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
+@property (nonatomic, strong) NBUnitRespawnContainerLayer *unitRespawnContainerLayer;
 @end
 
+int objectsLeftToTransit = 6;
 
 @implementation NBBattleSetupScreen
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
@@ -59,7 +61,7 @@
     
     
     //Display Title
-    self.battleSetupTitle = [NBStaticObject createStaticObject:@"setup_title.png" atPosition:CGPointMake(240, 280)];
+    self.battleSetupTitle = [NBStaticObject createStaticObject:@"setup_title.png" atPosition:CGPointMake(240, 350)];
     
     //Display Characters
     [self createUnitSelectors];
@@ -101,6 +103,8 @@
     [lockedButton setIntStorage:0];
     [lockedButton setPosition:ccp(320, 50)];
     [lockedButton show];
+    
+    [self initialiseTransition];
 }
 
 - (void)createUnitSelectors {
@@ -111,7 +115,7 @@
   startColor.a = 255;
 
   self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
-  self.unitSelectorsContainerLayer.position = CGPointMake(10, 100);
+  self.unitSelectorsContainerLayer.position = CGPointMake(-300, 100);
   [self addChild:self.unitSelectorsContainerLayer];
 }
 
@@ -122,9 +126,28 @@
   startColor.b = 255;
   startColor.a = 255;
 
-  NBUnitRespawnContainerLayer *unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
-  unitRespawnContainerLayer.position = CGPointMake(285, 100);
-  [self addChild:unitRespawnContainerLayer];
+  self.unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
+  self.unitRespawnContainerLayer.position = CGPointMake(500, 100);
+  [self addChild:self.unitRespawnContainerLayer];
+}
+
+-(void)initialiseTransition{
+    [self.unitRespawnContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(285, 100)], nil]];
+    [self.unitSelectorsContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(10, 100)], nil]];
+    [self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
+//    [self.battleSetupCancel runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
+//    [self.battleSetupOk runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
+//    [self.selectedItem1.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
+//    [self.selectedItem2.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
+//    [self.selectedItem3.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
+}
+
+-(void)updateObjectsLeftToTransit{
+    objectsLeftToTransit--;
+    
+    if (objectsLeftToTransit <= 0) {
+        DLog(@"All objects transited");
+    }
 }
 
 -(void)gotoIntroScreen
