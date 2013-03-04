@@ -200,7 +200,7 @@
 						<key>SP</key>
 						<integer>100</integer>
 						<key>STR</key>
-						<integer>10</integer>
+						<integer>20</integer>
 						<key>DEF</key>
 						<integer>10</integer>
 						<key>INT</key>
@@ -227,7 +227,7 @@
 						<key>SP</key>
 						<integer>100</integer>
 						<key>STR</key>
-						<integer>10</integer>
+						<integer>20</integer>
 						<key>DEF</key>
 						<integer>10</integer>
 						<key>INT</key>
@@ -254,7 +254,7 @@
 						<key>SP</key>
 						<integer>100</integer>
 						<key>STR</key>
-						<integer>10</integer>
+						<integer>20</integer>
 						<key>DEF</key>
 						<integer>10</integer>
 						<key>INT</key>

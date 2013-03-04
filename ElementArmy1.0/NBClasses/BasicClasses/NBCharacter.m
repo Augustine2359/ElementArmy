@@ -736,13 +736,10 @@ static CCArray* enemyUnitList = nil;
     int damage = (tempAttacker.attackPoint - self.defensePoint);
     self.hitPoint -= damage;
     
-    [NBDamageLabel registerDamage:self.position withDamageAmount:damage];
-    /*NSString* damageString = [[NSString alloc] initWithFormat:@"%i", damage];
-    [self.damageCounterLabel setString:damageString];
-    [damageString release];
-    self.damageCounterLabel.position = self.position;
-    self.damageCounterLabel.visible = YES;
-    damageCounterLabelRemainingTime = 1;*/
+    if (self.facing == Left)
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
+    else
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
@@ -770,6 +767,11 @@ static CCArray* enemyUnitList = nil;
     NBProjectile* tempProjectile = (NBProjectile*)projectile;
     int damage = (tempProjectile.currentPower - self.defensePoint);
     self.hitPoint -= damage;
+    
+    if (self.facing == Left)
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
+    else
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);

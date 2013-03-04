@@ -19,7 +19,7 @@ static int currentDamageLabelIndex = 0;
     currentLayer = layer;
 }
 
-+(void)registerDamage:(CGPoint)position withDamageAmount:(long)damage
++(void)registerDamage:(CGPoint)position withDamageAmount:(long)damage toRight:(bool)isToRight
 {
     if (!currentLayer) return;
     
@@ -29,6 +29,7 @@ static int currentDamageLabelIndex = 0;
         for (int i = 0; i < 100; i++)
         {
             NBDamageLabel* damageLabel = [[NBDamageLabel alloc]  initWithString:@"000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+            damageLabel.scale = 0.5;
             damageLabel.visible = NO;
             [currentLayer addChild:damageLabel];
             [damageLabels addObject:damageLabel];
@@ -36,17 +37,32 @@ static int currentDamageLabelIndex = 0;
         currentDamageLabelIndex = 0;
     }
     
+    if (currentDamageLabelIndex > 99) currentDamageLabelIndex = 0;
     NBDamageLabel* damageLabel = (NBDamageLabel*)[damageLabels objectAtIndex:currentDamageLabelIndex++];
     NSString* damageString = [[NSString alloc] initWithFormat:@"%li", damage];
     [damageLabel setString:damageString];
     [damageString release];
     damageLabel.position = position;
-    [damageLabel animate];
+    [damageLabel animate:isToRight];
 }
 
--(void)animate
+-(void)animateToRight
 {
-    CCJumpTo* jumpTo = [CCJumpTo actionWithDuration:0.3 position:ccpAdd(self.position, CGPointMake(10, 10)) height:10 jumps:1];
+    [self animate:YES];
+}
+
+-(void)animateToLeft
+{
+    [self animate:NO];
+}
+
+-(void)animate:(bool)isToRight
+{
+    CGPoint jumpToPosition = CGPointZero;
+    
+    if (isToRight) jumpToPosition = CGPointMake(10, 10); else jumpToPosition = CGPointMake(-10, 10);
+        
+    CCJumpTo* jumpTo = [CCJumpTo actionWithDuration:0.3 position:ccpAdd(self.position, jumpToPosition) height:10 jumps:1];
     CCCallFuncN* animationCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(animationCompleted)];
     CCSequence* sequence = [CCSequence actions:jumpTo, animationCompleted, nil];
     self.visible = YES;

@@ -16,7 +16,9 @@
 }
 
 +(void)setCurrentLayerForDamageLabel:(CCLayer*)layer;
-+(void)registerDamage:(CGPoint)position withDamageAmount:(long)damage;
--(void)animate;
++(void)registerDamage:(CGPoint)position withDamageAmount:(long)damage toRight:(bool)isToRight;
+-(void)animateToRight;
+-(void)animateToLeft;
+-(void)animate:(bool)isToRight;
 
 @end

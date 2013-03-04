@@ -1428,6 +1428,7 @@
 				BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */,
 				BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */,
 				BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */,
+				F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
