@@ -28,6 +28,11 @@
     
     long totalAllyHPAtStartOfBattle;
     long totalEnemyHPAtStartOfBattle;
+    
+    CGFloat targetScaleXForHPBar;
+    CGFloat targetScaleYForHPBar;
+    
+    int currentDamageLabelIndex;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
@@ -41,10 +46,14 @@
 -(void)endBattle;
 -(void)gotoMapSelectionScreen;
 -(void)gotoStageSelectionScreen;
--(void)entranceAnimation;
+-(void)entranceAnimationStep1;
+-(void)entranceAnimationStep2;
+-(void)entranceAnimationStep3;
+-(void)entranceAnimationStep4;
 -(void)onBackgroundMoveCompleted;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
+@property (nonatomic, retain) CCLabelTTF* stageNameBanner;
 @property (nonatomic, retain) CCMenu *menu;
 @property (nonatomic, retain) CCMenu *battleCompleteMenu;
 @property (nonatomic, retain) CCLabelTTF* battleResultText;
@@ -83,5 +92,7 @@
 @property (nonatomic, retain) NBButton* startBattleButton;
 @property (nonatomic, retain) NBStaticObject* fieldBackground;
 @property (nonatomic, retain) NBStaticObject* skyBackground;
+@property (nonatomic, retain) CCArray* damageLabels;
+
 
 @end

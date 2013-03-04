@@ -69,6 +69,71 @@
 			<key>useProjectileName</key>
 			<string>fireball</string>
 		</dict>
+		<dict>
+			<key>className</key>
+			<string>firemage</string>
+			<key>elementID</key>
+			<integer>1</integer>
+			<key>startLevel</key>
+			<integer>1</integer>
+			<key>basicHP</key>
+			<integer>100</integer>
+			<key>basicSP</key>
+			<integer>0</integer>
+			<key>basicSTR</key>
+			<integer>10</integer>
+			<key>basicDEF</key>
+			<integer>10</integer>
+			<key>basicINT</key>
+			<integer>20</integer>
+			<key>basicDEX</key>
+			<integer>70</integer>
+			<key>basicEVA</key>
+			<string>5</string>
+			<key>minHPAdd</key>
+			<integer>8</integer>
+			<key>maxHPAdd</key>
+			<integer>12</integer>
+			<key>minSPAdd</key>
+			<integer>0</integer>
+			<key>maxSPAdd</key>
+			<integer>0</integer>
+			<key>minSTRAdd</key>
+			<integer>0</integer>
+			<key>maxSTRAdd</key>
+			<integer>0</integer>
+			<key>minDEFAdd</key>
+			<integer>0</integer>
+			<key>maxDEFAdd</key>
+			<integer>0</integer>
+			<key>minINTAdd</key>
+			<integer>0</integer>
+			<key>maxINTAdd</key>
+			<integer>0</integer>
+			<key>minDEXAdd</key>
+			<integer>0</integer>
+			<key>maxDEXAdd</key>
+			<integer>0</integer>
+			<key>minEVAAdd</key>
+			<integer>0</integer>
+			<key>maxEVAAdd</key>
+			<integer>0</integer>
+			<key>attackType</key>
+			<integer>1</integer>
+			<key>maximumAttackedStack</key>
+			<integer>6</integer>
+			<key>frames</key>
+			<dict>
+				<key>idleFrame</key>
+				<string>fire_mage_IDLEanim_1.png</string>
+				<key>idleAnimFrame</key>
+				<string>fire_mage_IDLEanim</string>
+				<key>attackAnimFrame</key>
+				<string>fire_mage_ATTACKanim</string>
+			</dict>
+			<key>useProjectileName</key>
+			<string>fireball</string>
+		</dict>
 	</array>
 	<key>Item data</key>
 	<array>
@@ -86,6 +151,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage0</string>
+			<key>stageName</key>
+			<string>A-1</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -139,7 +206,7 @@
 						<key>INT</key>
 						<integer>10</integer>
 						<key>DEX</key>
-						<integer>10</integer>
+						<integer>100</integer>
 						<key>EVA</key>
 						<integer>10</integer>
 					</dict>
@@ -205,6 +272,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage1</string>
+			<key>stageName</key>
+			<string>A-2</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -258,7 +327,7 @@
 						<key>INT</key>
 						<integer>10</integer>
 						<key>DEX</key>
-						<integer>10</integer>
+						<integer>100</integer>
 						<key>EVA</key>
 						<integer>10</integer>
 					</dict>
@@ -324,6 +393,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage2</string>
+			<key>stageName</key>
+			<string>A-3</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -443,6 +514,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage3</string>
+			<key>stageName</key>
+			<string>A-4</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -562,6 +635,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage4</string>
+			<key>stageName</key>
+			<string>A-5</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -681,6 +756,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage5</string>
+			<key>stageName</key>
+			<string>A-6</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -800,6 +877,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage6</string>
+			<key>stageName</key>
+			<string>A-7</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -921,6 +1000,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage7</string>
+			<key>stageName</key>
+			<string>A-8</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -1040,6 +1121,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage8</string>
+			<key>stageName</key>
+			<string>A-Secret 1</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -1155,6 +1238,8 @@
 		<dict>
 			<key>stageID</key>
 			<string>stage9</string>
+			<key>stageName</key>
+			<string>A-Boss</string>
 			<key>countryID</key>
 			<string>water</string>
 			<key>availableNormalImageName</key>
@@ -1300,12 +1385,14 @@
 		<dict>
 			<key>projectileName</key>
 			<string>fireball</string>
-			<key>frames</key>
+			<key>idleFrame</key>
 			<string>fireball_anim_1.png</string>
 			<key>defaultPower</key>
 			<integer>10</integer>
 			<key>defaultSpeed</key>
 			<integer>10</integer>
+			<key>projectileShootType</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 </dict>

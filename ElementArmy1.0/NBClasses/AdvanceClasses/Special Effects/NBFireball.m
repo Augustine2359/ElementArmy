@@ -13,7 +13,7 @@ static CCArray* objectList = nil;
 
 @implementation NBFireball
 
--(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBCharacter*)owner
+-(id)initWithSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBBasicObject*)owner
 {
     //Implement below, but mostly you would be only changing the sprite name
     if (!objectList)

@@ -77,6 +77,8 @@ static CCArray* listOfProjectiles = nil;
     NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
+    dictionary = nil;
+    
     //if it doesn't exist yet, use the default one
     if (dictionary == nil) {
       plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
@@ -89,6 +91,7 @@ static CCArray* listOfProjectiles = nil;
     {
         NBStageData *stageData = [[NBStageData alloc] init];
         stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+        stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
         stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
         stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
         stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
@@ -222,6 +225,7 @@ static CCArray* listOfProjectiles = nil;
         projectileData.idleFrame = [projectileDataDictionary objectForKey:@"idleFrame"];
         projectileData.defaultPower = [[projectileDataDictionary objectForKey:@"defaultPower"] intValue];
         projectileData.defaultSpeed = [[projectileDataDictionary objectForKey:@"defaultSpeed"] intValue];
+        projectileData.shootType = [[projectileDataDictionary objectForKey:@"projectileShootType"] intValue];
         
         [listOfProjectiles addObject:projectileData];
     }
@@ -277,6 +281,11 @@ static CCArray* listOfProjectiles = nil;
     }
     
     return nil;
+}
+
++(CCArray*)getListOfProjectiles
+{
+    return listOfProjectiles;
 }
 
 @end

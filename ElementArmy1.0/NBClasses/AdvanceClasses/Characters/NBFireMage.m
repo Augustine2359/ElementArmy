@@ -171,7 +171,7 @@ static CCArray* classObjectList = nil;
         //Below code is to automatically find a new target if the object does not have any target yet
         if (self.currentTarget == nil)
         {
-            self.currentTarget = [self findNewTarget:[NBCharacter getEnemyList:self]];
+            self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
             
             if (self.currentTarget == nil)
                 self.currentState = Idle;

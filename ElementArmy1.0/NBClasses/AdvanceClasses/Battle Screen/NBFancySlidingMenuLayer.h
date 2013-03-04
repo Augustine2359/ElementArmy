@@ -12,4 +12,6 @@
 
 - (id)initOnLeftSide:(BOOL)onLeftSide;
 
+@property (nonatomic, strong) CCSprite *backgroundSprite;
+
 @end

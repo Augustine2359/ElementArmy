@@ -1,15 +1,15 @@
 //
-//  NBIntroScreen.h
+//  NBHQSetupScreen.h
 //  ElementArmy1.0
 //
-//  Created by Romy Irawaty on 25/11/12.
+//  Created by Romy Irawaty on 28/2/13.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
 
-@interface NBIntroScreen : NBBasicScreenLayer
+@interface NBHQSetupScreen : NBBasicScreenLayer
 
 -(void)gotoMainMenuScreen;
 -(void)gotoMapSelectionScreen;
@@ -17,13 +17,11 @@
 -(void)gotoBattleSetupScreen;
 -(void)gotoBattleScreen;
 -(void)gotoTestScreen;
--(void)gotoHQSetupScreen;
 
 //UI Control
 -(void)onTestButtonPressed;
 
 @property (nonatomic, retain) NBButton* testButton;
-@property (nonatomic, retain) NBStaticObject* sampleStaticObject;
-@property (nonatomic, retain) NBButton* wastedMyTimeButton;
+@property (nonatomic, retain) NBStaticObject* titleBanner;
 
 @end

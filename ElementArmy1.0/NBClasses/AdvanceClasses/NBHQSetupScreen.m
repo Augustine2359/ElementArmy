@@ -1,19 +1,19 @@
 //
-//  NBIntroScreen.m
+//  NBHQSetupScreen.m
 //  ElementArmy1.0
 //
-//  Created by Romy Irawaty on 25/11/12.
+//  Created by Romy Irawaty on 28/2/13.
 //
 //
 
-#import "NBIntroScreen.h"
+#import "NBHQSetupScreen.h"
 
-@implementation NBIntroScreen
+@implementation NBHQSetupScreen
 
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
 +(CCScene*)scene
 {
-    return [NBIntroScreen sceneAndSetAsDefault:NO];
+    return [NBHQSetupScreen sceneAndSetAsDefault:NO];
 }
 
 +(CCScene*)sceneAndSetAsDefault:(BOOL)makeDefault
@@ -22,7 +22,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	NBIntroScreen *layer = [NBIntroScreen node];
+	NBHQSetupScreen *layer = [NBHQSetupScreen node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -33,31 +33,6 @@
 	// return the scene
 	return scene;
 }
-
-/*-(id)init
-{
-    if ((self = [super init]))
-    {
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        self.background.rotation = 90;
-        
-        //Prepare Sprite Batch Node
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
-        self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
-        [self addChild:self.characterSpritesBatchNode z:0 tag:0];
-        
-        //Display Title in the middle of the screen
-        [self displayLayerTitle:@"Intro Scene"];
-        
-        [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
-        [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
-        [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
-        [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
-        [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-    }
-    
-    return self;
-}*/
 
 -(void)gotoMainMenuScreen
 {
@@ -95,12 +70,6 @@
     [self changeToScene:self.nextScene];
 }
 
--(void)gotoHQSetupScreen
-{
-    self.nextScene = @"NBHQSetupScreen";
-    [self changeToScene:self.nextScene];
-}
-
 -(void) onEnter
 {
 	[super onEnter];
@@ -113,33 +82,24 @@
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
     //Display Title in the middle of the screen
-    [self displayLayerTitle:@"Intro Scene"];
+    [self displayLayerTitle:@"HQ Scene"];
     
     [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
     [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
     [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-    [self addStandardMenuString:@"HQ Screen" withSelector:@selector(gotoHQSetupScreen)];
     [self addStandardMenuString:@"Test Screen" withSelector:@selector(gotoTestScreen)];
     
     //Must be called everytime entering a layer
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
+    self.titleBanner = [[NBStaticObject alloc] initWithFrameName:@"HQ_Title.png" andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
+    self.titleBanner.position = CGPointMake((self.layerSize.width / 2) - (self.titleBanner.contentSize.width / 2), self.layerSize.height - 20);
     //Sample for NBButton
     //self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
     //self.testButton.position = CGPointMake(200, 200);
     //[self.testButton addHandler:self selector:@selector(onTestButtonPressed)];
-    
-    //Sample for wastedMyTimeButton
-    //self.wastedMyTimeButton = [NBButton createOnLayer:self selector:@selector(onTestButtonPressed)];
-    self.wastedMyTimeButton = [NBButton createWithSize:CGSizeMake(100, 40) onLayer:self respondTo:nil selector:@selector(onTestButtonPressed)];
-    [self.wastedMyTimeButton setIntStorage:0];
-    self.wastedMyTimeButton.menu.position = CGPointMake(200, 200);
-    //[self.wastedMyTimeButton show];
-    
-    //Sample for NBStaticObject using frame named frame_item.png
-    //self.sampleStaticObject = [NBStaticObject createStaticObject:@"frame_item.png" atPosition:CGPointMake(160, 300)];
 }
 
 //UI Control Events Handlers

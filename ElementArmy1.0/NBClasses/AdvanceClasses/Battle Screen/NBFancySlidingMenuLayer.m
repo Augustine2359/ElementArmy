@@ -37,8 +37,6 @@
 @property (nonatomic, strong) CCSprite *classSkillCButtonSelectedSprite;
 @property (nonatomic, strong) CCSprite *classSkillCButtonDisabledSprite;
 
-@property (nonatomic, strong) CCSprite *backgroundSprite;
-
 @end
 
 @implementation NBFancySlidingMenuLayer

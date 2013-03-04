@@ -16,6 +16,7 @@
 #import "NBProjectile.h"
 #import "NBUpdatableCharacter.h"
 #import "NBBasicClassData.h"
+#import "NBUserInterface.h"
 
 #define MAXIMUM_CHARACTER_CAPACITY 100
 #define MAXIMUM_PROJECTILE_COUNT 50
@@ -28,11 +29,14 @@
     bool deadEventTriggered;
     bool updateIsActive;
     EnumCharacterSide characterSide_;
+    float damageCounterLabelRemainingTime;
 }
 
 +(bool)calculateAttackSuccessWithAttacker:(NBCharacter*)attacker andDefender:(NBCharacter*)defender;
-+(CCArray*)getEnemyList:(NBCharacter*)unit;
-+(CCArray*)getAllyList:(NBCharacter*)unit;
++(CCArray*)getEnemyListOf:(NBCharacter*)unit;
++(CCArray*)getAllyListOf:(NBCharacter*)unit;
++(CCArray*)getEnemyList;
++(CCArray*)getAllyList;
 +(CCArray*)getAllUnitList;
 
 -(long)getHitPoint;
@@ -102,6 +106,7 @@
 @property (nonatomic, retain) CCArray* listOfMeleeEnemiesAttackingMe;
 @property (nonatomic, assign) int currentAttackPost;
 @property (nonatomic, assign) CGPoint previousPosition;
+@property (nonatomic, retain) CCLabelAtlas* damageCounterLabel;
 
 //Adding capabilities for projectile shooter type character
 @property (nonatomic, retain) CCArray* projectileArrayList;

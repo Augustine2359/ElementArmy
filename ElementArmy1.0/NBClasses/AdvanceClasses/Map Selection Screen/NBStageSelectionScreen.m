@@ -54,7 +54,10 @@
     self.currentCountryStage = [[NBCountryStageGrid alloc] initOnLayer:self withSize:CGSizeMake((self.horizontalGridCount * STAGE_ICON_WIDTH / 2), (self.verticalGridCount * STAGE_ICON_HEIGHT / 2))];
     DLog(@"test: %d", (self.verticalGridCount * STAGE_ICON_HEIGHT / 2));
     [self readFromDataManager];
-    [self.dataManager saveStages];
+    
+    //Just for the time being, disable save progress.
+    //[self.dataManager saveStages];
+    
     [self readStagesFromFile];
     [self.currentCountryStage onEnter:self];
     

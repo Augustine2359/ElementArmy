@@ -150,14 +150,6 @@ static Boolean isAutoStart = NO;
         // create and initialize a Label
         self.startBattleButton = [NBButton createWithStringHavingNormal:@"NB_chargeIcon1_400x200.png" havingSelected:@"NB_chargeIcon1_400x200.png" havingDisabled:@"NB_chargeIcon1_400x200.png" onLayer:self respondTo:nil selector:@selector(prepareBattlefield) withSize:CGSizeZero];
         [self.startBattleButton setPosition:ccp(size.width / 2, size.height / 2 - 50)];
-        
-        //CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"Start Battle" target:self selector:@selector(prepareBattlefield)];
-        //self.menu = [CCMenu menuWithItems:startGameButtonMenu, nil];
-        //[self.menu alignItemsHorizontallyWithPadding:20];
-        //[self.menu setPosition:ccp(size.width / 2, size.height / 2 - 50)];
-        
-        // Add the menu to the layer
-        //[self addChild:self.menu];
     }
     else
     {
@@ -394,32 +386,36 @@ static Boolean isAutoStart = NO;
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
     self.position = CGPointMake(self.position.x, -320);
+    
     //background
-    //self.background = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 160)];
-    self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height / 2) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, 80)];
-    self.skyBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 1.5) usingFrame:@"staticbox_blue.png" atPosition:CGPointMake(240, 400)];
+    self.skyBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width + 64, (self.layerSize.height * 1.5) + 64) usingFrame:@"staticbox_sky.png" atPosition:CGPointMake(self.layerSize.width / 2, 400)];
+    self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 0.75) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, self.layerSize.height * 0.40)];
     
     //The HP Bar
     //**********************************************************************
     self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
+    targetScaleXForHPBar = self.allyHPBar.scaleX;
+    targetScaleYForHPBar = self.allyHPBar.scaleY;
+    DLog(@"%f, %f", targetScaleXForHPBar, targetScaleYForHPBar);
     self.allyHPBar.sprite.anchorPoint = CGPointMake(1, 1);
-    self.allyHPBar.visible = NO;
+    self.allyHPBar.scaleX = 0;
     self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
     self.enemyHPBar.sprite.anchorPoint = CGPointMake(0, 1);
-    self.enemyHPBar.visible = NO;
-    self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png" atPosition:CGPointMake(110, 30)];
-    self.allyFlagLogo.visible = NO;
-    self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png" atPosition:CGPointMake(self.layerSize.width - 110, 30)];
-    self.enemyFlagLogo.visible = NO;
+    self.enemyHPBar.scaleX = 0;
     //**********************************************************************
     
     //The placeholder. This should be something like transparent tube later.
     //**********************************************************************
-    self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, 20)];
-    self.HPBarPlaceholder.visible = NO;
+    self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, -20)];
     //self.HPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
     //**********************************************************************
     
+    self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png"];
+    self.allyFlagLogo.position = CGPointMake((-1 * (self.allyFlagLogo.sprite.contentSize.width * 2)), 30);
+    self.allyFlagLogo.visible = YES;
+    self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png"];
+    self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
+    self.enemyFlagLogo.visible = YES;
     
     //Augustine's Code below
     //**********************
@@ -427,32 +423,98 @@ static Boolean isAutoStart = NO;
     self.classGroupSkillMenuLayer.layerSize = CGSizeMake(100, 50);
     self.classGroupSkillMenuLayer.contentSize = CGSizeMake(100, 50);
     [self addChild:self.classGroupSkillMenuLayer];
+    self.classGroupSkillMenuLayer.position = CGPointMake(-20 , -48);
 
-  self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
-  self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
-  self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
-  [self addChild:self.itemMenuLayer];
-  //**********************
+    self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
+    self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
+    self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
+    [self addChild:self.itemMenuLayer];
+    self.itemMenuLayer.position = CGPointMake(20, -48);
+    //**********************
     
-    [self entranceAnimation];
+    [NBDamageLabel setCurrentLayerForDamageLabel:self];
+    
+    [self entranceAnimationStep1];
 }
 
--(void)entranceAnimation
+-(void)entranceAnimationStep1
+{
+    CCDelayTime* delay = [CCDelayTime actionWithDuration:0.5];
+    self.stageNameBanner = [CCLabelTTF labelWithString:self.dataManager.selectedStageData.stageName fontName:@"Zapfino" fontSize:32];
+    self.stageNameBanner.position = CGPointMake((self.layerSize.width / 2), (self.layerSize.height / 2) + 320);
+    
+    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:1.80];
+    CCFadeOut* fadeOut = [CCFadeOut actionWithDuration:1.80];
+    
+    CCCallFuncN* animationCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep2)];
+    CCSequence* sequence = [CCSequence actions:delay, fadeIn, delay, fadeOut, animationCompleted, nil];
+    [self.stageNameBanner runAction:sequence];
+    
+    [self addChild:self.stageNameBanner];
+}
+
+-(void)entranceAnimationStep2
 {
     CCMoveTo* move = [CCMoveTo actionWithDuration:3.0 position:CGPointMake(self.position.x, 0)];
     
-    CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(onBackgroundMoveCompleted)];
+    CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep3)];
     CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];
     [self runAction:sequence];
 }
 
+-(void)entranceAnimationStep3
+{
+    CCMoveTo* move1_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake(self.layerSize.width / 2, self.allyFlagLogo.position.y)];
+    CCMoveTo* move1_1 = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(self.layerSize.width * 0.225, self.allyFlagLogo.position.y)];
+    CCMoveTo* move2_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake(self.layerSize.width / 2, self.enemyFlagLogo.position.y)];
+    CCMoveTo* move2_1 = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(self.layerSize.width * 0.775, self.enemyFlagLogo.position.y)];
+    CCMoveTo* move3_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake((self.layerSize.width / 2) - 5, 20)];
+    
+    CCEaseIn* ease1 = [CCEaseIn actionWithAction:move1_0 rate:2];
+    CCEaseIn* ease2 = [CCEaseIn actionWithAction:move2_0 rate:2];
+    CCEaseIn* ease3 = [CCEaseIn actionWithAction:move3_0 rate:2];
+    CCEaseOut* ease1_1 = [CCEaseOut actionWithAction:move1_1 rate:1.5];
+    CCEaseOut* ease2_1 = [CCEaseOut actionWithAction:move2_1 rate:1.5];
+    
+    CCCallFuncN* animation1Completed = [CCCallFuncN actionWithTarget:self selector:@selector(onBackgroundMoveCompleted)];
+    CCCallFuncN* animation2Completed = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep4)];
+    CCSequence* sequence1 = [CCSequence actions:ease1, animation2Completed, ease1_1, nil];
+    CCSequence* sequence2 = [CCSequence actions:ease2, ease2_1, animation1Completed, nil];
+    CCSequence* sequence3 = [CCSequence actions:ease3, move3_0, nil];
+    [self.allyFlagLogo runAction:sequence1];
+    [self.enemyFlagLogo runAction:sequence2];
+    [self.HPBarPlaceholder runAction:sequence3];
+}
+
+-(void)entranceAnimationStep4
+{
+    CCMoveTo* move4_0 = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(0, 0)];
+    CCMoveTo* move5_0 = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(0, 0)];
+
+    [self.classGroupSkillMenuLayer runAction:move4_0];
+    [self.itemMenuLayer runAction:move5_0];
+    
+    CCScaleTo* scale1_0 = [CCScaleTo actionWithDuration:1.5 scaleX:targetScaleXForHPBar scaleY:targetScaleYForHPBar];
+    CCScaleTo* scale2_0 = [CCScaleTo actionWithDuration:1.5 scaleX:targetScaleXForHPBar scaleY:targetScaleYForHPBar];
+    CCEaseOut* ease1_1 = [CCEaseOut actionWithAction:scale1_0 rate:1.5];
+    CCEaseOut* ease2_1 = [CCEaseOut actionWithAction:scale2_0 rate:1.5];
+    
+    [self.allyHPBar runAction:ease1_1];
+    [self.enemyHPBar runAction:ease2_1];
+}
+
 -(void)onBackgroundMoveCompleted
 {
-    self.allyHPBar.visible = YES;
-    self.enemyHPBar.visible = YES;
-    self.allyFlagLogo.visible = YES;
-    self.enemyFlagLogo.visible = YES;
+    //self.allyHPBar.visible = YES;
+    //self.enemyHPBar.visible = YES;
+    //self.allyFlagLogo.visible = YES;
+    //self.enemyFlagLogo.visible = YES;
     self.HPBarPlaceholder.visible = YES;
+    
+    [self reorderChild:self.HPBarPlaceholder z:10];
+    [self reorderChild:self.allyFlagLogo z:11];
+    [self reorderChild:self.enemyFlagLogo z:11];
+    
     [self.startBattleButton show];
 }
 
@@ -576,6 +638,7 @@ static Boolean isAutoStart = NO;
 {
     DLog(@"Combo Skill C Button Selected");
 }
+
 //************************************************************************************************
 
 @end

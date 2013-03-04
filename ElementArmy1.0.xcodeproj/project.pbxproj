@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
+		BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */; };
 		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
 		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
 		BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894D16A2C01B00DAAA19 /* NBStage.m */; };
@@ -19,6 +20,7 @@
 		BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065BD168B44E000745FB0 /* NBMessageBox.m */; };
 		BC2065C1168B494600745FB0 /* NBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C0168B494500745FB0 /* NBButton.m */; };
 		BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C3168B4A4200745FB0 /* NBUserInterface.m */; };
+		BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */; };
 		BC336A1D16A664BE0079596C /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */; };
 		BC336A1E16A664CA0079596C /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */; };
 		BC336A1F16A665A40079596C /* NBBattleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */; };
@@ -186,6 +188,8 @@
 		569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupItems.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
 		BC06C250163461E700F091F0 /* NBProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectile.m; sourceTree = "<group>"; };
+		BC0EBEDB16E4DE7200F4D927 /* NBDamageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDamageLabel.h; sourceTree = "<group>"; };
+		BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDamageLabel.m; sourceTree = "<group>"; };
 		BC14894116A0F74C00DAAA19 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDataManager.h; sourceTree = "<group>"; };
 		BC14894216A0F74C00DAAA19 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDataManager.m; sourceTree = "<group>"; };
 		BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicClassData.h; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 		BC2065C0168B494500745FB0 /* NBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBButton.m; sourceTree = "<group>"; };
 		BC2065C2168B4A4200745FB0 /* NBUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserInterface.h; sourceTree = "<group>"; };
 		BC2065C3168B4A4200745FB0 /* NBUserInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserInterface.m; sourceTree = "<group>"; };
+		BC2D61FD16DEF06400797345 /* NBHQSetupScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQSetupScreen.h; sourceTree = "<group>"; };
+		BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQSetupScreen.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
 		BC8A720716B511D400D890A1 /* NBStageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageData.m; sourceTree = "<group>"; };
 		BC938FFB16CA6B5700C313D1 /* NBCountryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCountryData.h; sourceTree = "<group>"; };
@@ -555,6 +561,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC2D61FC16DEF04100797345 /* HQ Screen */ = {
+			isa = PBXGroup;
+			children = (
+				BC2D61FD16DEF06400797345 /* NBHQSetupScreen.h */,
+				BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */,
+			);
+			name = "HQ Screen";
+			sourceTree = "<group>";
+		};
 		BC336A2D16A847890079596C /* Test Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1042,8 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
+				BC0EBEDB16E4DE7200F4D927 /* NBDamageLabel.h */,
+				BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1035,16 +1052,17 @@
 		BCBC73CE1633AA8100B5A141 /* AdvanceClasses */ = {
 			isa = PBXGroup;
 			children = (
-				BC336A2D16A847890079596C /* Test Screen */,
 				F9299FD916A2FBA300C9DD61 /* Battle Screen */,
 				F9299FDE16A2FBA300C9DD61 /* Battle Setup Screen */,
 				F9299FE516A2FBA300C9DD61 /* Characters */,
+				BC2D61FC16DEF04100797345 /* HQ Screen */,
 				F9299FEA16A2FBA300C9DD61 /* Intro Screen */,
 				F9299FED16A2FBA300C9DD61 /* Loading Screen */,
 				F9299FF016A2FBA300C9DD61 /* Main Menu Screen */,
 				F9299FF316A2FBA300C9DD61 /* Map Selection Screen */,
 				F9299FF616A2FBA300C9DD61 /* Special Effects */,
 				F9299FFB16A2FBA300C9DD61 /* Story Screen */,
+				BC336A2D16A847890079596C /* Test Screen */,
 			);
 			name = AdvanceClasses;
 			path = NBClasses/AdvanceClasses;
@@ -1403,6 +1421,8 @@
 				BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */,
 				BC9F0F9716D8597900BD17B2 /* NBCharacterV2.m in Sources */,
 				BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */,
+				BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */,
+				BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
