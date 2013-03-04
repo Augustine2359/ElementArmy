@@ -11,10 +11,6 @@
 
 @interface NBBattleSetupItems : NBBasicScreenLayer
 
-//@property (nonatomic, retain) NBStaticObject *itemSelectionFrame;
-
-//@property (nonatomic, retain) NSMutableArray* itemNames;
-//@property (nonatomic, retain) NSMutableArray* selectedItemsIndexes;
 @property (nonatomic) bool itemSelectionOpen;
 @property (nonatomic) int currentSelectedItemIndex;
 
@@ -27,7 +23,6 @@
 -(void)initialiseItemArray;
 -(void)initialiseItemUI;
 -(void)toggleItemSelection:(NBItem*)selectedItemButton;
--(void)selectTargetItem:(NBItem*)targetItem;
--(void)test;
+-(void)selectTargetItem;
 
 @end

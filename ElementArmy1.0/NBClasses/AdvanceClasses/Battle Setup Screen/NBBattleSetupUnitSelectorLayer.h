@@ -7,6 +7,7 @@
 //
 
 #import "NBBasicScreenLayer.h"
+#import "NBCharacter.h"
 
 @interface NBBattleSetupUnitSelectorLayer : CCLayerColor
 
@@ -20,5 +21,7 @@
 - (void)decreaseElement;
 - (void)increaseElement;
 - (void)increaseTier;
+
+- (NBBasicClassData *)basicClassData;
 
 @end

@@ -13,6 +13,7 @@
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
+-(void)openItemSelection;
 -(void)gotoAppStore;
 
 -(void)gotoIntroScreen;
@@ -20,7 +21,6 @@
 -(void)gotoMapSelectionScreen;
 -(void)gotoStoryScreen;
 -(void)gotoBattleScreen;
--(void)itemSelected:(NBItem*)item;
 
 @property (nonatomic, retain) NBStaticObject *battleSetupTitle;
 
@@ -29,8 +29,6 @@
 
 //Item selection
 @property (nonatomic, retain) NBBattleSetupItems* setupItemsFrame;
-//Create array of 3 int here to store selected items
-@property (nonatomic, retain) NSMutableArray* selectedItemsArrayIndex;
 @property (nonatomic) int tempNumberOfUnlockedItemsSlots;
 
 @property(nonatomic, retain) NBItem* selectedItem1;

@@ -17,8 +17,17 @@
 
 #define SPRITE_SLIDE_DURATON 0.25
 
+enum UnitChangeType {
+  UnitChangeDecreaseTier = 0,
+  UnitChangeDecreaseElement,
+  UnitChangeIncreaseTier,
+  UnitChangeIncreaseElement
+  };
+
 @interface NBBattleSetupUnitSelectorLayer()
 
+@property (nonatomic, strong) NBBasicClassData *previousBasicClassData;
+@property (nonatomic, strong) NBBasicClassData *currentBasicClassData;
 @property (nonatomic, strong) CCSprite *previousUnitSprite;
 @property (nonatomic, strong) CCSprite *currentUnitSprite;
 @property (nonatomic, strong) CCArray *elementsArray;
@@ -40,7 +49,9 @@
     self.isLocked = NO;
 
     [self prepareElementsArray];
-    self.currentUnitSprite = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
+
+    self.currentBasicClassData = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
+    self.currentUnitSprite = [self generateSpriteFromBasicClassData:self.currentBasicClassData];
     [self addChild:self.currentUnitSprite];
   }
   return self;
@@ -69,24 +80,27 @@
 - (void)prepareElementsArray {
   self.elementsArray = [CCArray array];
   CCArray *elementArray = [CCArray array];
-  CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:@"skillAbutton_normal.png"];
-  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [elementArray addObject:sprite];
-  sprite = [CCSprite spriteWithSpriteFrameName:@"skillBbutton_normal.png"];
-  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [elementArray addObject:sprite];
 
+  NBBasicClassData *metalSoldierClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
+
+  [elementArray addObject:metalSoldierClassData];
+  [elementArray addObject:metalSoldierClassData];
   [self.elementsArray addObject:elementArray];
 
   elementArray = [CCArray array];
-  sprite = [CCSprite spriteWithSpriteFrameName:METAL_SOLDIER_FILE];
-  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [elementArray addObject:sprite];
-  sprite = [CCSprite spriteWithSpriteFrameName:FIRE_MAGE_FILE];
-  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [elementArray addObject:sprite];
-
+  [elementArray addObject:metalSoldierClassData];
+  [elementArray addObject:metalSoldierClassData];
   [self.elementsArray addObject:elementArray];
+}
+
+- (NBBasicClassData *)basicClassData {
+  return self.currentBasicClassData;
+}
+
+- (CCSprite *)generateSpriteFromBasicClassData:(NBBasicClassData *)basicClassData {
+  CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:basicClassData.idleFrame];
+  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+  return sprite;
 }
 
 -(BOOL)isTouchingMe:(CGPoint)touchLocation
@@ -95,30 +109,66 @@
   return CGRectContainsPoint(rectToTest, touchLocation);
 }
 
+- (void)animateUnitChange:(enum UnitChangeType)unitChangeType {
+  [self.previousUnitSprite removeFromParentAndCleanup:YES];
+  self.previousUnitSprite = self.currentUnitSprite;
+  self.previousBasicClassData = self.currentBasicClassData;
+  self.currentBasicClassData = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
+  self.currentUnitSprite = [self generateSpriteFromBasicClassData:self.currentBasicClassData];
+  if ([self.children containsObject:self.currentUnitSprite] == NO)
+    [self addChild:self.currentUnitSprite];
+  CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+  switch (unitChangeType) {
+    case UnitChangeDecreaseTier:
+      position.y += self.contentSize.height;
+      break;
+    case UnitChangeDecreaseElement:
+      position.x += self.contentSize.width;
+      break;
+    case UnitChangeIncreaseElement:
+      position.x -= self.contentSize.width;
+      break;
+    case UnitChangeIncreaseTier:
+      position.y -= self.contentSize.height;
+      break;
+    default:
+      break;
+  }
+  self.currentUnitSprite.position = position;
+
+  position = self.previousUnitSprite.position;
+  id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
+  [self.currentUnitSprite runAction:move];
+
+  switch (unitChangeType) {
+    case UnitChangeDecreaseTier:
+      position.y -= self.contentSize.height;
+      break;
+    case UnitChangeDecreaseElement:
+      position.x -= self.contentSize.width;
+      break;
+    case UnitChangeIncreaseElement:
+      position.x += self.contentSize.width;
+      break;
+    case UnitChangeIncreaseTier:
+      position.y += self.contentSize.height;
+      break;
+    default:
+      break;
+  }
+
+  move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
+  [self.previousUnitSprite runAction:move];
+}
+
 - (void)decreaseTier {
   NSInteger previousTier = self.tier;
   self.tier--;
   if (self.tier < MINIMUM_TIER)
     self.tier = MINIMUM_TIER;
 
-  if (previousTier != self.tier) {
-    [self.previousUnitSprite removeFromParentAndCleanup:YES];
-    self.previousUnitSprite = self.currentUnitSprite;
-
-    self.currentUnitSprite = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
-    if ([self.children containsObject:self.currentUnitSprite] == NO)
-    [self addChild:self.currentUnitSprite];
-    CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.y += self.contentSize.height;
-    self.currentUnitSprite.position = position;
-
-    position = self.previousUnitSprite.position;
-    id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.currentUnitSprite runAction:move];
-    position.y -= self.contentSize.height;
-    move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.previousUnitSprite runAction:move];
-  }
+  if (previousTier != self.tier)
+    [self animateUnitChange:UnitChangeDecreaseTier];
 }
 
 - (void)decreaseElement {
@@ -127,24 +177,8 @@
   if (self.element < MINIMUM_ELEMENT)
     self.element = MINIMUM_ELEMENT;
 
-  if (previousElement != self.element) {
-    [self.previousUnitSprite removeFromParentAndCleanup:YES];
-    self.previousUnitSprite = self.currentUnitSprite;
-
-    self.currentUnitSprite = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
-    if ([self.children containsObject:self.currentUnitSprite] == NO)
-      [self addChild:self.currentUnitSprite];
-    CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.x += self.contentSize.width;
-    self.currentUnitSprite.position = position;
-
-    position = self.previousUnitSprite.position;
-    id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.currentUnitSprite runAction:move];
-    position.x -= self.contentSize.width;
-    move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.previousUnitSprite runAction:move];
-  }
+  if (previousElement != self.element)
+    [self animateUnitChange:UnitChangeDecreaseElement];
 }
 
 - (void)increaseElement {
@@ -153,24 +187,8 @@
   if (self.element > MAXIMUM_ELEMENT)
     self.element = MAXIMUM_ELEMENT;
 
-  if (previousElement != self.element) {
-    [self.previousUnitSprite removeFromParentAndCleanup:YES];
-    self.previousUnitSprite = self.currentUnitSprite;
-
-    self.currentUnitSprite = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
-    if ([self.children containsObject:self.currentUnitSprite] == NO)
-      [self addChild:self.currentUnitSprite];
-    CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.x -= self.contentSize.width;
-    self.currentUnitSprite.position = position;
-
-    position = self.previousUnitSprite.position;
-    id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.currentUnitSprite runAction:move];
-    position.x += self.contentSize.width;
-    move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.previousUnitSprite runAction:move];
-  }
+  if (previousElement != self.element)
+    [self animateUnitChange:UnitChangeIncreaseElement];
 }
 
 - (void)increaseTier {
@@ -179,24 +197,8 @@
   if (self.tier > MAXIMUM_TIER)
     self.tier = MAXIMUM_TIER;
 
-  if (previousTier != self.tier) {
-    [self.previousUnitSprite removeFromParentAndCleanup:YES];
-    self.previousUnitSprite = self.currentUnitSprite;
-
-    self.currentUnitSprite = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
-    if ([self.children containsObject:self.currentUnitSprite] == NO)
-    [self addChild:self.currentUnitSprite];
-    CGPoint position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-    position.y -= self.contentSize.height;
-    self.currentUnitSprite.position = position;
-
-    position = self.previousUnitSprite.position;
-    id move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.currentUnitSprite runAction:move];
-    position.y += self.contentSize.height;
-    move = [CCMoveTo actionWithDuration:SPRITE_SLIDE_DURATON position:position];
-    [self.previousUnitSprite runAction:move];
-  }
+  if (previousTier != self.tier)
+    [self animateUnitChange:UnitChangeIncreaseTier];
 }
 
 @end

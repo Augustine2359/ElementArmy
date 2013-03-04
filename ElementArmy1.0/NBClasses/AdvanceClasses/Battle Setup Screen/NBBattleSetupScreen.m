@@ -9,6 +9,7 @@
 #import "NBBattleSetupScreen.h"
 #import "NBBattleSetupUnitSelectorLayer.h"
 #import "NBBattleSetupUnitSelectorsContainerLayer.h"
+#import "NBUnitRespawnContainerLayer.h"
 
 @interface NBBattleSetupScreen()
 @property (nonatomic, strong) NBBattleSetupUnitSelectorsContainerLayer *unitSelectorsContainerLayer;
@@ -62,7 +63,8 @@
     
     //Display Characters
     [self createUnitSelectors];
-    
+    [self createUnitRespawnContainerLayer];
+
     //Display buttons Navigation
     //OK
     self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
@@ -77,41 +79,21 @@
     [self.battleSetupCancel show];
     
     
-    //Temp hardcode
     //Item selection
     self.setupItemsFrame = [[NBBattleSetupItems alloc] initWithLayer:self];
     [self addChild:self.setupItemsFrame z:1];
     
     //Display buttons Items
-//    self.selectedItemsArrayIndex = [NSMutableArray new];
-//    self.selectedItemsArrayIndex = [NSMutableArray arrayWithObjects:0, 1, 2, nil];
-//    //    self.selectedItemsArrayIndex = [NSArray arrayWithObjects:@"Potion.png", @"Fury_pill.png", @"Winged_boots.png", nil];
-//    self.tempNumberOfUnlockedItemsSlots = 2;
-//    for (int x = 0; x < 3; x++) {
-//        if (x < self.tempNumberOfUnlockedItemsSlots) {
-//            NBButton* itemButton;
-//            itemButton = [NBButton createWithStringHavingNormal:[self.setupItemsFrame.itemNames objectAtIndex:x] havingSelected:[self.setupItemsFrame.itemNames objectAtIndex:x] havingDisabled:[self.setupItemsFrame.itemNames objectAtIndex:x] onLayer:self respondTo:nil selector:@selector(openItemSelection:) withSize:CGSizeZero intArgument:x];
-//            itemButton.tag = x;
-//            [itemButton setPosition:ccp(x*80 + 160, 50)];
-//            [itemButton show];
-//        }
-//        else{
-//            NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero intArgument:x];
-//            [lockedButton setPosition:ccp(x*80 + 160, 50)];
-//            [lockedButton show];
-//        }
-//    }
-    
-    //With NBitem
     self.tempNumberOfUnlockedItemsSlots = 2;
-    self.selectedItem1 = [NBItem createItem:@"Potion"];
-    self.selectedItem2 = [NBItem createItem:@"FuryPill"];
-    self.selectedItem3 = [NBItem createItem:@"WingedBoots"];
+    self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
+    self.selectedItem2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(openItemSelection)];
+    self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(openItemSelection)];
     
-    [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self respondTo:self.setupItemsFrame selector:@selector(toggleItemSelection:)];
+    [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];
     [self.selectedItem1.itemIcon setPosition:ccp(160, 50)];
     [self.selectedItem1 displayItemIcon];
-    [self.selectedItem2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self respondTo:self.setupItemsFrame selector:@selector(toggleItemSelection:)];
+    
+    [self.selectedItem2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
     [self.selectedItem2.itemIcon setPosition:ccp(240, 50)];
     [self.selectedItem2 displayItemIcon];
     
@@ -119,10 +101,6 @@
     [lockedButton setIntStorage:0];
     [lockedButton setPosition:ccp(320, 50)];
     [lockedButton show];
-}
-
--(void)update:(ccTime)delta{
-    //[NBBasicObject update:delta];
 }
 
 - (void)createUnitSelectors {
@@ -135,6 +113,18 @@
   self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
   self.unitSelectorsContainerLayer.position = CGPointMake(10, 100);
   [self addChild:self.unitSelectorsContainerLayer];
+}
+
+- (void)createUnitRespawnContainerLayer {
+  ccColor4B startColor;
+  startColor.r = 255;
+  startColor.g = 255;
+  startColor.b = 255;
+  startColor.a = 255;
+
+  NBUnitRespawnContainerLayer *unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
+  unitRespawnContainerLayer.position = CGPointMake(285, 100);
+  [self addChild:unitRespawnContainerLayer];
 }
 
 -(void)gotoIntroScreen
@@ -178,9 +168,9 @@
     DLog(@"Buy new slot with $$!");
 }
 
--(void)itemSelected:(NBItem*)item
-{
-    
+-(void)openItemSelection{
+    NBItem *item = [NBItem getCurrentlySelectedItem];
+    [self.setupItemsFrame toggleItemSelection:item];
 }
 
 @end

@@ -178,6 +178,7 @@
 		BCBC73D61633AC8900B5A141 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */; };
 		BCC0F5FE16B6C7E0006A1C88 /* NBItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */; };
 		BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC0F60116B6C846006A1C88 /* NBItem.m */; };
+		F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
 		F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */; };
 		F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9B870FE16BE906500F9321A /* GameSettings.plist */; };
@@ -504,6 +505,8 @@
 		BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBItemData.m; sourceTree = "<group>"; };
 		BCC0F60016B6C846006A1C88 /* NBItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBItem.h; sourceTree = "<group>"; };
 		BCC0F60116B6C846006A1C88 /* NBItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBItem.m; sourceTree = "<group>"; };
+		F920EA1916DDD025006BA898 /* NBUnitRespawnContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUnitRespawnContainerLayer.h; sourceTree = "<group>"; };
+		F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUnitRespawnContainerLayer.m; sourceTree = "<group>"; };
 		F9299FD616A2FB8C00C9DD61 /* NBBasicScreenLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicScreenLayer.h; sourceTree = "<group>"; };
 		F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicScreenLayer.m; sourceTree = "<group>"; };
 		F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleLayer.h; sourceTree = "<group>"; };
@@ -1098,6 +1101,8 @@
 				F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */,
 				F9299FE316A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */,
 				F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */,
+				F920EA1916DDD025006BA898 /* NBUnitRespawnContainerLayer.h */,
+				F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */,
 				569CC7EE16A56C2700818B56 /* NBBattleSetupItems.h */,
 				569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */,
 			);
