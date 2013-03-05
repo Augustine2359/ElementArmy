@@ -168,6 +168,7 @@ static CCArray* listOfProjectiles = nil;
     {
         NBBasicClassData *characterData = [[NBBasicClassData alloc] init];
         characterData.className = [characterDataDictionary objectForKey:@"className"];
+        characterData.classType = [characterDataDictionary objectForKey:@"classType"];
         characterData.startLevel = [[characterDataDictionary objectForKey:@"startLevel"] intValue];
         characterData.basicHP = [[characterDataDictionary objectForKey:@"basicHP"] intValue];
         characterData.basicSP = [[characterDataDictionary objectForKey:@"basicSP"] intValue];
@@ -194,7 +195,11 @@ static CCArray* listOfProjectiles = nil;
         characterData.maximumAttackedStack = [[characterDataDictionary objectForKey:@"maximumAttackedStack"] intValue];
         characterData.idleFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleFrame"];
         characterData.idleAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleAnimFrame"];
+        characterData.idleAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleAnimFrameCount"] shortValue];
         characterData.attackAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrame"];
+        characterData.attackAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrameCount"] shortValue];
+        characterData.shootAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrame"];
+        characterData.shootAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrameCount"] shortValue];
         
         characterData.currentHP = characterData.basicHP;
         characterData.currentSP = characterData.basicSP;

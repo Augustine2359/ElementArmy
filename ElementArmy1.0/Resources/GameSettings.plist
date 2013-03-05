@@ -9,6 +9,8 @@
 			<string>metalsoldier</string>
 			<key>elementID</key>
 			<integer>5</integer>
+			<key>classType</key>
+			<string>STR</string>
 			<key>startLevel</key>
 			<integer>1</integer>
 			<key>basicHP</key>
@@ -63,8 +65,16 @@
 				<string>metal_soldier_IDLEanim_1.png</string>
 				<key>idleAnimFrame</key>
 				<string>metal_soldier_IDLEanim</string>
+				<key>idleAnimFrameCount</key>
+				<integer>2</integer>
 				<key>attackAnimFrame</key>
 				<string>metal_soldier_ATTACKanim</string>
+				<key>attackAnimFrameCount</key>
+				<integer>2</integer>
+				<key>shootAnimFrame</key>
+				<string></string>
+				<key>shootAnimFrameCount</key>
+				<integer>0</integer>
 			</dict>
 			<key>useProjectileName</key>
 			<string>fireball</string>
@@ -74,6 +84,8 @@
 			<string>firemage</string>
 			<key>elementID</key>
 			<integer>1</integer>
+			<key>classType</key>
+			<string>INT</string>
 			<key>startLevel</key>
 			<integer>1</integer>
 			<key>basicHP</key>
@@ -128,11 +140,94 @@
 				<string>fire_mage_IDLEanim_1.png</string>
 				<key>idleAnimFrame</key>
 				<string>fire_mage_IDLEanim</string>
+				<key>idleAnimFrameCount</key>
+				<integer>2</integer>
 				<key>attackAnimFrame</key>
 				<string>fire_mage_ATTACKanim</string>
+				<key>attackAnimFrameCount</key>
+				<integer>3</integer>
+				<key>shootAnimFrame</key>
+				<string></string>
+				<key>shootAnimFrameCount</key>
+				<integer>0</integer>
 			</dict>
 			<key>useProjectileName</key>
 			<string>fireball</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>woodarcher</string>
+			<key>elementID</key>
+			<integer>4</integer>
+			<key>classType</key>
+			<string>DEX</string>
+			<key>startLevel</key>
+			<integer>1</integer>
+			<key>basicHP</key>
+			<integer>100</integer>
+			<key>basicSP</key>
+			<integer>50</integer>
+			<key>basicSTR</key>
+			<integer>15</integer>
+			<key>basicDEF</key>
+			<integer>5</integer>
+			<key>basicINT</key>
+			<integer>10</integer>
+			<key>basicDEX</key>
+			<integer>90</integer>
+			<key>basicEVA</key>
+			<string>30</string>
+			<key>minHPAdd</key>
+			<integer>8</integer>
+			<key>maxHPAdd</key>
+			<integer>12</integer>
+			<key>minSPAdd</key>
+			<integer>0</integer>
+			<key>maxSPAdd</key>
+			<integer>0</integer>
+			<key>minSTRAdd</key>
+			<integer>0</integer>
+			<key>maxSTRAdd</key>
+			<integer>0</integer>
+			<key>minDEFAdd</key>
+			<integer>0</integer>
+			<key>maxDEFAdd</key>
+			<integer>0</integer>
+			<key>minINTAdd</key>
+			<integer>0</integer>
+			<key>maxINTAdd</key>
+			<integer>0</integer>
+			<key>minDEXAdd</key>
+			<integer>0</integer>
+			<key>maxDEXAdd</key>
+			<integer>0</integer>
+			<key>minEVAAdd</key>
+			<integer>0</integer>
+			<key>maxEVAAdd</key>
+			<integer>0</integer>
+			<key>attackType</key>
+			<integer>1</integer>
+			<key>maximumAttackedStack</key>
+			<integer>6</integer>
+			<key>frames</key>
+			<dict>
+				<key>idleFrame</key>
+				<string>wood_archer_48x96.png</string>
+				<key>idleAnimFrame</key>
+				<string>wood_archer_IDLEanim</string>
+				<key>idleAnimFrameCount</key>
+				<integer>1</integer>
+				<key>attackAnimFrame</key>
+				<string>wood_archer_SHOOTanim</string>
+				<key>attackAnimFrameCount</key>
+				<integer>2</integer>
+				<key>shootAnimFrame</key>
+				<string>wood_archer_SHOOTanim</string>
+				<key>shootAnimFrameCount</key>
+				<integer>2</integer>
+			</dict>
+			<key>useProjectileName</key>
+			<string>normal_arrow</string>
 		</dict>
 	</array>
 	<key>Item data</key>
@@ -1391,6 +1486,18 @@
 			<integer>10</integer>
 			<key>defaultSpeed</key>
 			<integer>10</integer>
+			<key>projectileShootType</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>projectileName</key>
+			<string>normal_arrow</string>
+			<key>idleFrame</key>
+			<string>normal_arrow_anim_1.png</string>
+			<key>defaultPower</key>
+			<integer>10</integer>
+			<key>defaultSpeed</key>
+			<integer>20</integer>
 			<key>projectileShootType</key>
 			<integer>0</integer>
 		</dict>

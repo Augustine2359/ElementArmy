@@ -197,7 +197,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
+    basicClassData = [NBDataManager getBasicClassDataByClassName:@"woodarcher"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 4;
     basicClassData.totalUnit = 8;

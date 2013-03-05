@@ -178,8 +178,12 @@ static CCArray* enemyUnitList = nil;
     //Add animation list here
     self.animation = [[NBAnimatedSprite alloc] initWithAnimationCount:50 withImagePointer:self.sprite];
     [self.animation addDefaultFrame:self.basicClassData.idleFrame];
-    [self.animation addAnimation:@"Idle" withFileHeaderName:self.basicClassData.idleAnimFrame withAnimationCount:2];
-    [self.animation addAnimation:@"Attack" withFileHeaderName:self.basicClassData.attackAnimFrame withAnimationCount:2];
+    if (self.basicClassData.idleAnimFrame != nil && ![self.basicClassData.idleAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Idle" withFileHeaderName:self.basicClassData.idleAnimFrame withAnimationCount:self.basicClassData.idleAnimFrameCount];
+    if (self.basicClassData.attackAnimFrame != nil && ![self.basicClassData.attackAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Attack" withFileHeaderName:self.basicClassData.attackAnimFrame withAnimationCount:self.basicClassData.attackAnimFrameCount];
+    if (self.basicClassData.shootAnimFrame != nil && ![self.basicClassData.shootAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Shoot" withFileHeaderName:self.basicClassData.shootAnimFrame withAnimationCount:self.basicClassData.shootAnimFrameCount];
     
     //Preload your projectiles here
     if (self.basicClassData.attackType == atRange)
@@ -201,12 +205,22 @@ static CCArray* enemyUnitList = nil;
             self.projectileArrayList = [[CCArray alloc] initWithCapacity:MAXIMUM_PROJECTILE_COUNT];
             for (int i = 0; i < PROJECTILE_MAX_CAPACITY_PER_CHARACTER; i++)
             {
-                NBProjectile* tempFireball = [[NBProjectile alloc] initWithFrameName:projectileBasicData.idleFrame andSpriteBatchNode:self.currentSpriteBatchNode onLayer:self.currentLayer setOwner:self withBasicData:projectileBasicData];
-                [tempFireball initialize];
-                tempFireball.currentPower = self.intelligencePoint;
-                tempFireball.currentSpeed = self.intelligencePoint;
-                tempFireball.currentOwnerSide = self.characterSide;
-                [self.projectileArrayList addObject:tempFireball];
+                NBProjectile* tempProjectile = [[NBProjectile alloc] initWithFrameName:projectileBasicData.idleFrame andSpriteBatchNode:self.currentSpriteBatchNode onLayer:self.currentLayer setOwner:self withBasicData:projectileBasicData];
+                [tempProjectile initialize];
+                
+                if ([self.basicClassData.classType isEqualToString:@"INT"])
+                {
+                    tempProjectile.currentPower = self.intelligencePoint;
+                    tempProjectile.currentSpeed = self.intelligencePoint;
+                }
+                else if ([self.basicClassData.classType isEqualToString:@"DEX"])
+                {
+                    tempProjectile.currentPower = self.dexterityPoint;
+                    tempProjectile.currentSpeed = self.dexterityPoint;
+                }
+                
+                tempProjectile.currentOwnerSide = self.characterSide;
+                [self.projectileArrayList addObject:tempProjectile];
             }
         }
     }
