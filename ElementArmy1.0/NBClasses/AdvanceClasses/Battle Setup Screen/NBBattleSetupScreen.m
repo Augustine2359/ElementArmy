@@ -70,14 +70,12 @@ int objectsLeftToTransit = 6;
     //Display buttons Navigation
     //OK
     self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
-    [self.battleSetupOk setIntStorage:0];
-    [self.battleSetupOk setPosition:CGPointMake(450, 50)];
+    [self.battleSetupOk setPosition:CGPointMake(550, -50)];
     [self.battleSetupOk show];
     
     //Cancel
     self.battleSetupCancel = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
-    [self.battleSetupCancel setIntStorage:0];
-    [self.battleSetupCancel setPosition:CGPointMake(30, 50)];
+    [self.battleSetupCancel setPosition:CGPointMake(-70, -50)];
     [self.battleSetupCancel show];
     
     
@@ -100,7 +98,6 @@ int objectsLeftToTransit = 6;
     [self.selectedItem2 displayItemIcon];
     
     NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
-    [lockedButton setIntStorage:0];
     [lockedButton setPosition:ccp(320, 50)];
     [lockedButton show];
     
@@ -135,11 +132,11 @@ int objectsLeftToTransit = 6;
     [self.unitRespawnContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(285, 100)], nil]];
     [self.unitSelectorsContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(10, 100)], nil]];
     [self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
-//    [self.battleSetupCancel runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
-//    [self.battleSetupOk runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
-//    [self.selectedItem1.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
-//    [self.selectedItem2.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
-//    [self.selectedItem3.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
+    [self.battleSetupCancel.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
+    [self.battleSetupOk.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
+    [self.selectedItem1.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
+    [self.selectedItem2.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
+    [self.selectedItem3.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
 }
 
 -(void)updateObjectsLeftToTransit{
@@ -181,7 +178,9 @@ int objectsLeftToTransit = 6;
     [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem2];
     [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem3];
     
-//    [[[NBDataManager dataManager] arrayOfAllySquad] addObject:self.unitSelectorsContainerLayer];
+    [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:0]];
+    [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:1]];
+    [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:2]];
     
     self.nextScene = @"NBBattleLayer";
     [self changeToScene:self.nextScene];

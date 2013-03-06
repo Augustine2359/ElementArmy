@@ -127,7 +127,6 @@
     //Sample for wastedMyTimeButton
     //self.wastedMyTimeButton = [NBButton createOnLayer:self selector:@selector(onTestButtonPressed)];
     self.wastedMyTimeButton = [NBButton createWithSize:CGSizeMake(100, 40) onLayer:self respondTo:nil selector:@selector(onTestButtonPressed)];
-    [self.wastedMyTimeButton setIntStorage:0];
     self.wastedMyTimeButton.menu.position = CGPointMake(200, 200);
     //[self.wastedMyTimeButton show];
     

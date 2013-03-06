@@ -81,7 +81,7 @@ enum UnitChangeType {
   self.elementsArray = [CCArray array];
   CCArray *elementArray = [CCArray array];
 
-  NBBasicClassData *metalSoldierClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
+  NBBasicClassData *metalSoldierClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
 
   [elementArray addObject:metalSoldierClassData];
   [elementArray addObject:metalSoldierClassData];

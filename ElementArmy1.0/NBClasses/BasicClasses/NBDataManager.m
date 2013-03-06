@@ -15,7 +15,6 @@
 #define SQUAD_COUNT_ALLOWED 3
 
 static NBDataManager* dataManager = nil;
-static CCArray* listOfCharacters = nil;
 static CCArray* listOfProjectiles = nil;
 
 @implementation NBDataManager
@@ -38,7 +37,7 @@ static CCArray* listOfProjectiles = nil;
         self.arrayOfAllySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
-        listOfCharacters = [[CCArray alloc] initWithCapacity:100];
+        self.listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
 
         //[self createStages];
@@ -112,7 +111,7 @@ static CCArray* listOfProjectiles = nil;
             
             for (NSDictionary* enemy in enemyList)
             {
-                basicClassData = [NBDataManager getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
+                basicClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
                 basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
                 basicClassData.totalUnit = 1;
                 basicClassData.availableUnit = 1;
@@ -155,7 +154,7 @@ static CCArray* listOfProjectiles = nil;
 
 -(void)createCharacterList
 {
-    if (!listOfCharacters) listOfCharacters = [CCArray array];
+    if (!self.listOfCharacters) self.listOfCharacters = [CCArray array];
     
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
@@ -203,7 +202,7 @@ static CCArray* listOfProjectiles = nil;
         
         characterData.useProjectileName = [characterDataDictionary objectForKey:@"useProjectileName"];
         
-        [listOfCharacters addObject:characterData];
+        [self.listOfCharacters addObject:characterData];
     }
 }
 
@@ -259,13 +258,17 @@ static CCArray* listOfProjectiles = nil;
     [plistData writeToFile:path atomically:YES];
 }
 
-+(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className
+-(void)saveItems{
+    
+}
+
+-(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className
 {
-    if (listOfCharacters && [listOfCharacters count] > 0)
+    if (self.listOfCharacters && [self.listOfCharacters count] > 0)
     {
         NBBasicClassData* tempClassData = [[NBBasicClassData alloc] init];
         
-        CCARRAY_FOREACH(listOfCharacters, tempClassData)
+        CCARRAY_FOREACH(self.listOfCharacters, tempClassData)
         {
             if ([tempClassData.className isEqualToString:className])
             {

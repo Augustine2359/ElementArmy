@@ -79,7 +79,7 @@ float slideDuration = 0.5f;
         [self runAction:close];
         self.itemSelectionOpen = NO;
         
-        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData.itemID onLayer:self onSelector:@selector(toggleItemSelection)];
+        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData.itemID onLayer:self onSelector:@selector(selectTargetItem)];
         [newItem setItemIconWithNormalImage:selectedItemButton.image selectedImage:selectedItemButton.image disabledImage:selectedItemButton.image onLayer:self.mainLayer];
         [newItem.itemIcon setPosition:ccp([self.changingTargetItem.itemIcon getPosition].x, [self.changingTargetItem.itemIcon getPosition].y)];
         [newItem displayItemIcon];
