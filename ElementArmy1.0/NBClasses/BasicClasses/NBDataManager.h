@@ -23,7 +23,8 @@
 -(void)createCharacterList;
 -(void)createProjectileList;
 
--(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
++(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
++(CCArray*)getListOfProjectiles;
 
 @property (nonatomic, retain) NSString* userID;
 
