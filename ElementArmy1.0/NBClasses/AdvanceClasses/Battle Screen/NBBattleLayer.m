@@ -440,7 +440,10 @@ static Boolean isAutoStart = NO;
 -(void)entranceAnimationStep1
 {
     CCDelayTime* delay = [CCDelayTime actionWithDuration:0.5];
-    self.stageNameBanner = [CCLabelTTF labelWithString:self.dataManager.selectedStageData.stageName fontName:@"Zapfino" fontSize:32];
+    NSString *stageName = self.dataManager.selectedStageData.stageName;
+    if (stageName == nil)
+      stageName = @"Default";
+    self.stageNameBanner = [CCLabelTTF labelWithString:stageName fontName:@"Zapfino" fontSize:32];
     self.stageNameBanner.position = CGPointMake((self.layerSize.width / 2), (self.layerSize.height / 2) + 320);
     
     CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:1.80];
