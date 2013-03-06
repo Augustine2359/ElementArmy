@@ -48,6 +48,7 @@ typedef enum
 @property (nonatomic, assign) int currentSpeed;
 @property (nonatomic, retain) NBBasicObject* currentOwner;
 @property (nonatomic, retain) NBBasicObject* currentTarget;
+@property (nonatomic, assign) EnumCharacterSide currentOwnerSide;
 @property (nonatomic, assign) EnumProjectileState currentState;
 @property (nonatomic, assign) EnumProjectileState previousState;
 @property (nonatomic, assign) EnumProjectileState nextState;

@@ -14,14 +14,24 @@ static CCArray* enemyUnitList = nil;
 
 @implementation NBCharacter
 
-+(CCArray*)getEnemyList:(NBCharacter*)unit
++(CCArray*)getEnemyListOf:(NBCharacter*)unit
 {
     if (unit.characterSide == Ally) return enemyUnitList; else return allyUnitList;
 }
 
-+(CCArray*)getAllyList:(NBCharacter*)unit
++(CCArray*)getAllyListOf:(NBCharacter*)unit
 {
     if (unit.characterSide == Ally) return allyUnitList; else return enemyUnitList;
+}
+
++(CCArray*)getEnemyList
+{
+    return enemyUnitList;
+}
+
++(CCArray*)getAllyList
+{
+    return allyUnitList;
 }
 
 +(CCArray*)getAllUnitList
@@ -168,8 +178,12 @@ static CCArray* enemyUnitList = nil;
     //Add animation list here
     self.animation = [[NBAnimatedSprite alloc] initWithAnimationCount:50 withImagePointer:self.sprite];
     [self.animation addDefaultFrame:self.basicClassData.idleFrame];
-    [self.animation addAnimation:@"Idle" withFileHeaderName:self.basicClassData.idleAnimFrame withAnimationCount:2];
-    [self.animation addAnimation:@"Attack" withFileHeaderName:self.basicClassData.attackAnimFrame withAnimationCount:2];
+    if (self.basicClassData.idleAnimFrame != nil && ![self.basicClassData.idleAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Idle" withFileHeaderName:self.basicClassData.idleAnimFrame withAnimationCount:self.basicClassData.idleAnimFrameCount];
+    if (self.basicClassData.attackAnimFrame != nil && ![self.basicClassData.attackAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Attack" withFileHeaderName:self.basicClassData.attackAnimFrame withAnimationCount:self.basicClassData.attackAnimFrameCount];
+    if (self.basicClassData.shootAnimFrame != nil && ![self.basicClassData.shootAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Shoot" withFileHeaderName:self.basicClassData.shootAnimFrame withAnimationCount:self.basicClassData.shootAnimFrameCount];
     
     //Preload your projectiles here
     if (self.basicClassData.attackType == atRange)
@@ -177,7 +191,7 @@ static CCArray* enemyUnitList = nil;
         NBProjectileBasicData* projectileBasicData = nil;
         bool projectileFound = false;
         
-        CCARRAY_FOREACH(self.dataManager.listOfProjectiles, projectileBasicData)
+        CCARRAY_FOREACH([NBDataManager getListOfProjectiles], projectileBasicData)
         {
             if ([projectileBasicData.projectileName isEqualToString:self.basicClassData.useProjectileName])
             {
@@ -191,10 +205,22 @@ static CCArray* enemyUnitList = nil;
             self.projectileArrayList = [[CCArray alloc] initWithCapacity:MAXIMUM_PROJECTILE_COUNT];
             for (int i = 0; i < PROJECTILE_MAX_CAPACITY_PER_CHARACTER; i++)
             {
-                NBProjectile* tempFireball = [[NBProjectile alloc] initWithFrameName:projectileBasicData.idleFrame andSpriteBatchNode:self.currentSpriteBatchNode onLayer:self.currentLayer setOwner:self withBasicData:projectileBasicData];
-                [tempFireball initialize];
-                tempFireball.currentPower = self.intelligencePoint;
-                [self.projectileArrayList addObject:tempFireball];
+                NBProjectile* tempProjectile = [[NBProjectile alloc] initWithFrameName:projectileBasicData.idleFrame andSpriteBatchNode:self.currentSpriteBatchNode onLayer:self.currentLayer setOwner:self withBasicData:projectileBasicData];
+                [tempProjectile initialize];
+                
+                if ([self.basicClassData.classType isEqualToString:@"INT"])
+                {
+                    tempProjectile.currentPower = self.intelligencePoint;
+                    tempProjectile.currentSpeed = self.intelligencePoint;
+                }
+                else if ([self.basicClassData.classType isEqualToString:@"DEX"])
+                {
+                    tempProjectile.currentPower = self.dexterityPoint;
+                    tempProjectile.currentSpeed = self.dexterityPoint;
+                }
+                
+                tempProjectile.currentOwnerSide = self.characterSide;
+                [self.projectileArrayList addObject:tempProjectile];
             }
         }
     }
@@ -205,6 +231,11 @@ static CCArray* enemyUnitList = nil;
     self.currentAttackPost = -1; //-1 means not in position
     
     [self setScale:self.basicClassData.scale];
+    
+    self.damageCounterLabel = [[CCLabelAtlas alloc]  initWithString:@"000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+    self.damageCounterLabel.scale = 0.5;
+    self.damageCounterLabel.visible = NO;
+    [self.currentLayer addChild:self.damageCounterLabel];
 }
 
 -(void)update:(ccTime)delta
@@ -286,13 +317,15 @@ static CCArray* enemyUnitList = nil;
         //Below code is to automatically find a new target if the object does not have any target yet
         if (self.currentTarget == nil)
         {
-            self.currentTarget = [self findNewTarget:[NBCharacter getEnemyList:self]];
+            self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
+            
             if (self.currentTarget == nil)
                 self.currentState = Idle;
             else
             {
-                if ([self.name isEqualToString:TEST_OBJECT_NAME])
-                    DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
+#if DEBUG
+                DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
+#endif
                 
                 self.currentState = Targetting;
                 [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
@@ -424,6 +457,16 @@ static CCArray* enemyUnitList = nil;
     
     self.previousTarget = self.currentTarget;
     self.previousPosition = self.position;
+    
+    /*if (damageCounterLabelRemainingTime > 0.0f)
+    {
+        damageCounterLabelRemainingTime -= delta;
+    }
+    else
+    {
+        self.damageCounterLabel.visible = NO;
+        [self.damageCounterLabel setString:@""];
+    }*/
 }
 
 -(void)levelUp
@@ -434,14 +477,19 @@ static CCArray* enemyUnitList = nil;
 
 -(void)attack:(NBCharacter*)target
 {
-    if (self.currentState != Dead && self.currentState != Dying)
+    //If melee type, this method is where the attack happen, but for range type, actually its the projectile that will register the attack.
+    if (self.basicClassData.attackType == atMelee)
     {
-        if ([NBCharacter calculateAttackSuccessWithAttacker:self andDefender:target])
+        if (self.currentState != Dead && self.currentState != Dying)
         {
-            [target onAttacked:self];
+            if ([NBCharacter calculateAttackSuccessWithAttacker:self andDefender:target])
+            {
+                [target onAttacked:self];
+            }
         }
     }
     
+    //Below here are the same for both range and melee attacj type
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ commence attack on %@", self.name, target.name);
     
@@ -573,7 +621,7 @@ static CCArray* enemyUnitList = nil;
         if (self.basicClassData.attackType == atMelee)
         {
             if (tempEnemy.currentNumberOfMeleeEnemiesAttackingMe >= tempEnemy.basicClassData.maximumAttackedStack)
-                return nil;
+                continue;
         }
         
         if (tempEnemy.currentState != Dead)
@@ -640,7 +688,7 @@ static CCArray* enemyUnitList = nil;
 
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState
 {
-    DLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
+    //DLog(@"%@ state changed from %i to %i", self.name, oldState, newState);
 }
 
 -(void)onMoveCompleted
@@ -688,14 +736,24 @@ static CCArray* enemyUnitList = nil;
 #if DEBUG
     DLog(@"%@ is dead", self.name);
 #endif
+    
+    [self dissapear];
 }
 
 -(void)onAttacked:(id)attacker
 {
+    if (self.currentState == Dead)
+        return;
+    
     NBCharacter* tempAttacker = (NBCharacter*)attacker;
     
     int damage = (tempAttacker.attackPoint - self.defensePoint);
     self.hitPoint -= damage;
+    
+    if (self.facing == Left)
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
+    else
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
     
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
@@ -716,7 +774,21 @@ static CCArray* enemyUnitList = nil;
 
 -(void)onAttackedByProjectile:(id)projectile
 {
+    //Implement below
+    if (self.currentState == Dead)
+        return;
+    
     NBProjectile* tempProjectile = (NBProjectile*)projectile;
+    int damage = (tempProjectile.currentPower - self.defensePoint);
+    self.hitPoint -= damage;
+    
+    if (self.facing == Left)
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
+    else
+        [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
+    
+    if ([self.name isEqualToString:TEST_OBJECT_NAME])
+        DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
     
 #if DEBUG
     DLog(@"%@ is attacked", self.name);

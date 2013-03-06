@@ -35,6 +35,9 @@
     NSData* tempData = [NSKeyedArchiver archivedDataWithRootObject:self.className];
     tempBasicData.className = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
     
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.classType];
+    tempBasicData.classType = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
     tempData = [NSKeyedArchiver archivedDataWithRootObject:self.idleFrame];
     tempBasicData.idleFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
     
@@ -72,6 +75,9 @@
     tempBasicData.maximumAttackedStack = self.maximumAttackedStack;
     tempBasicData.attackType = self.attackType;
     tempBasicData.isEnemy = self.isEnemy;
+    tempBasicData.idleAnimFrameCount = self.idleAnimFrameCount;
+    tempBasicData.attackAnimFrameCount = self.attackAnimFrameCount;
+    tempBasicData.shootAnimFrameCount = self.shootAnimFrameCount;
     
     tempBasicData.level = self.level;
     tempBasicData.currentHP = self.currentHP;

@@ -29,6 +29,7 @@ typedef enum
 
 +(void)update:(ccTime)delta;
 +(CGPoint)createDirectionFrom:(CGPoint)startPoint to:(CGPoint)destinationPoint;
++(CCArray*)getWorldObjectList;
 
 -(void)initialize;
 -(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer;

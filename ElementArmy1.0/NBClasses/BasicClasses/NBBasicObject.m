@@ -41,6 +41,14 @@ static CGSize worldSize;
     return CGPointMake(xPerFrame, yPerFrame);
 }
 
++(CCArray*)getWorldObjectList
+{
+    if (worldObjectList)
+        return worldObjectList;
+    else
+        return nil;
+}
+
 -(void)setFacing:(EnumFacing)newFacing
 {
     _facing = newFacing;

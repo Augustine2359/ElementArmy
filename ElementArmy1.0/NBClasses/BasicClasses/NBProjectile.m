@@ -30,7 +30,7 @@ static CCArray* projectileList = nil;
     }
 }
 
--(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBCharacter*)owner withBasicData:(NBProjectileBasicData*)basicData
+-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer setOwner:(NBBasicObject*)owner withBasicData:(NBProjectileBasicData*)basicData
 {
     if (!projectileList)
     {
@@ -43,6 +43,8 @@ static CCArray* projectileList = nil;
         self.currentOwner = owner;
         self.currentLayer = layer;
         self.objectIndex = [layer.children count];
+        self.currentPower = basicData.defaultPower;
+        self.currentSpeed = basicData.defaultSpeed;
     }
     
     [projectileList addObject:self];
@@ -52,6 +54,8 @@ static CCArray* projectileList = nil;
 
 -(void)initialize
 {
+    self.name = [NSString stringWithFormat:@"%@%i", self.projectileBasicData.projectileName, [projectileList count]];
+    
     self.isActive = false;
     self.paddingPosition = CGPointZero;
     self.position = [self.currentOwner position];
@@ -106,19 +110,8 @@ static CCArray* projectileList = nil;
                 self.facing = Left;
         }*/
         
-        self.position = ccpAdd(self.position, self.paddingPosition);
-        
-        if (self.projectileBasicData.shootType == ProjectileTargettedShot)
-        {
-            if (self.currentTarget != nil)
-            {
-                if (ccpDistance(self.currentTarget.position, self.position) < ((self.sprite.contentSize.width / HIT_ACCURACY_MULTIPLIER) + (self.currentTarget.sprite.contentSize.width / HIT_ACCURACY_MULTIPLIER)))
-                {
-                    [self onHit:(NBBasicObject*)self.currentTarget];
-                    self.currentTarget = nil;
-                }
-            }
-        }
+        if (!self.sprite.visible)
+            self.sprite.visible = YES;
         
         self.visible = YES;
         
@@ -131,9 +124,78 @@ static CCArray* projectileList = nil;
                 break;
                 
             case ProjectileShot:
+            {
+                if (!self.currentTarget)
+                    break;
+                
+                self.currentState = ProjectileTravelling;
+                self.currentDirection = [NBBasicObject createDirectionFrom:self.position to:self.shootLocation];
+                float duration = abs(ccpDistance(self.currentTarget.position, self.position)) / (([[CCDirector sharedDirector] winSize].width / 2) + self.currentSpeed);
+                CCMoveTo* move = [CCMoveTo actionWithDuration:duration position:self.currentTarget.position];
+                CCEaseIn* accel = [CCEaseIn actionWithAction:move rate:1.5];
+                [self runAction:accel];
+                //[self moveToDirection:self.currentDirection withDelta:delta];
+            }
                 break;
                 
             case ProjectileTravelling:
+            {
+                self.position = ccpAdd(self.position, self.paddingPosition);
+                
+                if (self.projectileBasicData.shootType == ProjectileTargettedShot)
+                {
+                    if (self.currentTarget != nil)
+                    {
+                        if ([self checkCollisionWith:self.currentTarget])
+                        {
+                            [self onHit:(NBBasicObject*)self.currentTarget];
+                            self.currentTarget = nil;
+                        }
+                    }
+                }
+                else
+                {
+                    NBBasicObject* object = nil;
+                    int collisionCount = 0;
+                    CCArray* objectList = nil;
+                    
+                    if (self.currentOwnerSide == Ally)
+                    {
+                        objectList = [NBCharacter getEnemyList];
+                    }
+                    else
+                    {
+                        objectList = [NBCharacter getAllyList];
+                    }
+                    
+                    CCARRAY_FOREACH(objectList, object)
+                    {
+                        collisionCount = 0;
+                        
+                        if (object != self && object != self.currentOwner)
+                        {
+                            if (object.isActive)
+                            {
+                                if ([self checkCollisionWith:object])
+                                {
+                                    collisionCount++;
+                                    [self isCollidedWith:object];
+                                    
+                                    if (collisionCount > MAXIMUM_COLLISION_ALLOWED)
+                                        continue;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                if (![self checkWithinWorld])
+                {
+                    self.isActive = false;
+                    self.visible = NO;
+                }
+                //[self moveToDirection:self.currentDirection withDelta:delta];
+            }
                 break;
                 
             case ProjectileCollided:
@@ -178,7 +240,19 @@ static CCArray* projectileList = nil;
 
 -(void)onHit:(NBBasicObject*)object
 {
+    //Generally you also would not need to change below unless it is really necessary.
+    id tempTarget = (id)object;
+    [tempTarget onAttackedByProjectile:self];
+    
     self.isActive = false;
+}
+
+-(void)isCollidedWith:(NBBasicObject*)object
+{
+    if (object == self.currentTarget)
+    {
+        [self onHit:object];
+    }
 }
 
 @end

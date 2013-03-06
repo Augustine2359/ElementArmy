@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NBButton.h"
 #import "NBMessageBox.h"
+#import "NBDamageLabel.h"
 
 @interface NBUserInterface : NSObject
 

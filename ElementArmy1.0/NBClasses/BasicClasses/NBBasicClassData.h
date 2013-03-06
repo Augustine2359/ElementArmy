@@ -61,6 +61,7 @@ typedef enum
 @interface NBBasicClassData : NSObject
 
 @property (nonatomic, retain) NSString* className;
+@property (nonatomic, retain) NSString* classType;
 @property (nonatomic, assign) int startLevel;
 @property (nonatomic, assign) int basicHP;
 @property (nonatomic, assign) int basicSP;
@@ -88,7 +89,11 @@ typedef enum
 @property (nonatomic, assign) bool isEnemy;
 @property (nonatomic, retain) NSString* idleFrame;
 @property (nonatomic, retain) NSString* idleAnimFrame;
+@property (nonatomic, assign) short idleAnimFrameCount;
 @property (nonatomic, retain) NSString* attackAnimFrame;
+@property (nonatomic, assign) short attackAnimFrameCount;
+@property (nonatomic, retain) NSString* shootAnimFrame;
+@property (nonatomic, assign) short shootAnimFrameCount;
 @property (nonatomic, retain) NSString* useProjectileName;
 
 @property (nonatomic, assign) int level;

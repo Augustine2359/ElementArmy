@@ -76,6 +76,8 @@ static CCArray* listOfProjectiles = nil;
     NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
+    dictionary = nil;
+    
     //if it doesn't exist yet, use the default one
     if (dictionary == nil) {
       plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
@@ -88,6 +90,7 @@ static CCArray* listOfProjectiles = nil;
     {
         NBStageData *stageData = [[NBStageData alloc] init];
         stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+        stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
         stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
         stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
         stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
@@ -164,6 +167,7 @@ static CCArray* listOfProjectiles = nil;
     {
         NBBasicClassData *characterData = [[NBBasicClassData alloc] init];
         characterData.className = [characterDataDictionary objectForKey:@"className"];
+        characterData.classType = [characterDataDictionary objectForKey:@"classType"];
         characterData.startLevel = [[characterDataDictionary objectForKey:@"startLevel"] intValue];
         characterData.basicHP = [[characterDataDictionary objectForKey:@"basicHP"] intValue];
         characterData.basicSP = [[characterDataDictionary objectForKey:@"basicSP"] intValue];
@@ -190,7 +194,11 @@ static CCArray* listOfProjectiles = nil;
         characterData.maximumAttackedStack = [[characterDataDictionary objectForKey:@"maximumAttackedStack"] intValue];
         characterData.idleFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleFrame"];
         characterData.idleAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleAnimFrame"];
+        characterData.idleAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleAnimFrameCount"] shortValue];
         characterData.attackAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrame"];
+        characterData.attackAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrameCount"] shortValue];
+        characterData.shootAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrame"];
+        characterData.shootAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrameCount"] shortValue];
         
         characterData.currentHP = characterData.basicHP;
         characterData.currentSP = characterData.basicSP;
@@ -221,6 +229,7 @@ static CCArray* listOfProjectiles = nil;
         projectileData.idleFrame = [projectileDataDictionary objectForKey:@"idleFrame"];
         projectileData.defaultPower = [[projectileDataDictionary objectForKey:@"defaultPower"] intValue];
         projectileData.defaultSpeed = [[projectileDataDictionary objectForKey:@"defaultSpeed"] intValue];
+        projectileData.shootType = [[projectileDataDictionary objectForKey:@"projectileShootType"] intValue];
         
         [listOfProjectiles addObject:projectileData];
     }
@@ -280,6 +289,11 @@ static CCArray* listOfProjectiles = nil;
     }
     
     return nil;
+}
+
++(CCArray*)getListOfProjectiles
+{
+    return listOfProjectiles;
 }
 
 @end

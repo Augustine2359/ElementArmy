@@ -14,6 +14,7 @@
 +(NBStageData*)getStageDataByID:(NSString*)stageID;
 
 @property (nonatomic, retain) NSString* stageID;
+@property (nonatomic, retain) NSString* stageName;
 @property (nonatomic, retain) NSString* countryID;
 @property (nonatomic, retain) NSString* availableNormalImageName;
 @property (nonatomic, retain) NSString* availableDisabledImageName;
