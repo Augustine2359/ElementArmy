@@ -44,6 +44,7 @@
 -(void)prepareUI;
 -(void)startBattle;
 -(void)endBattle;
+-(void)processBattleResult;
 -(void)gotoMapSelectionScreen;
 -(void)gotoStageSelectionScreen;
 -(void)entranceAnimationStep1;
@@ -51,12 +52,14 @@
 -(void)entranceAnimationStep3;
 -(void)entranceAnimationStep4;
 -(void)onBackgroundMoveCompleted;
+-(void)onBattleCompleteAnimationStep1Completed;
+-(void)onBattleCompleteAnimationCompleted;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, retain) CCLabelTTF* stageNameBanner;
 @property (nonatomic, retain) CCMenu *menu;
 @property (nonatomic, retain) CCMenu *battleCompleteMenu;
-@property (nonatomic, retain) CCLabelTTF* battleResultText;
+@property (nonatomic, retain) CCLabelAtlas* battleResultText;
 @property (nonatomic, retain) CCSpriteBatchNode* characterSpritesBatchNode;
 @property (nonatomic, retain) CCArray* allySquads;
 @property (nonatomic, retain) CCArray* enemySquads;
@@ -93,6 +96,6 @@
 @property (nonatomic, retain) NBStaticObject* fieldBackground;
 @property (nonatomic, retain) NBStaticObject* skyBackground;
 @property (nonatomic, retain) CCArray* damageLabels;
-
+@property (nonatomic, retain) CCSprite* battleResultBackground;
 
 @end

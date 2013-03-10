@@ -48,29 +48,23 @@
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
     
     //Prepare stage grid
-    self.horizontalGridCount = 32;
-    self.verticalGridCount = (int)(self.layerSize.height / STAGE_ICON_HEIGHT * 2) - 1;
+    self.currentCountryData = self.dataManager.selectedCountryData;
+    self.horizontalGridCount = self.currentCountryData.gridBoardSize.width;
+    self.verticalGridCount = self.currentCountryData.gridBoardSize.height;
+    DLog(@"country %@ will be loaded with (width, height): %d, %d", self.currentCountryData.countryName, (self.horizontalGridCount * STAGE_ICON_WIDTH / 2), (self.verticalGridCount * STAGE_ICON_HEIGHT / 2));
     
-    self.currentCountryStage = [[NBCountryStageGrid alloc] initOnLayer:self withSize:CGSizeMake((self.horizontalGridCount * STAGE_ICON_WIDTH / 2), (self.verticalGridCount * STAGE_ICON_HEIGHT / 2))];
-    DLog(@"test: %d", (self.verticalGridCount * STAGE_ICON_HEIGHT / 2));
-    [self readFromDataManager];
-    
-    //Just for the time being, disable save progress.
-    //[self.dataManager saveStages];
-    
-    [self readStagesFromFile];
+    self.currentCountryStage = [[NBCountryStageGrid alloc] initOnLayer:self withSize:CGSizeMake((self.horizontalGridCount * STAGE_ICON_WIDTH / 2), (self.verticalGridCount * STAGE_ICON_HEIGHT / 2)) withCountryData:self.currentCountryData respondToSelector:@selector(onStageGridEnteringAnimationCompleted)];
     [self.currentCountryStage onEnter:self];
     
     self.gotoBattleButton = [NBButton createWithStringHavingNormal:@"next_arrow.png" havingSelected:@"next_arrow.png" havingDisabled:@"next_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
     self.gotoBattleButton.menu.position = CGPointMake(self.layerSize.width - 20, 20);
-    [self.gotoBattleButton show];
     self.backToWorldSelectionButton = [NBButton createWithStringHavingNormal:@"previous_arrow.png" havingSelected:@"previous_arrow.png" havingDisabled:@"previous_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     self.backToWorldSelectionButton.menu.position = CGPointMake(20, 20);
-    [self.backToWorldSelectionButton show];
     
-    //For development only
-    //[self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
-    //[self addStandardMenuString:@"Go to Battle" withSelector:@selector(gotoBattleScreen)];
+    [self readFromDataManager];
+    //Just for the time being, disable save progress.
+    //[self.dataManager saveStages];
+    [self readStagesFromFile];
 }
 
 -(void)onExit
@@ -78,12 +72,18 @@
     [self.currentCountryStage release];
 }
 
+-(void)onStageGridEnteringAnimationCompleted
+{
+    [self.gotoBattleButton show];
+    [self.backToWorldSelectionButton show];
+}
+
 -(void)readFromDataManager
 {
     NBStage* stage = nil;
     NBStageData* stageData = nil;
     
-    CCARRAY_FOREACH(self.dataManager.listOfCreatedStagesID, stageData)
+    CCARRAY_FOREACH(self.dataManager.selectedCountryData.listOfCreatedStagesID, stageData)
     {
         stage = [NBStage getStageByID:stageData.stageID];
         [stage setupIconAndDisplayOnLayer:self selector:@selector(onStageSelected)];
@@ -126,16 +126,16 @@
 {
     if (!self.stageCreated)
     {
-        [self.dataManager createStages];
+        //[self.dataManager createStages];
         self.stageCreated = true;
     }
     
-    for (NBStage *stage in self.dataManager.listOfStages)
+    for (NBStage *stage in self.dataManager.selectedCountryData.stageList)
     {
         [stage setupIconAndDisplayOnLayer:self selector:@selector(onStageSelected)];
         [stage setupGrid];
         [self.currentCountryStage addStage:stage];
-        [self.dataManager.listOfCreatedStagesID addObject:stage.stageData];
+        [self.dataManager.selectedCountryData.listOfCreatedStagesID addObject:stage.stageData];
     }
 }
 

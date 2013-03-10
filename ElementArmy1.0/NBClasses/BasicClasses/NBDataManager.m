@@ -8,15 +8,16 @@
 
 #import "NBDataManager.h"
 #import "NBStage.h"
-#import "NBStageData.h"
 #import "NBItemData.h"
 #import "NBProjectileBasicData.h"
+//#import "NBCountryData.h"
 
 #define SQUAD_COUNT_ALLOWED 3
 
 static NBDataManager* dataManager = nil;
 static CCArray* listOfCharacters = nil;
 static CCArray* listOfProjectiles = nil;
+static CCArray* listOfCountries = nil;
 
 @implementation NBDataManager
 
@@ -40,9 +41,10 @@ static CCArray* listOfProjectiles = nil;
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
         listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
+        listOfCountries = [[CCArray alloc] initWithCapacity:10];
 
         //[self createStages];
-        [self createItems];
+        //[self createItems];
         
         self.selectedItems = [CCArray arrayWithCapacity:3];
     }
@@ -85,59 +87,80 @@ static CCArray* listOfProjectiles = nil;
       dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     }
 
-    NSArray *stages = [dictionary objectForKey:@"Stage data"];
+    NSArray *countries = [dictionary objectForKey:@"Stage data"];
     
-    for (NSDictionary *stageDataDictionary in stages)
+    for (NSDictionary *countryDataDictionary in countries)
     {
-        NBStageData *stageData = [[NBStageData alloc] init];
-        stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
-        stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
-        stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
-        stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
-        stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
-        stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
-        stageData.completedDisabledImageName = [stageDataDictionary objectForKey:@"completedDisabledImageName"];
-        CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
-        CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
-        stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
-        NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageID"];
-        stageData.nextStageID = [CCArray arrayWithNSArray:tempArray];
-        tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
-        stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
-        stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
-        stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+        NBCountryData* countryData = [[NBCountryData alloc] init];
+        countryData.countryName = [countryDataDictionary objectForKey:@"countryName"];
+        countryData.iconSpriteNormal = [countryDataDictionary objectForKey:@"iconSpriteNormal"];
+        countryData.iconSpriteSelected = [countryDataDictionary objectForKey:@"iconSpriteSelected"];
+        countryData.iconSpriteDisabled = [countryDataDictionary objectForKey:@"iconSpriteDisabled"];
+        countryData.majorElementID = [[countryDataDictionary objectForKey:@"majorElementID"] intValue];
+        int countryHorizontalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"horizontal"] intValue];
+        int countryVerticalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"vertical"] intValue];
+        countryData.gridBoardSize = CGSizeMake(countryHorizontalGridCount, countryVerticalGridCount);
+        CGFloat countryX = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"x"] floatValue];
+        CGFloat countryY = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"y"] floatValue];
+        countryData.positionInWorld = CGPointMake(countryX, countryY);
         
-        NSArray* enemyList = [stageDataDictionary objectForKey:@"Enemy List"];
+        NSArray *stages = [countryDataDictionary objectForKey:@"stageList"];
         
-        if (enemyList)
+        for (NSDictionary *stageDataDictionary in stages)
         {
-            arrayOfEnemyData = [[CCArray alloc] initWithCapacity:3];
+            NBStageData *stageData = [[NBStageData alloc] init];
+            stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+            stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
+            stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
+            stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
+            stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
+            stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
+            stageData.completedDisabledImageName = [stageDataDictionary objectForKey:@"completedDisabledImageName"];
+            CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
+            CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
+            stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
+            NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageID"];
+            stageData.nextStageID = [CCArray arrayWithNSArray:tempArray];
+            tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+            stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
+            stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
+            stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
             
-            for (NSDictionary* enemy in enemyList)
+            NSArray* enemyList = [stageDataDictionary objectForKey:@"Enemy List"];
+            
+            if (enemyList)
             {
-                basicClassData = [NBDataManager getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
-                basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
-                basicClassData.totalUnit = 1;
-                basicClassData.availableUnit = 1;
-                basicClassData.timeLastBattleCompleted = [NSDate date];
-                basicClassData.scale = [[enemy objectForKey:@"scale"] floatValue];
-                if (basicClassData.scale == 0) basicClassData.scale = 1;
-                basicClassData.currentHP = [[[enemy objectForKey:@"attributes"] objectForKey:@"HP"] intValue];
-                basicClassData.currentSP = [[[enemy objectForKey:@"attributes"] objectForKey:@"SP"] intValue];
-                basicClassData.currentSTR = [[[enemy objectForKey:@"attributes"] objectForKey:@"STR"] intValue];
-                basicClassData.currentDEF = [[[enemy objectForKey:@"attributes"] objectForKey:@"DEF"] intValue];
-                basicClassData.currentINT = [[[enemy objectForKey:@"attributes"] objectForKey:@"INT"] intValue];
-                basicClassData.currentDEX = [[[enemy objectForKey:@"attributes"] objectForKey:@"DEX"] intValue];
-                basicClassData.currentEVA = [[[enemy objectForKey:@"attributes"] objectForKey:@"EVA"] intValue];
+                arrayOfEnemyData = [[CCArray alloc] initWithCapacity:3];
                 
-                [arrayOfEnemyData addObject:basicClassData];
+                for (NSDictionary* enemy in enemyList)
+                {
+                    basicClassData = [NBDataManager getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
+                    basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
+                    basicClassData.totalUnit = 1;
+                    basicClassData.availableUnit = 1;
+                    basicClassData.timeLastBattleCompleted = [NSDate date];
+                    basicClassData.scale = [[enemy objectForKey:@"scale"] floatValue];
+                    if (basicClassData.scale == 0) basicClassData.scale = 1;
+                    basicClassData.currentHP = [[[enemy objectForKey:@"attributes"] objectForKey:@"HP"] intValue];
+                    basicClassData.currentSP = [[[enemy objectForKey:@"attributes"] objectForKey:@"SP"] intValue];
+                    basicClassData.currentSTR = [[[enemy objectForKey:@"attributes"] objectForKey:@"STR"] intValue];
+                    basicClassData.currentDEF = [[[enemy objectForKey:@"attributes"] objectForKey:@"DEF"] intValue];
+                    basicClassData.currentINT = [[[enemy objectForKey:@"attributes"] objectForKey:@"INT"] intValue];
+                    basicClassData.currentDEX = [[[enemy objectForKey:@"attributes"] objectForKey:@"DEX"] intValue];
+                    basicClassData.currentEVA = [[[enemy objectForKey:@"attributes"] objectForKey:@"EVA"] intValue];
+                    
+                    [arrayOfEnemyData addObject:basicClassData];
+                }
             }
+            
+            stageData.enemyList = arrayOfEnemyData;
+            
+            NBStage *stage = [NBStage createStageWithStageData:stageData];
+            [self.listOfStages addObject:stage];
+            [countryData.stageList addObject:stage];
         }
         
-        stageData.enemyList = arrayOfEnemyData;
-        
-        NBStage *stage = [NBStage createStageWithStageData:stageData];
-        [self.listOfStages addObject:stage];
+        [listOfCountries addObject:countryData];
     }
 }
 
@@ -291,6 +314,11 @@ static CCArray* listOfProjectiles = nil;
 +(CCArray*)getListOfProjectiles
 {
     return listOfProjectiles;
+}
+
++(CCArray*)getListOfCountries
+{
+    return listOfCountries;
 }
 
 @end

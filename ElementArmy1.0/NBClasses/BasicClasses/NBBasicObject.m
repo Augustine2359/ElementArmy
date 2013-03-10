@@ -306,11 +306,16 @@ static CGSize worldSize;
     
     self.isCurrentlyTouched = [self isTouchingMe:touchLocation];
     
-    [self onTouched];
+    if (self.isCurrentlyTouched)
+    {
+        [self onTouched];
+    }
     
     //DLog(@"Object Touch started");
     
-    return self.isSwallowingTouch;
+    //return self.isSwallowingTouch;
+    
+    return self.isCurrentlyTouched;
 }
 
 -(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event

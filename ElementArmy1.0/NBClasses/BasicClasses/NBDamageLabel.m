@@ -17,6 +17,30 @@ static int currentDamageLabelIndex = 0;
 +(void)setCurrentLayerForDamageLabel:(CCLayer*)layer
 {
     currentLayer = layer;
+    
+    if (!damageLabels)
+    {
+        damageLabels = [[CCArray alloc] initWithCapacity:100];
+        for (int i = 0; i < 100; i++)
+        {
+            NBDamageLabel* damageLabel = [[NBDamageLabel alloc]  initWithString:@"000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+            damageLabel.scale = 0.5;
+            damageLabel.visible = NO;
+            [currentLayer addChild:damageLabel];
+            [damageLabels addObject:damageLabel];
+        }
+        currentDamageLabelIndex = 0;
+    }
+    
+    /*else
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            NBDamageLabel* damageLabel = (NBDamageLabel*)[damageLabels objectAtIndex:i];
+            [damageLabel removeFromParentAndCleanup:NO];
+            [layer addChild:damageLabel];
+        }
+    }*/
 }
 
 +(void)registerDamage:(CGPoint)position withDamageAmount:(long)damage toRight:(bool)isToRight

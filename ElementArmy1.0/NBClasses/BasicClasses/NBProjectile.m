@@ -66,7 +66,7 @@ static CCArray* projectileList = nil;
 
 -(void)dealloc
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
     [projectileList removeObject:self];
     [super dealloc];
 }

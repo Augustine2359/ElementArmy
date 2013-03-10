@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "NBBasicClassData.h"
-#import "NBStageData.h"
 #import "NBCountryData.h"
+#import "NBStageData.h"
 
 @interface NBDataManager : NSObject
 
@@ -25,6 +25,7 @@
 
 +(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 +(CCArray*)getListOfProjectiles;
++(CCArray*)getListOfCountries;
 
 @property (nonatomic, retain) NSString* userID;
 
@@ -36,7 +37,7 @@
 
 @property (nonatomic, retain) CCArray* listOfStages;
 @property (nonatomic, retain) CCArray* listOfItems;
-@property (nonatomic, retain) CCArray* listOfCountries;
+//@property (nonatomic, retain) CCArray* listOfCountries;
 
 @property (nonatomic, retain) CCArray* listOfCharacters;
 @property (nonatomic, retain) CCArray* listOfProjectiles;

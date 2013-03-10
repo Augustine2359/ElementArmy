@@ -229,75 +229,122 @@ static Boolean isAutoStart = NO;
             [self.enemyHPBar setToCustomSize:CGSizeMake(newEnemyHPBarWidth, self.enemyHPBar.sizeOnScreen.height)];
         }
         
-        if (self.allAllyUnitAnnihilated)
-        {
-            self.dataManager.battleWon = false;
-            self.dataManager.selectedStageData.loseCount++;
-            
-            self.battleResultText = [CCLabelTTF labelWithString:@"Defeat" fontName:@"Zapfino" fontSize:28];
-            self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-            [self addChild:self.battleResultText];
-            //[self gotoMapSelectionScreen];
-        }
-        else if (self.allEnemyUnitAnnihilated)
-        {
-            self.dataManager.battleWon = true;
-            self.dataManager.selectedStageData.winCount++;
-            
-            self.battleResultText = [CCLabelTTF labelWithString:@"Victory" fontName:@"Zapfino" fontSize:28];
-            self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-            [self addChild:self.battleResultText];
-        }
-        
         if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
         {
-            battleStarted = false;
-            
-            NBSquad* squadObject = nil;
-            int index = 0;
-            
-            CCARRAY_FOREACH(self.allySquads, squadObject)
+            if (self.allAllyUnitAnnihilated)
             {
-                NBBasicClassData* squadClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
-                
-                squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
-                squadClassData.timeLastBattleCompleted = [NSDate date];
-                
-                [self.dataManager.arrayOfAllySquad replaceObjectAtIndex:index withObject:squadClassData];
-                
-                NBBasicClassData* testClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
-                DLog(@"%@ available unit = %i", testClassData.className, testClassData.availableUnit);
-                
-                index++;
+                self.dataManager.battleWon = false;
+                self.dataManager.selectedStageData.loseCount++;
+            }
+            else
+            {
+                self.dataManager.battleWon = true;
+                self.dataManager.selectedStageData.winCount++;
             }
             
-            //For enemy dont reset for now, simulating next stage will be full of enemy again
-            /*
-            index = 0;
-            CCARRAY_FOREACH(self.enemySquads, squadObject)
-            {
-                NBBasicClassData* squadClassData = [self.dataManager.arrayOfEnemySquad objectAtIndex:index];
-                
-                squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
-                squadClassData.timeLastBattleCompleted = [NSDate date];
-                
-                [self.dataManager.arrayOfEnemySquad replaceObjectAtIndex:index withObject:squadClassData];
-                index++;
-            }
-             */
-            
-            [CCMenuItemFont setFontSize:16];
-            
-            // create and initialize a Label
-            CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoStageSelectionScreen)];
-            self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
-            
-            [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
-            [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 100)];
-            
-            // Add the menu to the layer
-            [self addChild:self.battleCompleteMenu];
+            [self processBattleResult];
         }
+    }
+}
+
+-(void)processBattleResult
+{
+    battleStarted = false;
+    
+    if (self.allAllyUnitAnnihilated)
+    {
+        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"0000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+    }
+    else if (self.allEnemyUnitAnnihilated)
+    {
+        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"9999" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+    }
+    
+    self.battleResultText.anchorPoint = CGPointMake(0.5, 0.25);
+    self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
+    self.battleResultText.scale = 0;
+    [self addChild:self.battleResultText];
+    
+    CCScaleTo* scaleTo_0 = [CCScaleTo actionWithDuration:1.0 scale:2.50];
+    CCEaseIn* easeIn_0 = [CCEaseIn actionWithAction:scaleTo_0 rate:2.0];
+    CCScaleTo* scaleTo_1 = [CCScaleTo actionWithDuration:0.75 scale:2.00];
+    CCDelayTime* delay = [CCDelayTime actionWithDuration:1.0];
+    CCScaleTo* scaleTo_2 = [CCScaleTo actionWithDuration:0.75 scale:100.00];
+    CCEaseIn* easeIn_1 = [CCEaseIn actionWithAction:scaleTo_2 rate:2.0];
+    CCCallFunc* animationScaleOut = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationStep1Completed)];
+    CCSequence* sequence = [CCSequence actions:easeIn_0, scaleTo_1, delay, easeIn_1, animationScaleOut, nil];
+    [self.battleResultText runAction:sequence];
+}
+
+-(void)onBattleCompleteAnimationStep1Completed
+{
+    self.battleResultBackground = [CCSprite spriteWithSpriteFrameName:@"staticbox_gray.png"];
+    self.battleResultBackground.scale = 100;
+    self.battleResultBackground.anchorPoint = CGPointMake(0.5, 0.5);
+    self.battleResultBackground.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
+    [self reorderChild:self.battleResultText z:(self.battleResultBackground.zOrder + 1)];
+    
+    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:0.5];
+    [self.battleResultBackground runAction:fadeIn];
+    [self addChild:self.battleResultBackground];
+    
+    CCScaleTo* scale1 = [CCScaleTo actionWithDuration:1.0 scaleX:25 scaleY:15];
+    CCScaleTo* scale2 = [CCScaleTo actionWithDuration:1.0 scale:2];
+    CCCallFunc* animationCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationCompleted)];
+    CCSequence* sequence = [CCSequence actions:scale1, animationCompleted, nil];
+    [self.battleResultText runAction:scale2];
+    [self.battleResultBackground runAction:sequence];
+}
+
+-(void)onBattleCompleteAnimationCompleted
+{
+    if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
+    {
+        
+        NBSquad* squadObject = nil;
+        int index = 0;
+        
+        CCARRAY_FOREACH(self.allySquads, squadObject)
+        {
+            NBBasicClassData* squadClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
+            
+            squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+            squadClassData.timeLastBattleCompleted = [NSDate date];
+            
+            [self.dataManager.arrayOfAllySquad replaceObjectAtIndex:index withObject:squadClassData];
+            
+            NBBasicClassData* testClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:index];
+            DLog(@"%@ available unit = %i", testClassData.className, testClassData.availableUnit);
+            
+            index++;
+        }
+        
+        //For enemy dont reset for now, simulating next stage will be full of enemy again
+        /*
+         index = 0;
+         CCARRAY_FOREACH(self.enemySquads, squadObject)
+         {
+         NBBasicClassData* squadClassData = [self.dataManager.arrayOfEnemySquad objectAtIndex:index];
+         
+         squadClassData.availableUnit = squadObject.totalCurrentAliveUnit;
+         squadClassData.timeLastBattleCompleted = [NSDate date];
+         
+         [self.dataManager.arrayOfEnemySquad replaceObjectAtIndex:index withObject:squadClassData];
+         index++;
+         }
+         */
+        
+        [CCMenuItemFont setFontSize:16];
+        
+        // create and initialize a Label
+        CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoStageSelectionScreen)];
+        self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
+        
+        [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
+        [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 100)];
+        
+        // Add the menu to the layer
+        [self addChild:self.battleCompleteMenu];
     }
 }
 

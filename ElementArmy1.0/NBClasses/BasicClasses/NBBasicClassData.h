@@ -109,5 +109,6 @@ typedef enum
 @property (nonatomic, assign) NSDate* timeLastBattleCompleted;
 @property (nonatomic, assign) EnumEnemyType enemyType;
 @property (nonatomic, assign) float scale;
+@property (nonatomic, assign) int awardedBattlePoint;
 
 @end

@@ -22,7 +22,7 @@ typedef enum
     Reserved
 } EnumButtonState;
 
-@interface NBButton : NBBasicObject
+@interface NBButton : NBStaticObject
 
 +(id)createOnLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector;
 +(id)createWithSize:(CGSize)size onLayer:(CCLayer*)layer respondTo:(id)object selector:(SEL)selector;

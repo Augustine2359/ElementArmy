@@ -18,7 +18,9 @@
 -(void)gotoBattleSetupScreen;
 -(void)gotoBattleScreen;
 -(void)gotoMapSelectionScreen;
+-(void)onStageGridEnteringAnimationCompleted;
 
+@property (nonatomic, retain) NBCountryData* currentCountryData;
 @property (nonatomic, retain) NBCountryStageGrid* currentCountryStage;
 @property (nonatomic, assign) int horizontalGridCount;
 @property (nonatomic, assign) int verticalGridCount;
