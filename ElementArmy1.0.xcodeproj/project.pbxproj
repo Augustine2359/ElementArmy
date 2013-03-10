@@ -1450,6 +1450,9 @@
 				BCDA1AC116EC1C4E00438E35 /* NBBasicObject.m in Sources */,
 				BC25575C16EC20A800A7CD2C /* NBCountryData.m in Sources */,
 				BC25575F16EC211E00A7CD2C /* NBCountry.m in Sources */,
+				568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */,
+				568EC19B16EC584D00815563 /* NBEquipment.m in Sources */,
+				568EC19E16EC58B600815563 /* NBEquipmentData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -134,7 +134,7 @@ static CCArray* listOfCountries = nil;
                 
                 for (NSDictionary* enemy in enemyList)
                 {
-                    basicClassData = [NBDataManager getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
+                    basicClassData = [self getBasicClassDataByClassName:[enemy objectForKey:@"enemyClass"]];
                     basicClassData.level = [[enemy objectForKey:@"level"] integerValue];
                     basicClassData.totalUnit = 1;
                     basicClassData.availableUnit = 1;
