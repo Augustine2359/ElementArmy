@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */; };
 		56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */; };
@@ -185,6 +186,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		568EC18C16EC480200815563 /* NBBattleSetupEquipments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupEquipments.h; sourceTree = "<group>"; };
+		568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupEquipments.m; sourceTree = "<group>"; };
 		569CC7EE16A56C2700818B56 /* NBBattleSetupItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupItems.h; sourceTree = "<group>"; };
 		569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupItems.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
@@ -1105,6 +1108,8 @@
 				F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */,
 				569CC7EE16A56C2700818B56 /* NBBattleSetupItems.h */,
 				569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */,
+				568EC18C16EC480200815563 /* NBBattleSetupEquipments.h */,
+				568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */,
 			);
 			path = "Battle Setup Screen";
 			sourceTree = "<group>";
@@ -1429,6 +1434,7 @@
 				BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */,
 				BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */,
 				F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */,
+				568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

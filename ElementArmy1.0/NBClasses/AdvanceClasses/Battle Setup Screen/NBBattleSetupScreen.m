@@ -87,19 +87,23 @@ int objectsLeftToTransit = 6;
     self.tempNumberOfUnlockedItemsSlots = 2;
     self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
     self.selectedItem2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(openItemSelection)];
-    self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(openItemSelection)];
+    self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(gotoAppStore)];
     
     [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];
-    [self.selectedItem1.itemIcon setPosition:ccp(160, 50)];
+    [self.selectedItem1.itemIcon setPosition:ccp(160, -50)];
     [self.selectedItem1 displayItemIcon];
     
     [self.selectedItem2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-    [self.selectedItem2.itemIcon setPosition:ccp(240, 50)];
+    [self.selectedItem2.itemIcon setPosition:ccp(240, -50)];
     [self.selectedItem2 displayItemIcon];
     
-    NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
-    [lockedButton setPosition:ccp(320, 50)];
-    [lockedButton show];
+    [self.selectedItem3 setItemIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
+    [self.selectedItem3.itemIcon setPosition:ccp(320, -50)];
+    [self.selectedItem3 displayItemIcon];
+    
+//    NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
+//    [lockedButton setPosition:ccp(320, 50)];
+//    [lockedButton show];
     
     [self initialiseTransition];
 }
@@ -134,9 +138,9 @@ int objectsLeftToTransit = 6;
     [self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
     [self.battleSetupCancel.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
     [self.battleSetupOk.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
-    [self.selectedItem1.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
-    [self.selectedItem2.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
-    [self.selectedItem3.itemIcon runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
+    [self.selectedItem1.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
+    [self.selectedItem2.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
+    [self.selectedItem3.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
 }
 
 -(void)updateObjectsLeftToTransit{
