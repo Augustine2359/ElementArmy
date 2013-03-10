@@ -83,8 +83,9 @@ int objectsLeftToTransit = 6;
     self.setupItemsFrame = [[NBBattleSetupItems alloc] initWithLayer:self];
     [self addChild:self.setupItemsFrame z:1];
     
+    
     //Display buttons Items
-    self.tempNumberOfUnlockedItemsSlots = 2;
+    self.tempNumberOfUnlockedItemsSlots = 2; //Not used yet
     self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
     self.selectedItem2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(openItemSelection)];
     self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(gotoAppStore)];
@@ -101,9 +102,28 @@ int objectsLeftToTransit = 6;
     [self.selectedItem3.itemIcon setPosition:ccp(320, -50)];
     [self.selectedItem3 displayItemIcon];
     
-//    NBButton* lockedButton = [NBButton createWithStringHavingNormal:@"frame_item.png" havingSelected:@"frame_item.png" havingDisabled:@"frame_item.png" onLayer:self respondTo:nil selector:@selector(gotoAppStore) withSize:CGSizeZero];
-//    [lockedButton setPosition:ccp(320, 50)];
-//    [lockedButton show];
+    
+    //Equipment selection
+    self.setupEquipmentsFrame = [[NBBattleSetupEquipments alloc] initWithLayer:self];
+    [self addChild:self.setupEquipmentsFrame z:1];
+    
+    //Display buttons Equipments
+    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection)];
+    self.selectedEquipment2 = [NBEquipment createEquipment:@"FuryPill" onLayer:self onSelector:@selector(openEquipmentSelection)];
+    self.selectedEquipment3 = [NBEquipment createEquipment:@"WingedBoots" onLayer:self onSelector:@selector(openEquipmentSelection)];
+    
+    [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];
+    [self.selectedEquipment1.equipmentIcon setPosition:ccp(160, -150)];
+    [self.selectedEquipment1 displayEquipmentIcon];
+    
+    [self.selectedEquipment2 setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
+    [self.selectedEquipment2.equipmentIcon setPosition:ccp(240, -150)];
+    [self.selectedEquipment2 displayEquipmentIcon];
+    
+    [self.selectedEquipment3 setEquipmentIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self];
+    [self.selectedEquipment3.equipmentIcon setPosition:ccp(320, -150)];
+    [self.selectedEquipment3 displayEquipmentIcon];
+    
     
     [self initialiseTransition];
 }
@@ -141,14 +161,9 @@ int objectsLeftToTransit = 6;
     [self.selectedItem1.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 50)], nil]];
     [self.selectedItem2.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 50)], nil]];
     [self.selectedItem3.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 50)], nil]];
-}
-
--(void)updateObjectsLeftToTransit{
-    objectsLeftToTransit--;
-    
-    if (objectsLeftToTransit <= 0) {
-        DLog(@"All objects transited");
-    }
+    [self.selectedEquipment1.equipmentIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(160, 100)], nil]];
+    [self.selectedEquipment2.equipmentIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 100)], nil]];
+    [self.selectedEquipment3.equipmentIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(320, 100)], nil]];
 }
 
 -(void)gotoIntroScreen
@@ -182,6 +197,10 @@ int objectsLeftToTransit = 6;
     [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem2];
     [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem3];
     
+    [[[NBDataManager dataManager] selectedEquipments] addObject:self.selectedEquipment1];
+    [[[NBDataManager dataManager] selectedEquipments] addObject:self.selectedEquipment2];
+    [[[NBDataManager dataManager] selectedEquipments] addObject:self.selectedEquipment3];
+    
     [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:0]];
     [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:1]];
     [[[NBDataManager dataManager] arrayOfAllySquad] addObject:[self.unitSelectorsContainerLayer basicClassDataInUnitSelector:2]];
@@ -197,6 +216,11 @@ int objectsLeftToTransit = 6;
 -(void)openItemSelection{
     NBItem *item = [NBItem getCurrentlySelectedItem];
     [self.setupItemsFrame toggleItemSelection:item];
+}
+
+-(void)openEquipmentSelection{
+    NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
+    [self.setupEquipmentsFrame toggleEquipmentSelection:equipment];
 }
 
 @end

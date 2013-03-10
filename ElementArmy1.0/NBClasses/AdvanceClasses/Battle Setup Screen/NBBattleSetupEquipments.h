@@ -7,24 +7,24 @@
 //
 
 #import "NBBasicScreenLayer.h"
-#import "NBItem.h"
+#import "NBEquipment.h"
 
 
 @interface NBBattleSetupEquipments : NBBasicScreenLayer
 
-@property (nonatomic) bool itemSelectionOpen;
-@property (nonatomic) int currentSelectedItemIndex;
+@property (nonatomic) bool equipmentSelectionOpen;
+@property (nonatomic) int currentSelectedEquipmentIndex;
 
-@property (nonatomic, retain) NBItem* changingTargetItem;
+@property (nonatomic, retain) NBEquipment* changingTargetEquipment;
 
-@property(nonatomic, retain) NSMutableArray* allItems;
+@property(nonatomic, retain) NSMutableArray* allEquipments;
 @property (nonatomic, retain) id mainLayer;
 
 -(id)initWithLayer:(id)layer;
--(void)initialiseItemArray;
--(void)initialiseItemUI;
--(void)toggleItemSelection:(NBItem*)selectedItemButton;
--(void)selectTargetItem;
+-(void)initialiseEquipmentArray;
+-(void)initialiseEquipmentUI;
+-(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton;
+-(void)selectTargetEquipment;
 
 
 @end

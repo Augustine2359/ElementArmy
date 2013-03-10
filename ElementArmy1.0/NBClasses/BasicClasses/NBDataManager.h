@@ -56,6 +56,8 @@
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;
 @property (nonatomic, retain) CCArray* selectedItems;
 
+@property (nonatomic, retain) CCArray* selectedEquipments;
+
 @property (nonatomic, assign) bool battleWon;
 
 @end

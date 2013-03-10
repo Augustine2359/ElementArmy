@@ -44,6 +44,7 @@ static CCArray* listOfProjectiles = nil;
         [self createItems];
         
         self.selectedItems = [CCArray arrayWithCapacity:3];
+        self.selectedEquipments = [CCArray arrayWithCapacity:3];
     }
 
     return self;
