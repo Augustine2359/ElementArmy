@@ -15,7 +15,6 @@
 #define SQUAD_COUNT_ALLOWED 3
 
 static NBDataManager* dataManager = nil;
-static CCArray* listOfCharacters = nil;
 static CCArray* listOfProjectiles = nil;
 static CCArray* listOfCountries = nil;
 
@@ -39,7 +38,7 @@ static CCArray* listOfCountries = nil;
         self.arrayOfAllySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.arrayOfEnemySquad = [CCArray arrayWithCapacity:SQUAD_COUNT_ALLOWED];
         self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
-        listOfCharacters = [[CCArray alloc] initWithCapacity:100];
+        self.listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
         listOfCountries = [[CCArray alloc] initWithCapacity:10];
 
@@ -47,6 +46,7 @@ static CCArray* listOfCountries = nil;
         //[self createItems];
         
         self.selectedItems = [CCArray arrayWithCapacity:3];
+        self.selectedEquipments = [CCArray arrayWithCapacity:3];
     }
 
     return self;
@@ -181,7 +181,7 @@ static CCArray* listOfCountries = nil;
 
 -(void)createCharacterList
 {
-    if (!listOfCharacters) listOfCharacters = [CCArray array];
+    if (!self.listOfCharacters) self.listOfCharacters = [CCArray array];
     
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
@@ -234,7 +234,7 @@ static CCArray* listOfCountries = nil;
         
         characterData.useProjectileName = [characterDataDictionary objectForKey:@"useProjectileName"];
         
-        [listOfCharacters addObject:characterData];
+        [self.listOfCharacters addObject:characterData];
     }
 }
 
@@ -291,13 +291,17 @@ static CCArray* listOfCountries = nil;
     [plistData writeToFile:path atomically:YES];
 }
 
-+(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className
+-(void)saveItems{
+    
+}
+
+-(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className
 {
-    if (listOfCharacters && [listOfCharacters count] > 0)
+    if (self.listOfCharacters && [self.listOfCharacters count] > 0)
     {
         NBBasicClassData* tempClassData = [[NBBasicClassData alloc] init];
         
-        CCARRAY_FOREACH(listOfCharacters, tempClassData)
+        CCARRAY_FOREACH(self.listOfCharacters, tempClassData)
         {
             if ([tempClassData.className isEqualToString:className])
             {

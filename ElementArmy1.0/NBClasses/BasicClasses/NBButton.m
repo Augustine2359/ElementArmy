@@ -92,11 +92,6 @@ static CCArray* buttonList = nil;
     return self;
 }
 
--(void)setIntStorage:(int)intValue
-{
-    self.tempIntStorage = intValue;
-}
-
 -(void)setPosition:(CGPoint)position
 {
     self.menu.position = position;

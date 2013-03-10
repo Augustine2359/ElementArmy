@@ -182,7 +182,7 @@ static NBDataManager* dataManager = nil;
     //-------------------------------------------------------------------------------
     CCArray* arrayOfAllyData = [CCArray arrayWithCapacity:3];
     
-    NBBasicClassData* basicClassData = [NBDataManager getBasicClassDataByClassName:@"metalsoldier"];
+    NBBasicClassData* basicClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 2;
     basicClassData.totalUnit = 8;
@@ -190,7 +190,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [NBDataManager getBasicClassDataByClassName:@"firemage"];
+    basicClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 1;
     basicClassData.totalUnit = 8;
@@ -198,7 +198,7 @@ static NBDataManager* dataManager = nil;
     
     [arrayOfAllyData addObject:basicClassData];
     
-    basicClassData = [NBDataManager getBasicClassDataByClassName:@"woodarcher"];
+    basicClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
     basicClassData.level = 1;
     basicClassData.availableUnit = 4;
     basicClassData.totalUnit = 8;

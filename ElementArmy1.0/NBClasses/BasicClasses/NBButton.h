@@ -36,7 +36,6 @@ typedef enum
 -(void)changeParent:(CCLayer*)layer;
 -(void)disable;
 -(void)enable;
--(void)setIntStorage:(int)intValue;
 
 @property (nonatomic, retain) CCMenu* menu;
 @property (nonatomic, retain) CCMenuItemSprite* buttonObject;
@@ -47,7 +46,5 @@ typedef enum
 @property (nonatomic, retain) CCLayer* displayLayer;
 @property (nonatomic, assign) SEL handlerMethod;
 @property (nonatomic, assign) CGSize currentSize;
-
-@property (nonatomic, assign) int tempIntStorage;
 
 @end

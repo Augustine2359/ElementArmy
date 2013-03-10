@@ -23,7 +23,7 @@
 -(void)createCharacterList;
 -(void)createProjectileList;
 
-+(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
+-(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 +(CCArray*)getListOfProjectiles;
 +(CCArray*)getListOfCountries;
 
@@ -55,9 +55,10 @@
 
 @property (nonatomic, retain) CCArray* arrayOfAllySquad;
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;
+@property (nonatomic, retain) CCArray* selectedItems;
+
+@property (nonatomic, retain) CCArray* selectedEquipments;
 
 @property (nonatomic, assign) bool battleWon;
-//Eric testing
-@property (nonatomic, retain) CCArray* selectedItems;
 
 @end

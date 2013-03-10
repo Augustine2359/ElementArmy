@@ -120,7 +120,6 @@
     //Sample for wastedMyTimeButton
     //self.wastedMyTimeButton = [NBButton createOnLayer:self selector:@selector(onTestButtonPressed)];
     self.wastedMyTimeButton = [NBButton createWithSize:CGSizeMake(100, 40) onLayer:self respondTo:nil selector:@selector(onTestButtonPressed)];
-    [self.wastedMyTimeButton setIntStorage:0];
     self.wastedMyTimeButton.menu.position = CGPointMake(200, 200);
     //[self.wastedMyTimeButton show];
     
@@ -146,7 +145,6 @@
     [self.testSubLayer setPosition:CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2)];
     //Create the button by providing all the frame and the main layer together with the sub layer
     NBButton* testButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(onTestButtonPressed) withSize:CGSizeZero onSubLayer:self.testSubLayer];
-    [testButton setIntStorage:0];
     
     //IF you created your button not using the method where you can provide the sub layer, then you can still change the parent layer using the following method
     //[testButton changeParent:self.testSubLayer];
