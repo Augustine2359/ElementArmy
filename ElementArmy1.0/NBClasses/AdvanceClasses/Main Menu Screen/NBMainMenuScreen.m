@@ -53,6 +53,10 @@
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Loading" withSelector:@selector(gotoLoadingScreen)];
     [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
+
+  for (enum MessageBoxStartingPosition messageBoxStartingPosition = 0; messageBoxStartingPosition <= MessageBoxStartingPositionBottomLeft; messageBoxStartingPosition++) {
+    NBMessageBox *messageBox = [[NBMessageBox alloc] initWithFrameName:@"HQ_Title.png" andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self atMessageBoxStartingPosition:messageBoxStartingPosition];
+  }
 }
 
 -(void)gotoIntroScreen

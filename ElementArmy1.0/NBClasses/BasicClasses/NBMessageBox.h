@@ -12,9 +12,22 @@
 
 #define MESSAGE_BOX_FRAME_NAME @"static_box.png"
 
+enum MessageBoxStartingPosition {
+  MessageBoxStartingPositionCentre = 0,
+  MessageBoxStartingPositionTop,
+  MessageBoxStartingPositionBottom,
+  MessageBoxStartingPositionRight,
+  MessageBoxStartingPositionLeft,
+  MessageBoxStartingPositionTopRight,
+  MessageBoxStartingPositionTopLeft,
+  MessageBoxStartingPositionBottomRight,
+  MessageBoxStartingPositionBottomLeft
+  };
+
 @interface NBMessageBox : NBStaticObject
 
-+(void)show:(NSString*)message;
+- (id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)messageBoxStartingPosition;
+- (void)scaleFrom:(CGFloat)fromScale toScale:(CGFloat)toScale inDuration:(CGFloat)duration;
 
 @property (nonatomic, retain) NSString* message;
 @property (nonatomic, retain) NBButton* buttonOK;

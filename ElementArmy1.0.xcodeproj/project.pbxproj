@@ -186,6 +186,8 @@
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
 		F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */; };
 		F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9B870FE16BE906500F9321A /* GameSettings.plist */; };
+		F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD416EDBB990036FA29 /* sampleFont.fnt */; };
+		F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD516EDBB990036FA29 /* sampleFont.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -554,6 +556,8 @@
 		F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreenScrollingTextLayer.h; sourceTree = "<group>"; };
 		F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingTextLayer.m; sourceTree = "<group>"; };
 		F9B870FE16BE906500F9321A /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameSettings.plist; path = Resources/GameSettings.plist; sourceTree = "<group>"; };
+		F9C43AD416EDBB990036FA29 /* sampleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleFont.fnt; sourceTree = "<group>"; };
+		F9C43AD516EDBB990036FA29 /* sampleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleFont.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -647,6 +651,7 @@
 		BCBC72291633A98700B5A141 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F9C43AD316EDBB990036FA29 /* Fonts */,
 				BCBC73D71633B06400B5A141 /* CharacterSprites */,
 				BCBC722A1633A98700B5A141 /* Default.png */,
 				BCBC722C1633A98700B5A141 /* Default-Landscape~ipad.png */,
@@ -1206,6 +1211,16 @@
 			path = "Story Screen";
 			sourceTree = "<group>";
 		};
+		F9C43AD316EDBB990036FA29 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F9C43AD416EDBB990036FA29 /* sampleFont.fnt */,
+				F9C43AD516EDBB990036FA29 /* sampleFont.png */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1274,6 +1289,8 @@
 				BC2065BA168757FD00745FB0 /* CharacterSprites.plist in Resources */,
 				BC2065BB168757FD00745FB0 /* CharacterSprites.png in Resources */,
 				F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */,
+				F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */,
+				F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
