@@ -12,14 +12,14 @@
 
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) CCLabelBMFont *label;
+@property (nonatomic, strong) id target;
+@property (nonatomic) SEL selector;
 
 @end
 
-static NBMessageBox* currentMessageBox = nil;
-
 @implementation NBMessageBox
 
-- (id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)messageBoxStartingPosition {
+- (id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer respondTo:(id)theTarget selector:(SEL)theSelector atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)messageBoxStartingPosition {
   self = [super initWithFrameName:frameName andSpriteBatchNode:nil onLayer:layer];
   if (self) {
     self.text = @"testtesttest";
@@ -70,26 +70,32 @@ static NBMessageBox* currentMessageBox = nil;
     self.label.position = position;
     [self addChild:self.label];
 
-    self.buttonOK = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:layer respondTo:self selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
+    self.buttonOK = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:layer respondTo:self selector:@selector(targetPerformSelector) withSize:CGSizeZero];
     self.buttonOK.position = position;
     [self.buttonOK show];
 
-    [self scaleFrom:0 toScale:1 inDuration:2];
+    self.target = theTarget;
+    self.selector = theSelector;
+
+    self.label.scale = 0;
+    self.buttonOK.buttonObject.scale = 0;
+    id scaleAction = [CCScaleTo actionWithDuration:2 scale:1];
+    [self.label runAction:scaleAction];
+    scaleAction = [CCScaleTo actionWithDuration:2 scale:1];
+    [self.buttonOK.buttonObject runAction:scaleAction];
   }
   return self;
 }
 
-- (void)scaleFrom:(CGFloat)fromScale toScale:(CGFloat)toScale inDuration:(CGFloat)duration {
-  self.label.scale = fromScale;
-  self.buttonOK.buttonObject.scale = fromScale;
-  id scaleAction = [CCScaleTo actionWithDuration:duration scale:toScale];
-  [self.label runAction:scaleAction];
-  scaleAction = [CCScaleTo actionWithDuration:duration scale:toScale];
+- (void)targetPerformSelector {
+  self.label.scale = 1;
+  self.buttonOK.buttonObject.scale = 1;
+  id scaleAction = [CCScaleTo actionWithDuration:2 scale:0];
+  id callFuncAction = [CCCallFunc actionWithTarget:self.target selector:self.selector];
+  id actionSequence = [CCSequence actionOne:scaleAction two:callFuncAction];
+  [self.label runAction:actionSequence];
+  scaleAction = [CCScaleTo actionWithDuration:2 scale:0];
   [self.buttonOK.buttonObject runAction:scaleAction];
-}
-
-- (void)gotoBattleScreen {
-  [self scaleFrom:1 toScale:0 inDuration:2];
 }
 
 @end
