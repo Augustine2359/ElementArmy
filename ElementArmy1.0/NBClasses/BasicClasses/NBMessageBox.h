@@ -26,7 +26,7 @@ enum MessageBoxStartingPosition {
 
 @interface NBMessageBox : NBStaticObject
 
-- (id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)messageBoxStartingPosition;
+- (id)initWithFrameName:(NSString *)frameName andSpriteBatchNode:(CCSpriteBatchNode *)spriteBatchNode onLayer:(CCLayer *)layer respondTo:(id)theTarget selector:(SEL)theSelector atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)messageBoxStartingPosition;
 - (void)scaleFrom:(CGFloat)fromScale toScale:(CGFloat)toScale inDuration:(CGFloat)duration;
 
 @property (nonatomic, retain) NSString* message;
