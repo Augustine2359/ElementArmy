@@ -61,7 +61,7 @@ int objectsLeftToTransit = 6;
     
     
     //Display Title
-    self.battleSetupTitle = [NBStaticObject createStaticObject:@"setup_title.png" atPosition:CGPointMake(240, 350)];
+    self.battleSetupTitle = [NBStaticObject createStaticObject:@"troopSelectionScreen_header.png" atPosition:CGPointMake(240, 350)];
     
     //Display Characters
     [self createUnitSelectors];
