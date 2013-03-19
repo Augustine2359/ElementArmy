@@ -147,8 +147,9 @@ int objectsLeftToTransit = 6;
   startColor.b = 255;
   startColor.a = 255;
 
-  self.unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
-  self.unitRespawnContainerLayer.position = CGPointMake(500, 100);
+//    self.unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithColor:startColor width:200 height:140];
+//    self.unitRespawnContainerLayer.position = CGPointMake(500, 100);
+    self.unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithRect:CGRectMake(500, 100, 200, 140)];
   [self addChild:self.unitRespawnContainerLayer];
 }
 

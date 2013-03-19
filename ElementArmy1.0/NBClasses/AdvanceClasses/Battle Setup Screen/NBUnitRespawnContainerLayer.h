@@ -8,9 +8,13 @@
 
 #import "CCLayer.h"
 #import "cocos2d.h"
+#import "NBBasicScreenLayer.h"
 
 
 @interface NBUnitRespawnContainerLayer : CCLayerColor
+
+//Attributes section
+@property(nonatomic, retain) NBStaticObject* attributesBackground;
 
 @property(nonatomic, retain)CCLabelTTF* labelHPStat;
 @property(nonatomic, retain)CCLabelTTF* labelSPStat;
@@ -19,5 +23,7 @@
 @property(nonatomic, retain)CCLabelTTF* labelINTStat;
 @property(nonatomic, retain)CCLabelTTF* labelDEXStat;
 @property(nonatomic, retain)CCLabelTTF* labelEVAStat;
+
+-(id)initWithRect:(CGRect)rect;
 
 @end
