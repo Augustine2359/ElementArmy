@@ -252,6 +252,8 @@
 			<string>water_stageA.png</string>
 			<key>iconSpriteDisabled</key>
 			<string>water_stageA.png</string>
+			<key>gridBackgroundImage</key>
+			<string>nebula stage selection map.jpg</string>
 			<key>majorElementID</key>
 			<integer>0</integer>
 			<key>positionInWorld</key>
@@ -1545,6 +1547,8 @@
 			<string>fire_country.png</string>
 			<key>iconSpriteDisabled</key>
 			<string>fire_country.png</string>
+			<key>gridBackgroundImage</key>
+			<string>nebula stage selection map.jpg</string>
 			<key>majorElementID</key>
 			<integer>1</integer>
 			<key>positionInWorld</key>
@@ -1565,7 +1569,7 @@
 			<array>
 				<dict>
 					<key>stageID</key>
-					<string>stage0</string>
+					<string>firestage0</string>
 					<key>stageName</key>
 					<string>A-1</string>
 					<key>countryID</key>
@@ -1587,11 +1591,11 @@
 					</dict>
 					<key>nextStageID</key>
 					<array>
-						<string>stage1</string>
+						<string>firestage1</string>
 					</array>
 					<key>willUnlockStageID</key>
 					<array>
-						<string>stage1</string>
+						<string>firestage1</string>
 					</array>
 					<key>isCompleted</key>
 					<false/>
@@ -1686,7 +1690,7 @@
 				</dict>
 				<dict>
 					<key>stageID</key>
-					<string>stage1</string>
+					<string>firestage1</string>
 					<key>stageName</key>
 					<string>A-2</string>
 					<key>countryID</key>

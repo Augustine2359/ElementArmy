@@ -25,6 +25,8 @@
 		BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2065C3168B4A4200745FB0 /* NBUserInterface.m */; };
 		BC25575C16EC20A800A7CD2C /* NBCountryData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25575B16EC20A800A7CD2C /* NBCountryData.m */; };
 		BC25575F16EC211E00A7CD2C /* NBCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25575E16EC211E00A7CD2C /* NBCountry.m */; };
+		BC25576216F58AD100A7CD2C /* NBSingleAnimatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */; };
+		BC25576516F5946100A7CD2C /* NBConnectorLine.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25576416F5946100A7CD2C /* NBConnectorLine.m */; };
 		BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */; };
 		BC336A1D16A664BE0079596C /* NBIntroScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */; };
 		BC336A1E16A664CA0079596C /* NBBasicScreenLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */; };
@@ -225,6 +227,10 @@
 		BC25575B16EC20A800A7CD2C /* NBCountryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountryData.m; sourceTree = "<group>"; };
 		BC25575D16EC211E00A7CD2C /* NBCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCountry.h; sourceTree = "<group>"; };
 		BC25575E16EC211E00A7CD2C /* NBCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCountry.m; sourceTree = "<group>"; };
+		BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSingleAnimatedObject.h; sourceTree = "<group>"; };
+		BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSingleAnimatedObject.m; sourceTree = "<group>"; };
+		BC25576316F5946000A7CD2C /* NBConnectorLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBConnectorLine.h; sourceTree = "<group>"; };
+		BC25576416F5946100A7CD2C /* NBConnectorLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBConnectorLine.m; sourceTree = "<group>"; };
 		BC2D61FD16DEF06400797345 /* NBHQSetupScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQSetupScreen.h; sourceTree = "<group>"; };
 		BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQSetupScreen.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
@@ -1070,6 +1076,8 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
+				BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */,
+				BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1183,6 +1191,8 @@
 				F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */,
 				BCB258E616AB94220010BB36 /* NBStageSelectionScreen.h */,
 				BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */,
+				BC25576316F5946000A7CD2C /* NBConnectorLine.h */,
+				BC25576416F5946100A7CD2C /* NBConnectorLine.m */,
 			);
 			path = "Map Selection Screen";
 			sourceTree = "<group>";
@@ -1470,6 +1480,8 @@
 				568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */,
 				568EC19B16EC584D00815563 /* NBEquipment.m in Sources */,
 				568EC19E16EC58B600815563 /* NBEquipmentData.m in Sources */,
+				BC25576216F58AD100A7CD2C /* NBSingleAnimatedObject.m in Sources */,
+				BC25576516F5946100A7CD2C /* NBConnectorLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

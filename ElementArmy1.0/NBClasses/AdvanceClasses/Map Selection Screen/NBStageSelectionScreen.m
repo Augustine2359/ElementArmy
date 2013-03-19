@@ -65,6 +65,14 @@
     //Just for the time being, disable save progress.
     //[self.dataManager saveStages];
     [self readStagesFromFile];
+    
+    self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.jpg"];
+    [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"jpg"];
+    NBStage* stage = [NBStage getCurrentlySelectedStage];
+    self.flagCursor.position = stage.worldIcon.menu.position;
+    self.flagCursor.scale = 0.5f;
+    [self.currentCountryStage addChild:self.flagCursor z:99];
+    [self.flagCursor playAnimation:true withDelay:0.5];
 }
 
 -(void)onExit
@@ -144,6 +152,8 @@
     NBStage* stage = [NBStage getCurrentlySelectedStage];
     self.dataManager.selectedStageData = stage.stageData;
     DLog(@"StageID selected: %@", stage.stageData.stageID);
+    
+    self.flagCursor.position = stage.worldIcon.menu.position;
 }
 
 -(void)update:(ccTime)delta

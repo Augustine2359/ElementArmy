@@ -96,6 +96,7 @@ static CCArray* listOfCountries = nil;
         countryData.iconSpriteNormal = [countryDataDictionary objectForKey:@"iconSpriteNormal"];
         countryData.iconSpriteSelected = [countryDataDictionary objectForKey:@"iconSpriteSelected"];
         countryData.iconSpriteDisabled = [countryDataDictionary objectForKey:@"iconSpriteDisabled"];
+        countryData.gridBackgroundImage = [countryDataDictionary objectForKey:@"gridBackgroundImage"];
         countryData.majorElementID = [[countryDataDictionary objectForKey:@"majorElementID"] intValue];
         int countryHorizontalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"horizontal"] intValue];
         int countryVerticalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"vertical"] intValue];

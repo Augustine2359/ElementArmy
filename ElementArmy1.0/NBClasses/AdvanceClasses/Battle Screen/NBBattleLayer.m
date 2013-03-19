@@ -240,6 +240,7 @@ static Boolean isAutoStart = NO;
             {
                 self.dataManager.battleWon = true;
                 self.dataManager.selectedStageData.winCount++;
+                self.dataManager.selectedStageData.isCompleted = true;
             }
             
             [self processBattleResult];

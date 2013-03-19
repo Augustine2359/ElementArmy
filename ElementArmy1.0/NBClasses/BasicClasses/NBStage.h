@@ -55,6 +55,7 @@ typedef enum
 @property (nonatomic, retain) NSString* willUnlockStageID;
 @property (nonatomic, retain) NSString* canBeUnlockedByStageID;
 @property (nonatomic, assign) bool isConnecting;
+@property (nonatomic, assign) bool isConnected;
 @property (nonatomic, assign) bool isUpdatingScaleX;
 @property (nonatomic, assign) bool isUpdatingScaleY;
 

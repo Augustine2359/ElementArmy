@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
 #import "NBCountryStageGrid.h"
+#import "NBSingleAnimatedObject.h"
 
 @interface NBStageSelectionScreen : NBBasicScreenLayer
 
@@ -27,5 +28,6 @@
 @property (nonatomic, retain) NBButton* gotoBattleButton;
 @property (nonatomic, retain) NBButton* backToWorldSelectionButton;
 @property (nonatomic, assign) bool stageCreated;
+@property (nonatomic, retain) NBSingleAnimatedObject* flagCursor;
 
 @end
