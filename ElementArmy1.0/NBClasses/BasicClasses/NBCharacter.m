@@ -8,6 +8,8 @@
 
 #import "NBCharacter.h"
 
+#define SKILL_PROC_CHANCE 100
+
 static CCArray* characterList = nil;
 static CCArray* allyUnitList = nil;
 static CCArray* enemyUnitList = nil;
@@ -52,6 +54,12 @@ static CCArray* enemyUnitList = nil;
         return true;
     else
         return false;
+}
+
++ (BOOL)isSkillProcSuccessful {
+  NSInteger randomNumber = arc4random()%100;
+  DLog(@"%d", randomNumber);
+  return arc4random()%100 <= SKILL_PROC_CHANCE;
 }
 
 -(void)setCharacterSide:(EnumCharacterSide)characterSide
@@ -485,6 +493,12 @@ static CCArray* enemyUnitList = nil;
             if ([NBCharacter calculateAttackSuccessWithAttacker:self andDefender:target])
             {
                 [target onAttacked:self];
+            }
+
+#warning need to know if attack must hit before skills are allowed to proc
+            if ([NBCharacter isSkillProcSuccessful]) {
+              if ([self.parent respondsToSelector:@selector(skillCastByCharacter:onCharacter:)])
+                [self.parent performSelector:@selector(skillCastByCharacter:onCharacter:) withObject:self withObject:target];
             }
         }
     }

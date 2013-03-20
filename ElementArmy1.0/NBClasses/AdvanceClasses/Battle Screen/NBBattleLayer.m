@@ -481,25 +481,29 @@ static Boolean isAutoStart = NO;
     //**********************
     
     [NBDamageLabel setCurrentLayerForDamageLabel:self];
-
-  NBButton *earthquakeButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:self selector:@selector(castEarthquake) withSize:CGSizeMake(100, 100)];
-  earthquakeButton.position = CGPointMake(50, 50);
-  [earthquakeButton show];
-
     [self entranceAnimationStep1];
 }
 
-- (void)castEarthquake {
+- (void)skillCastByCharacter:(NBCharacter *)character onCharacter:(NBCharacter *)target {
+#warning need to know if the skills are cast per character or per squad
+#warning we can use this to check which skill should be cast based on the class of the character
+  if (character.characterSide == Ally)
+    [self castEarthquake:target];
+}
+
+- (void)castEarthquake:(NBCharacter *)target {
   NBRipples *earthquakeRipples = [[NBRipples alloc] init];
+  earthquakeRipples.origin = target.position;
   earthquakeRipples.delegate = self;
   [self addChild:earthquakeRipples];
 }
 
 - (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
-  for (NBSquad *squad in self.allySquads) {
+  for (NBSquad *squad in self.enemySquads) {
     for (NBCharacter *character in squad.unitArray) {
       BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
-      DLog(@"%d", hasCollision);
+      if (hasCollision)
+        DLog(@"%@ has taken damage from a skill", character.name);
     }
   }
 }
