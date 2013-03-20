@@ -177,7 +177,9 @@ static CCArray* enemyUnitList = nil;
     self.intelligencePoint = self.basicClassData.currentINT;
     self.dexterityPoint = self.basicClassData.currentDEX;
     self.evasionPoint = self.basicClassData.currentEVA;
-    
+
+    [self applyPassiveBuffs];
+
     self.currentState = EnteringScene;
     self.basicSpeedPoint = OBJECT_SPEED_PIXEL_PER_SECOND;
     self.currentTarget = nil;
@@ -244,6 +246,11 @@ static CCArray* enemyUnitList = nil;
     self.damageCounterLabel.scale = 0.5;
     self.damageCounterLabel.visible = NO;
     [self.currentLayer addChild:self.damageCounterLabel];
+}
+
+- (void)applyPassiveBuffs {
+  if ([self.basicClassData.className isEqualToString:@"metalsoldier"])
+    self.attackPoint *= 1.5;
 }
 
 -(void)update:(ccTime)delta
