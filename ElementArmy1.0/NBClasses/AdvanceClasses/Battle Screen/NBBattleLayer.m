@@ -481,8 +481,34 @@ static Boolean isAutoStart = NO;
     //**********************
     
     [NBDamageLabel setCurrentLayerForDamageLabel:self];
-    
+
+  NBButton *earthquakeButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:self selector:@selector(castEarthquake) withSize:CGSizeMake(100, 100)];
+  earthquakeButton.position = CGPointMake(50, 50);
+  [earthquakeButton show];
+
     [self entranceAnimationStep1];
+}
+
+- (void)castEarthquake {
+  NBRipples *earthquakeRipples = [[NBRipples alloc] init];
+  earthquakeRipples.delegate = self;
+  [self addChild:earthquakeRipples];
+}
+
+- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+  for (NBSquad *squad in self.allySquads) {
+    for (NBCharacter *character in squad.unitArray) {
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
+      DLog(@"%d", hasCollision);
+    }
+  }
+}
+
+- (BOOL)checkCharacter:(NBCharacter *)character collisionWithRippleOrigin:(CGPoint)rippleOrigin withRippleAmplitude:(CGFloat)rippleAmplitude {
+  if (ccpDistance(character.position, rippleOrigin) <= rippleAmplitude)
+    return YES;
+  else
+    return NO;
 }
 
 -(void)entranceAnimationStep1
@@ -506,7 +532,7 @@ static Boolean isAutoStart = NO;
 
 -(void)entranceAnimationStep2
 {
-    CCMoveTo* move = [CCMoveTo actionWithDuration:3.0 position:CGPointMake(self.position.x, 0)];
+    CCMoveTo* move = [CCMoveTo actionWithDuration:0.5 position:CGPointMake(self.position.x, 0)];
     
     CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep3)];
     CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];

@@ -16,11 +16,12 @@
 #import "NBBasicScreenLayer.h"
 #import "NBUserInterface.h"
 #import "NBFancySlidingMenuLayer.h"
+#import "NBRipples.h"
 
 #define HP_BAR_LENGTH 130
 
 // HelloWorldLayer
-@interface NBBattleLayer : NBBasicScreenLayer
+@interface NBBattleLayer : NBBasicScreenLayer <NBRipplesDelegate>
 {
     bool battleStarted;
     bool groupClassSkillOpened;
