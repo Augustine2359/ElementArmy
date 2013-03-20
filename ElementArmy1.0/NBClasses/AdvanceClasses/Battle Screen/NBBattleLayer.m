@@ -502,8 +502,11 @@ static Boolean isAutoStart = NO;
   for (NBSquad *squad in self.enemySquads) {
     for (NBCharacter *character in squad.unitArray) {
       BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
-      if (hasCollision)
-        DLog(@"%@ has taken damage from a skill", character.name);
+      if (hasCollision) {
+        NSInteger damage = 1;
+        [character onAttackedBySkillWithDamage:damage];
+        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+      }
     }
   }
 }

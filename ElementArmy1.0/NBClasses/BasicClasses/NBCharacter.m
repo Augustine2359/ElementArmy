@@ -770,7 +770,7 @@ static CCArray* enemyUnitList = nil;
     
     int damage = (tempAttacker.attackPoint - self.defensePoint);
     self.hitPoint -= damage;
-    
+
     if (self.facing == Left)
         [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
     else
@@ -802,7 +802,7 @@ static CCArray* enemyUnitList = nil;
     NBProjectile* tempProjectile = (NBProjectile*)projectile;
     int damage = (tempProjectile.currentPower - self.defensePoint);
     self.hitPoint -= damage;
-    
+
     if (self.facing == Left)
         [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
     else
@@ -822,6 +822,33 @@ static CCArray* enemyUnitList = nil;
         [(NBCharacter*)tempProjectile.currentOwner onTargetKilled:self];
         [self dead];
     }
+}
+
+- (void)onAttackedBySkillWithDamage:(NSInteger)damage {
+  if (self.currentState == Dead)
+    return;
+
+  //assuming skills pierce resistance
+  self.hitPoint -= damage;
+
+  if (self.facing == Left)
+    [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:YES];
+  else
+    [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
+
+  if ([self.name isEqualToString:TEST_OBJECT_NAME])
+    DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+
+#if DEBUG
+  DLog(@"%@ is attacked", self.name);
+#endif
+
+  if (self.hitPoint <= 0)
+  {
+    self.hitPoint = 0;
+    self.currentState = Dead;
+    [self dead];
+  }
 }
 
 -(void)onTargetKilled:(id)target

@@ -71,6 +71,7 @@
 -(void)onDeath;
 -(void)onAttacked:(id)attacker;
 -(void)onAttackedByProjectile:(id)projectile;
+- (void)onAttackedBySkillWithDamage:(NSInteger)damage;
 -(void)onTargetKilled:(id)target;
 -(void)onTargettedBy:(id)attacker;
 -(void)onTargettedByMeleeReleased:(id)attacker;
