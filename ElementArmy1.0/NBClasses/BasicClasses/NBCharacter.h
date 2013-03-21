@@ -30,6 +30,8 @@
     bool updateIsActive;
     EnumCharacterSide characterSide_;
     float damageCounterLabelRemainingTime;
+    float passiveRevolvingRemainingTime;
+    bool battleIsEngaged;
 }
 
 +(bool)calculateAttackSuccessWithAttacker:(NBCharacter*)attacker andDefender:(NBCharacter*)defender;
@@ -62,6 +64,10 @@
 -(NBCharacter*)findNewTarget:(CCArray*)enemyUnits;
 -(CGPoint)getAttackedPosition:(NBCharacter*)attacker;
 -(void)useNextState;
+-(void)battleIsStarted;
+-(void)battleIsOver;
+-(void)applyPassiveRevolvingSkill;
+-(void)applyPassiveBuffs;
 
 //Events
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState;
@@ -86,6 +92,13 @@
 @property (nonatomic, assign) int dexterityPoint;
 @property (nonatomic, assign) int intelligencePoint;
 @property (nonatomic, assign) int evasionPoint;
+@property (nonatomic, assign) int initialHitPoint;
+@property (nonatomic, assign) int initialSpiritPoint;
+@property (nonatomic, assign) int initialAttackPoint;
+@property (nonatomic, assign) int initialDefensePoint;
+@property (nonatomic, assign) int initialDexterityPoint;
+@property (nonatomic, assign) int initialIntelligencePoint;
+@property (nonatomic, assign) int initialEvasionPoint;
 @property (nonatomic, retain) CCArray* skillSlots;
 @property (nonatomic, retain) CCArray* magicSlots;
 @property (nonatomic, assign) bool isAlive;
@@ -108,6 +121,9 @@
 @property (nonatomic, assign) int currentAttackPost;
 @property (nonatomic, assign) CGPoint previousPosition;
 @property (nonatomic, retain) CCLabelAtlas* damageCounterLabel;
+@property (nonatomic, assign) bool passiveSkillApplied;
+@property (nonatomic, retain) NBSkill* activeSkill;
+@property (nonatomic, retain) NBSkill* passiveSkill;
 
 //Adding capabilities for projectile shooter type character
 @property (nonatomic, retain) CCArray* projectileArrayList;

@@ -9,7 +9,9 @@
 #import "NBDataManager.h"
 #import "NBStage.h"
 #import "NBItemData.h"
+#import "NBEquipmentData.h"
 #import "NBProjectileBasicData.h"
+#import "NBSkill.h"
 //#import "NBCountryData.h"
 
 #define SQUAD_COUNT_ALLOWED 3
@@ -17,6 +19,7 @@
 static NBDataManager* dataManager = nil;
 static CCArray* listOfProjectiles = nil;
 static CCArray* listOfCountries = nil;
+static CCArray* listOfSkills = nil;
 
 @implementation NBDataManager
 
@@ -41,6 +44,8 @@ static CCArray* listOfCountries = nil;
         self.listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
         listOfCountries = [[CCArray alloc] initWithCapacity:10];
+        self.listOfEquipments = [[CCArray alloc] initWithCapacity:100];
+        listOfSkills = [[CCArray alloc] initWithCapacity:100];
 
         //[self createStages];
         //[self createItems];
@@ -50,6 +55,12 @@ static CCArray* listOfCountries = nil;
     }
 
     return self;
+}
+
+-(void)dealloc
+{
+    [listOfSkills release];
+    [super dealloc];
 }
 
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID
@@ -180,6 +191,52 @@ static CCArray* listOfCountries = nil;
     }
 }
 
+-(void)loadEquipmentList
+{
+    self.listOfEquipments = [CCArray array];
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray *equipments = [dictionary objectForKey:@"Equipment data"];
+    
+    for (NSDictionary *equipmentDataDictionary in equipments)
+    {
+        NBEquipmentData *equipmentData = [[NBEquipmentData alloc] init];
+        equipmentData.equipmentID = [equipmentDataDictionary objectForKey:@"equipmentID"];
+        equipmentData.equipmentName = [equipmentDataDictionary objectForKey:@"equipmentName"];
+        equipmentData.description = [equipmentDataDictionary objectForKey:@"description"];
+        equipmentData.statusImpacted = [equipmentDataDictionary objectForKey:@"statusImpacted"];
+        equipmentData.impactType = [equipmentDataDictionary objectForKey:@"impactType"];
+        equipmentData.impactValue = [equipmentDataDictionary objectForKey:@"impactValue"];
+        equipmentData.requiredLevel = [[equipmentDataDictionary objectForKey:@"requiredLevel"] integerValue];
+        [self.listOfEquipments addObject:equipmentData];
+    }
+}
+
+-(void)loadSkillList
+{
+    listOfSkills = [CCArray array];
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray *skills = [dictionary objectForKey:@"Skill data"];
+    
+    for (NSDictionary *skillDataDictionary in skills)
+    {
+        NBSkill *skillData = [[NBSkill alloc] init];
+        skillData.skillName = [skillDataDictionary objectForKey:@"skillName"];
+        skillData.skillInGameName = [skillDataDictionary objectForKey:@"skillInGameName"];
+        skillData.skillType = [[skillDataDictionary objectForKey:@"skillType"] integerValue];
+        skillData.statusImpacted = [skillDataDictionary objectForKey:@"statusImpacted"];
+        skillData.impactType = [[skillDataDictionary objectForKey:@"impactType"] integerValue];
+        skillData.impactValue = [[skillDataDictionary objectForKey:@"impactValue"] floatValue];
+        skillData.frequency = [[skillDataDictionary objectForKey:@"frequency"] floatValue];
+        skillData.canExceedMaxValue = [[skillDataDictionary objectForKey:@"canExceedMaxValue"] boolValue];
+        
+        [listOfSkills addObject:skillData];
+    }
+    
+[listOfSkills retain];
+}
+
 -(void)createCharacterList
 {
     if (!self.listOfCharacters) self.listOfCharacters = [CCArray array];
@@ -194,6 +251,7 @@ static CCArray* listOfCountries = nil;
         characterData.className = [characterDataDictionary objectForKey:@"className"];
         characterData.classType = [characterDataDictionary objectForKey:@"classType"];
         characterData.startLevel = [[characterDataDictionary objectForKey:@"startLevel"] intValue];
+        characterData.isBoss = [[characterDataDictionary objectForKey:@"isBoss"] boolValue];
         characterData.basicHP = [[characterDataDictionary objectForKey:@"basicHP"] intValue];
         characterData.basicSP = [[characterDataDictionary objectForKey:@"basicSP"] intValue];
         characterData.basicSTR = [[characterDataDictionary objectForKey:@"basicSTR"] intValue];
@@ -222,6 +280,8 @@ static CCArray* listOfCountries = nil;
         characterData.idleAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"idleAnimFrameCount"] shortValue];
         characterData.attackAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrame"];
         characterData.attackAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"attackAnimFrameCount"] shortValue];
+        characterData.walkAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"walkAnimFrame"];
+        characterData.walkAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"walkAnimFrameCount"] shortValue];
         characterData.shootAnimFrame = [[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrame"];
         characterData.shootAnimFrameCount = [[[characterDataDictionary objectForKey:@"frames"] objectForKey:@"shootAnimFrameCount"] shortValue];
         
@@ -234,6 +294,8 @@ static CCArray* listOfCountries = nil;
         characterData.currentEVA = characterData.basicEVA;
         
         characterData.useProjectileName = [characterDataDictionary objectForKey:@"useProjectileName"];
+        characterData.activeSkillName = [characterDataDictionary objectForKey:@"activeSkillName"];
+        characterData.passiveSkillName = [characterDataDictionary objectForKey:@"passiveSkillName"];
         
         [self.listOfCharacters addObject:characterData];
     }
@@ -310,6 +372,21 @@ static CCArray* listOfCountries = nil;
                 returnClassData = [tempClassData copy];
                 return returnClassData;
             }
+        }
+    }
+    
+    return nil;
+}
+
++(id)getSkillBySkillName:(NSString*)lookupName
+{
+    NBSkill* skill = nil;
+    
+    CCARRAY_FOREACH(listOfSkills, skill)
+    {
+        if ([skill.skillName isEqualToString:lookupName])
+        {
+            return skill;
         }
     }
     

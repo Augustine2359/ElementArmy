@@ -47,8 +47,17 @@
     tempData = [NSKeyedArchiver archivedDataWithRootObject:self.attackAnimFrame];
     tempBasicData.attackAnimFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
     
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.walkAnimFrame];
+    tempBasicData.walkAnimFrame = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
     tempData = [NSKeyedArchiver archivedDataWithRootObject:self.useProjectileName];
     tempBasicData.useProjectileName = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.activeSkillName];
+    tempBasicData.activeSkillName = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
+    
+    tempData = [NSKeyedArchiver archivedDataWithRootObject:self.passiveSkillName];
+    tempBasicData.passiveSkillName = [NSKeyedUnarchiver unarchiveObjectWithData:tempData];
     
     tempBasicData.startLevel = self.startLevel;
     tempBasicData.basicHP = self.basicHP;
@@ -77,6 +86,7 @@
     tempBasicData.isEnemy = self.isEnemy;
     tempBasicData.idleAnimFrameCount = self.idleAnimFrameCount;
     tempBasicData.attackAnimFrameCount = self.attackAnimFrameCount;
+    tempBasicData.walkAnimFrameCount = self.walkAnimFrameCount;
     tempBasicData.shootAnimFrameCount = self.shootAnimFrameCount;
     
     tempBasicData.level = self.level;

@@ -252,6 +252,14 @@ static Boolean isAutoStart = NO;
 {
     battleStarted = false;
     
+    NBCharacter* tempCharacter;
+    
+    CCARRAY_FOREACH([NBCharacter getAllUnitList], tempCharacter)
+    {
+        tempCharacter.currentState = Idle;
+        [tempCharacter battleIsOver];
+    }
+    
     if (self.allAllyUnitAnnihilated)
     {
         self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"0000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
@@ -613,6 +621,7 @@ static Boolean isAutoStart = NO;
     CCARRAY_FOREACH([NBCharacter getAllUnitList], tempCharacter)
     {
         tempCharacter.currentState = Idle;
+        [tempCharacter battleIsStarted];
     }
 }
 

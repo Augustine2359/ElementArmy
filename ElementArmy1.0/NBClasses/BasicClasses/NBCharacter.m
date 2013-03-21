@@ -177,8 +177,27 @@ static CCArray* enemyUnitList = nil;
     self.intelligencePoint = self.basicClassData.currentINT;
     self.dexterityPoint = self.basicClassData.currentDEX;
     self.evasionPoint = self.basicClassData.currentEVA;
+    
+    self.initialHitPoint = self.hitPoint;
+    self.initialSpiritPoint = self.spiritPoint;
+    self.initialAttackPoint = self.attackPoint;
+    self.initialDefensePoint = self.defensePoint;
+    self.initialDexterityPoint = self.dexterityPoint;
+    self.initialIntelligencePoint = self.intelligencePoint;
+    self.initialEvasionPoint = self.evasionPoint;
 
-    [self applyPassiveBuffs];
+    if (![self.basicClassData.passiveSkillName isEqualToString:@""])
+    {
+        NBSkill* skill = [NBDataManager getSkillBySkillName:self.basicClassData.passiveSkillName];
+        
+        if (skill.skillType == stPassive || skill.skillType == stPassiveRevolving)
+            self.passiveSkill = skill;
+        
+        if (skill.skillType == stPassive)
+        {
+            [self applyPassiveBuffs];
+        }
+    }
 
     self.currentState = EnteringScene;
     self.basicSpeedPoint = OBJECT_SPEED_PIXEL_PER_SECOND;
@@ -192,6 +211,8 @@ static CCArray* enemyUnitList = nil;
         [self.animation addAnimation:@"Idle" withFileHeaderName:self.basicClassData.idleAnimFrame withAnimationCount:self.basicClassData.idleAnimFrameCount];
     if (self.basicClassData.attackAnimFrame != nil && ![self.basicClassData.attackAnimFrame isEqualToString:@""])
         [self.animation addAnimation:@"Attack" withFileHeaderName:self.basicClassData.attackAnimFrame withAnimationCount:self.basicClassData.attackAnimFrameCount];
+    if (self.basicClassData.walkAnimFrame != nil && ![self.basicClassData.walkAnimFrame isEqualToString:@""])
+        [self.animation addAnimation:@"Walk" withFileHeaderName:self.basicClassData.walkAnimFrame withAnimationCount:self.basicClassData.walkAnimFrameCount];
     if (self.basicClassData.shootAnimFrame != nil && ![self.basicClassData.shootAnimFrame isEqualToString:@""])
         [self.animation addAnimation:@"Shoot" withFileHeaderName:self.basicClassData.shootAnimFrame withAnimationCount:self.basicClassData.shootAnimFrameCount];
     
@@ -246,11 +267,216 @@ static CCArray* enemyUnitList = nil;
     self.damageCounterLabel.scale = 0.5;
     self.damageCounterLabel.visible = NO;
     [self.currentLayer addChild:self.damageCounterLabel];
+    
+    battleIsEngaged = false;
 }
 
-- (void)applyPassiveBuffs {
-  if ([self.basicClassData.className isEqualToString:@"metalsoldier"])
-    self.attackPoint *= 1.5;
+- (void)applyPassiveBuffs
+{
+    /*if ([self.basicClassData.className isEqualToString:@"metalsoldier"])
+        self.attackPoint *= 1.5;*/
+    
+    CGFloat impactedStatusValue = 0.0f;
+    
+    if ([self.passiveSkill.statusImpacted isEqualToString:@"HP"])
+    {
+        impactedStatusValue = self.hitPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"SP"])
+    {
+        impactedStatusValue = self.spiritPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"ATK"])
+    {
+        impactedStatusValue = self.attackPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEF"])
+    {
+        impactedStatusValue = self.defensePoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"INT"])
+    {
+        impactedStatusValue = self.intelligencePoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEX"])
+    {
+        impactedStatusValue = self.dexterityPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"EVA"])
+    {
+        impactedStatusValue = self.evasionPoint;
+    }
+    else
+    {
+        DLog(@"error: unknown attribute while applying passive buff!!!");
+        return;
+    }
+    
+    if (self.passiveSkill.impactType == sitAdd)
+    {
+        impactedStatusValue = impactedStatusValue + self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitSubstract)
+    {
+        impactedStatusValue = impactedStatusValue - self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitMultiply)
+    {
+        impactedStatusValue = impactedStatusValue * self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitAdd)
+    {
+        impactedStatusValue = impactedStatusValue / self.passiveSkill.impactValue;
+    }
+    
+    if ([self.passiveSkill.statusImpacted isEqualToString:@"HP"])
+    {
+        DLog(@"Passive buff applied for %@; HP changed from %d to %f", self.basicClassData.className, self.hitPoint, impactedStatusValue);
+        self.hitPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"SP"])
+    {
+        DLog(@"Passive buff applied for %@; SP changed from %d to %f", self.basicClassData.className, self.spiritPoint, impactedStatusValue);
+        self.spiritPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"ATK"])
+    {
+        DLog(@"Passive buff applied for %@; ATK changed from %d to %f", self.basicClassData.className, self.attackPoint, impactedStatusValue);
+        self.attackPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEF"])
+    {
+        DLog(@"Passive buff applied for %@; DEF changed from %d to %f", self.basicClassData.className, self.defensePoint, impactedStatusValue);
+        self.defensePoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"INT"])
+    {
+        DLog(@"Passive buff applied for %@; INT changed from %d to %f", self.basicClassData.className, self.intelligencePoint, impactedStatusValue);
+        self.intelligencePoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEX"])
+    {
+        DLog(@"Passive buff applied for %@; DEX changed from %d to %f", self.basicClassData.className, self.dexterityPoint, impactedStatusValue);
+        self.dexterityPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"EVA"])
+    {
+        DLog(@"Passive buff applied for %@; EVA changed from %d to %f", self.basicClassData.className, self.evasionPoint, impactedStatusValue);
+        self.evasionPoint = impactedStatusValue;
+    }
+}
+
+-(void)applyPassiveRevolvingSkill
+{
+    CGFloat impactedStatusValue = 0.0f;
+    
+    if ([self.passiveSkill.statusImpacted isEqualToString:@"HP"])
+    {
+        impactedStatusValue = self.hitPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"SP"])
+    {
+        impactedStatusValue = self.spiritPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"ATK"])
+    {
+        impactedStatusValue = self.attackPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEF"])
+    {
+        impactedStatusValue = self.defensePoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"INT"])
+    {
+        impactedStatusValue = self.intelligencePoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEX"])
+    {
+        impactedStatusValue = self.dexterityPoint;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"EVA"])
+    {
+        impactedStatusValue = self.evasionPoint;
+    }
+    else
+    {
+        DLog(@"error: unknown attribute while applying passive buff!!!");
+        return;
+    }
+    
+    if (self.passiveSkill.impactType == sitAdd)
+    {
+        impactedStatusValue = impactedStatusValue + self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitSubstract)
+    {
+        impactedStatusValue = impactedStatusValue - self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitMultiply)
+    {
+        impactedStatusValue = impactedStatusValue * self.passiveSkill.impactValue;
+    }
+    else if (self.passiveSkill.impactType == sitAdd)
+    {
+        impactedStatusValue = impactedStatusValue / self.passiveSkill.impactValue;
+    }
+    
+    if ([self.passiveSkill.statusImpacted isEqualToString:@"HP"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialHitPoint)
+            impactedStatusValue = self.initialHitPoint;
+        
+        DLog(@"Passive buff applied for %@; HP changed from %d to %f", self.basicClassData.className, self.hitPoint, impactedStatusValue);
+        self.hitPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"SP"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialSpiritPoint)
+            impactedStatusValue = self.initialSpiritPoint;
+        
+        DLog(@"Passive buff applied for %@; SP changed from %d to %f", self.basicClassData.className, self.spiritPoint, impactedStatusValue);
+        self.spiritPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"ATK"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialAttackPoint)
+            impactedStatusValue = self.initialAttackPoint;
+        
+        DLog(@"Passive buff applied for %@; ATK changed from %d to %f", self.basicClassData.className, self.attackPoint, impactedStatusValue);
+        self.attackPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEF"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialDefensePoint)
+            impactedStatusValue = self.initialDefensePoint;
+        
+        DLog(@"Passive buff applied for %@; DEF changed from %d to %f", self.basicClassData.className, self.defensePoint, impactedStatusValue);
+        self.defensePoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"INT"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialIntelligencePoint)
+            impactedStatusValue = self.initialIntelligencePoint;
+        
+        DLog(@"Passive buff applied for %@; INT changed from %d to %f", self.basicClassData.className, self.intelligencePoint, impactedStatusValue);
+        self.intelligencePoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"DEX"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialDexterityPoint)
+            impactedStatusValue = self.initialDexterityPoint;
+        
+        DLog(@"Passive buff applied for %@; DEX changed from %d to %f", self.basicClassData.className, self.dexterityPoint, impactedStatusValue);
+        self.dexterityPoint = impactedStatusValue;
+    }
+    else if ([self.passiveSkill.statusImpacted isEqualToString:@"EVA"])
+    {
+        if (!self.passiveSkill.canExceedMaxValue && impactedStatusValue > self.initialEvasionPoint)
+            impactedStatusValue = self.initialEvasionPoint;
+        
+        DLog(@"Passive buff applied for %@; EVA changed from %d to %f", self.basicClassData.className, self.evasionPoint, impactedStatusValue);
+        self.evasionPoint = impactedStatusValue;
+    }
 }
 
 -(void)update:(ccTime)delta
@@ -368,12 +594,16 @@ static CCArray* enemyUnitList = nil;
                 
             case Marching:
                 currentStateString = @"Marching";
+                battleIsEngaged = true;
                 break;
                 
             case Targetting:
                 currentStateString = @"Targetting";
                 
-                [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
+                    [self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                else
+                    [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
                 
                 if (self.basicClassData.attackType == atMelee)
                 {
@@ -461,6 +691,20 @@ static CCArray* enemyUnitList = nil;
                 
             default:
                 break;
+        }
+        
+        if (battleIsEngaged)
+        {
+            if (self.passiveSkill && self.passiveSkill.skillType == stPassiveRevolving)
+            {
+                passiveRevolvingRemainingTime -= (delta * 1000);  //Cause frequency is in milliseconds
+                
+                if (passiveRevolvingRemainingTime <= 0)
+                {
+                    [self applyPassiveRevolvingSkill];
+                    passiveRevolvingRemainingTime = self.passiveSkill.frequency;
+                }
+            }
         }
     }
     
@@ -567,7 +811,7 @@ static CCArray* enemyUnitList = nil;
 -(void)useSkill:(NBSkill*)skill
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        DLog(@"%@ activates skill %@", self.name, skill.name);
+        DLog(@"%@ activates skill %@", self.name, skill.skillName);
 }
 
 -(void)useMagic:(NBMagic*)magic
@@ -936,6 +1180,21 @@ static CCArray* enemyUnitList = nil;
         self.currentNumberOfMeleeEnemiesAttackingMe--;
         [self.listOfMeleeEnemiesAttackingMe removeObject:attacker];
     }
+}
+
+-(void)battleIsStarted
+{
+    battleIsEngaged = true;
+    
+    if (self.passiveSkill && self.passiveSkill.skillType == stPassiveRevolving)
+    {
+        passiveRevolvingRemainingTime = self.passiveSkill.frequency;
+    }
+}
+
+-(void)battleIsOver
+{
+    battleIsEngaged = false;
 }
 
 @end

@@ -338,7 +338,7 @@ static CCArray* enemyUnitList = nil;
 -(void)useSkill:(NBSkill*)skill
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        DLog(@"%@ activates skill %@", self.name, skill.name);
+        DLog(@"%@ activates skill %@", self.name, skill.skillName);
 }
 
 -(void)useMagic:(NBMagic*)magic
