@@ -16,11 +16,13 @@
 #import "NBBasicScreenLayer.h"
 #import "NBUserInterface.h"
 #import "NBFancySlidingMenuLayer.h"
+#import "NBRipples.h"
+#import "NBAreaEffect.h"
 
 #define HP_BAR_LENGTH 130
 
 // HelloWorldLayer
-@interface NBBattleLayer : NBBasicScreenLayer
+@interface NBBattleLayer : NBBasicScreenLayer <NBRipplesDelegate>
 {
     bool battleStarted;
     bool groupClassSkillOpened;
@@ -76,6 +78,9 @@
 -(void)onComboSkillAButtonSelected;
 -(void)onComboSkillBButtonSelected;
 -(void)onComboSkillCButtonSelected;
+-(void)onItem1Selected;
+-(void)onItem2Selected;
+-(void)onItem3Selected;
 
 @property (nonatomic, retain) NBFancySlidingMenuLayer *classGroupSkillMenuLayer;
 @property (nonatomic, retain) NBFancySlidingMenuLayer *itemMenuLayer;
@@ -97,5 +102,7 @@
 @property (nonatomic, retain) NBStaticObject* skyBackground;
 @property (nonatomic, retain) CCArray* damageLabels;
 @property (nonatomic, retain) CCSprite* battleResultBackground;
+
+@property (nonatomic, retain) NBAreaEffect* itemAreaEffect;
 
 @end

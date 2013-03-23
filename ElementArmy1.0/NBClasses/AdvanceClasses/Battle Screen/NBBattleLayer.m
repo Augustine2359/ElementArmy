@@ -240,6 +240,7 @@ static Boolean isAutoStart = NO;
             {
                 self.dataManager.battleWon = true;
                 self.dataManager.selectedStageData.winCount++;
+                self.dataManager.selectedStageData.isCompleted = true;
             }
             
             [self processBattleResult];
@@ -250,6 +251,14 @@ static Boolean isAutoStart = NO;
 -(void)processBattleResult
 {
     battleStarted = false;
+    
+    NBCharacter* tempCharacter;
+    
+    CCARRAY_FOREACH([NBCharacter getAllUnitList], tempCharacter)
+    {
+        tempCharacter.currentState = Idle;
+        [tempCharacter battleIsOver];
+    }
     
     if (self.allAllyUnitAnnihilated)
     {
@@ -464,6 +473,14 @@ static Boolean isAutoStart = NO;
     self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
     self.enemyFlagLogo.visible = YES;
     
+    //Item Area Effect
+    //**********************************************************************
+    self.itemAreaEffect = [[NBAreaEffect alloc] initWithSpriteFrameName:@"staticbox_green.png" onLayer:self];
+    self.itemAreaEffect.opacity = 125;
+    [self.itemAreaEffect setAreaSize:CGSizeMake(300, 150)];
+    [self addChild:self.itemAreaEffect z:99];
+    //**********************************************************************
+    
     //Augustine's Code below
     //**********************
     self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:YES];
@@ -477,11 +494,45 @@ static Boolean isAutoStart = NO;
     self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
     [self addChild:self.itemMenuLayer];
     self.itemMenuLayer.position = CGPointMake(20, -48);
+    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
     //**********************
     
     [NBDamageLabel setCurrentLayerForDamageLabel:self];
-    
     [self entranceAnimationStep1];
+}
+
+- (void)skillCastByCharacter:(NBCharacter *)character onCharacter:(NBCharacter *)target {
+#warning need to know if the skills are cast per character or per squad
+#warning we can use this to check which skill should be cast based on the class of the character
+  if (character.characterSide == Ally)
+    [self castEarthquake:target];
+}
+
+- (void)castEarthquake:(NBCharacter *)target {
+  NBRipples *earthquakeRipples = [[NBRipples alloc] init];
+  earthquakeRipples.origin = target.position;
+  earthquakeRipples.delegate = self;
+  [self addChild:earthquakeRipples];
+}
+
+- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+  for (NBSquad *squad in self.enemySquads) {
+    for (NBCharacter *character in squad.unitArray) {
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
+      if (hasCollision) {
+        NSInteger damage = 1;
+        [character onAttackedBySkillWithDamage:damage];
+        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+      }
+    }
+  }
+}
+
+- (BOOL)checkCharacter:(NBCharacter *)character collisionWithRippleOrigin:(CGPoint)rippleOrigin withRippleAmplitude:(CGFloat)rippleAmplitude {
+  if (ccpDistance(character.position, rippleOrigin) <= rippleAmplitude)
+    return YES;
+  else
+    return NO;
 }
 
 -(void)entranceAnimationStep1
@@ -505,7 +556,7 @@ static Boolean isAutoStart = NO;
 
 -(void)entranceAnimationStep2
 {
-    CCMoveTo* move = [CCMoveTo actionWithDuration:3.0 position:CGPointMake(self.position.x, 0)];
+    CCMoveTo* move = [CCMoveTo actionWithDuration:0.5 position:CGPointMake(self.position.x, 0)];
     
     CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep3)];
     CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];
@@ -579,6 +630,7 @@ static Boolean isAutoStart = NO;
     CCARRAY_FOREACH([NBCharacter getAllUnitList], tempCharacter)
     {
         tempCharacter.currentState = Idle;
+        [tempCharacter battleIsStarted];
     }
 }
 
@@ -687,6 +739,22 @@ static Boolean isAutoStart = NO;
 -(void)onComboSkillCButtonSelected
 {
     DLog(@"Combo Skill C Button Selected");
+}
+
+-(void)onItem1Selected
+{
+    DLog(@"Item 1 Selected");
+    [self.itemAreaEffect activate];
+}
+
+-(void)onItem2Selected
+{
+    DLog(@"Item 2 Selected");
+}
+
+-(void)onItem3Selected
+{
+    DLog(@"Item 3 Selected");
 }
 
 //************************************************************************************************

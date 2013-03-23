@@ -63,6 +63,7 @@ typedef enum
 @property (nonatomic, retain) NSString* className;
 @property (nonatomic, retain) NSString* classType;
 @property (nonatomic, assign) int startLevel;
+@property (nonatomic, assign) bool isBoss;
 @property (nonatomic, assign) int basicHP;
 @property (nonatomic, assign) int basicSP;
 @property (nonatomic, assign) int basicSTR;
@@ -92,9 +93,13 @@ typedef enum
 @property (nonatomic, assign) short idleAnimFrameCount;
 @property (nonatomic, retain) NSString* attackAnimFrame;
 @property (nonatomic, assign) short attackAnimFrameCount;
+@property (nonatomic, retain) NSString* walkAnimFrame;
+@property (nonatomic, assign) short walkAnimFrameCount;
 @property (nonatomic, retain) NSString* shootAnimFrame;
 @property (nonatomic, assign) short shootAnimFrameCount;
 @property (nonatomic, retain) NSString* useProjectileName;
+@property (nonatomic, retain) NSString* activeSkillName;
+@property (nonatomic, retain) NSString* passiveSkillName;
 
 @property (nonatomic, assign) int level;
 @property (nonatomic, assign) int currentHP;

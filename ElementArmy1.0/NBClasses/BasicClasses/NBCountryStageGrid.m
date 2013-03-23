@@ -36,6 +36,15 @@
         self.position = CGPointMake(1000, (winSize.height / 2) - (self.contentSize.height / 2));
         [layer addChild:self z:0];
         
+        if (self.countryData.gridBackgroundImage && ![self.countryData.gridBackgroundImage isEqualToString:@""])
+        {
+            self.background = [CCSprite spriteWithSpriteFrameName:self.countryData.gridBackgroundImage];
+            self.background.scaleX = self.contentSize.width / self.background.contentSize.width;
+            self.background.scaleY = self.contentSize.height / self.background.contentSize.height;
+            self.background.position = CGPointMake(self.contentSize.width / 2, self.contentSize.height / 2);
+            [self addChild:self.background z:0];
+        }
+        
         self.isTouchEnabled = YES;
         [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     }
@@ -73,6 +82,59 @@
     {
         [stage onEnteringStageGrid:self];
     }
+    
+    /*CCARRAY_FOREACH(self.stageList, stage)
+    {
+        NSString* nextStageID = nil;
+        int connectorIndex = 0;
+        
+        CCARRAY_FOREACH(stage.stageData.nextStageID, nextStageID)
+        {
+            if (stage.stageData.isCompleted)
+            {
+                NBStage* nextStage = [self getStageByID:nextStageID];
+                
+                CCSprite* connectorLine = nil;
+                
+                if (stage.connectorLines)
+                {
+                    if ([stage.connectorLines count] > connectorIndex)
+                    {
+                        connectorLine = [stage.connectorLines objectAtIndex:connectorIndex];
+                        
+                        if (connectorLine)
+                        {
+                            connectorIndex++;
+                            continue;
+                        }
+                    }
+                }
+                
+                if (stage.isConnected)
+                {
+                    NBConnectorLine* connector = [[NBConnectorLine alloc] initWithAtPosition:CGPointMake(stage.worldIcon.menu.position.x + 16, stage.worldIcon.menu.position.y + 16)
+                                                                               withDirection:LineDirectionRight withLength:ccpDistance(stage.worldIcon.menu.position, nextStage.worldIcon.menu.position) isVertical:NO onLayer:self];
+                    [connector show];
+                }
+                
+                if (!stage.isConnected && nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting && stage.stageData.winCount == 1)
+                {
+                    NBConnectorLine* connector = [[NBConnectorLine alloc] initWithAtPosition:CGPointMake(stage.worldIcon.menu.position.x + 16, stage.worldIcon.menu.position.y + 16)
+                                                                               withDirection:LineDirectionRight withLength:ccpDistance(stage.worldIcon.menu.position, nextStage.worldIcon.menu.position) isVertical:NO onLayer:self];
+                    [connector animate];
+                    stage.isConnected = true;
+                    
+                    if (!stage.isUpdatingScaleX && !stage.isUpdatingScaleY)
+                    {
+                        //[stage createLineTo:[self getStageByID:stage.nextStageID] onLayer:self];
+                        //[stage animateLineTo:nextStage onLayer:self];
+                    }
+                }
+                
+                connectorIndex++;
+            }
+        }
+    }*/
     
     [self.currentLayer performSelector:self.currentSelector];
 }
@@ -123,45 +185,60 @@
     if (!isEntering)
         if (self.position.x > GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET) self.position = CGPointMake(GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET, self.position.y);
     
-    CCARRAY_FOREACH(self.stageList, stage)
+    if (!isEntering)
     {
-        [stage update];
-        
-        NSString* nextStageID = nil;
-        int connectorIndex = 0;
-        
-        CCARRAY_FOREACH(stage.stageData.nextStageID, nextStageID)
+        CCARRAY_FOREACH(self.stageList, stage)
         {
-            if (stage.stageData.isCompleted)
+            [stage update];
+            
+            NSString* nextStageID = nil;
+            int connectorIndex = 0;
+            
+            CCARRAY_FOREACH(stage.stageData.nextStageID, nextStageID)
             {
-                NBStage* nextStage = [self getStageByID:nextStageID];
-                
-                CCSprite* connectorLine = nil;
-                
-                if (stage.connectorLines)
+                if (stage.stageData.isCompleted)
                 {
-                    if ([stage.connectorLines count] > connectorIndex)
+                    NBStage* nextStage = [self getStageByID:nextStageID];
+                    
+                    CCSprite* connectorLine = nil;
+                    
+                    if (stage.connectorLines)
                     {
-                        connectorLine = [stage.connectorLines objectAtIndex:connectorIndex];
-                        
-                        if (connectorLine)
+                        if ([stage.connectorLines count] > connectorIndex)
                         {
-                            connectorIndex++;
-                            continue;
+                            connectorLine = [stage.connectorLines objectAtIndex:connectorIndex];
+                            
+                            if (connectorLine)
+                            {
+                                connectorIndex++;
+                                continue;
+                            }
                         }
                     }
-                }
-                
-                if (nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting && stage.stageData.winCount == 1)
-                {
-                    if (!stage.isUpdatingScaleX && !stage.isUpdatingScaleY)
+                    
+                    /*if (stage.isConnected)
                     {
-                        //[stage createLineTo:[self getStageByID:stage.nextStageID] onLayer:self];
-                        [stage animateLineTo:nextStage onLayer:self];
+                        NBConnectorLine* connector = [[NBConnectorLine alloc] initWithAtPosition:CGPointMake(stage.worldIcon.menu.position.x + 16, stage.worldIcon.menu.position.y + 16)
+                                                                                   withDirection:LineDirectionRight withLength:ccpDistance(stage.worldIcon.menu.position, nextStage.worldIcon.menu.position) isVertical:NO onLayer:self];
+                        [connector show];
+                    }*/
+                    
+                    if (!stage.isConnected && nextStage.stageData.isUnlocked && !connectorLine && !stage.isConnecting && stage.stageData.winCount == 1)
+                    {
+                        NBConnectorLine* connector = [[NBConnectorLine alloc] initWithAtPosition:CGPointMake(stage.worldIcon.menu.position.x + 16, stage.worldIcon.menu.position.y + 16)
+                                                                                   withDirection:LineDirectionRight withLength:ccpDistance(stage.worldIcon.menu.position, nextStage.worldIcon.menu.position) isVertical:NO onLayer:self];
+                        [connector animate];
+                        stage.isConnected = true;
+                        
+                        if (!stage.isUpdatingScaleX && !stage.isUpdatingScaleY)
+                        {
+                            //[stage createLineTo:[self getStageByID:stage.nextStageID] onLayer:self];
+                            //[stage animateLineTo:nextStage onLayer:self];
+                        }
                     }
+                    
+                    connectorIndex++;
                 }
-                
-                connectorIndex++;
             }
         }
     }

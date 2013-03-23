@@ -236,19 +236,23 @@
   BOOL skillWasUsed = NO;
 
   if (self.classSkillAButtonSelectedSprite.visible) {
-    skillWasUsed = YES;
-    DLog(@"Skill A used");
+      skillWasUsed = YES;
+      DLog(@"Skill A used");
+      [self.battleLayer performSelector:self.item1Selector];
   }
   if (self.classSkillBButtonSelectedSprite.visible) {
-    skillWasUsed = YES;
-    DLog(@"Skill B used");
+      skillWasUsed = YES;
+      DLog(@"Skill B used");
+      [self.battleLayer performSelector:self.item2Selector];
   }
   if (self.classSkillCButtonSelectedSprite.visible) {
-    skillWasUsed = YES;
-    DLog(@"Skill C used");
+      skillWasUsed = YES;
+      DLog(@"Skill C used");
+      [self.battleLayer performSelector:self.item3Selector];
   }
+    
   if (skillWasUsed == NO)
-    DLog(@"No skill used");
+      DLog(@"No skill used");
 
   self.classSkillAButtonNormalSprite.visible = YES;
   self.classSkillAButtonSelectedSprite.visible = NO;
@@ -336,6 +340,14 @@
   self.classSkillBButtonSelectedSprite.visible = NO;
   self.classSkillCButtonNormalSprite.visible = YES;
   self.classSkillCButtonSelectedSprite.visible = NO;
+}
+
+-(void)setupSelectorsForItem1:(SEL)selectorForItem1 forItem2:(SEL)selectorForItem2 forItem3:(SEL)selectorForItem3 onBattleLayer:(id)layer
+{
+    self.battleLayer = layer;
+    self.item1Selector = selectorForItem1;
+    self.item2Selector = selectorForItem2;
+    self.item3Selector = selectorForItem3;
 }
 
 @end

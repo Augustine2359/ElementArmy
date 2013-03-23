@@ -11,6 +11,7 @@
 #import "NBBasicScreenLayer.h"
 #import "NBCountry.h"
 #import "NBStage.h"
+#import "NBConnectorLine.h"
 
 #define STAGE_HORIZONTAL_CAPACITY 12
 #define STAGE_VERTICAL_CAPACITY 18
@@ -38,5 +39,6 @@
 @property (nonatomic, retain) CCArray* lineList;
 @property (nonatomic, retain) CCLayer* currentLayer;
 @property (nonatomic, assign) SEL currentSelector;
+@property (nonatomic, retain) CCSprite* background;
 
 @end

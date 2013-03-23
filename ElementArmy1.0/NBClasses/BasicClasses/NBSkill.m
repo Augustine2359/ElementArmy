@@ -10,7 +10,7 @@
 
 @implementation NBSkill
 
--(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer
+/*-(id)initWithFrameName:(NSString*)frameName andSpriteBatchNode:(CCSpriteBatchNode*)spriteBatchNode onLayer:(CCLayer*)layer
 {
     if (self == [super initWithFrameName:frameName andSpriteBatchNode:spriteBatchNode onLayer:layer])
     {
@@ -19,12 +19,12 @@
     }
     
     return self;
-}
+}*/
 
 //Events
--(void)onTouched
+/*-(void)onTouched
 {
     [super onTouched];
-}
+}*/
 
 @end

@@ -166,11 +166,11 @@ static CCArray* allStageList = nil;
         }
     }
     
-    CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
+    /*CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
     {
         NBStage* nextStage = [NBStage getStageByID:connectedStageID];
         [self createLineTo:nextStage onLayer:layer];
-    }
+    }*/
     
     NSString* nextStageID = nil;
     
@@ -193,7 +193,7 @@ static CCArray* allStageList = nil;
             
             if (nextStage.stageData.isUnlocked)
             {
-                [self animateLineTo:[NBStage getStageByID:nextStageID] onLayer:layer];
+                //[self animateLineTo:[NBStage getStageByID:nextStageID] onLayer:layer];
             }
         }
     }

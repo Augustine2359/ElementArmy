@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString* iconSpriteNormal;
 @property (nonatomic, retain) NSString* iconSpriteSelected;
 @property (nonatomic, retain) NSString* iconSpriteDisabled;
+@property (nonatomic, retain) NSString* gridBackgroundImage;
 @property (nonatomic, assign) CGSize gridBoardSize;
 @property (nonatomic, assign) CGPoint positionInWorld;
 @property (nonatomic, retain) CCArray* stageList;

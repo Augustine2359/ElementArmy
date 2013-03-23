@@ -277,18 +277,12 @@ static CGSize worldSize;
     }
 }
 
--(BOOL)isTouchingMe:(CGPoint)touchLocation
+/*-(BOOL)isTouchingMe:(CGPoint)touchLocation
 {
     BOOL isTouched = false;
     
     DLog(@"touch location x = %f y = %f", touchLocation.x, touchLocation.y);
     DLog(@"%@ location x = %f y = %f width = %f height = %f", self.name, self.position.x, self.position.y, self.sizeOnScreen.width, self.sizeOnScreen.height);
-    
-    /*if (((touchLocation.x >= (self.position.x - (self.sprite.contentSize.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sprite.contentSize.width / 2.5)))) &&
-        ((touchLocation.y >= (self.position.y - (self.sprite.contentSize.height / 4))) && (touchLocation.y <= (self.position.y + (self.sprite.contentSize.height / 4)))))
-    {
-        isTouched = YES;
-    }*/
     
     if (((touchLocation.x >= (self.position.x - (self.sizeOnScreen.width / 2.5))) && (touchLocation.x <= (self.position.x + (self.sizeOnScreen.width / 2.5)))) &&
         ((touchLocation.y >= (self.position.y - (self.sizeOnScreen.height / 4))) && (touchLocation.y <= (self.position.y + (self.sizeOnScreen.height / 4)))))
@@ -297,6 +291,17 @@ static CGSize worldSize;
     }
     
     return isTouched;
+}*/
+
+-(BOOL)isTouchingMe:(CGPoint)touchLocation
+{
+    //DLog(@"bound %f, %f, %f, %f", self.sprite.boundingBox.size.width, self.sprite.boundingBox.size.height, self.sprite.boundingBox.origin.x, self.sprite.boundingBox.origin.y);
+    CGRect rect = CGRectMake(self.position.x - (self.sprite.contentSize.width / 2), self.position.y - (self.sprite.contentSize.height / 2), self.sprite.contentSize.width, self.sprite.contentSize.height);
+    
+    if (CGRectContainsPoint(rect, touchLocation))
+        return YES;
+    else
+        return NO;
 }
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event

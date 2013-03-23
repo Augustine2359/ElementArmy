@@ -22,8 +22,12 @@
 -(void)saveItems;
 -(void)createCharacterList;
 -(void)createProjectileList;
+-(void)loadEquipmentList;
+-(void)loadSkillList;
 
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
+
++(id)getSkillBySkillName:(NSString*)skillName;
 +(CCArray*)getListOfProjectiles;
 +(CCArray*)getListOfCountries;
 
@@ -37,6 +41,8 @@
 
 @property (nonatomic, retain) CCArray* listOfStages;
 @property (nonatomic, retain) CCArray* listOfItems;
+@property (nonatomic, retain) CCArray* listOfEquipments;
+//@property (nonatomic, retain) CCArray* listOfSkills;
 //@property (nonatomic, retain) CCArray* listOfCountries;
 
 @property (nonatomic, retain) CCArray* listOfCharacters;

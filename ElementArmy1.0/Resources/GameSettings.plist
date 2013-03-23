@@ -13,6 +13,8 @@
 			<string>STR</string>
 			<key>startLevel</key>
 			<integer>1</integer>
+			<key>isBoss</key>
+			<integer>0</integer>
 			<key>basicHP</key>
 			<integer>100</integer>
 			<key>basicSP</key>
@@ -77,7 +79,11 @@
 				<integer>0</integer>
 			</dict>
 			<key>useProjectileName</key>
-			<string>fireball</string>
+			<string></string>
+			<key>activeSkillName</key>
+			<string></string>
+			<key>passiveSkillName</key>
+			<string>strengthen</string>
 		</dict>
 		<dict>
 			<key>className</key>
@@ -88,6 +94,8 @@
 			<string>INT</string>
 			<key>startLevel</key>
 			<integer>1</integer>
+			<key>isBoss</key>
+			<integer>0</integer>
 			<key>basicHP</key>
 			<integer>100</integer>
 			<key>basicSP</key>
@@ -163,6 +171,8 @@
 			<string>DEX</string>
 			<key>startLevel</key>
 			<integer>1</integer>
+			<key>isBoss</key>
+			<integer>0</integer>
 			<key>basicHP</key>
 			<integer>100</integer>
 			<key>basicSP</key>
@@ -229,6 +239,172 @@
 			<key>useProjectileName</key>
 			<string>normal_arrow</string>
 		</dict>
+		<dict>
+			<key>className</key>
+			<string>berserker</string>
+			<key>elementID</key>
+			<integer>3</integer>
+			<key>classType</key>
+			<string>ATK</string>
+			<key>startLevel</key>
+			<integer>1</integer>
+			<key>isBoss</key>
+			<integer>0</integer>
+			<key>basicHP</key>
+			<integer>200</integer>
+			<key>basicSP</key>
+			<integer>0</integer>
+			<key>basicSTR</key>
+			<integer>20</integer>
+			<key>basicDEF</key>
+			<integer>10</integer>
+			<key>basicINT</key>
+			<integer>5</integer>
+			<key>basicDEX</key>
+			<integer>40</integer>
+			<key>basicEVA</key>
+			<string>20</string>
+			<key>minHPAdd</key>
+			<integer>8</integer>
+			<key>maxHPAdd</key>
+			<integer>12</integer>
+			<key>minSPAdd</key>
+			<integer>0</integer>
+			<key>maxSPAdd</key>
+			<integer>0</integer>
+			<key>minSTRAdd</key>
+			<integer>0</integer>
+			<key>maxSTRAdd</key>
+			<integer>0</integer>
+			<key>minDEFAdd</key>
+			<integer>0</integer>
+			<key>maxDEFAdd</key>
+			<integer>0</integer>
+			<key>minINTAdd</key>
+			<integer>0</integer>
+			<key>maxINTAdd</key>
+			<integer>0</integer>
+			<key>minDEXAdd</key>
+			<integer>0</integer>
+			<key>maxDEXAdd</key>
+			<integer>0</integer>
+			<key>minEVAAdd</key>
+			<integer>0</integer>
+			<key>maxEVAAdd</key>
+			<integer>0</integer>
+			<key>attackType</key>
+			<integer>0</integer>
+			<key>maximumAttackedStack</key>
+			<integer>6</integer>
+			<key>frames</key>
+			<dict>
+				<key>idleFrame</key>
+				<string>metal_soldier_IDLEanim_1.png</string>
+				<key>idleAnimFrame</key>
+				<string>metal_soldier_IDLEanim</string>
+				<key>idleAnimFrameCount</key>
+				<integer>1</integer>
+				<key>attackAnimFrame</key>
+				<string>metal_soldier_ATTACKanim</string>
+				<key>attackAnimFrameCount</key>
+				<integer>2</integer>
+				<key>shootAnimFrame</key>
+				<string></string>
+				<key>shootAnimFrameCount</key>
+				<integer>0</integer>
+			</dict>
+			<key>useProjectileName</key>
+			<string></string>
+			<key>activeSkillName</key>
+			<string>axe thrower</string>
+			<key>passiveSkillName</key>
+			<string>regen</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>barbarianboss</string>
+			<key>elementID</key>
+			<integer>3</integer>
+			<key>classType</key>
+			<string>ATK</string>
+			<key>startLevel</key>
+			<integer>1</integer>
+			<key>isBoss</key>
+			<integer>1</integer>
+			<key>basicHP</key>
+			<integer>10000</integer>
+			<key>basicSP</key>
+			<integer>0</integer>
+			<key>basicSTR</key>
+			<integer>20</integer>
+			<key>basicDEF</key>
+			<integer>10</integer>
+			<key>basicINT</key>
+			<integer>5</integer>
+			<key>basicDEX</key>
+			<integer>40</integer>
+			<key>basicEVA</key>
+			<string>20</string>
+			<key>minHPAdd</key>
+			<integer>8</integer>
+			<key>maxHPAdd</key>
+			<integer>12</integer>
+			<key>minSPAdd</key>
+			<integer>0</integer>
+			<key>maxSPAdd</key>
+			<integer>0</integer>
+			<key>minSTRAdd</key>
+			<integer>0</integer>
+			<key>maxSTRAdd</key>
+			<integer>0</integer>
+			<key>minDEFAdd</key>
+			<integer>0</integer>
+			<key>maxDEFAdd</key>
+			<integer>0</integer>
+			<key>minINTAdd</key>
+			<integer>0</integer>
+			<key>maxINTAdd</key>
+			<integer>0</integer>
+			<key>minDEXAdd</key>
+			<integer>0</integer>
+			<key>maxDEXAdd</key>
+			<integer>0</integer>
+			<key>minEVAAdd</key>
+			<integer>0</integer>
+			<key>maxEVAAdd</key>
+			<integer>0</integer>
+			<key>attackType</key>
+			<integer>0</integer>
+			<key>maximumAttackedStack</key>
+			<integer>6</integer>
+			<key>frames</key>
+			<dict>
+				<key>idleFrame</key>
+				<string>boss_barbarian_IDLE_1.png</string>
+				<key>idleAnimFrame</key>
+				<string>boss_barbarian_IDLE</string>
+				<key>idleAnimFrameCount</key>
+				<integer>2</integer>
+				<key>attackAnimFrame</key>
+				<string>boss_barbarian_ATTACK</string>
+				<key>attackAnimFrameCount</key>
+				<integer>4</integer>
+				<key>walkAnimFrame</key>
+				<string>boss_barbarian_WALK</string>
+				<key>walkAnimFrameCount</key>
+				<integer>2</integer>
+				<key>shootAnimFrame</key>
+				<string></string>
+				<key>shootAnimFrameCount</key>
+				<integer>0</integer>
+			</dict>
+			<key>useProjectileName</key>
+			<string></string>
+			<key>activeSkillName</key>
+			<string>axe thrower</string>
+			<key>passiveSkillName</key>
+			<string></string>
+		</dict>
 	</array>
 	<key>Item data</key>
 	<array>
@@ -252,6 +428,8 @@
 			<string>water_stageA.png</string>
 			<key>iconSpriteDisabled</key>
 			<string>water_stageA.png</string>
+			<key>gridBackgroundImage</key>
+			<string>nebula stage selection map.jpg</string>
 			<key>majorElementID</key>
 			<integer>0</integer>
 			<key>positionInWorld</key>
@@ -1545,6 +1723,8 @@
 			<string>fire_country.png</string>
 			<key>iconSpriteDisabled</key>
 			<string>fire_country.png</string>
+			<key>gridBackgroundImage</key>
+			<string>nebula stage selection map.jpg</string>
 			<key>majorElementID</key>
 			<integer>1</integer>
 			<key>positionInWorld</key>
@@ -1565,7 +1745,7 @@
 			<array>
 				<dict>
 					<key>stageID</key>
-					<string>stage0</string>
+					<string>firestage0</string>
 					<key>stageName</key>
 					<string>A-1</string>
 					<key>countryID</key>
@@ -1587,11 +1767,11 @@
 					</dict>
 					<key>nextStageID</key>
 					<array>
-						<string>stage1</string>
+						<string>firestage1</string>
 					</array>
 					<key>willUnlockStageID</key>
 					<array>
-						<string>stage1</string>
+						<string>firestage1</string>
 					</array>
 					<key>isCompleted</key>
 					<false/>
@@ -1628,7 +1808,7 @@
 						</dict>
 						<dict>
 							<key>enemyClass</key>
-							<string>metalsoldier</string>
+							<string>firemage</string>
 							<key>level</key>
 							<string>1</string>
 							<key>totalUnit</key>
@@ -1655,7 +1835,7 @@
 						</dict>
 						<dict>
 							<key>enemyClass</key>
-							<string>metalsoldier</string>
+							<string>woodarcher</string>
 							<key>level</key>
 							<string>1</string>
 							<key>totalUnit</key>
@@ -1686,7 +1866,7 @@
 				</dict>
 				<dict>
 					<key>stageID</key>
-					<string>stage1</string>
+					<string>firestage1</string>
 					<key>stageName</key>
 					<string>A-2</string>
 					<key>countryID</key>
@@ -4067,7 +4247,7 @@
 					<array>
 						<dict>
 							<key>enemyClass</key>
-							<string>metalsoldier</string>
+							<string>barbarianboss</string>
 							<key>level</key>
 							<string>1</string>
 							<key>totalUnit</key>
@@ -4077,71 +4257,17 @@
 							<key>attributes</key>
 							<dict>
 								<key>HP</key>
-								<integer>100</integer>
+								<integer>10000</integer>
 								<key>SP</key>
 								<integer>100</integer>
 								<key>STR</key>
-								<integer>20</integer>
+								<integer>100</integer>
 								<key>DEF</key>
 								<integer>10</integer>
 								<key>INT</key>
 								<integer>10</integer>
 								<key>DEX</key>
 								<integer>100</integer>
-								<key>EVA</key>
-								<integer>10</integer>
-							</dict>
-						</dict>
-						<dict>
-							<key>enemyClass</key>
-							<string>metalsoldier</string>
-							<key>level</key>
-							<string>1</string>
-							<key>totalUnit</key>
-							<string>1</string>
-							<key>availableUnit</key>
-							<string>1</string>
-							<key>attributes</key>
-							<dict>
-								<key>HP</key>
-								<integer>100</integer>
-								<key>SP</key>
-								<integer>100</integer>
-								<key>STR</key>
-								<integer>20</integer>
-								<key>DEF</key>
-								<integer>10</integer>
-								<key>INT</key>
-								<integer>10</integer>
-								<key>DEX</key>
-								<integer>10</integer>
-								<key>EVA</key>
-								<integer>10</integer>
-							</dict>
-						</dict>
-						<dict>
-							<key>enemyClass</key>
-							<string>metalsoldier</string>
-							<key>level</key>
-							<string>1</string>
-							<key>totalUnit</key>
-							<string>1</string>
-							<key>availableUnit</key>
-							<string>1</string>
-							<key>attributes</key>
-							<dict>
-								<key>HP</key>
-								<integer>100</integer>
-								<key>SP</key>
-								<integer>100</integer>
-								<key>STR</key>
-								<integer>20</integer>
-								<key>DEF</key>
-								<integer>10</integer>
-								<key>INT</key>
-								<integer>10</integer>
-								<key>DEX</key>
-								<integer>10</integer>
 								<key>EVA</key>
 								<integer>10</integer>
 							</dict>
@@ -7727,8 +7853,41 @@
 			</dict>
 		</dict>
 	</array>
-	<key>Weapon data</key>
-	<array/>
+	<key>Equipment data</key>
+	<array>
+		<dict>
+			<key>equipmentID</key>
+			<string>1</string>
+			<key>equipmentName</key>
+			<string>Golden Armor</string>
+			<key>description</key>
+			<string>Armor which was used by the mighty Son of Thor. This armor adds an extreme 200 DEF to those who wear it.</string>
+			<key>statusImpacted</key>
+			<string>DEF;</string>
+			<key>impactType</key>
+			<string>0;</string>
+			<key>impactValue</key>
+			<string>200;</string>
+			<key>requiredLevel</key>
+			<string>1</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
+			<string>2</string>
+			<key>equipmentName</key>
+			<string>Winged Boots</string>
+			<key>description</key>
+			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
+			<key>statusImpacted</key>
+			<string>ATK;DEX;</string>
+			<key>impactType</key>
+			<string>0;2;</string>
+			<key>impactValue</key>
+			<string>50;1.5;</string>
+			<key>requiredLevel</key>
+			<string>1</string>
+		</dict>
+	</array>
 	<key>Projectile data</key>
 	<array>
 		<dict>
@@ -7753,6 +7912,45 @@
 			<key>defaultSpeed</key>
 			<integer>20</integer>
 			<key>projectileShootType</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>Skill data</key>
+	<array>
+		<dict>
+			<key>skillName</key>
+			<string>strengthen</string>
+			<key>skillInGameName</key>
+			<string>Strengthen</string>
+			<key>skillType</key>
+			<string>1</string>
+			<key>statusImpacted</key>
+			<string>ATK</string>
+			<key>impactType</key>
+			<string>2</string>
+			<key>impactValue</key>
+			<string>1.5</string>
+			<key>frequency</key>
+			<integer>0</integer>
+			<key>canExceedMaxValue</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>skillName</key>
+			<string>regen</string>
+			<key>skillInGameName</key>
+			<string>Regen</string>
+			<key>skillType</key>
+			<string>2</string>
+			<key>statusImpacted</key>
+			<string>HP</string>
+			<key>impactType</key>
+			<string>2</string>
+			<key>impactValue</key>
+			<string>1.1</string>
+			<key>frequency</key>
+			<integer>1000</integer>
+			<key>canExceedMaxValue</key>
 			<integer>0</integer>
 		</dict>
 	</array>
