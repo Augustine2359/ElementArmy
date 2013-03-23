@@ -32,6 +32,7 @@
 	
 	// 'layer' is an autorelease object.
 	NBStoryScreen *layer = [NBStoryScreen node];
+    layer.layerName = NSStringFromClass([layer class]);
 	
 	// add layer as a child to scene
 	[scene addChild: layer];

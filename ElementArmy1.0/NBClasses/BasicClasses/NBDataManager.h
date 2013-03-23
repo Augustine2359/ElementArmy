@@ -17,7 +17,7 @@
 +(id)dataManager;
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID;
 -(void)createStages;
--(void)createItems;
+-(void)loadItemList;
 -(void)saveStages;
 -(void)saveItems;
 -(void)createCharacterList;
@@ -27,9 +27,11 @@
 
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
-+(id)getSkillBySkillName:(NSString*)skillName;
++(id)getSkillBySkillName:(NSString*)lookupName;
++(id)getItemDataByItemName:(NSString*)lookupName;
 +(CCArray*)getListOfProjectiles;
 +(CCArray*)getListOfCountries;
++(CCArray*)getListOfItems;
 
 @property (nonatomic, retain) NSString* userID;
 
@@ -40,11 +42,7 @@
 @property (nonatomic, retain) CCArray* listOfUnlockedWeaponID;
 
 @property (nonatomic, retain) CCArray* listOfStages;
-@property (nonatomic, retain) CCArray* listOfItems;
 @property (nonatomic, retain) CCArray* listOfEquipments;
-//@property (nonatomic, retain) CCArray* listOfSkills;
-//@property (nonatomic, retain) CCArray* listOfCountries;
-
 @property (nonatomic, retain) CCArray* listOfCharacters;
 @property (nonatomic, retain) CCArray* listOfProjectiles;
 

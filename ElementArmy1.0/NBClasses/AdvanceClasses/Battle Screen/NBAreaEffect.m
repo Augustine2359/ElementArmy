@@ -62,6 +62,11 @@
     }
 }
 
+-(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    DLog(@"item effect implemented");
+}
+
 -(BOOL)isTouchingMe:(CGPoint)touchLocation
 {
     CGRect rect = CGRectMake(self.position.x - (self.areaSize.width / 2), self.position.y - (self.areaSize.height / 2), self.areaSize.width, self.areaSize.height);
@@ -72,8 +77,9 @@
         return NO;
 }
 
--(void)activate
+-(void)activateAreaEffect:(NBItem*)item
 {
+    self.currentItem = item;
     CGSize windowSize = [[CCDirector sharedDirector] winSize];
     self.position = CGPointMake(windowSize.width / 2, windowSize.height / 2);
     self.visible = YES;
@@ -83,6 +89,11 @@
 {
     isFollowing = false;
     self.visible = NO;
+}
+
+-(void)activateItemEffect
+{
+    
 }
 
 @end

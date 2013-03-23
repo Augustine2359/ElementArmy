@@ -23,6 +23,7 @@
 	
 	// 'layer' is an autorelease object.
 	NBMapSelectionScreen *layer = [NBMapSelectionScreen node];
+    layer.layerName = NSStringFromClass([layer class]);
 	
 	// add layer as a child to scene
 	[scene addChild: layer];

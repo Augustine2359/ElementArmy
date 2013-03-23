@@ -23,6 +23,7 @@
 	
 	// 'layer' is an autorelease object.
 	NBMainMenuScreen *layer = [NBMainMenuScreen node];
+    layer.layerName = NSStringFromClass([layer class]);
 	
 	// add layer as a child to scene
 	[scene addChild: layer];

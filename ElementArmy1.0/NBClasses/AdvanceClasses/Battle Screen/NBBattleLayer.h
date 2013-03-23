@@ -104,5 +104,8 @@
 @property (nonatomic, retain) CCSprite* battleResultBackground;
 
 @property (nonatomic, retain) NBAreaEffect* itemAreaEffect;
+@property (nonatomic, retain) NBItem* item1;
+@property (nonatomic, retain) NBItem* item2;
+@property (nonatomic, retain) NBItem* item3;
 
 @end

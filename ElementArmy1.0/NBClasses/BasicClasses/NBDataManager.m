@@ -20,6 +20,7 @@ static NBDataManager* dataManager = nil;
 static CCArray* listOfProjectiles = nil;
 static CCArray* listOfCountries = nil;
 static CCArray* listOfSkills = nil;
+static CCArray* listOfItems = nil;
 
 @implementation NBDataManager
 
@@ -46,6 +47,7 @@ static CCArray* listOfSkills = nil;
         listOfCountries = [[CCArray alloc] initWithCapacity:10];
         self.listOfEquipments = [[CCArray alloc] initWithCapacity:100];
         listOfSkills = [[CCArray alloc] initWithCapacity:100];
+        listOfItems = [[CCArray alloc] initWithCapacity:100];
 
         //[self createStages];
         //[self createItems];
@@ -60,6 +62,7 @@ static CCArray* listOfSkills = nil;
 -(void)dealloc
 {
     [listOfSkills release];
+    [listOfItems release];
     [super dealloc];
 }
 
@@ -176,9 +179,9 @@ static CCArray* listOfSkills = nil;
     }
 }
 
--(void)createItems
+-(void)loadItemList
 {
-    self.listOfItems = [CCArray array];
+    listOfItems = [CCArray array];
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSArray *items = [dictionary objectForKey:@"Item data"];
@@ -187,8 +190,18 @@ static CCArray* listOfSkills = nil;
     {
         NBItemData *itemData = [[NBItemData alloc] init];
         itemData.itemID = [itemDataDictionary objectForKey:@"itemID"];
-        [self.listOfItems addObject:itemData];
+        itemData.itemName = [itemDataDictionary objectForKey:@"itemName"];
+        itemData.description = [itemDataDictionary objectForKey:@"description"];
+        itemData.impactedStatus = [itemDataDictionary objectForKey:@"impactedStatus"];
+        itemData.impactType = [itemDataDictionary objectForKey:@"impactType"];
+        itemData.impactValue = [itemDataDictionary objectForKey:@"impactValue"];
+        itemData.specialEffect = [itemDataDictionary objectForKey:@"specialEffect"];
+        itemData.frame = [itemDataDictionary objectForKey:@"frame"];
+        itemData.maximumAllowable = [[itemDataDictionary objectForKey:@"maximumAllowable"] integerValue];
+        [listOfItems addObject:itemData];
     }
+    
+    [listOfItems retain];
 }
 
 -(void)loadEquipmentList
@@ -234,7 +247,7 @@ static CCArray* listOfSkills = nil;
         [listOfSkills addObject:skillData];
     }
     
-[listOfSkills retain];
+    [listOfSkills retain];
 }
 
 -(void)createCharacterList
@@ -393,6 +406,21 @@ static CCArray* listOfSkills = nil;
     return nil;
 }
 
++(id)getItemDataByItemName:(NSString*)lookupName
+{
+    NBItemData* itemData = nil;
+    
+    CCARRAY_FOREACH(listOfItems, itemData)
+    {
+        if ([itemData.itemName isEqualToString:lookupName])
+        {
+            return itemData;
+        }
+    }
+    
+    return nil;
+}
+
 +(CCArray*)getListOfProjectiles
 {
     return listOfProjectiles;
@@ -403,4 +431,8 @@ static CCArray* listOfSkills = nil;
     return listOfCountries;
 }
 
++(CCArray*)getListOfItems
+{
+    return listOfItems;
+}
 @end

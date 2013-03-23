@@ -39,7 +39,17 @@ float slideDuration = 0.5f;
 -(void)initialiseItemArray{
     [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
     
-    NBItem* item1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
+    self.allItems = [NSMutableArray new];
+    NBItemData* itemData = nil;
+    
+    CCARRAY_FOREACH([NBDataManager getListOfItems], itemData)
+    {
+        NBItem* item = [NBItem createItem:itemData onLayer:self onSelector:@selector(selectTargetItem)];
+        [item setItemIconWithNormalImage:itemData.frame selectedImage:itemData.frame disabledImage:itemData.frame onLayer:self];
+        [self.allItems addObject:item];
+    }
+    
+    /*NBItem* item1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
     [item1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
     NBItem* item2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
     [item2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
@@ -50,7 +60,7 @@ float slideDuration = 0.5f;
     NBItem* item5 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
     [item5 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
     self.allItems = [NSMutableArray new];
-    self.allItems = [NSMutableArray arrayWithObjects:item1, item2, item3, item4, item5, nil];
+    self.allItems = [NSMutableArray arrayWithObjects:item1, item2, item3, item4, item5, nil];*/
 }
 
 -(void)initialiseItemUI{
@@ -79,8 +89,8 @@ float slideDuration = 0.5f;
         [self runAction:close];
         self.itemSelectionOpen = NO;
         
-        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData.itemID onLayer:self onSelector:@selector(selectTargetItem)];
-        [newItem setItemIconWithNormalImage:selectedItemButton.image selectedImage:selectedItemButton.image disabledImage:selectedItemButton.image onLayer:self.mainLayer];
+        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData onLayer:self onSelector:@selector(selectTargetItem)];
+        [newItem setItemIconWithNormalImage:selectedItemButton.itemData.frame selectedImage:selectedItemButton.itemData.frame disabledImage:selectedItemButton.itemData.frame onLayer:self.mainLayer];
         [newItem.itemIcon setPosition:ccp([self.changingTargetItem.itemIcon getPosition].x, [self.changingTargetItem.itemIcon getPosition].y)];
         [newItem displayItemIcon];
         

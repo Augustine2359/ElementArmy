@@ -31,6 +31,7 @@
 -(void)addStandardMenuString:(NSString*)menuTitle withSelector:(SEL)selectedMethod;
 -(void)setCurrentBackgroundWithFileName:(NSString*)fileName stretchToScreen:(BOOL)stretch;
 
+@property (nonatomic, retain) NSString* layerName;
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
 @property (nonatomic, assign) CGSize layerSize;
 @property (nonatomic, assign) CGSize layerSizeInPixels;

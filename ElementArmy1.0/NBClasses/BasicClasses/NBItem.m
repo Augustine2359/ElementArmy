@@ -17,11 +17,10 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
     return currentlySelectedItemInBattleSetup;
 }
 
-+(id)createItem:(NSString*)itemID onLayer:(id)layer onSelector:(SEL)selector
++(id)createItem:(NBItemData*)newItemData onLayer:(id)layer onSelector:(SEL)selector
 {
     NBItem* item = [[NBItem alloc] init];
-    item.itemData = [[NBItemData alloc] init];
-    item.itemData.itemID = itemID;
+    item.itemData = newItemData;
     item.currentLayer = layer;
     item.currentSelector = selector;
     

@@ -35,6 +35,7 @@ static Boolean isAutoStart = NO;
 	
 	// 'layer' is an autorelease object.
 	NBBattleLayer *layer = [NBBattleLayer node];
+    layer.layerName = NSStringFromClass([layer class]);
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -473,6 +474,26 @@ static Boolean isAutoStart = NO;
     self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
     self.enemyFlagLogo.visible = YES;
     
+    //Items
+    //**********************************************************************
+    NBItem* item = nil;
+    int itemIndex = 0;
+    CCARRAY_FOREACH(self.dataManager.selectedItems, item)
+    {
+        switch (itemIndex) {
+            case 0:
+                self.item1 = item;
+                break;
+            case 1:
+                self.item2 = item;
+                break;
+            case 2:
+                self.item3 = item;
+                break;
+        }
+    }
+    //**********************************************************************
+    
     //Item Area Effect
     //**********************************************************************
     self.itemAreaEffect = [[NBAreaEffect alloc] initWithSpriteFrameName:@"staticbox_green.png" onLayer:self];
@@ -744,17 +765,19 @@ static Boolean isAutoStart = NO;
 -(void)onItem1Selected
 {
     DLog(@"Item 1 Selected");
-    [self.itemAreaEffect activate];
+    [self.itemAreaEffect activateAreaEffect:self.item1];
 }
 
 -(void)onItem2Selected
 {
     DLog(@"Item 2 Selected");
+    [self.itemAreaEffect activateAreaEffect:self.item2];
 }
 
 -(void)onItem3Selected
 {
     DLog(@"Item 3 Selected");
+    [self.itemAreaEffect activateAreaEffect:self.item3];
 }
 
 //************************************************************************************************
