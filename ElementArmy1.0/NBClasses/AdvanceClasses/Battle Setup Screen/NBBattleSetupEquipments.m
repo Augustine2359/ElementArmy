@@ -10,6 +10,7 @@
 
 @implementation NBBattleSetupEquipments
 
+
 -(id)initWithLayer:(id)layer
 {
     if ((self = [super init]))
@@ -56,6 +57,11 @@
         [thatEquipment.equipmentIcon setPosition:ccp(x%4 * 100 + 100, 250 - x/4 * 75)];
         [thatEquipment displayEquipmentIcon];
     }
+    
+    CCSpriteBatchNode* spritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
+    
+    self.descriptionLabel = [[NBMessageBox alloc] initWithFrameName:@"frame_item.png" andSpriteBatchNode:spritesBatchNode onLayer:self respondTo:self selector:@selector(null) atMessageBoxStartingPosition:(enum MessageBoxStartingPosition)MessageBoxStartingPositionCentre];
+//    [self.descriptionLabel message] = @"asd";
     
     [self setPosition:ccp(0, -320)];
 }

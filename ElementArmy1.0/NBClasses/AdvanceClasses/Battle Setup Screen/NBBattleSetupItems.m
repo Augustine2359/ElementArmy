@@ -84,8 +84,7 @@ float slideDuration = 0.5f;
         [newItem.itemIcon setPosition:ccp([self.changingTargetItem.itemIcon getPosition].x, [self.changingTargetItem.itemIcon getPosition].y)];
         [newItem displayItemIcon];
         
-        [self.changingTargetItem hideItemIcon];
-    }
+        [self.changingTargetItem hideItemIcon];    }
 }
 
 -(void)selectTargetItem{

@@ -8,6 +8,7 @@
 
 #import "NBBasicScreenLayer.h"
 #import "NBEquipment.h"
+#import "NBMessageBox.h"
 
 
 @interface NBBattleSetupEquipments : NBBasicScreenLayer
@@ -19,6 +20,8 @@
 
 @property(nonatomic, retain) NSMutableArray* allEquipments;
 @property (nonatomic, retain) id mainLayer;
+
+@property (nonatomic, retain) NBMessageBox* descriptionLabel;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseEquipmentArray;
