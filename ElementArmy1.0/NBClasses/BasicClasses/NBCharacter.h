@@ -32,6 +32,8 @@
     float damageCounterLabelRemainingTime;
     float passiveRevolvingRemainingTime;
     bool battleIsEngaged;
+    
+    NSString* currentAnimationName;
 }
 
 +(bool)calculateAttackSuccessWithAttacker:(NBCharacter*)attacker andDefender:(NBCharacter*)defender;
@@ -68,6 +70,7 @@
 -(void)battleIsOver;
 -(void)applyPassiveRevolvingSkill;
 -(void)applyPassiveBuffs;
+-(void)changeAnimationTo:(NSString*)animationName withDelay:(CGFloat)delay andRepeatForever:(bool)repeat withTarget:(id)target andSelector:(SEL)selector;
 
 //Events
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState;

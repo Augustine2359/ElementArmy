@@ -1808,7 +1808,7 @@
 						</dict>
 						<dict>
 							<key>enemyClass</key>
-							<string>metalsoldier</string>
+							<string>firemage</string>
 							<key>level</key>
 							<string>1</string>
 							<key>totalUnit</key>
@@ -1835,7 +1835,7 @@
 						</dict>
 						<dict>
 							<key>enemyClass</key>
-							<string>metalsoldier</string>
+							<string>woodarcher</string>
 							<key>level</key>
 							<string>1</string>
 							<key>totalUnit</key>

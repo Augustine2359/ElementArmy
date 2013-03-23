@@ -473,6 +473,14 @@ static Boolean isAutoStart = NO;
     self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
     self.enemyFlagLogo.visible = YES;
     
+    //Item Area Effect
+    //**********************************************************************
+    self.itemAreaEffect = [[NBAreaEffect alloc] initWithSpriteFrameName:@"staticbox_green.png" onLayer:self];
+    self.itemAreaEffect.opacity = 125;
+    [self.itemAreaEffect setAreaSize:CGSizeMake(300, 150)];
+    [self addChild:self.itemAreaEffect z:99];
+    //**********************************************************************
+    
     //Augustine's Code below
     //**********************
     self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:YES];
@@ -486,6 +494,7 @@ static Boolean isAutoStart = NO;
     self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
     [self addChild:self.itemMenuLayer];
     self.itemMenuLayer.position = CGPointMake(20, -48);
+    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
     //**********************
     
     [NBDamageLabel setCurrentLayerForDamageLabel:self];
@@ -730,6 +739,22 @@ static Boolean isAutoStart = NO;
 -(void)onComboSkillCButtonSelected
 {
     DLog(@"Combo Skill C Button Selected");
+}
+
+-(void)onItem1Selected
+{
+    DLog(@"Item 1 Selected");
+    [self.itemAreaEffect activate];
+}
+
+-(void)onItem2Selected
+{
+    DLog(@"Item 2 Selected");
+}
+
+-(void)onItem3Selected
+{
+    DLog(@"Item 3 Selected");
 }
 
 //************************************************************************************************

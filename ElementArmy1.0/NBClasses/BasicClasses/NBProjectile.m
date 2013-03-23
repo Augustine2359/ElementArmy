@@ -133,7 +133,9 @@ static CCArray* projectileList = nil;
                 float duration = abs(ccpDistance(self.currentTarget.position, self.position)) / (([[CCDirector sharedDirector] winSize].width / 2) + self.currentSpeed);
                 CCMoveTo* move = [CCMoveTo actionWithDuration:duration position:self.currentTarget.position];
                 CCEaseIn* accel = [CCEaseIn actionWithAction:move rate:1.5];
-                [self runAction:accel];
+                CCCallFunc* movingCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMoveCompleted)];
+                CCSequence* sequence = [CCSequence actions:move, movingCompleted, nil];
+                [self runAction:sequence];
                 //[self moveToDirection:self.currentDirection withDelta:delta];
             }
                 break;
@@ -235,7 +237,9 @@ static CCArray* projectileList = nil;
 
 -(void)onMoveCompleted
 {
-    [self onHit:self.currentTarget];
+    //[self onHit:self.currentTarget];
+    self.visible = NO;
+    self.position = OFF_AREA_POSITION;
 }
 
 -(void)onHit:(NBBasicObject*)object

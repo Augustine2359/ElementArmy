@@ -66,6 +66,7 @@
     //[self.dataManager saveStages];
     [self readStagesFromFile];
     
+    //FLAG
     self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.jpg"];
     [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"jpg"];
     NBStage* stage = [NBStage getCurrentlySelectedStage];
@@ -73,6 +74,9 @@
     self.flagCursor.scale = 0.5f;
     [self.currentCountryStage addChild:self.flagCursor z:99];
     [self.flagCursor playAnimation:true withDelay:0.5];
+    
+    //STAGE INFO PANEL
+    self.stageInfoPanel = [[NBStageInfoPanel alloc] initOnLayer:self];
 }
 
 -(void)onExit
@@ -154,6 +158,7 @@
     DLog(@"StageID selected: %@", stage.stageData.stageID);
     
     self.flagCursor.position = stage.worldIcon.menu.position;
+    [self.stageInfoPanel appearWithStageData:stage.stageData];
 }
 
 -(void)update:(ccTime)delta
@@ -163,12 +168,16 @@
 
 -(void)gotoBattleSetupScreen
 {
+    [self.stageInfoPanel disappear:false];
+    
     self.nextScene = @"NBBattleSetupScreen";
     [self changeToScene:self.nextScene];
 }
 
 -(void)gotoBattleScreen
 {
+    [self.stageInfoPanel disappear:false];
+    
     if (self.dataManager.selectedStageData)
     {
         self.nextScene = @"NBBattleLayer";

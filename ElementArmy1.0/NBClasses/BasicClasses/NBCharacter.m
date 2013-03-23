@@ -156,6 +156,8 @@ static CCArray* enemyUnitList = nil;
 
 -(void)initialize
 {
+    currentAnimationName = @"";
+    
     if (self.characterSide == Ally)
     {
         self.name = [NSString stringWithFormat:@"Ally%@%i", self.basicClassData.className, [characterList count]];
@@ -549,7 +551,8 @@ static CCArray* enemyUnitList = nil;
     
     if (self.currentState == EnteringScene)
     {
-        [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+        [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+        //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
         return;
     }
     
@@ -601,9 +604,15 @@ static CCArray* enemyUnitList = nil;
                 currentStateString = @"Targetting";
                 
                 if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
-                    [self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                {
+                    [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                }
                 else
-                    [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                {
+                    [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                }
                 
                 if (self.basicClassData.attackType == atMelee)
                 {
@@ -662,7 +671,16 @@ static CCArray* enemyUnitList = nil;
                     break;
                 }
                 
-                [self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
+                {
+                    [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                }
+                else
+                {
+                    [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                }
                 
                 CGFloat distance = ccpDistance(self.position, self.currentTarget.position);
                 
@@ -728,6 +746,13 @@ static CCArray* enemyUnitList = nil;
     }*/
 }
 
+-(void)changeAnimationTo:(NSString*)animationName withDelay:(CGFloat)delay andRepeatForever:(bool)repeat withTarget:(id)target andSelector:(SEL)selector
+{
+    if ([currentAnimationName isEqualToString:animationName]) return;
+    
+    [self.animation playAnimation:animationName withDelay:delay andRepeatForever:repeat withTarget:target andSelector:selector];
+}
+
 -(void)levelUp
 {
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
@@ -770,7 +795,8 @@ static CCArray* enemyUnitList = nil;
 
 -(void)attackWithAnimation:(NBCharacter*)target withAnimation:(NSString*)animationName
 {
-    [self.animation playAnimation:animationName withDelay:0.25 andRepeatForever:NO withTarget:self andSelector:@selector(onAttackCompleted)];
+    [self changeAnimationTo:animationName withDelay:0.25 andRepeatForever:NO withTarget:self andSelector:@selector(onAttackCompleted)];
+    //[self.animation playAnimation:animationName withDelay:0.25 andRepeatForever:NO withTarget:self andSelector:@selector(onAttackCompleted)];
     self.currentTarget = target;
     
     if (self.basicClassData.attackType == atRange)
@@ -831,7 +857,8 @@ static CCArray* enemyUnitList = nil;
 
 -(void)moveToWithAnimation:(CGPoint)newPosition forDurationOf:(float)duration withAnimation:(NSString*)animationName
 {
-    [self.animation playAnimation:animationName withDelay:0.1 andRepeatForever:YES withTarget:nil andSelector:nil];
+    //[self.animation playAnimation:animationName withDelay:0.1 andRepeatForever:YES withTarget:nil andSelector:nil];
+    [self changeAnimationTo:animationName withDelay:0.1 andRepeatForever:YES withTarget:nil andSelector:nil];
     [self moveToPosition:newPosition forDurationOf:duration];
 }
 

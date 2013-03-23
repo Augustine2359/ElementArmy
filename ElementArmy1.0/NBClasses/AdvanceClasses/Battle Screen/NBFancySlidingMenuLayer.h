@@ -11,7 +11,13 @@
 @interface NBFancySlidingMenuLayer : NBBasicScreenLayer
 
 - (id)initOnLeftSide:(BOOL)onLeftSide;
+- (void)setupSelectorsForItem1:(SEL)selectorForItem1 forItem2:(SEL)selectorForItem2 forItem3:(SEL)selectorForItem3 onBattleLayer:(id)layer;
 
 @property (nonatomic, strong) CCSprite *backgroundSprite;
+
+@property (nonatomic, retain) id battleLayer;
+@property (nonatomic, assign) SEL item1Selector;
+@property (nonatomic, assign) SEL item2Selector;
+@property (nonatomic, assign) SEL item3Selector;
 
 @end

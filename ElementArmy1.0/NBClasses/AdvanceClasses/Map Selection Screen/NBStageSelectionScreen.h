@@ -10,6 +10,7 @@
 #import "NBBasicScreenLayer.h"
 #import "NBCountryStageGrid.h"
 #import "NBSingleAnimatedObject.h"
+#import "NBStageInfoPanel.h"
 
 @interface NBStageSelectionScreen : NBBasicScreenLayer
 
@@ -29,5 +30,6 @@
 @property (nonatomic, retain) NBButton* backToWorldSelectionButton;
 @property (nonatomic, assign) bool stageCreated;
 @property (nonatomic, retain) NBSingleAnimatedObject* flagCursor;
+@property (nonatomic, retain) NBStageInfoPanel* stageInfoPanel;
 
 @end
