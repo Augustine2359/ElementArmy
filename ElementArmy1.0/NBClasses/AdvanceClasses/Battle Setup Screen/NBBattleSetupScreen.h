@@ -32,12 +32,16 @@
 
 //Item selection
 @property (nonatomic, retain) NBBattleSetupItems* setupItemsFrame;
-@property(nonatomic, retain) NBItem* selectedItem1;
+@property (nonatomic, retain) NBItem* selectedItem1;
+@property (nonatomic, retain) NBItem* selectedItem2;
+@property (nonatomic, retain) NBItem* selectedItem3;
 
 //Equipment selection
 @property (nonatomic, retain) NBBattleSetupEquipments* setupEquipmentsFrame;
-@property(nonatomic, retain) NBEquipment* selectedEquipment1;
-@property(nonatomic, retain) NBEquipment* selectedEquipment2;
-@property(nonatomic, retain) NBEquipment* selectedEquipment3;
+@property (nonatomic, retain) NBEquipment* selectedEquipment1;
+@property (nonatomic, retain) NBEquipment* selectedEquipment2;
+@property (nonatomic, retain) NBEquipment* selectedEquipment3;
+
+@property (nonatomic, assign) int tempNumberOfUnlockedItemsSlots;
 
 @end
