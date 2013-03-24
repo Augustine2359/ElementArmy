@@ -21,13 +21,17 @@
 @property(nonatomic, retain) NSMutableArray* allEquipments;
 @property (nonatomic, retain) id mainLayer;
 
-@property (nonatomic, retain) NBMessageBox* descriptionLabel;
+@property (nonatomic, retain) CCLabelTTF* descriptionLabel;
+@property (nonatomic, assign) NSString* descriptionString;
+
+@property (nonatomic, retain) NBButton* confirmButton;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseEquipmentArray;
 -(void)initialiseEquipmentUI;
 -(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton;
 -(void)selectTargetEquipment;
+-(void)confirmAndCloseMenu;
 
 
 @end

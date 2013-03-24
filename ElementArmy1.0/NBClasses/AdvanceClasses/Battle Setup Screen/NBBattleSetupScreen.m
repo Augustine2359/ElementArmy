@@ -99,9 +99,12 @@ int objectsLeftToTransit = 6;
     [self addChild:self.setupEquipmentsFrame z:1];
     
     //Display buttons Equipments
-    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection)];
-    self.selectedEquipment2 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
-    self.selectedEquipment3 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
+    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection) equipmentIndex:0];
+    self.selectedEquipment2 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore) equipmentIndex:1];
+    self.selectedEquipment3 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore) equipmentIndex:1];
+//    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection)];
+//    self.selectedEquipment2 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
+//    self.selectedEquipment3 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
     
     [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
     spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];

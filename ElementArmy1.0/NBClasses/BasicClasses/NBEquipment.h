@@ -12,7 +12,8 @@
 @interface NBEquipment : NSObject
 
 +(NBEquipment*)getCurrentlySelectedEquipment;
-+(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector;
++(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector;// equipmentIndex:(int)index;
++(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector equipmentIndex:(int)index;
 -(id)setEquipmentIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer;
 -(void)displayEquipmentIcon;
 -(void)hideEquipmentIcon;
@@ -25,6 +26,5 @@
 
 @property (nonatomic, retain) id currentLayer;
 @property (nonatomic, assign) SEL currentSelector;
-
 
 @end
