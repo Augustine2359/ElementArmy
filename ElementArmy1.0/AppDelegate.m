@@ -177,7 +177,7 @@ static NBDataManager* dataManager = nil;
     [dataManager loadSkillList];
     [dataManager createCharacterList];
     [dataManager createStages];
-    [dataManager createItems];
+    [dataManager loadItemList];
     [dataManager createProjectileList];
     
     //Temporary Code

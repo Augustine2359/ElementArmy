@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "NBItem.h"
 
 @interface NBAreaEffect : CCSprite <CCTargetedTouchDelegate>
 {
@@ -15,10 +16,12 @@
 }
 
 -(id)initWithSpriteFrameName:(NSString *)spriteFrameName onLayer:(CCLayer*)layer;
--(void)activate;
+-(void)activateAreaEffect:(NBItem*)item;
 -(void)deactivate;
+-(void)activateItemEffect;
 -(BOOL)isTouchingMe:(CGPoint)touchLocation;
 
 @property (nonatomic, assign) CGSize areaSize;
+@property (nonatomic, retain) NBItem* currentItem;
 
 @end

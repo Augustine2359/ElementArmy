@@ -410,11 +410,23 @@
 	<array>
 		<dict>
 			<key>itemID</key>
+			<string>0</string>
+			<key>itemName</key>
+			<string>Potion</string>
+			<key>description</key>
+			<string>Heals 100 HP.</string>
+			<key>statusImpacted</key>
+			<string>HP;</string>
+			<key>impactType</key>
+			<string>0;</string>
+			<key>impactValue</key>
+			<string>100;</string>
+			<key>frame</key>
+			<string>troopSelectionScreen_healthPotion.png</string>
+			<key>specialEffect</key>
 			<string></string>
-		</dict>
-		<dict>
-			<key>itemID</key>
-			<string></string>
+			<key>maximumAllowable</key>
+			<integer>99</integer>
 		</dict>
 	</array>
 	<key>Stage data</key>

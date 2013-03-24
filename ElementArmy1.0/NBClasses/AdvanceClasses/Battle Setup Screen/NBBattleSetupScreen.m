@@ -32,6 +32,7 @@ int objectsLeftToTransit = 6;
 	
 	// 'layer' is an autorelease object.
 	NBBattleSetupScreen *layer = [NBBattleSetupScreen node];
+    layer.layerName = NSStringFromClass([layer class]);
 	
 	// add layer as a child to scene
 	[scene addChild:layer z:0];
