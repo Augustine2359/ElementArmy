@@ -27,16 +27,12 @@
 -(void)gotoBattleScreen;
 
 @property (nonatomic, retain) NBStaticObject *battleSetupTitle;
-
 @property (nonatomic, retain) NBButton *battleSetupOk;
 @property (nonatomic, retain) NBButton *battleSetupCancel;
 
 //Item selection
 @property (nonatomic, retain) NBBattleSetupItems* setupItemsFrame;
-@property (nonatomic) int tempNumberOfUnlockedItemsSlots;
 @property(nonatomic, retain) NBItem* selectedItem1;
-@property(nonatomic, retain) NBItem* selectedItem2;
-@property(nonatomic, retain) NBItem* selectedItem3;
 
 //Equipment selection
 @property (nonatomic, retain) NBBattleSetupEquipments* setupEquipmentsFrame;
