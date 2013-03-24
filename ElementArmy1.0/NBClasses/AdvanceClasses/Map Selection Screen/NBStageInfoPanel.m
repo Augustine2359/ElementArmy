@@ -61,6 +61,10 @@
     {
         CCSprite* newEnemyImage = [CCSprite spriteWithSpriteFrameName:classData.idleFrame];
         
+        //maintain an optimized 24x48 size sprite size.
+        newEnemyImage.scaleX = 24 / newEnemyImage.contentSize.width;
+        newEnemyImage.scaleY = 48 / newEnemyImage.contentSize.height;
+        
         if (enemyIndex == 0)
         {
             self.enemyImage1 = newEnemyImage;

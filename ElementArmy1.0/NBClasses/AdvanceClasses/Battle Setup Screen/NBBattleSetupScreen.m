@@ -87,8 +87,14 @@ int objectsLeftToTransit = 6;
     
     //Display buttons Items
     self.tempNumberOfUnlockedItemsSlots = 2; //Not used yet
-    self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
-    self.selectedItem2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(openItemSelection)];
+    
+    /*temporary to use Potion from data manager*/
+#warning Items are hardcoded now
+    NBItemData* potionData = [NBDataManager getItemDataByItemName:@"Potion"];
+    self.selectedItem1 = [NBItem createItem:potionData onLayer:self onSelector:@selector(openItemSelection)];
+    NBItemData* furyPillData = [NBDataManager getItemDataByItemName:@"Fury Pill"];
+    self.selectedItem2 = [NBItem createItem:furyPillData onLayer:self onSelector:@selector(openItemSelection)];
+    
     self.selectedItem3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(gotoAppStore)];
     
     [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];

@@ -134,7 +134,7 @@ static CCArray* projectileList = nil;
                 CCMoveTo* move = [CCMoveTo actionWithDuration:duration position:self.currentTarget.position];
                 CCEaseIn* accel = [CCEaseIn actionWithAction:move rate:1.5];
                 CCCallFunc* movingCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMoveCompleted)];
-                CCSequence* sequence = [CCSequence actions:move, movingCompleted, nil];
+                CCSequence* sequence = [CCSequence actions:accel, movingCompleted, nil];
                 [self runAction:sequence];
                 //[self moveToDirection:self.currentDirection withDelta:delta];
             }

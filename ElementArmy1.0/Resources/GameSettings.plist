@@ -415,16 +415,52 @@
 			<string>Potion</string>
 			<key>description</key>
 			<string>Heals 100 HP.</string>
-			<key>statusImpacted</key>
+			<key>impactedStatus</key>
 			<string>HP;</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>0</integer>
+			<key>impactAreaType</key>
+			<integer>1</integer>
 			<key>impactType</key>
-			<string>0;</string>
+			<integer>0</integer>
 			<key>impactValue</key>
 			<string>100;</string>
 			<key>frame</key>
 			<string>troopSelectionScreen_healthPotion.png</string>
 			<key>specialEffect</key>
 			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>0</integer>
+			<key>maximumAllowable</key>
+			<integer>99</integer>
+		</dict>
+		<dict>
+			<key>itemID</key>
+			<string>1</string>
+			<key>itemName</key>
+			<string>Fury Pill</string>
+			<key>description</key>
+			<string>Boost ATK and DEF for 500% for 10 seconds.</string>
+			<key>impactedStatus</key>
+			<string>ATK;DEF;</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>1</integer>
+			<key>impactAreaType</key>
+			<integer>0</integer>
+			<key>impactType</key>
+			<integer>2</integer>
+			<key>impactValue</key>
+			<string>5;5</string>
+			<key>frame</key>
+			<string>Fury_pill.png</string>
+			<key>specialEffect</key>
+			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>1</integer>
 			<key>maximumAllowable</key>
 			<integer>99</integer>
 		</dict>

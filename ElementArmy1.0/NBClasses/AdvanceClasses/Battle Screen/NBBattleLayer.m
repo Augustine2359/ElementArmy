@@ -198,6 +198,26 @@ static Boolean isAutoStart = NO;
         
         CCARRAY_FOREACH(self.allySquads, tempSquad)
         {
+            NBCharacter* allyCharacterObject = nil;
+            
+            CCARRAY_FOREACH(tempSquad.unitArray, allyCharacterObject)
+            {
+                if (self.item1.isActivated && self.item1.itemData.effectToUnitSide == itusAllyOnly)
+                {
+                    [self.item1 implementEffect:allyCharacterObject];
+                }
+                
+                if (self.item2.isActivated && self.item1.itemData.effectToUnitSide == itusAllyOnly)
+                {
+                    [self.item2 implementEffect:allyCharacterObject];
+                }
+                
+                if (self.item3.isActivated && self.item1.itemData.effectToUnitSide == itusAllyOnly)
+                {
+                    [self.item3 implementEffect:allyCharacterObject];
+                }
+            }
+            
             [tempSquad update];
             
             if (!tempSquad.allUnitAreDead)
@@ -209,6 +229,26 @@ static Boolean isAutoStart = NO;
         
         CCARRAY_FOREACH(self.enemySquads, tempSquad)
         {
+            NBCharacter* enemyCharacterObject = nil;
+            
+            CCARRAY_FOREACH(tempSquad.unitArray, enemyCharacterObject)
+            {
+                if (self.item1.isActivated && self.item1.itemData.effectToUnitSide == itusEnemyOnly)
+                {
+                    [self.item1 implementEffect:enemyCharacterObject];
+                }
+                
+                if (self.item2.isActivated && self.item1.itemData.effectToUnitSide == itusEnemyOnly)
+                {
+                    [self.item2 implementEffect:enemyCharacterObject];
+                }
+                
+                if (self.item3.isActivated && self.item1.itemData.effectToUnitSide == itusEnemyOnly)
+                {
+                    [self.item3 implementEffect:enemyCharacterObject];
+                }
+            }
+            
             [tempSquad update];
              
             if (!tempSquad.allUnitAreDead)
@@ -217,6 +257,10 @@ static Boolean isAutoStart = NO;
                 enemyTotalHP += tempSquad.totalAliveUnitHP;
             }
         }
+        
+        if (self.item1.isActivated) [self.item1 deactivate];
+        if (self.item2.isActivated) [self.item2 deactivate];
+        if (self.item3.isActivated) [self.item3 deactivate];
         
         if (totalAllyHPAtStartOfBattle > 0)
         {
@@ -476,6 +520,13 @@ static Boolean isAutoStart = NO;
     
     //Items
     //**********************************************************************
+    self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
+    self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
+    self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
+    [self addChild:self.itemMenuLayer];
+    self.itemMenuLayer.position = CGPointMake(20, -48);
+    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
+    
     NBItem* item = nil;
     int itemIndex = 0;
     CCARRAY_FOREACH(self.dataManager.selectedItems, item)
@@ -483,14 +534,21 @@ static Boolean isAutoStart = NO;
         switch (itemIndex) {
             case 0:
                 self.item1 = item;
+                if ([self.item1.itemData.itemName isEqualToString:@"Potion"]) self.item1.itemData.availableAmount = 100; //For testing purpose
+                [self.itemMenuLayer addItemFrameName:self.item1.itemData.frame];
                 break;
             case 1:
                 self.item2 = item;
+                if ([self.item2.itemData.itemName isEqualToString:@"Fury Pill"]) self.item2.itemData.availableAmount = 100; //For testing purpose
+                [self.itemMenuLayer addItemFrameName:self.item2.itemData.frame];
                 break;
             case 2:
                 self.item3 = item;
+                //[self.itemMenuLayer addItemFrameName:self.item3.itemData.frame];
                 break;
         }
+        
+        itemIndex++;
     }
     //**********************************************************************
     
@@ -504,18 +562,12 @@ static Boolean isAutoStart = NO;
     
     //Augustine's Code below
     //**********************
-    self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:YES];
+    /* SKILLS ARE NOT USED FOR NOW. THEY ARE INVOKED ON RANDOM BASIS*/
+    /*self.classGroupSkillMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:YES];
     self.classGroupSkillMenuLayer.layerSize = CGSizeMake(100, 50);
     self.classGroupSkillMenuLayer.contentSize = CGSizeMake(100, 50);
     [self addChild:self.classGroupSkillMenuLayer];
-    self.classGroupSkillMenuLayer.position = CGPointMake(-20 , -48);
-
-    self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
-    self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
-    self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
-    [self addChild:self.itemMenuLayer];
-    self.itemMenuLayer.position = CGPointMake(20, -48);
-    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
+    self.classGroupSkillMenuLayer.position = CGPointMake(-20 , -48);*/
     //**********************
     
     [NBDamageLabel setCurrentLayerForDamageLabel:self];

@@ -17,9 +17,14 @@ static Boolean isAutoStart = NO;
 static int menuIndex = 0;
 static CCScene* currentScreen = nil;
 static CCScene* defaultScreen = nil;
+static NSString* currentLayerName = nil;
 
 // NBBattleLayer implementation
 @implementation NBBasicScreenLayer
++(NSString*)getCurrentScreenName
+{
+    return currentLayerName;
+}
 
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
 +(CCScene*)scene
@@ -87,15 +92,6 @@ static CCScene* defaultScreen = nil;
         self.UI = [[NBUserInterface alloc] init];
         [self scheduleUpdate];
         
-		// ask director for the window size
-        /*ccColor4B startColor;
-        startColor.r = 200;
-        startColor.g = 200;
-        startColor.b = 200;
-        startColor.a = 250;
-        CCLayerColor *backgroundColor = [CCLayerColor layerWithColor:startColor];
-        backgroundColor.rotation = 90;
-        [self addChild:backgroundColor];*/
         self.isTouchEnabled = YES;
     }
 
@@ -183,7 +179,7 @@ static CCScene* defaultScreen = nil;
 -(void)changeToScene:(NSString*)layerClassName transitionWithDuration:(float)duration
 {
     [NBBasicScreenLayer resetMenuIndex];
-    
+    currentLayerName = layerClassName;
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:duration scene:[NSClassFromString(layerClassName) scene] withColor:ccWHITE]];
 }
 
