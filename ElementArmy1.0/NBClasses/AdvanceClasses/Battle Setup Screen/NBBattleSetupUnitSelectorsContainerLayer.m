@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NBBattleSetupUnitSelectorLayer *unitSelectorB;
 @property (nonatomic, strong) NBBattleSetupUnitSelectorLayer *unitSelectorC;
 
+@property (nonatomic, strong) NSArray *gestureRecognizers;
+
 @end
 
 @implementation NBBattleSetupUnitSelectorsContainerLayer
@@ -63,6 +65,9 @@
 }
 
 - (void)addSwipeGestureRecognizers {
+  if ((self.gestureRecognizers != nil) || ([self.gestureRecognizers count] > 0))
+    return;
+
   UISwipeGestureRecognizer *downSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
   downSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
   [[[CCDirector sharedDirector] view] addGestureRecognizer:downSwipeGestureRecognizer];
@@ -78,6 +83,25 @@
   UISwipeGestureRecognizer *upSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
   upSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
   [[[CCDirector sharedDirector] view] addGestureRecognizer:upSwipeGestureRecognizer];
+
+  self.gestureRecognizers = [NSArray arrayWithObjects:downSwipeGestureRecognizer, leftSwipeGestureRecognizer, rightSwipeGestureRecognizer, upSwipeGestureRecognizer, nil];
+}
+
+- (void)onEnter {
+  [super onEnter];
+  [self addSwipeGestureRecognizers];
+}
+
+- (void)onExitTransitionDidStart {
+  [super onExitTransitionDidStart];
+  [self removeSwipeGestureRecognizersFromDirector];
+}
+
+- (void)removeSwipeGestureRecognizersFromDirector {
+  for (UIGestureRecognizer *gestureRecognizer in self.gestureRecognizers)
+    [[[CCDirector sharedDirector] view] removeGestureRecognizer:gestureRecognizer];
+
+  self.gestureRecognizers = [NSArray array];
 }
 
 -(BOOL)isTouchingMe:(CGPoint)touchLocation
