@@ -32,6 +32,7 @@
 
 @property (nonatomic, retain) CCArray* skillSlot;
 @property (nonatomic, retain) CCArray* unitArray;
+@property (nonatomic, retain) NSDate *lastCastDateOfSpell;
 @property (nonatomic, assign) Class unitClass;
 @property (nonatomic, assign) int squadPositionIndex;
 @property (nonatomic, assign) bool allUnitAreDead;
