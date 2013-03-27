@@ -18,10 +18,10 @@
         self.lineDirection = direction;
         currentDotIndex = 0;
         
-        NBSingleAnimatedObject* footStep = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_0.jpg"];
+        NBSingleAnimatedObject* footStep = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_0.png"];
         footStep.visible = NO;
         footStep.position = newPosition;
-        [footStep addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"jpg"];
+        [footStep addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
         [layer addChild:footStep];
         self.heightPerDot = footStep.contentSize.height;
         self.widthPerDot = footStep.contentSize.width;
@@ -43,7 +43,7 @@
         
         for (int i = 1; i < objectCountNeeded; i++)
         {
-            footStep = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_0.jpg"];
+            footStep = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_0.png"];
             footStep.visible = NO;
             
             switch (self.lineDirection)
@@ -66,7 +66,7 @@
                     break;
             }
             
-            [footStep addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"jpg"];
+            [footStep addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
             [layer addChild:footStep];
             [self.dots addObject:footStep];
         }

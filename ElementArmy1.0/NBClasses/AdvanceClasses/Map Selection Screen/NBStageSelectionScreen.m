@@ -68,8 +68,8 @@
     [self readStagesFromFile];
     
     //FLAG
-    self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.jpg"];
-    [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"jpg"];
+    self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.png"];
+    [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"png"];
     NBStage* stage = [NBStage getCurrentlySelectedStage];
     self.flagCursor.position = stage.worldIcon.menu.position;
     self.flagCursor.scale = 0.5f;
