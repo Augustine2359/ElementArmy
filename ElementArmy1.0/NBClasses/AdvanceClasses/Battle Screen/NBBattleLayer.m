@@ -574,40 +574,6 @@ static Boolean isAutoStart = NO;
     [self entranceAnimationStep1];
 }
 
-- (void)skillCastByCharacter:(NBCharacter *)character onCharacter:(NBCharacter *)target {
-#warning need to know if the skills are cast per character or per squad
-#warning we can use this to check which skill should be cast based on the class of the character
-  if (character.characterSide == Ally)
-    [self castEarthquake:target];
-}
-
-- (void)castEarthquake:(NBCharacter *)target {
-  NBRipples *earthquakeRipples = [[NBRipples alloc] init];
-  earthquakeRipples.origin = target.position;
-  earthquakeRipples.delegate = self;
-  [self addChild:earthquakeRipples];
-}
-
-- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
-  for (NBSquad *squad in self.enemySquads) {
-    for (NBCharacter *character in squad.unitArray) {
-      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
-      if (hasCollision) {
-        NSInteger damage = 1;
-        [character onAttackedBySkillWithDamage:damage];
-        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
-      }
-    }
-  }
-}
-
-- (BOOL)checkCharacter:(NBCharacter *)character collisionWithRippleOrigin:(CGPoint)rippleOrigin withRippleAmplitude:(CGFloat)rippleAmplitude {
-  if (ccpDistance(character.position, rippleOrigin) <= rippleAmplitude)
-    return YES;
-  else
-    return NO;
-}
-
 -(void)entranceAnimationStep1
 {
     CCDelayTime* delay = [CCDelayTime actionWithDuration:0.5];
@@ -833,5 +799,95 @@ static Boolean isAutoStart = NO;
 }
 
 //************************************************************************************************
+
+#pragma mark - Methods for handling skills
+
+- (NBSquad *)findSquadWithCharacter:(NBCharacter *)character {
+  for (NBSquad *squad in self.allySquads)
+    if ([squad.unitArray containsObject:character])
+      return squad;
+
+  return nil;
+}
+
+- (BOOL)isSpellReady:(NSDate *)lastCastDateOfSpell cooldown:(CGFloat)cooldown{
+  CGFloat timeSinceLastCastDate = [[NSDate date] timeIntervalSinceDate:lastCastDateOfSpell];
+  if (timeSinceLastCastDate >= cooldown)
+    return YES;
+  else
+    return NO;
+}
+
+- (void)skillCastByCharacter:(NBCharacter *)character onCharacter:(NBCharacter *)target {
+#warning we can use this to check which skill should be cast based on the class of the character
+  if (character.characterSide == Ally) {
+    NBSquad *squadWithCharacter = [self findSquadWithCharacter:character];
+    if (squadWithCharacter == nil)
+      return;
+    NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
+    if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
+      squadWithCharacter.lastCastDateOfSpell = [NSDate date];
+      if (character.basicClassData.attackType == atMelee)
+        [self castEarthquake:target];
+      if (character.basicClassData.attackType == atRange)
+        [self castArrowRain:target];
+    }
+  }
+}
+
+- (void)castEarthquake:(NBCharacter *)target {
+  NBRipples *earthquakeRipples = [[NBRipples alloc] init];
+  earthquakeRipples.origin = target.position;
+  earthquakeRipples.delegate = self;
+  [self addChild:earthquakeRipples];
+}
+
+- (void)spawnArrows:(id)object data:(id)data {
+  if ([data isKindOfClass:[NBCharacter class]] == NO)
+    return;
+
+  NBCharacter *target = (NBCharacter *)data;
+
+  CCSprite *arrowSprite = [CCSprite spriteWithSpriteFrameName:@"normal_arrow_anim_1.png"];
+  NSInteger arrowSpread = 50;
+  arrowSprite.position = CGPointMake(target.position.x + arc4random()%arrowSpread - arrowSpread/2, target.position.y + [[CCDirector sharedDirector] winSize].height);
+  arrowSprite.rotation = 90;
+
+  [self addChild:arrowSprite];
+
+  id moveAction = [CCMoveBy actionWithDuration:1 position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
+  id removeFromParentAction = [CCCallFunc actionWithTarget:arrowSprite selector:@selector(removeFromParentAndCleanup:)];
+  id compositeAction = [CCSequence actionOne:moveAction two:removeFromParentAction];
+
+  [arrowSprite runAction:compositeAction];
+}
+
+- (void)castArrowRain:(NBCharacter *)target {
+  id spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
+  id delayAction = [CCDelayTime actionWithDuration:0.05];
+  id compositeAction = [CCRepeat actionWithAction:[CCSequence actionOne:spawnArrowsAction two:delayAction] times:50];
+
+  [self runAction:compositeAction];
+}
+
+- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+  for (NBSquad *squad in self.enemySquads) {
+    for (NBCharacter *character in squad.unitArray) {
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
+      if (hasCollision) {
+        NSInteger damage = 1;
+        [character onAttackedBySkillWithDamage:damage];
+        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+      }
+    }
+  }
+}
+
+- (BOOL)checkCharacter:(NBCharacter *)character collisionWithRippleOrigin:(CGPoint)rippleOrigin withRippleAmplitude:(CGFloat)rippleAmplitude {
+  if (ccpDistance(character.position, rippleOrigin) <= rippleAmplitude)
+    return YES;
+  else
+    return NO;
+}
 
 @end

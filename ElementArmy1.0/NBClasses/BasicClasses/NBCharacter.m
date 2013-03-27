@@ -812,6 +812,11 @@ static CCArray* enemyUnitList = nil;
         {
             [tempProjectile setTargetLocation:self.currentTarget.position];
         }
+
+        if ([NBCharacter isSkillProcSuccessful]) {
+            if ([self.parent respondsToSelector:@selector(skillCastByCharacter:onCharacter:)])
+                [self.parent performSelector:@selector(skillCastByCharacter:onCharacter:) withObject:self withObject:target];
+        }
     }
 }
 

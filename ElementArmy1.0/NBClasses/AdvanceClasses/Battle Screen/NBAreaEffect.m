@@ -47,7 +47,6 @@
 
 -(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-#warning need to fix this move by touch issue, look slike being interefed by the NBBattleSetupUnitSelectorContainerLayer
     if (isFollowing)
     {
         CGPoint touchLocation = [touch locationInView:touch.view];
