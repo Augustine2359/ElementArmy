@@ -827,7 +827,10 @@ static Boolean isAutoStart = NO;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
     if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
-      [self castEarthquake:target];
+      if (character.basicClassData.attackType == atMelee)
+        [self castEarthquake:target];
+      if (character.basicClassData.attackType == atRange)
+        [self castArrowRain:target];
     }
   }
 }
@@ -837,6 +840,34 @@ static Boolean isAutoStart = NO;
   earthquakeRipples.origin = target.position;
   earthquakeRipples.delegate = self;
   [self addChild:earthquakeRipples];
+}
+
+- (void)spawnArrows:(id)object data:(id)data {
+  if ([data isKindOfClass:[NBCharacter class]] == NO)
+    return;
+
+  NBCharacter *target = (NBCharacter *)data;
+
+  CCSprite *arrowSprite = [CCSprite spriteWithSpriteFrameName:@"normal_arrow_anim_1.png"];
+  NSInteger arrowSpread = 50;
+  arrowSprite.position = CGPointMake(target.position.x + arc4random()%arrowSpread - arrowSpread/2, target.position.y + [[CCDirector sharedDirector] winSize].height);
+  arrowSprite.rotation = 90;
+
+  [self addChild:arrowSprite];
+
+  id moveAction = [CCMoveBy actionWithDuration:1 position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
+  id removeFromParentAction = [CCCallFunc actionWithTarget:arrowSprite selector:@selector(removeFromParentAndCleanup:)];
+  id compositeAction = [CCSequence actionOne:moveAction two:removeFromParentAction];
+
+  [arrowSprite runAction:compositeAction];
+}
+
+- (void)castArrowRain:(NBCharacter *)target {
+  id spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
+  id delayAction = [CCDelayTime actionWithDuration:0.05];
+  id compositeAction = [CCRepeat actionWithAction:[CCSequence actionOne:spawnArrowsAction two:delayAction] times:50];
+
+  [self runAction:compositeAction];
 }
 
 - (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
