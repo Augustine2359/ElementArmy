@@ -7869,19 +7869,39 @@
 	<array>
 		<dict>
 			<key>equipmentID</key>
+			<string>0</string>
+			<key>equipmentName</key>
+			<string>NULL</string>
+			<key>description</key>
+			<string>No equipment selected</string>
+			<key>statusImpacted</key>
+			<string>NULL</string>
+			<key>impactType</key>
+			<string>NULL</string>
+			<key>impactValue</key>
+			<string>NULL</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>frame_item.png</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
 			<string>1</string>
 			<key>equipmentName</key>
-			<string>Golden Armor</string>
+			<string>Winged Boots</string>
 			<key>description</key>
-			<string>Armor which was used by the mighty Son of Thor. This armor adds an extreme 200 DEF to those who wear it.</string>
+			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
 			<key>statusImpacted</key>
-			<string>DEF;</string>
+			<string>ATK;DEX;</string>
 			<key>impactType</key>
-			<string>0;</string>
+			<string>0;2;</string>
 			<key>impactValue</key>
-			<string>200;</string>
+			<string>50;1.5;</string>
 			<key>requiredLevel</key>
-			<string>1</string>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Winged_boots.png</string>
 		</dict>
 		<dict>
 			<key>equipmentID</key>
@@ -7897,7 +7917,81 @@
 			<key>impactValue</key>
 			<string>50;1.5;</string>
 			<key>requiredLevel</key>
-			<string>1</string>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Winged_boots.png</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
+			<string>3</string>
+			<key>equipmentName</key>
+			<string>Winged Boots</string>
+			<key>description</key>
+			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
+			<key>statusImpacted</key>
+			<string>ATK;DEX;</string>
+			<key>impactType</key>
+			<string>0;2;</string>
+			<key>impactValue</key>
+			<string>50;1.5;</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Winged_boots.png</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
+			<string>4</string>
+			<key>equipmentName</key>
+			<string>Fury Pill</string>
+			<key>description</key>
+			<string>Rawrrr</string>
+			<key>statusImpacted</key>
+			<string>ATK;DEX;</string>
+			<key>impactType</key>
+			<string>0;2;</string>
+			<key>impactValue</key>
+			<string>50;1.5;</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Fury_pill.png</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
+			<string>5</string>
+			<key>equipmentName</key>
+			<string>Winged Boots</string>
+			<key>description</key>
+			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
+			<key>statusImpacted</key>
+			<string>ATK;DEX;</string>
+			<key>impactType</key>
+			<string>0;2;</string>
+			<key>impactValue</key>
+			<string>50;1.5;</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Winged_boots.png</string>
+		</dict>
+		<dict>
+			<key>equipmentID</key>
+			<string>6</string>
+			<key>equipmentName</key>
+			<string>Golden Armor</string>
+			<key>description</key>
+			<string>Armor which was used by the mighty Son of Thor. This armor adds an extreme 200 DEF to those who wear it.</string>
+			<key>statusImpacted</key>
+			<string>DEF;</string>
+			<key>impactType</key>
+			<string>0;</string>
+			<key>impactValue</key>
+			<string>200;</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Potion.png</string>
 		</dict>
 	</array>
 	<key>Projectile data</key>

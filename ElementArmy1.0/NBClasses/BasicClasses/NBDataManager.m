@@ -221,6 +221,7 @@ static CCArray* listOfItems = nil;
         equipmentData.impactType = [equipmentDataDictionary objectForKey:@"impactType"];
         equipmentData.impactValue = [equipmentDataDictionary objectForKey:@"impactValue"];
         equipmentData.requiredLevel = [[equipmentDataDictionary objectForKey:@"requiredLevel"] integerValue];
+//        equipmentData.imageNormal = [equipmentDataDictionary objectForKey:@"imageNormal"];
         [self.listOfEquipments addObject:equipmentData];
     }
 }

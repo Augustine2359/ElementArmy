@@ -29,14 +29,21 @@ static NBEquipment* currentlySelectedEquipmentInBattleSetup = nil;
     return equipment;
 }
 
-+(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector equipmentIndex:(int)index
++(id)createEquipmentByIndex:(int)equipmentIndex onLayer:(id)layer onSelector:(SEL)selector lockedSelector:(SEL)lockedSelector
 {
-    NBEquipment* equipment = [[NBEquipment alloc] init];
-    DLog(@"before");
-    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:index];
-    DLog(@"after = %@", equipment.equipmentData);
+    NBEquipment* equipment = [NBEquipment new];
+    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:equipmentIndex];
+//    DLog(@"equipmentDataImage = %@", equipment.equipmentData.imageNormal);
     equipment.currentLayer = layer;
-    equipment.currentSelector = selector;
+    
+    if (equipment.equipmentData.equipmentID == 0) {
+        equipment.currentSelector = lockedSelector;
+    }
+    else{
+        equipment.currentSelector = selector;
+    }
+    
+//    [equipment setEquipmentIconWithNormalImage:equipment.equipmentData.image selectedImage:equipment.equipmentData.image disabledImage:equipment.equipmentData.image onLayer:layer];
     
     return equipment;
 }

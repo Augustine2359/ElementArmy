@@ -88,10 +88,11 @@ int objectsLeftToTransit = 6;
     
     
     //Display buttons Items
+    CGSize spriteSize;
     self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
     
     [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];
-    CGSize spriteSize = [self.selectedItem1.itemIcon currentSize];
+    spriteSize = [self.selectedItem1.itemIcon currentSize];
     [self.selectedItem1.itemIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*2.5, -screenSize.height*0.2)];
     [self.selectedItem1 displayItemIcon];
     
@@ -100,12 +101,9 @@ int objectsLeftToTransit = 6;
     [self addChild:self.setupEquipmentsFrame z:1];
     
     //Display buttons Equipments
-    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection) equipmentIndex:0];
-    self.selectedEquipment2 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore) equipmentIndex:1];
-    self.selectedEquipment3 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore) equipmentIndex:1];
-//    self.selectedEquipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(openEquipmentSelection)];
-//    self.selectedEquipment2 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
-//    self.selectedEquipment3 = [NBEquipment createEquipment:@"Locked" onLayer:self onSelector:@selector(gotoAppStore)];
+    self.selectedEquipment1 = [NBEquipment createEquipmentByIndex:1 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+    self.selectedEquipment2 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+    self.selectedEquipment3 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
     
     [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
     spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];
@@ -121,7 +119,6 @@ int objectsLeftToTransit = 6;
     spriteSize = [self.selectedEquipment3.equipmentIcon currentSize];
     [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
     [self.selectedEquipment3 displayEquipmentIcon];
-    
     
     [self initialiseTransition];
 }
@@ -149,6 +146,8 @@ int objectsLeftToTransit = 6;
 //    self.unitRespawnContainerLayer.position = CGPointMake(500, 100);
     self.unitRespawnContainerLayer = [[NBUnitRespawnContainerLayer alloc] initWithRect:CGRectMake(500, 100, 200, 140)];
   [self addChild:self.unitRespawnContainerLayer];
+    
+    [self.unitRespawnContainerLayer updateBonusStats:self.selectedEquipment1 equipment2:self.selectedEquipment2 equipment3:self.selectedEquipment3];
 }
 
 -(void)initialiseTransition{

@@ -13,7 +13,7 @@
 
 +(NBEquipment*)getCurrentlySelectedEquipment;
 +(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector;// equipmentIndex:(int)index;
-+(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector equipmentIndex:(int)index;
++(id)createEquipmentByIndex:(int)equipmentIndex onLayer:(id)layer onSelector:(SEL)selector lockedSelector:(SEL)lockedSelector;
 -(id)setEquipmentIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer;
 -(void)displayEquipmentIcon;
 -(void)hideEquipmentIcon;

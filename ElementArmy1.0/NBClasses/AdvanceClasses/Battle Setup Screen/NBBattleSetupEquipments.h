@@ -18,7 +18,8 @@
 
 @property (nonatomic, retain) NBEquipment* changingTargetEquipment;
 
-@property(nonatomic, retain) NSMutableArray* allEquipments;
+//@property(nonatomic, retain) NSMutableArray* allEquipments;
+@property(nonatomic, retain) CCArray* allEquipments;
 @property (nonatomic, retain) id mainLayer;
 
 @property (nonatomic, retain) CCLabelTTF* descriptionLabel;

@@ -27,5 +27,6 @@ typedef enum
 @property (nonatomic, retain) NSString* impactType;
 @property (nonatomic, retain) NSString* impactValue;
 @property (nonatomic, assign) NSInteger requiredLevel;
+@property (nonatomic, assign) NSString* imageNormal;
 
 @end
