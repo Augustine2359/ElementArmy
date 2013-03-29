@@ -20,13 +20,14 @@ typedef enum
 
 @interface NBEquipmentData : NSObject
 
-@property (nonatomic, retain) NSString* equipmentID;
 @property (nonatomic, retain) NSString* equipmentName;
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic, retain) NSString* statusImpacted;
 @property (nonatomic, retain) NSString* impactType;
 @property (nonatomic, retain) NSString* impactValue;
 @property (nonatomic, assign) NSInteger requiredLevel;
-@property (nonatomic, assign) NSString* imageNormal;
+@property (nonatomic, retain) NSString* imageNormal;
+@property (nonatomic, retain) NSString* imageSelected;
+@property (nonatomic, retain) NSString* imageDisabled;
 
 @end

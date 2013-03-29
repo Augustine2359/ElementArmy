@@ -41,26 +41,11 @@ float slideDuration = 0.5f;
     
     self.allItems = [NSMutableArray new];
     NBItemData* itemData = nil;
-    
     CCARRAY_FOREACH([NBDataManager getListOfItems], itemData)
     {
         NBItem* item = [NBItem createItem:itemData onLayer:self onSelector:@selector(selectTargetItem)];
-        [item setItemIconWithNormalImage:itemData.frame selectedImage:itemData.frame disabledImage:itemData.frame onLayer:self];
         [self.allItems addObject:item];
     }
-    
-    /*NBItem* item1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
-    [item1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-    NBItem* item2 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
-    [item2 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-    NBItem* item3 = [NBItem createItem:@"WingedBoots" onLayer:self onSelector:@selector(selectTargetItem)];
-    [item3 setItemIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self];
-    NBItem* item4 = [NBItem createItem:@"FuryPill" onLayer:self onSelector:@selector(selectTargetItem)];
-    [item4 setItemIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-    NBItem* item5 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(selectTargetItem)];
-    [item5 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-    self.allItems = [NSMutableArray new];
-    self.allItems = [NSMutableArray arrayWithObjects:item1, item2, item3, item4, item5, nil];*/
 }
 
 -(void)initialiseItemUI{
@@ -68,12 +53,31 @@ float slideDuration = 0.5f;
         NBItem* thatItem = [self.allItems objectAtIndex:x];
         [thatItem.itemIcon setPosition:ccp(x%4 * 100 + 100, 250 - x/4 * 75)];
         [thatItem displayItemIcon];
+        
+        if (x == 11) {
+            //Do something to show the remainder on next page
+            break;
+        }
     }
+    
+    self.descriptionString = @"No item selected";
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString fontName:@"Marker Felt" fontSize:20];
+    self.descriptionLabel.position = ccp(240, 75);
+    [self addChild:self.descriptionLabel];
+    
+    self.confirmButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(confirmAndCloseMenu) withSize:CGSizeZero];
+    [self.confirmButton setPosition:CGPointMake(450, 50)];
+    [self.confirmButton show];
+    
+    self.cancelButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(cancelAndCloseMenu) withSize:CGSizeZero];
+    [self.cancelButton setPosition:CGPointMake(30, 50)];
+    [self.cancelButton show];
     
     [self setPosition:ccp(0, -320)];
 }
 
 -(void)toggleItemSelection:(NBItem*)selectedItemButton{
+    
     //Is already closed
     if (!self.itemSelectionOpen) {
         id open = [CCMoveTo actionWithDuration:slideDuration position:CGPointMake(0, 0)];
@@ -89,17 +93,29 @@ float slideDuration = 0.5f;
         [self runAction:close];
         self.itemSelectionOpen = NO;
         
-        NBItem* newItem = [NBItem createItem:selectedItemButton.itemData onLayer:self onSelector:@selector(selectTargetItem)];
-        [newItem setItemIconWithNormalImage:selectedItemButton.itemData.frame selectedImage:selectedItemButton.itemData.frame disabledImage:selectedItemButton.itemData.frame onLayer:self.mainLayer];
-        [newItem.itemIcon setPosition:ccp([self.changingTargetItem.itemIcon getPosition].x, [self.changingTargetItem.itemIcon getPosition].y)];
-        [newItem displayItemIcon];
+        if (selectedItemButton != nil) {
+            SEL thatSelector = self.changingTargetItem.currentSelector;
+            NBItem* newItem = [NBItem createItem:selectedItemButton.itemData onLayer:self.mainLayer onSelector:thatSelector];
+            [newItem.itemIcon setPosition:ccp([self.changingTargetItem.itemIcon getPosition].x, [self.changingTargetItem.itemIcon getPosition].y)];
+            [newItem displayItemIcon];
         
-        [self.changingTargetItem hideItemIcon];    }
+            [self.changingTargetItem hideItemIcon];
+        }
+    }
 }
 
 -(void)selectTargetItem{
+    NBItem* item = [NBItem getCurrentlySelectedItem];
+    self.descriptionString = item.itemData.description;
+    self.descriptionLabel.string = self.descriptionString;
+}
+
+-(void)confirmAndCloseMenu{
     NBItem *item = [NBItem getCurrentlySelectedItem];
     [self toggleItemSelection:item];
 }
 
+-(void)cancelAndCloseMenu{
+    [self toggleItemSelection:nil];
+}
 @end

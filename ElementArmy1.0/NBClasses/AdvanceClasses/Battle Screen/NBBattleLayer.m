@@ -535,12 +535,12 @@ static Boolean isAutoStart = NO;
             case 0:
                 self.item1 = item;
                 if ([self.item1.itemData.itemName isEqualToString:@"Potion"]) self.item1.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item1.itemData.frame];
+                [self.itemMenuLayer addItemFrameName:self.item1.itemData.imageNormal];
                 break;
             case 1:
                 self.item2 = item;
                 if ([self.item2.itemData.itemName isEqualToString:@"Fury Pill"]) self.item2.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item2.itemData.frame];
+                [self.itemMenuLayer addItemFrameName:self.item2.itemData.imageNormal];
                 break;
             case 2:
                 self.item3 = item;

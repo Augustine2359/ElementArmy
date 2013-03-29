@@ -21,6 +21,7 @@ static CCArray* listOfProjectiles = nil;
 static CCArray* listOfCountries = nil;
 static CCArray* listOfSkills = nil;
 static CCArray* listOfItems = nil;
+static CCArray* listOfEquipments = nil;
 
 @implementation NBDataManager
 
@@ -45,7 +46,7 @@ static CCArray* listOfItems = nil;
         self.listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
         listOfCountries = [[CCArray alloc] initWithCapacity:10];
-        self.listOfEquipments = [[CCArray alloc] initWithCapacity:100];
+        listOfEquipments = [[CCArray alloc] initWithCapacity:100];
         listOfSkills = [[CCArray alloc] initWithCapacity:100];
         listOfItems = [[CCArray alloc] initWithCapacity:100];
 
@@ -189,7 +190,6 @@ static CCArray* listOfItems = nil;
     for (NSDictionary *itemDataDictionary in items)
     {
         NBItemData *itemData = [[NBItemData alloc] init];
-        itemData.itemID = [itemDataDictionary objectForKey:@"itemID"];
         itemData.itemName = [itemDataDictionary objectForKey:@"itemName"];
         itemData.description = [itemDataDictionary objectForKey:@"description"];
         itemData.impactedStatus = [itemDataDictionary objectForKey:@"impactedStatus"];
@@ -199,9 +199,11 @@ static CCArray* listOfItems = nil;
         itemData.impactType = [[itemDataDictionary objectForKey:@"impactType"] integerValue];
         itemData.impactValue = [itemDataDictionary objectForKey:@"impactValue"];
         itemData.specialEffect = [itemDataDictionary objectForKey:@"specialEffect"];
-        itemData.frame = [itemDataDictionary objectForKey:@"frame"];
         itemData.allowBeyondMaximumValue = [[itemDataDictionary objectForKey:@"allowBeyondMaximumValue"] boolValue];
         itemData.maximumAllowable = [[itemDataDictionary objectForKey:@"maximumAllowable"] integerValue];
+        itemData.imageNormal = [itemDataDictionary objectForKey:@"imageNormal"];
+        itemData.imageSelected = [itemDataDictionary objectForKey:@"imageSelected"];
+        itemData.imageDisabled = [itemDataDictionary objectForKey:@"imageDisabled"];
         [listOfItems addObject:itemData];
     }
     
@@ -210,7 +212,7 @@ static CCArray* listOfItems = nil;
 
 -(void)loadEquipmentList
 {
-    self.listOfEquipments = [CCArray array];
+    listOfEquipments = [CCArray array];
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSArray *equipments = [dictionary objectForKey:@"Equipment data"];
@@ -218,16 +220,19 @@ static CCArray* listOfItems = nil;
     for (NSDictionary *equipmentDataDictionary in equipments)
     {
         NBEquipmentData *equipmentData = [[NBEquipmentData alloc] init];
-        equipmentData.equipmentID = [equipmentDataDictionary objectForKey:@"equipmentID"];
         equipmentData.equipmentName = [equipmentDataDictionary objectForKey:@"equipmentName"];
         equipmentData.description = [equipmentDataDictionary objectForKey:@"description"];
         equipmentData.statusImpacted = [equipmentDataDictionary objectForKey:@"statusImpacted"];
         equipmentData.impactType = [equipmentDataDictionary objectForKey:@"impactType"];
         equipmentData.impactValue = [equipmentDataDictionary objectForKey:@"impactValue"];
         equipmentData.requiredLevel = [[equipmentDataDictionary objectForKey:@"requiredLevel"] integerValue];
-//        equipmentData.imageNormal = [equipmentDataDictionary objectForKey:@"imageNormal"];
-        [self.listOfEquipments addObject:equipmentData];
+        equipmentData.imageNormal = [equipmentDataDictionary objectForKey:@"imageNormal"];
+        equipmentData.imageSelected = [equipmentDataDictionary objectForKey:@"imageSelected"];
+        equipmentData.imageDisabled = [equipmentDataDictionary objectForKey:@"imageDisabled"];
+        [listOfEquipments addObject:equipmentData];
     }
+    
+    [listOfEquipments retain];
 }
 
 -(void)loadSkillList
@@ -426,6 +431,21 @@ static CCArray* listOfItems = nil;
     return nil;
 }
 
++(id)getEquipmentDataByEquipmentName:(NSString *)lookupName
+{
+    NBEquipmentData* equipmentData = nil;
+    
+    CCARRAY_FOREACH(listOfEquipments, equipmentData)
+    {
+        if ([equipmentData.equipmentName isEqualToString:lookupName])
+        {
+            return equipmentData;
+        }
+    }
+    
+    return nil;
+}
+
 +(CCArray*)getListOfProjectiles
 {
     return listOfProjectiles;
@@ -439,5 +459,10 @@ static CCArray* listOfItems = nil;
 +(CCArray*)getListOfItems
 {
     return listOfItems;
+}
+
++(CCArray*)getListOfEquipments
+{
+    return listOfEquipments;
 }
 @end

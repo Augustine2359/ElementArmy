@@ -16,6 +16,7 @@
 
 //Attributes section
 @property(nonatomic, retain) NBStaticObject* attributesBackground;
+@property(nonatomic, retain) NBStaticObject* portraitImage;
 
 @property(nonatomic, retain)CCLabelTTF* labelHPStat;
 @property(nonatomic, retain)CCLabelTTF* labelSPStat;

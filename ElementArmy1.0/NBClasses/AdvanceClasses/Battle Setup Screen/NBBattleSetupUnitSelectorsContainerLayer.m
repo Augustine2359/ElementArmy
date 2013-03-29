@@ -37,17 +37,33 @@
   startColor.b = 0;
   startColor.a = 255;
   
-  self.unitSelectorA = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
-  self.unitSelectorA.position = CGPointMake(5, 5);
-  [self addChild:self.unitSelectorA];
-  
-  self.unitSelectorB = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
-  self.unitSelectorB.position = CGPointMake(95, 5);
-  [self addChild:self.unitSelectorB];
-  
-  self.unitSelectorC = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
-  self.unitSelectorC.position = CGPointMake(185, 5);
-  [self addChild:self.unitSelectorC];
+    CCArray* selectorArray = [CCArray new];
+    [selectorArray addObject:self.unitSelectorA];
+    [selectorArray addObject:self.unitSelectorB];
+    [selectorArray addObject:self.unitSelectorC];
+
+    for (int x = 0; x < [selectorArray count]; x++) {
+        NBBattleSetupUnitSelectorLayer* newSelector = (NBBattleSetupUnitSelectorLayer*)[selectorArray objectAtIndex:x];
+        newSelector = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+        newSelector.position = ccp(x*90 + 5, 5);
+//        CGPoint backgroundPosition = ccp(newSelector.position.x + 15, 160);
+//        NBStaticObject* background = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:backgroundPosition];
+//        [background setZOrder:1];
+        [self addChild:newSelector];
+    }
+    
+//  self.unitSelectorA = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+//  self.unitSelectorA.position = CGPointMake(5, 5);
+//  self.columnBackground = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:CGPointMake(5, 5)];
+//  [self addChild:self.unitSelectorA];
+//  
+//  self.unitSelectorB = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+//  self.unitSelectorB.position = CGPointMake(95, 5);
+//  [self addChild:self.unitSelectorB];
+//  
+//  self.unitSelectorC = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+//  self.unitSelectorC.position = CGPointMake(185, 5);
+//  [self addChild:self.unitSelectorC];
 }
 
 - (NBBasicClassData *)basicClassDataInUnitSelector:(NSInteger)selector {

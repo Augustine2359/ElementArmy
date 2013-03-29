@@ -11,6 +11,8 @@
 
 @interface NBBattleSetupUnitSelectorsContainerLayer : CCLayerColor
 
+@property(nonatomic, retain) NBStaticObject* columnBackground;
+
 //pass in 0, 1 or 2 and it'll return the character in the appropriate slot
 - (NBBasicClassData *)basicClassDataInUnitSelector:(NSInteger)selector;
 - (void)addSwipeGestureRecognizers;

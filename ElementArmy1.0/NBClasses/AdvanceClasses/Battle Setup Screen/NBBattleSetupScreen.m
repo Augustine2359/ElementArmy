@@ -62,6 +62,8 @@ int objectsLeftToTransit = 6;
     //Must be called everytime entering a layer
     [NBStaticObject initializeWithSpriteBatchNode:self.characterSpritesBatchNode andLayer:self andWindowsSize:self.layerSize];
     
+    //Background
+    self.background = [NBStaticObject createStaticObject:@"troopSelectionScreen_background.png" atPosition:CGPointMake(240, 160)];
     
     //Display Title
     self.battleSetupTitle = [NBStaticObject createStaticObject:@"troopSelectionScreen_header.png" atPosition:CGPointMake(240, 350)];
@@ -86,39 +88,56 @@ int objectsLeftToTransit = 6;
     self.setupItemsFrame = [[NBBattleSetupItems alloc] initWithLayer:self];
     [self addChild:self.setupItemsFrame z:1];
     
-    
     //Display buttons Items
     CGSize spriteSize;
-    self.selectedItem1 = [NBItem createItem:@"Potion" onLayer:self onSelector:@selector(openItemSelection)];
-    
-    [self.selectedItem1 setItemIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self ];
-    spriteSize = [self.selectedItem1.itemIcon currentSize];
-    [self.selectedItem1.itemIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*2.5, -screenSize.height*0.2)];
-    [self.selectedItem1 displayItemIcon];
+    NBItemData* currentItemData = [NBDataManager getItemDataByItemName:@"Potion"];
+    self.selectedItem = [NBItem createItem:currentItemData onLayer:self onSelector:@selector(openItemSelection)];
+    spriteSize = [self.selectedItem.itemIcon currentSize];
+    [self.selectedItem.itemIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*2.5, -screenSize.height*0.2)];
+    [self.selectedItem displayItemIcon];
     
     //Equipment selection
     self.setupEquipmentsFrame = [[NBBattleSetupEquipments alloc] initWithLayer:self];
     [self addChild:self.setupEquipmentsFrame z:1];
     
     //Display buttons Equipments
-    self.selectedEquipment1 = [NBEquipment createEquipmentByIndex:1 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
-    self.selectedEquipment2 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
-    self.selectedEquipment3 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+    NBEquipmentData* currentEquipment1 = [NBDataManager getEquipmentDataByEquipmentName:@"Golden Armor"];
+    NBEquipmentData* currentEquipment2 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
+    NBEquipmentData* currentEquipment3 = [NBDataManager getEquipmentDataByEquipmentName:@"Winged Boots"];
+    self.selectedEquipment1 = [NBEquipment createEquipment:currentEquipment1 onLayer:self onSelector:@selector(openEquipmentSelection)];
+    self.selectedEquipment2 = [NBEquipment createEquipment:currentEquipment2 onLayer:self onSelector:@selector(openEquipmentSelection)];
+    self.selectedEquipment3 = [NBEquipment createEquipment:currentEquipment3 onLayer:self onSelector:@selector(openEquipmentSelection)];
     
-    [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
     spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];
     [self.selectedEquipment1.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*2.5, -screenSize.height*0.2)];
     [self.selectedEquipment1 displayEquipmentIcon];
     
-    [self.selectedEquipment2 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
     spriteSize = [self.selectedEquipment2.equipmentIcon currentSize];
     [self.selectedEquipment2.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*1.0, -screenSize.height*0.2)];
     [self.selectedEquipment2 displayEquipmentIcon];
     
-    [self.selectedEquipment3 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
     spriteSize = [self.selectedEquipment3.equipmentIcon currentSize];
     [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
     [self.selectedEquipment3 displayEquipmentIcon];
+    
+    //    self.selectedEquipment1 = [NBEquipment createEquipmentByIndex:1 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+//    self.selectedEquipment2 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+//    self.selectedEquipment3 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
+//    
+//    [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
+//    spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];
+//    [self.selectedEquipment1.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*2.5, -screenSize.height*0.2)];
+//    [self.selectedEquipment1 displayEquipmentIcon];
+//    
+//    [self.selectedEquipment2 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
+//    spriteSize = [self.selectedEquipment2.equipmentIcon currentSize];
+//    [self.selectedEquipment2.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*1.0, -screenSize.height*0.2)];
+//    [self.selectedEquipment2 displayEquipmentIcon];
+//    
+//    [self.selectedEquipment3 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
+//    spriteSize = [self.selectedEquipment3.equipmentIcon currentSize];
+//    [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
+//    [self.selectedEquipment3 displayEquipmentIcon];
     
     [self initialiseTransition];
 }
@@ -160,8 +179,8 @@ int objectsLeftToTransit = 6;
     [self.battleSetupCancel.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
     [self.battleSetupOk.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
     
-    spriteSize = [self.selectedItem1.itemIcon currentSize];
-    [self.selectedItem1.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(screenSize.width*0.5 + spriteSize.width*2.5, screenSize.height*0.2)], nil]];
+    spriteSize = [self.selectedItem.itemIcon currentSize];
+    [self.selectedItem.itemIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(screenSize.width*0.5 + spriteSize.width*2.5, screenSize.height*0.2)], nil]];
     
     spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];
     [self.selectedEquipment1.equipmentIcon.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(screenSize.width*0.5 - spriteSize.width*2.5, screenSize.height*0.2)], nil]];
@@ -200,7 +219,7 @@ int objectsLeftToTransit = 6;
 -(void)gotoBattleScreen
 {
     //Save units and items data to DataManager first
-    [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem1];
+    [[[NBDataManager dataManager] selectedItems] addObject:self.selectedItem];
     
     [[[NBDataManager dataManager] selectedEquipments] addObject:self.selectedEquipment1];
     [[[NBDataManager dataManager] selectedEquipments] addObject:self.selectedEquipment2];

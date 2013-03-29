@@ -38,38 +38,12 @@
     [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
     
     self.allEquipments = [CCArray new];
-    int numberOfAllEquipments = [[[NBDataManager dataManager] listOfEquipments] count];
-    for (int x = 1; x < numberOfAllEquipments; x++) {
-        NBEquipment* equipment = [NBEquipment createEquipmentByIndex:x onLayer:self onSelector:@selector(selectTargetEquipment) lockedSelector:NULL];
-//        DLog(@"IMAGE = %@", equipment.equipmentData.image);
-        [equipment setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
+    NBEquipmentData* equipmentData = nil;
+    CCARRAY_FOREACH([NBDataManager getListOfEquipments], equipmentData)
+    {
+        NBEquipment* equipment = [NBEquipment createEquipment:equipmentData onLayer:self onSelector:@selector(selectTargetEquipment)];
         [self.allEquipments addObject:equipment];
     }
-    
-//    NBEquipment* equipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:0];
-//    [equipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-//    NBEquipment* equipment2 = [NBEquipment createEquipment:@"FuryPill" onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:1];
-//    [equipment2 setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-//    NBEquipment* equipment3 = [NBEquipment createEquipment:@"WingedBoots" onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:0];
-//    [equipment3 setEquipmentIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self];
-//    NBEquipment* equipment4 = [NBEquipment createEquipment:@"FuryPill" onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:1];
-//    [equipment4 setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-//    NBEquipment* equipment5 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:1];
-//    [equipment5 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-
-    
-//    NBEquipment* equipment1 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(selectTargetEquipment)];
-//    [equipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-//    NBEquipment* equipment2 = [NBEquipment createEquipment:@"FuryPill" onLayer:self onSelector:@selector(selectTargetEquipment)];
-//    [equipment2 setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-//    NBEquipment* equipment3 = [NBEquipment createEquipment:@"WingedBoots" onLayer:self onSelector:@selector(selectTargetEquipment)];
-//    [equipment3 setEquipmentIconWithNormalImage:@"Winged_boots.png" selectedImage:@"Winged_boots.png" disabledImage:@"Winged_boots.png" onLayer:self];
-//    NBEquipment* equipment4 = [NBEquipment createEquipment:@"FuryPill" onLayer:self onSelector:@selector(selectTargetEquipment)];
-//    [equipment4 setEquipmentIconWithNormalImage:@"Fury_pill.png" selectedImage:@"Fury_pill.png" disabledImage:@"Fury_pill.png" onLayer:self];
-//    NBEquipment* equipment5 = [NBEquipment createEquipment:@"Potion" onLayer:self onSelector:@selector(selectTargetEquipment)];
-//    [equipment5 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-//    self.allEquipments = [NSMutableArray new];
-//    self.allEquipments = [NSMutableArray arrayWithObjects:equipment1, equipment2, equipment3, equipment4, equipment5, nil];
 }
 
 -(void)initialiseEquipmentUI{
@@ -77,21 +51,31 @@
         NBEquipment* thatEquipment = [self.allEquipments objectAtIndex:x];
         [thatEquipment.equipmentIcon setPosition:ccp(x%4 * 100 + 100, 250 - x/4 * 75)];
         [thatEquipment displayEquipmentIcon];
+        
+        if (x == 11) {
+            //Do something to show the remainder on next page
+            break;
+        }
     }
     
     self.descriptionString = @"No equipment selected";
     self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString fontName:@"Marker Felt" fontSize:20];
-    self.descriptionLabel.position = ccp(240, 50);
+    self.descriptionLabel.position = ccp(240, 75);
     [self addChild:self.descriptionLabel];
     
     self.confirmButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(confirmAndCloseMenu) withSize:CGSizeZero];
     [self.confirmButton setPosition:CGPointMake(450, 50)];
     [self.confirmButton show];
     
+    self.cancelButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(cancelAndCloseMenu) withSize:CGSizeZero];
+    [self.cancelButton setPosition:CGPointMake(30, 50)];
+    [self.cancelButton show];
+    
     [self setPosition:ccp(0, -320)];
 }
 
 -(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton{
+    
     //Is already closed
     if (!self.equipmentSelectionOpen) {
         id open = [CCMoveTo actionWithDuration:0.5 position:CGPointMake(0, 0)];
@@ -107,29 +91,30 @@
         [self runAction:close];
         self.equipmentSelectionOpen = NO;
         
-        int newEquipmentID = [selectedEquipmentButton.equipmentData.equipmentID intValue];
-        NBEquipment* newEquipment = [NBEquipment createEquipmentByIndex:newEquipmentID onLayer:self onSelector:@selector(selectTargetEquipment) lockedSelector:@selector(selectTargetEquipment)];
-        [newEquipment setEquipmentIconWithNormalImage:selectedEquipmentButton.image selectedImage:selectedEquipmentButton.image disabledImage:selectedEquipmentButton.image onLayer:self.mainLayer];
-        
-//        NBEquipment* newEquipment = [NBEquipment createEquipment:selectedEquipmentButton.equipmentData.equipmentID onLayer:self onSelector:@selector(selectTargetEquipment) equipmentIndex:asd-1];
-//        [newEquipment setEquipmentIconWithNormalImage:selectedEquipmentButton.image selectedImage:selectedEquipmentButton.image disabledImage:selectedEquipmentButton.image onLayer:self.mainLayer];
-        [newEquipment.equipmentIcon setPosition:ccp([self.changingTargetEquipment.equipmentIcon getPosition].x, [self.changingTargetEquipment.equipmentIcon getPosition].y)];
-        [newEquipment displayEquipmentIcon];
-        
-        [self.changingTargetEquipment hideEquipmentIcon];
+        if (selectedEquipmentButton != nil) {
+            SEL thatSelector = self.changingTargetEquipment.currentSelector;
+            NBEquipment* newEquipment = [NBEquipment createEquipment:selectedEquipmentButton.equipmentData onLayer:self.mainLayer onSelector:thatSelector];
+            [newEquipment.equipmentIcon setPosition:ccp([self.changingTargetEquipment.equipmentIcon getPosition].x, [self.changingTargetEquipment.equipmentIcon getPosition].y)];
+            [newEquipment displayEquipmentIcon];
+            
+            [self.changingTargetEquipment hideEquipmentIcon];
+        }
     }
 }
 
 -(void)selectTargetEquipment{
     NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
     self.descriptionString = equipment.equipmentData.description;
-    DLog(@"%@", self.descriptionString);
     self.descriptionLabel.string = self.descriptionString;
 }
 
 -(void)confirmAndCloseMenu{
     NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
     [self toggleEquipmentSelection:equipment];
+}
+
+-(void)cancelAndCloseMenu{
+    [self toggleEquipmentSelection:nil];
 }
 
 @end

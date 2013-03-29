@@ -24,6 +24,8 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
     item.currentLayer = layer;
     item.currentSelector = selector;
     
+    [item setItemIconWithNormalImage:item.itemData.imageNormal selectedImage:item.itemData.imageSelected disabledImage:item.itemData.imageDisabled onLayer:layer];
+    
     return item;
 }
 

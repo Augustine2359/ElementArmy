@@ -409,8 +409,42 @@
 	<key>Item data</key>
 	<array>
 		<dict>
-			<key>itemID</key>
+			<key>imageNormal</key>
+			<string>frame_item.png</string>
+			<key>imageSelected</key>
+			<string>frame_item.png</string>
+			<key>imageDisabled</key>
+			<string>frame_item.png</string>
+			<key>itemName</key>
+			<string>NULL</string>
+			<key>description</key>
+			<string>No item selected</string>
+			<key>impactedStatus</key>
+			<string>NULL</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>0</integer>
+			<key>impactAreaType</key>
+			<integer>0</integer>
+			<key>impactType</key>
+			<integer>0</integer>
+			<key>impactValue</key>
 			<string>0</string>
+			<key>specialEffect</key>
+			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>0</integer>
+			<key>maximumAllowable</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>imageNormal</key>
+			<string>Potion.png</string>
+			<key>imageSelected</key>
+			<string>Potion.png</string>
+			<key>imageDisabled</key>
+			<string>Potion.png</string>
 			<key>itemName</key>
 			<string>Potion</string>
 			<key>description</key>
@@ -437,8 +471,108 @@
 			<integer>99</integer>
 		</dict>
 		<dict>
-			<key>itemID</key>
-			<string>1</string>
+			<key>imageNormal</key>
+			<string>Fury_pill.png</string>
+			<key>imageSelected</key>
+			<string>Fury_pill.png</string>
+			<key>imageDisabled</key>
+			<string>Fury_pill.png</string>
+			<key>itemName</key>
+			<string>Fury Pill</string>
+			<key>description</key>
+			<string>Boost ATK and DEF for 500% for 10 seconds.</string>
+			<key>impactedStatus</key>
+			<string>ATK;DEF;</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>1</integer>
+			<key>impactAreaType</key>
+			<integer>0</integer>
+			<key>impactType</key>
+			<integer>2</integer>
+			<key>impactValue</key>
+			<string>5;5</string>
+			<key>frame</key>
+			<string>Fury_pill.png</string>
+			<key>specialEffect</key>
+			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>1</integer>
+			<key>maximumAllowable</key>
+			<integer>99</integer>
+		</dict>
+		<dict>
+			<key>imageNormal</key>
+			<string>Winged_boots.png</string>
+			<key>imageSelected</key>
+			<string>Winged_boots.png</string>
+			<key>imageDisabled</key>
+			<string>Winged_boots.png</string>
+			<key>itemName</key>
+			<string>Winged boots</string>
+			<key>description</key>
+			<string>Boost movement speed by 50% for this battle</string>
+			<key>impactedStatus</key>
+			<string>SPD</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>1</integer>
+			<key>impactAreaType</key>
+			<integer>0</integer>
+			<key>impactType</key>
+			<integer>2</integer>
+			<key>impactValue</key>
+			<string>2</string>
+			<key>frame</key>
+			<string>Winged_boots.png</string>
+			<key>specialEffect</key>
+			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>1</integer>
+			<key>maximumAllowable</key>
+			<integer>99</integer>
+		</dict>
+		<dict>
+			<key>imageNormal</key>
+			<string>Fury_pill.png</string>
+			<key>imageSelected</key>
+			<string>Fury_pill.png</string>
+			<key>imageDisabled</key>
+			<string>Fury_pill.png</string>
+			<key>itemName</key>
+			<string>Fury Pill</string>
+			<key>description</key>
+			<string>Boost ATK and DEF for 500% for 10 seconds.</string>
+			<key>impactedStatus</key>
+			<string>ATK;DEF;</string>
+			<key>effectToUnitSide</key>
+			<integer>0</integer>
+			<key>usageType</key>
+			<integer>1</integer>
+			<key>impactAreaType</key>
+			<integer>0</integer>
+			<key>impactType</key>
+			<integer>2</integer>
+			<key>impactValue</key>
+			<string>5;5</string>
+			<key>frame</key>
+			<string>Fury_pill.png</string>
+			<key>specialEffect</key>
+			<string></string>
+			<key>allowBeyondMaximumValue</key>
+			<integer>1</integer>
+			<key>maximumAllowable</key>
+			<integer>99</integer>
+		</dict>
+		<dict>
+			<key>imageNormal</key>
+			<string>Fury_pill.png</string>
+			<key>imageSelected</key>
+			<string>Fury_pill.png</string>
+			<key>imageDisabled</key>
+			<string>Fury_pill.png</string>
 			<key>itemName</key>
 			<string>Fury Pill</string>
 			<key>description</key>
@@ -7904,8 +8038,6 @@
 	<key>Equipment data</key>
 	<array>
 		<dict>
-			<key>equipmentID</key>
-			<string>0</string>
 			<key>equipmentName</key>
 			<string>NULL</string>
 			<key>description</key>
@@ -7920,10 +8052,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>frame_item.png</string>
+			<key>imageSelected</key>
+			<string>frame_item.png</string>
+			<key>imageDisabled</key>
+			<string>frame_item.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>1</string>
 			<key>equipmentName</key>
 			<string>Winged Boots</string>
 			<key>description</key>
@@ -7938,10 +8072,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>Winged_boots.png</string>
+			<key>imageSelected</key>
+			<string>Winged_boots.png</string>
+			<key>imageDisabled</key>
+			<string>Winged_boots.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>2</string>
 			<key>equipmentName</key>
 			<string>Winged Boots</string>
 			<key>description</key>
@@ -7956,10 +8092,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>Winged_boots.png</string>
+			<key>imageSelected</key>
+			<string>Winged_boots.png</string>
+			<key>imageDisabled</key>
+			<string>Winged_boots.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>3</string>
 			<key>equipmentName</key>
 			<string>Winged Boots</string>
 			<key>description</key>
@@ -7974,10 +8112,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>Winged_boots.png</string>
+			<key>imageSelected</key>
+			<string>Winged_boots.png</string>
+			<key>imageDisabled</key>
+			<string>Winged_boots.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>4</string>
 			<key>equipmentName</key>
 			<string>Fury Pill</string>
 			<key>description</key>
@@ -7992,10 +8132,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>Fury_pill.png</string>
+			<key>imageSelected</key>
+			<string>Fury_pill.png</string>
+			<key>imageDisabled</key>
+			<string>Fury_pill.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>5</string>
 			<key>equipmentName</key>
 			<string>Winged Boots</string>
 			<key>description</key>
@@ -8010,10 +8152,12 @@
 			<integer>1</integer>
 			<key>imageNormal</key>
 			<string>Winged_boots.png</string>
+			<key>imageSelected</key>
+			<string>Winged_boots.png</string>
+			<key>imageDisabled</key>
+			<string>Winged_boots.png</string>
 		</dict>
 		<dict>
-			<key>equipmentID</key>
-			<string>6</string>
 			<key>equipmentName</key>
 			<string>Golden Armor</string>
 			<key>description</key>
@@ -8027,6 +8171,10 @@
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
+			<string>Potion.png</string>
+			<key>imageSelected</key>
+			<string>Potion.png</string>
+			<key>imageDisabled</key>
 			<string>Potion.png</string>
 		</dict>
 	</array>

@@ -29,7 +29,10 @@
         self.unitCounter = 10;
         self.respawnTimePerUnit = 10;
         
-        self.attributesBackground = [NBStaticObject createStaticObject:@"troopSelectionScreen_portrait.png" atPosition:CGPointMake(425, 175)];
+        self.attributesBackground = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:CGPointMake(375, 175)];
+        [self.attributesBackground setScale:1.25];
+        
+        self.portraitImage = [NBStaticObject createStaticObject:@"troopSelectionScreen_portrait.png" atPosition:CGPointMake(425, 175)];
         
 //        NBButton *killUnitButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(killUnit) withSize:CGSizeZero];
 //        killUnitButton.position = CGPointMake(150, rect.size.height*0.25);

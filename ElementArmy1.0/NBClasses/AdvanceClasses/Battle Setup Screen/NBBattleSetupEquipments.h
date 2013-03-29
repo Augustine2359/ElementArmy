@@ -26,6 +26,7 @@
 @property (nonatomic, assign) NSString* descriptionString;
 
 @property (nonatomic, retain) NBButton* confirmButton;
+@property (nonatomic, retain) NBButton* cancelButton;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseEquipmentArray;
@@ -33,6 +34,7 @@
 -(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton;
 -(void)selectTargetEquipment;
 -(void)confirmAndCloseMenu;
+-(void)cancelAndCloseMenu;
 
 
 @end

@@ -29,9 +29,11 @@
 
 +(id)getSkillBySkillName:(NSString*)lookupName;
 +(id)getItemDataByItemName:(NSString*)lookupName;
++(id)getEquipmentDataByEquipmentName:(NSString*)lookupName;
 +(CCArray*)getListOfProjectiles;
 +(CCArray*)getListOfCountries;
 +(CCArray*)getListOfItems;
++(CCArray*)getListOfEquipments;
 
 @property (nonatomic, retain) NSString* userID;
 
@@ -42,7 +44,6 @@
 @property (nonatomic, retain) CCArray* listOfUnlockedWeaponID;
 
 @property (nonatomic, retain) CCArray* listOfStages;
-@property (nonatomic, retain) CCArray* listOfEquipments;
 @property (nonatomic, retain) CCArray* listOfCharacters;
 @property (nonatomic, retain) CCArray* listOfProjectiles;
 
