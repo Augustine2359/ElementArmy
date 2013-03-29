@@ -47,24 +47,21 @@
 
 -(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-#warning need to fix this move by touch issue
     if (isFollowing)
     {
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-        
-        CGPoint oldTouchLocation = [touch previousLocationInView:touch.view];
-        oldTouchLocation = [[CCDirector sharedDirector] convertToGL:oldTouchLocation];
-        oldTouchLocation = [self convertToNodeSpace:oldTouchLocation];
-        
-        CGPoint translation = ccpSub(touchLocation, oldTouchLocation);
-        CGPoint newPos = ccpAdd(self.position, translation);
-        self.position = newPos;
+        CGPoint touchLocation = [touch locationInView:touch.view];
+        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+        self.position = touchLocation;
     }
 }
 
 -(void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    DLog(@"item effect implemented");
+    if (isFollowing)
+    {
+        [self activateItemEffect];
+        [self deactivate];
+    }
 }
 
 -(BOOL)isTouchingMe:(CGPoint)touchLocation
@@ -93,7 +90,7 @@
 
 -(void)activateItemEffect
 {
-    
+    [self.currentItem activate];
 }
 
 @end

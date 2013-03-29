@@ -193,10 +193,14 @@ static CCArray* listOfItems = nil;
         itemData.itemName = [itemDataDictionary objectForKey:@"itemName"];
         itemData.description = [itemDataDictionary objectForKey:@"description"];
         itemData.impactedStatus = [itemDataDictionary objectForKey:@"impactedStatus"];
-        itemData.impactType = [itemDataDictionary objectForKey:@"impactType"];
+        itemData.effectToUnitSide = [[itemDataDictionary objectForKey:@"effectToUnitSide"] integerValue];
+        itemData.usageType = [[itemDataDictionary objectForKey:@"usageType"] integerValue];
+        itemData.impactAreaType = [[itemDataDictionary objectForKey:@"impactAreaType"] integerValue];
+        itemData.impactType = [[itemDataDictionary objectForKey:@"impactType"] integerValue];
         itemData.impactValue = [itemDataDictionary objectForKey:@"impactValue"];
         itemData.specialEffect = [itemDataDictionary objectForKey:@"specialEffect"];
         itemData.frame = [itemDataDictionary objectForKey:@"frame"];
+        itemData.allowBeyondMaximumValue = [[itemDataDictionary objectForKey:@"allowBeyondMaximumValue"] boolValue];
         itemData.maximumAllowable = [[itemDataDictionary objectForKey:@"maximumAllowable"] integerValue];
         [listOfItems addObject:itemData];
     }

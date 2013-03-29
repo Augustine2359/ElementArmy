@@ -17,6 +17,7 @@
 @interface NBBasicScreenLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
++(NSString*)getCurrentScreenName;
 +(CCScene*)scene;
 +(CCScene*)sceneAndSetAsDefault:(BOOL)makeDefault;
 +(CCScene*)loadCurrentScene;

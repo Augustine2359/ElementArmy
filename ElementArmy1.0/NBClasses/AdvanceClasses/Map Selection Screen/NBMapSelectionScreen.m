@@ -50,12 +50,13 @@
     [self setCurrentBackgroundWithFileName:@"NB_worldMap_960x480.png" stretchToScreen:NO];
     
     NBCountryData* countryData = nil;
+    NBCountry* newCountry = nil;
     
     CCARRAY_FOREACH([NBDataManager getListOfCountries], countryData)
     {
         if (![countryData.countryName isEqualToString:@"unknown"])
         {
-            NBCountry* newCountry = [[NBCountry alloc] initWithCountryData:countryData onLayer:self respondToSelector:@selector(onCountrySelected)];
+            newCountry = [[NBCountry alloc] initWithCountryData:countryData onLayer:self respondToSelector:@selector(onCountrySelected)];
         }
         //[self addChild:newCountry.icon];
     }

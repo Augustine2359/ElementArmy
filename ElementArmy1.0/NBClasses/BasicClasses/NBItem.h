@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NBItemData.h"
+#import "NBBasicScreenLayer.h"
+#import "NBCharacter.h"
 
 @interface NBItem : NSObject
-{
-    bool isActivated;
-}
 
 +(NBItem*)getCurrentlySelectedItem;
 +(id)createItem:(NBItemData*)newItemData onLayer:(id)layer onSelector:(SEL)selector;
@@ -20,6 +19,9 @@
 -(void)displayItemIcon;
 -(void)hideItemIcon;
 -(void)onItemSelected;
+-(void)activate;
+-(void)deactivate;
+-(void)implementEffect:(NBCharacter*)characterObject;
 
 @property (nonatomic, retain) NBItemData* itemData;
 @property (nonatomic, retain) NBButton* itemIcon;
@@ -28,5 +30,6 @@
 
 @property (nonatomic, retain) id currentLayer;
 @property (nonatomic, assign) SEL currentSelector;
+@property (nonatomic, assign) bool isActivated;
 
 @end

@@ -63,8 +63,8 @@
     self.visible = YES;
     
     //CCMoveTo* move = [CCMoveTo actionWithDuration:2.0 position:CGPointMake((winSize.width / 2) - (self.contentSize.width / 2), (winSize.height / 2) - (self.contentSize.height / 2))];
-    CCMoveTo* move = [CCMoveTo actionWithDuration:2.0 position:CGPointMake(0, (winSize.height / 2) - (self.contentSize.height / 2))];
-    CCEaseIn* accell = [CCEaseIn actionWithAction:move rate:4.0];
+    CCMoveTo* move = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(0, (winSize.height / 2) - (self.contentSize.height / 2))];
+    CCEaseIn* accell = [CCEaseIn actionWithAction:move rate:3.0];
     //CCEaseOut* decell = [CCEaseOut actionWithAction:move rate:0.5];
     CCCallFuncN* animationCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(onEnteringAnimationCompleted)];
     //CCSequence* sequence = [CCSequence actions:accell, decell, animationCompleted, nil];

@@ -57,7 +57,7 @@
     self.currentCountryStage = [[NBCountryStageGrid alloc] initOnLayer:self withSize:CGSizeMake((self.horizontalGridCount * STAGE_ICON_WIDTH / 2), (self.verticalGridCount * STAGE_ICON_HEIGHT / 2)) withCountryData:self.currentCountryData respondToSelector:@selector(onStageGridEnteringAnimationCompleted)];
     [self.currentCountryStage onEnter:self];
     
-    self.gotoBattleButton = [NBButton createWithStringHavingNormal:@"next_arrow.png" havingSelected:@"next_arrow.png" havingDisabled:@"next_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
+    self.gotoBattleButton = [NBButton createWithStringHavingNormal:@"next_arrow.png" havingSelected:@"next_arrow.png" havingDisabled:@"next_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoBattleSetupScreen) withSize:CGSizeZero];
     self.gotoBattleButton.menu.position = CGPointMake(self.layerSize.width - 20, 20);
     self.backToWorldSelectionButton = [NBButton createWithStringHavingNormal:@"previous_arrow.png" havingSelected:@"previous_arrow.png" havingDisabled:@"previous_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     self.backToWorldSelectionButton.menu.position = CGPointMake(20, 20);
@@ -68,8 +68,8 @@
     [self readStagesFromFile];
     
     //FLAG
-    self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.jpg"];
-    [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"jpg"];
+    self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.png"];
+    [self.flagCursor addAnimationFrameName:@"flagSelection" withAnimationCount:2 fileExtension:@"png"];
     NBStage* stage = [NBStage getCurrentlySelectedStage];
     self.flagCursor.position = stage.worldIcon.menu.position;
     self.flagCursor.scale = 0.5f;

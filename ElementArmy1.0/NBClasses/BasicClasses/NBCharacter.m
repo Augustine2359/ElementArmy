@@ -497,233 +497,248 @@ static CCArray* enemyUnitList = nil;
     if (self.hitPoint <= 0 && self.currentState != Dying && self.currentState != Dead)
         [self dead];
     
-    if (self.previousTarget)
-    {
-        if (self.previousTarget != self.currentTarget)
-        {
-            [self.previousTarget onTargettedByMeleeReleased:self];
-        }
-    }
-    
     if (self.currentState != Dead)
     {
-        if (!self.isAttackReady)
+        if (self.previousTarget)
         {
-            self.timeUntilNextAttack -= (self.dexterityPoint * delta * 30);
-            
-            if (self.timeUntilNextAttack <= 0)
-                self.isAttackReady = true;
+            if (self.previousTarget != self.currentTarget)
+            {
+                [self.previousTarget onTargettedByMeleeReleased:self];
+            }
         }
-    }
-    else
-    {
-        if (self.visible) [self setVisible:NO];
-    }
-    
-    //Check if enemy is still alive
-    if (self.currentTarget.hitPoint <= 0 || self.currentTarget.currentState == Dead)
-    {
-        self.currentTarget = nil;
-        self.currentAttackPost = -1;
-    }
-    
-    //Update facing
-    if (self.currentTarget != nil)
-    {
-        if (self.currentTarget.position.x > self.position.x)
-            self.facing = Right;
-        else
-            self.facing = Left;
-    }
-    else
-    {
-        if (self.characterSide == Ally)
-            self.facing = Right;
-        else
-            self.facing = Left;
-    }
-    
-    //Update Z
-    if (self.position.y != self.previousPosition.y)
-    {
-        [self reorderMe:self.position.y];
-    }
-    
-    if (self.currentState == EnteringScene)
-    {
-        [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-        //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-        return;
-    }
-    
-    if (self.currentState != Dead && self.currentState != Dying)
-    {
-        //Below code is to automatically find a new target if the object does not have any target yet
-        if (self.currentTarget == nil)
+        
+        if (self.currentState != Dead)
         {
-            self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
-            
-            if (self.currentTarget == nil)
-                self.currentState = Idle;
+            if (!self.isAttackReady)
+            {
+                self.timeUntilNextAttack -= (self.dexterityPoint * delta * 30);
+                
+                if (self.timeUntilNextAttack <= 0)
+                    self.isAttackReady = true;
+            }
+        }
+        else
+        {
+            if (self.visible) [self setVisible:NO];
+        }
+        
+        //Check if enemy is still alive
+        if (self.currentTarget.hitPoint <= 0 || self.currentTarget.currentState == Dead)
+        {
+            self.currentTarget = nil;
+            self.currentAttackPost = -1;
+        }
+        
+        //Update facing
+        if (self.currentTarget != nil)
+        {
+            if (self.currentTarget.position.x > self.position.x)
+                self.facing = Right;
             else
-            {
-#if DEBUG
-                DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
-#endif
-                
-                self.currentState = Targetting;
-                [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
-            }
+                self.facing = Left;
         }
-
-        switch (self.currentState)
+        else
         {
-            case Unknown:
-                // NOTHING
-                currentStateString = @"Unknown";
-                break;
+            if (self.characterSide == Ally)
+                self.facing = Right;
+            else
+                self.facing = Left;
+        }
+        
+        //Update Z
+        if (self.position.y != self.previousPosition.y)
+        {
+            [self reorderMe:self.position.y];
+        }
+        
+        if (self.currentState == EnteringScene)
+        {
+            [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+            //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+            return;
+        }
+        
+        if (self.currentState != Dead && self.currentState != Dying)
+        {
+            //Below code is to automatically find a new target if the object does not have any target yet
+            if (self.currentTarget == nil)
+            {
+                self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
                 
-            case Loaded:
-                currentStateString = @"Loaded";
-                break;
-                
-            case EnteringScene:
-                currentStateString = @"EnteringScene";
-                break;
-                
-            case Idle:
-                currentStateString = @"Idle";
-                break;
-                
-            case Marching:
-                currentStateString = @"Marching";
-                battleIsEngaged = true;
-                break;
-                
-            case Targetting:
-                currentStateString = @"Targetting";
-                
-                if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
-                {
-                    [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                    //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                }
+                if (self.currentTarget == nil)
+                    self.currentState = Idle;
                 else
                 {
-                    [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                    //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+#if DEBUG
+                    DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
+#endif
+                    
+                    self.currentState = Targetting;
+                    [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
                 }
-                
-                if (self.basicClassData.attackType == atMelee)
-                {
-                    self.currentState = Moving;
-                    [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
-                }
-                else if (self.basicClassData.attackType == atRange)
-                {
-                    if (self.currentTarget)
-                        self.currentState = Engaged;
-                }
-                
-                break;
-                
-            case Engaging:
-                currentStateString = @"Engaging";
-                break;
-                
-            case Engaged:
-                currentStateString = @"Engaged";
-                
-                if (self.isAttackReady)
-                {
-                    self.currentState = Attacking;
-                    [self attackWithAnimation:self.currentTarget withAnimation:@"Attack"];
-                }
-                
-                break;
-                
-            case Attacking:
-                currentStateString = @"Attacking";
-                break;
-                
-            case Dying:
-                currentStateString = @"Dying";
-                break;
-                
-            case Dead:
-            {
-                currentStateString = @"Dead";
-                [self stopAllActions];
             }
-                break;
-                
-            case Retreating:
-                currentStateString = @"Retreating";
-                break;
-                
-            case Moving:
+
+            switch (self.currentState)
             {
-                currentStateString = @"Moving";
-                
-                if (self.currentTarget.currentState == Dying || self.currentTarget.currentState == Dead)
-                {
-                    self.currentTarget = nil;
+                case Unknown:
+                    // NOTHING
+                    currentStateString = @"Unknown";
                     break;
-                }
-                
-                if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
-                {
-                    [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                    //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                }
-                else
-                {
-                    [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                    //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                }
-                
-                CGFloat distance = ccpDistance(self.position, self.currentTarget.position);
-                
-                if (distance < 50)
-                {
-                    if ((self.characterSide == Ally) || (self.currentNumberOfMeleeEnemiesAttackingMe < 1))
+                    
+                case Loaded:
+                    currentStateString = @"Loaded";
+                    break;
+                    
+                case EnteringScene:
+                    currentStateString = @"EnteringScene";
+                    break;
+                    
+                case Idle:
+                    currentStateString = @"Idle";
+                    break;
+                    
+                case Marching:
+                    currentStateString = @"Marching";
+                    battleIsEngaged = true;
+                    break;
+                    
+                case Targetting:
+                    currentStateString = @"Targetting";
+                    
+                    if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
                     {
-                        [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                        [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
                     }
                     else
                     {
-                        self.currentState = Waiting;
+                        [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    }
+                    
+                    if (self.basicClassData.attackType == atMelee)
+                    {
+                        if (self.characterSide == Enemy && [self.listOfMeleeEnemiesAttackingMe count] > 0)
+                        {
+                            self.currentState = Waiting;
+                        }
+                        else
+                        {
+                            self.currentState = Moving;
+                            [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                        }
+                    }
+                    else if (self.basicClassData.attackType == atRange)
+                    {
+                        if (self.currentTarget)
+                            self.currentState = Engaged;
+                    }
+                    
+                    break;
+                    
+                case Engaging:
+                    currentStateString = @"Engaging";
+                    break;
+                    
+                case Engaged:
+                    currentStateString = @"Engaged";
+                    
+                    if (self.isAttackReady)
+                    {
+                        self.currentState = Attacking;
+                        [self attackWithAnimation:self.currentTarget withAnimation:@"Attack"];
+                    }
+                    
+                    break;
+                    
+                case Attacking:
+                    currentStateString = @"Attacking";
+                    break;
+                    
+                case Dying:
+                    currentStateString = @"Dying";
+                    break;
+                    
+                case Dead:
+                {
+                    currentStateString = @"Dead";
+                    [self stopAllActions];
+                }
+                    break;
+                    
+                case Retreating:
+                    currentStateString = @"Retreating";
+                    break;
+                    
+                case Moving:
+                {
+                    currentStateString = @"Moving";
+                    
+                    if (self.currentTarget.currentState == Dying || self.currentTarget.currentState == Dead)
+                    {
+                        self.currentTarget = nil;
+                        break;
+                    }
+                    
+                    if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
+                    {
+                        [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    }
+                    else
+                    {
+                        [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                    }
+                    
+                    CGFloat distance = ccpDistance(self.position, self.currentTarget.position);
+                    
+                    if (distance < 50)
+                    {
+                        if ((self.characterSide == Ally) || (self.currentNumberOfMeleeEnemiesAttackingMe < 1))
+                        {
+                            [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
+                        }
+                        else
+                        {
+                            self.currentState = Waiting;
+                        }
+                    }
+                    else
+                    {
+                        [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
                     }
                 }
-                else
-                {
-                    [self MoveToPosition:[self.currentTarget getAttackedPosition:self] withDelta:delta setNextState:Engaged];
-                }
+                    break;
+                    
+                case Waiting:
+                    currentStateString = @"Waiting";
+                    
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-                
-            case Waiting:
-                currentStateString = @"Waiting";
-                
-                break;
-                
-            default:
-                break;
-        }
-        
-        if (battleIsEngaged)
-        {
-            if (self.passiveSkill && self.passiveSkill.skillType == stPassiveRevolving)
+            
+            if (battleIsEngaged)
             {
-                passiveRevolvingRemainingTime -= (delta * 1000);  //Cause frequency is in milliseconds
-                
-                if (passiveRevolvingRemainingTime <= 0)
+                if (self.passiveSkill && self.passiveSkill.skillType == stPassiveRevolving)
                 {
-                    [self applyPassiveRevolvingSkill];
-                    passiveRevolvingRemainingTime = self.passiveSkill.frequency;
+                    passiveRevolvingRemainingTime -= (delta * 1000);  //Cause frequency is in milliseconds
+                    
+                    if (passiveRevolvingRemainingTime <= 0)
+                    {
+                        [self applyPassiveRevolvingSkill];
+                        passiveRevolvingRemainingTime = self.passiveSkill.frequency;
+                    }
                 }
             }
         }
+    }
+    else
+    {
+        if (self.currentTarget)
+            [self.currentTarget onTargettedByMeleeReleased:self];
     }
     
     if (self.previousState != self.currentState)
@@ -734,16 +749,6 @@ static CCArray* enemyUnitList = nil;
     
     self.previousTarget = self.currentTarget;
     self.previousPosition = self.position;
-    
-    /*if (damageCounterLabelRemainingTime > 0.0f)
-    {
-        damageCounterLabelRemainingTime -= delta;
-    }
-    else
-    {
-        self.damageCounterLabel.visible = NO;
-        [self.damageCounterLabel setString:@""];
-    }*/
 }
 
 -(void)changeAnimationTo:(NSString*)animationName withDelay:(CGFloat)delay andRepeatForever:(bool)repeat withTarget:(id)target andSelector:(SEL)selector
@@ -806,6 +811,11 @@ static CCArray* enemyUnitList = nil;
         CCARRAY_FOREACH(self.projectileArrayList, tempProjectile)
         {
             [tempProjectile setTargetLocation:self.currentTarget.position];
+        }
+
+        if ([NBCharacter isSkillProcSuccessful]) {
+            if ([self.parent respondsToSelector:@selector(skillCastByCharacter:onCharacter:)])
+                [self.parent performSelector:@selector(skillCastByCharacter:onCharacter:) withObject:self withObject:target];
         }
     }
 }

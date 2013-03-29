@@ -69,57 +69,6 @@
     self.groupClassButtonDisabledSprite.position = position;
     self.groupClassButtonDisabledSprite.visible = NO;
     [self addChild:self.groupClassButtonDisabledSprite];
-    
-    self.classSkillAButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillAButtonNormalSprite.position = position;
-    self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
-    [self addChild:self.classSkillAButtonNormalSprite];
-
-    self.classSkillAButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    self.classSkillAButtonSelectedSprite.position = position;
-    self.classSkillAButtonSelectedSprite.tag = NORMAL_TAG;
-    self.classSkillAButtonSelectedSprite.visible = NO;
-    [self addChild:self.classSkillAButtonSelectedSprite];
-
-    self.classSkillAButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillAButtonDisabledSprite.position = position;
-    self.classSkillAButtonDisabledSprite.tag = NORMAL_TAG;
-    self.classSkillAButtonDisabledSprite.visible = NO;
-    [self addChild:self.classSkillAButtonDisabledSprite];
-
-    self.classSkillBButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillBButtonNormalSprite.position = position;
-    self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
-    [self addChild:self.classSkillBButtonNormalSprite];
-
-    self.classSkillBButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    self.classSkillBButtonSelectedSprite.position = position;
-    self.classSkillBButtonSelectedSprite.tag = NORMAL_TAG;
-    self.classSkillBButtonSelectedSprite.visible = NO;
-    [self addChild:self.classSkillBButtonSelectedSprite];
-
-    self.classSkillBButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillBButtonDisabledSprite.position = position;
-    self.classSkillBButtonDisabledSprite.tag = NORMAL_TAG;
-    self.classSkillBButtonDisabledSprite.visible = NO;
-    [self addChild:self.classSkillBButtonDisabledSprite];
-
-    self.classSkillCButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillCButtonNormalSprite.position = position;
-    self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
-    [self addChild:self.classSkillCButtonNormalSprite];
-
-    self.classSkillCButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_selected.png"];
-    self.classSkillCButtonSelectedSprite.position = position;
-    self.classSkillCButtonSelectedSprite.tag = NORMAL_TAG;
-    self.classSkillCButtonSelectedSprite.visible = NO;
-    [self addChild:self.classSkillCButtonSelectedSprite];
-
-    self.classSkillCButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:@"groupskillbutton_normal.png"];
-    self.classSkillCButtonDisabledSprite.position = position;
-    self.classSkillCButtonDisabledSprite.tag = NORMAL_TAG;
-    self.classSkillCButtonDisabledSprite.visible = NO;
-    [self addChild:self.classSkillCButtonDisabledSprite];
 
     [self addChild:self.groupClassButtonNormalSprite];
     [self addChild:self.groupClassButtonSelectedSprite];
@@ -150,6 +99,73 @@
     }
   }
   return self;
+}
+
+-(void)addItemFrameName:(NSString*)itemFrame
+{
+    CGPoint position = CGPointMake([[CCDirector sharedDirector] winSize].width - 20, 20);
+    
+    if (!self.classSkillAButtonNormalSprite)
+    {
+        self.classSkillAButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillAButtonNormalSprite.position = position;
+        self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
+        [self addChild:self.classSkillAButtonNormalSprite];
+        
+        self.classSkillAButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillAButtonSelectedSprite.position = position;
+        self.classSkillAButtonSelectedSprite.tag = NORMAL_TAG;
+        self.classSkillAButtonSelectedSprite.visible = NO;
+        [self addChild:self.classSkillAButtonSelectedSprite];
+        
+        self.classSkillAButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillAButtonDisabledSprite.position = position;
+        self.classSkillAButtonDisabledSprite.tag = NORMAL_TAG;
+        self.classSkillAButtonDisabledSprite.visible = NO;
+        [self addChild:self.classSkillAButtonDisabledSprite];
+    }
+    else if (!self.classSkillBButtonNormalSprite)
+    {
+        self.classSkillBButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillBButtonNormalSprite.position = position;
+        self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
+        [self addChild:self.classSkillBButtonNormalSprite];
+        
+        self.classSkillBButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillBButtonSelectedSprite.position = position;
+        self.classSkillBButtonSelectedSprite.tag = NORMAL_TAG;
+        self.classSkillBButtonSelectedSprite.visible = NO;
+        [self addChild:self.classSkillBButtonSelectedSprite];
+        
+        self.classSkillBButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillBButtonDisabledSprite.position = position;
+        self.classSkillBButtonDisabledSprite.tag = NORMAL_TAG;
+        self.classSkillBButtonDisabledSprite.visible = NO;
+        [self addChild:self.classSkillBButtonDisabledSprite];
+    }
+    else if (!self.classSkillCButtonNormalSprite)
+    {
+        self.classSkillCButtonNormalSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillCButtonNormalSprite.position = position;
+        self.groupClassButtonNormalSprite.tag = NORMAL_TAG;
+        [self addChild:self.classSkillCButtonNormalSprite];
+        
+        self.classSkillCButtonSelectedSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillCButtonSelectedSprite.position = position;
+        self.classSkillCButtonSelectedSprite.tag = NORMAL_TAG;
+        self.classSkillCButtonSelectedSprite.visible = NO;
+        [self addChild:self.classSkillCButtonSelectedSprite];
+        
+        self.classSkillCButtonDisabledSprite = [CCSprite spriteWithSpriteFrameName:itemFrame];
+        self.classSkillCButtonDisabledSprite.position = position;
+        self.classSkillCButtonDisabledSprite.tag = NORMAL_TAG;
+        self.classSkillCButtonDisabledSprite.visible = NO;
+        [self addChild:self.classSkillCButtonDisabledSprite];
+    }
+    
+    [self reorderChild:self.groupClassButtonSelectedSprite z:97];
+    [self reorderChild:self.groupClassButtonSelectedSprite z:98];
+    [self reorderChild:self.groupClassButtonNormalSprite z:99];
 }
 
 -(void) registerWithTouchDispatcher

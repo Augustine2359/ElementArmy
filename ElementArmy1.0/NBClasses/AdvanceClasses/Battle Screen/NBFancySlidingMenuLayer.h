@@ -12,6 +12,7 @@
 
 - (id)initOnLeftSide:(BOOL)onLeftSide;
 - (void)setupSelectorsForItem1:(SEL)selectorForItem1 forItem2:(SEL)selectorForItem2 forItem3:(SEL)selectorForItem3 onBattleLayer:(id)layer;
+-(void)addItemFrameName:(NSString*)itemFrame;
 
 @property (nonatomic, strong) CCSprite *backgroundSprite;
 
