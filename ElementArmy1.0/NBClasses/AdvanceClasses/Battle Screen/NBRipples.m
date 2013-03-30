@@ -68,8 +68,8 @@
     if ((timeSinceRippleStart < 0) || (timeSinceRippleStart > self.rippleDuration))
       continue;
 
-    ccDrawColor4F(1, 1, 1, (self.rippleDuration - timeSinceRippleStart) / self.rippleDuration);
-    ccDrawCircle(self.origin, self.amplitude * timeSinceRippleStart / self.rippleDuration, 0, 60, NO);
+    ccDrawColor4F(0, 0, 0, (self.rippleDuration - timeSinceRippleStart) / self.rippleDuration);
+    ccDrawEllipse(self.origin, self.amplitude * timeSinceRippleStart / self.rippleDuration, 0, 60, NO);
   }
 }
 
