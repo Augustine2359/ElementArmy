@@ -235,7 +235,7 @@ void ccDrawCircle( CGPoint center, float r, float a, NSUInteger segs, BOOL drawL
 
 	for(NSUInteger i = 0;i <= segs; i++) {
 		float rads = i*coef;
-		GLfloat j = r * 2 * cosf(rads + a) + center.x;
+		GLfloat j = r * cosf(rads + a) + center.x;
 		GLfloat k = r * sinf(rads + a) + center.y;
 
 		vertices[i*2] = j;
