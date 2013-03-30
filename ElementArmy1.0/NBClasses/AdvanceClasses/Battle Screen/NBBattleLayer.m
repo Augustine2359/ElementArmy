@@ -880,19 +880,42 @@ static Boolean isAutoStart = NO;
 
   [self addChild:arrowSprite];
 
-  id moveAction = [CCMoveBy actionWithDuration:1 position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
-  id removeFromParentAction = [CCCallFunc actionWithTarget:arrowSprite selector:@selector(removeFromParentAndCleanup:)];
-  id compositeAction = [CCSequence actionOne:moveAction two:removeFromParentAction];
+  CGFloat arrowFlightDuration = 1;
+  CCMoveBy *moveAction = [CCMoveBy actionWithDuration:arrowFlightDuration position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
+  [arrowSprite runAction:moveAction];
 
-  [arrowSprite runAction:compositeAction];
+  CCCallFuncND *callFunc = [CCCallFuncND actionWithTarget:self selector:@selector(checkArrowCollision:data:) data:arrowSprite];
+  CCDelayTime *delayAction = [CCDelayTime actionWithDuration:arrowFlightDuration];
+  [self runAction:[CCSequence actionOne:delayAction two:callFunc]];
+}
+
+- (void)checkArrowCollision:(id)object data:(id)data {
+  if ([data isKindOfClass:[CCSprite class]] == NO)
+    return;
+
+  CCSprite *arrowSprite = (CCSprite *)data;
+
+  for (NBSquad *squad in self.enemySquads) {
+    for (NBCharacter *character in squad.unitArray) {
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:arrowSprite.position withRippleAmplitude:5];
+      if (hasCollision) {
+        NSInteger damage = 5;
+        [character onAttackedBySkillWithDamage:damage];
+        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+      }
+    }
+  }
+
+  [arrowSprite removeFromParentAndCleanup:YES];
 }
 
 - (void)castArrowRain:(NBCharacter *)target {
-  id spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
-  id delayAction = [CCDelayTime actionWithDuration:0.05];
-  id compositeAction = [CCRepeat actionWithAction:[CCSequence actionOne:spawnArrowsAction two:delayAction] times:50];
+  CCCallFuncND *spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
+  CCDelayTime *delayAction = [CCDelayTime actionWithDuration:0.05];
+  CCSequence *sequence = [CCSequence actionOne:spawnArrowsAction two:delayAction];
+  CCRepeat *repeatingAction = [CCRepeat actionWithAction:sequence times:50];
 
-  [self runAction:compositeAction];
+  [self runAction:repeatingAction];
 }
 
 - (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
