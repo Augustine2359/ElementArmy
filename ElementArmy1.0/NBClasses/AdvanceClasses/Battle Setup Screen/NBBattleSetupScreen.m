@@ -120,25 +120,6 @@ int objectsLeftToTransit = 6;
     [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
     [self.selectedEquipment3 displayEquipmentIcon];
     
-    //    self.selectedEquipment1 = [NBEquipment createEquipmentByIndex:1 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
-//    self.selectedEquipment2 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
-//    self.selectedEquipment3 = [NBEquipment createEquipmentByIndex:0 onLayer:self onSelector:@selector(openEquipmentSelection) lockedSelector:@selector(gotoAppStore)];
-//    
-//    [self.selectedEquipment1 setEquipmentIconWithNormalImage:@"Potion.png" selectedImage:@"Potion.png" disabledImage:@"Potion.png" onLayer:self];
-//    spriteSize = [self.selectedEquipment1.equipmentIcon currentSize];
-//    [self.selectedEquipment1.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*2.5, -screenSize.height*0.2)];
-//    [self.selectedEquipment1 displayEquipmentIcon];
-//    
-//    [self.selectedEquipment2 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
-//    spriteSize = [self.selectedEquipment2.equipmentIcon currentSize];
-//    [self.selectedEquipment2.equipmentIcon setPosition:ccp(screenSize.width*0.5 - spriteSize.width*1.0, -screenSize.height*0.2)];
-//    [self.selectedEquipment2 displayEquipmentIcon];
-//    
-//    [self.selectedEquipment3 setEquipmentIconWithNormalImage:@"frame_item.png" selectedImage:@"frame_item.png" disabledImage:@"frame_item.png" onLayer:self];
-//    spriteSize = [self.selectedEquipment3.equipmentIcon currentSize];
-//    [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
-//    [self.selectedEquipment3 displayEquipmentIcon];
-    
     [self initialiseTransition];
 }
 

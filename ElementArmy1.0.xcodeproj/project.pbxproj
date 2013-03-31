@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		568D969A1707F4D9009371D7 /* NBHQEquipments.m in Sources */ = {isa = PBXBuildFile; fileRef = 568D96991707F4D9009371D7 /* NBHQEquipments.m */; };
+		568D969E1707FC1F009371D7 /* NBHQItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 568D969D1707FC1E009371D7 /* NBHQItems.m */; };
+		568D96A1170801EF009371D7 /* NBHQUnits.m in Sources */ = {isa = PBXBuildFile; fileRef = 568D96A0170801EF009371D7 /* NBHQUnits.m */; };
 		568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */; };
 		568EC19B16EC584D00815563 /* NBEquipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC19A16EC584D00815563 /* NBEquipment.m */; };
 		568EC19E16EC58B600815563 /* NBEquipmentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC19D16EC58B600815563 /* NBEquipmentData.m */; };
@@ -196,6 +199,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		568D96981707F4D9009371D7 /* NBHQEquipments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQEquipments.h; sourceTree = "<group>"; };
+		568D96991707F4D9009371D7 /* NBHQEquipments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQEquipments.m; sourceTree = "<group>"; };
+		568D969C1707FC1E009371D7 /* NBHQItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQItems.h; sourceTree = "<group>"; };
+		568D969D1707FC1E009371D7 /* NBHQItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQItems.m; sourceTree = "<group>"; };
+		568D969F170801EF009371D7 /* NBHQUnits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQUnits.h; sourceTree = "<group>"; };
+		568D96A0170801EF009371D7 /* NBHQUnits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQUnits.m; sourceTree = "<group>"; };
 		568EC18C16EC480200815563 /* NBBattleSetupEquipments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupEquipments.h; sourceTree = "<group>"; };
 		568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupEquipments.m; sourceTree = "<group>"; };
 		568EC19916EC584D00815563 /* NBEquipment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBEquipment.h; sourceTree = "<group>"; };
@@ -600,6 +609,12 @@
 			children = (
 				BC2D61FD16DEF06400797345 /* NBHQSetupScreen.h */,
 				BC2D61FE16DEF06400797345 /* NBHQSetupScreen.m */,
+				568D96981707F4D9009371D7 /* NBHQEquipments.h */,
+				568D96991707F4D9009371D7 /* NBHQEquipments.m */,
+				568D969C1707FC1E009371D7 /* NBHQItems.h */,
+				568D969D1707FC1E009371D7 /* NBHQItems.m */,
+				568D969F170801EF009371D7 /* NBHQUnits.h */,
+				568D96A0170801EF009371D7 /* NBHQUnits.m */,
 			);
 			name = "HQ Screen";
 			sourceTree = "<group>";
@@ -1500,6 +1515,9 @@
 				F929148716F96B63003E2B22 /* NBRipples.m in Sources */,
 				BC4EA62316FC7A50004A67C4 /* NBStageInfoPanel.m in Sources */,
 				BCB909E216FD62EF00B620C6 /* NBAreaEffect.m in Sources */,
+				568D969A1707F4D9009371D7 /* NBHQEquipments.m in Sources */,
+				568D969E1707FC1F009371D7 /* NBHQItems.m in Sources */,
+				568D96A1170801EF009371D7 /* NBHQUnits.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
