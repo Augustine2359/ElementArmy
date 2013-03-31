@@ -53,6 +53,7 @@ typedef enum
 @property (nonatomic, retain) NSString* specialEffect;
 @property (nonatomic, assign) BOOL allowBeyondMaximumValue;
 @property (nonatomic, assign) int maximumAllowable;
+@property (nonatomic, retain) NSString* frame;
 
 @property (nonatomic, assign) int availableAmount;
 
