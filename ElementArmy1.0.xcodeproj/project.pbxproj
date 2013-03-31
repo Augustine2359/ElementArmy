@@ -54,6 +54,9 @@
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
 		BCB909E216FD62EF00B620C6 /* NBAreaEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E116FD62EF00B620C6 /* NBAreaEffect.m */; };
+		BCB909E51706BEF600B620C6 /* NBConnectorDot.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E41706BEF500B620C6 /* NBConnectorDot.m */; };
+		BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E71708233A00B620C6 /* NBHUDLayer.m */; };
+		BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909EA17082F1900B620C6 /* NBShakeEffect.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -261,6 +264,12 @@
 		BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageSelectionScreen.m; sourceTree = "<group>"; };
 		BCB909E016FD62EF00B620C6 /* NBAreaEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAreaEffect.h; sourceTree = "<group>"; };
 		BCB909E116FD62EF00B620C6 /* NBAreaEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAreaEffect.m; sourceTree = "<group>"; };
+		BCB909E31706BEF400B620C6 /* NBConnectorDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBConnectorDot.h; sourceTree = "<group>"; };
+		BCB909E41706BEF500B620C6 /* NBConnectorDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBConnectorDot.m; sourceTree = "<group>"; };
+		BCB909E61708233900B620C6 /* NBHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHUDLayer.h; sourceTree = "<group>"; };
+		BCB909E71708233A00B620C6 /* NBHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHUDLayer.m; sourceTree = "<group>"; };
+		BCB909E917082F1800B620C6 /* NBShakeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBShakeEffect.h; sourceTree = "<group>"; };
+		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBShakeEffect.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1147,6 +1156,10 @@
 				F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */,
 				BCB909E016FD62EF00B620C6 /* NBAreaEffect.h */,
 				BCB909E116FD62EF00B620C6 /* NBAreaEffect.m */,
+				BCB909E61708233900B620C6 /* NBHUDLayer.h */,
+				BCB909E71708233A00B620C6 /* NBHUDLayer.m */,
+				BCB909E917082F1800B620C6 /* NBShakeEffect.h */,
+				BCB909EA17082F1900B620C6 /* NBShakeEffect.m */,
 			);
 			path = "Battle Screen";
 			sourceTree = "<group>";
@@ -1223,6 +1236,8 @@
 				BC25576416F5946100A7CD2C /* NBConnectorLine.m */,
 				BC4EA62116FC7A50004A67C4 /* NBStageInfoPanel.h */,
 				BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */,
+				BCB909E31706BEF400B620C6 /* NBConnectorDot.h */,
+				BCB909E41706BEF500B620C6 /* NBConnectorDot.m */,
 			);
 			path = "Map Selection Screen";
 			sourceTree = "<group>";
@@ -1518,6 +1533,9 @@
 				568D969A1707F4D9009371D7 /* NBHQEquipments.m in Sources */,
 				568D969E1707FC1F009371D7 /* NBHQItems.m in Sources */,
 				568D96A1170801EF009371D7 /* NBHQUnits.m in Sources */,
+				BCB909E51706BEF600B620C6 /* NBConnectorDot.m in Sources */,
+				BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */,
+				BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

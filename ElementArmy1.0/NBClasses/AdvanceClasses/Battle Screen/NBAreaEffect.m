@@ -10,7 +10,7 @@
 
 @implementation NBAreaEffect
 
--(id)initWithSpriteFrameName:(NSString *)spriteFrameName onLayer:(CCLayer*)layer
+-(id)initWithSpriteFrameName:(NSString *)spriteFrameName
 {
     if (self = [super initWithSpriteFrameName:spriteFrameName])
     {

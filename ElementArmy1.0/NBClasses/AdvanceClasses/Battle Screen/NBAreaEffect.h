@@ -15,7 +15,7 @@
     bool isFollowing;
 }
 
--(id)initWithSpriteFrameName:(NSString *)spriteFrameName onLayer:(CCLayer*)layer;
+-(id)initWithSpriteFrameName:(NSString *)spriteFrameName;
 -(void)activateAreaEffect:(NBItem*)item;
 -(void)deactivate;
 -(void)activateItemEffect;

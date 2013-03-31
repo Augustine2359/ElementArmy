@@ -12,8 +12,8 @@
 #import "NBDataManager.h"
 #import "NBStageData.h"
 
-#define STAGE_ICON_WIDTH 32
-#define STAGE_ICON_HEIGHT 32
+#define STAGE_ICON_WIDTH 30
+#define STAGE_ICON_HEIGHT 30
 #define LINE_CONNECTOR_SPEED 0.05
 
 #define LINE_Z 5

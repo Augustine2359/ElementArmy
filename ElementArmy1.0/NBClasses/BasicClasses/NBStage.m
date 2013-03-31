@@ -65,7 +65,26 @@ static CCArray* allStageList = nil;
     stage.isUpdatingScaleY = false;
     stage.isConnecting = false;
     stage.nextStageLineCreatedStatus = [CCArray arrayWithNSArray:[NSArray arrayWithObjects:@"0", @"0", @"0", nil]];
-    stage.connectorLines = [[CCArray alloc] initWithCapacity:3];
+    
+    stage.connectorLines = [[CCArray alloc] initWithCapacity:4];
+    
+    for (NSDictionary* nextStageDataDictionary in stage.stageData.nextStageDataList)
+    {
+        NSArray* tempArray = [nextStageDataDictionary objectForKey:@"connectors"];
+        CCArray* dotsArray = [CCArray arrayWithCapacity:[tempArray count]];
+        
+        for (NSDictionary* dotData in tempArray)
+        {
+            NBConnectorDot* dot = [[NBConnectorDot alloc] init];
+            dot.gridPosition = CGPointMake([[dotData objectForKey:@"x"] floatValue], [[dotData objectForKey:@"y"] floatValue]);
+            dot.rotation = [[dotData objectForKey:@"rotation"] floatValue];
+            [dotsArray addObject:dot];
+        }
+        
+        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageName toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withDotList:dotsArray];
+        
+        [stage.connectorLines addObject:connectorLine];
+    }
     
     if (!allStageList)
     {
@@ -97,17 +116,22 @@ static CCArray* allStageList = nil;
     {
         if (self.stageData.availableNormalImageName && self.stageData.availableDisabledImageName && self.stageData.completedNormalImageName && self.stageData.completedDisabledImageName)
         {
-            self.worldIcon = [NBButton createWithStringHavingNormal:self.stageData.availableNormalImageName havingSelected:self.stageData.availableNormalImageName havingDisabled:self.stageData.availableDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(32, 32)];
+            self.worldIcon = [NBButton createWithStringHavingNormal:self.stageData.availableNormalImageName havingSelected:self.stageData.availableNormalImageName havingDisabled:self.stageData.availableDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(STAGE_ICON_WIDTH, STAGE_ICON_HEIGHT)];
             self.worldIcon.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
             //[self.worldIcon show];
             
-            self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(32, 32)];
+            self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(STAGE_ICON_WIDTH, STAGE_ICON_HEIGHT)];
             self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
             //[self.worldIconCompleted hide];
+        }
+        
+        for (NBConnectorLine* connectorLine in self.connectorLines)
+        {
+            [connectorLine setupIconOnLayer:layer];
         }
     }
     
@@ -136,8 +160,8 @@ static CCArray* allStageList = nil;
     if (self.worldIcon && self.worldIconCompleted)
     {
         self.positionInWorldGrid = self.stageData.gridPoint;
-        self.worldIcon.menu.position = CGPointMake(self.stageData.gridPoint.x * STAGE_ICON_WIDTH / 2, self.stageData.gridPoint.y * STAGE_ICON_HEIGHT / 2);
-        self.worldIconCompleted.menu.position = CGPointMake(self.stageData.gridPoint.x * STAGE_ICON_WIDTH / 2, self.stageData.gridPoint.y * STAGE_ICON_HEIGHT / 2);
+        self.worldIcon.menu.position = CGPointMake(self.stageData.gridPoint.x * (STAGE_ICON_WIDTH / 3) / 2, self.stageData.gridPoint.y * (STAGE_ICON_HEIGHT / 3) / 2);
+        self.worldIconCompleted.menu.position = CGPointMake(self.stageData.gridPoint.x * (STAGE_ICON_WIDTH / 3) / 2, self.stageData.gridPoint.y * (STAGE_ICON_HEIGHT / 3) / 2);
         self.origin = CGPointMake(self.worldIcon.menu.position.x + (self.worldIcon.currentSize.width / 2), self.worldIcon.menu.position.y + (self.worldIcon.currentSize.height / 2));
         
         return true;
@@ -154,17 +178,18 @@ static CCArray* allStageList = nil;
 -(void)onEnteringStageGrid:(CCLayer*)layer
 {
     NSString* connectedStageID = nil;
+    NSDictionary* nextStageDataDictionary = nil;
     
-    if (self.stageData.isCompleted)
+    /*if (self.stageData.isCompleted)
     {
-        NSString* nextStageID = nil;
         self.stageData.connectedStageID = [CCArray arrayWithCapacity:3];
         
-        CCARRAY_FOREACH(self.stageData.nextStageID, nextStageID)
+        CCARRAY_FOREACH(self.stageData.nextStageDataList, nextStageDataDictionary)
         {
+            NSString* nextStageID = [nextStageDataDictionary objectForKey:@"stageID"];
             [self.stageData.connectedStageID addObject:nextStageID];
         }
-    }
+    }*/
     
     /*CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
     {
@@ -172,17 +197,25 @@ static CCArray* allStageList = nil;
         [self createLineTo:nextStage onLayer:layer];
     }*/
     
-    NSString* nextStageID = nil;
-    
-    CCARRAY_FOREACH(self.stageData.nextStageID, nextStageID)
+    CCARRAY_FOREACH(self.stageData.nextStageDataList, nextStageDataDictionary)
     {
         bool alreadyConnected = false;
+        NSString* nextStageID = [nextStageDataDictionary objectForKey:@"stageID"];
         
         CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
         {
             if ([connectedStageID isEqualToString:nextStageID])
             {
                 alreadyConnected = true;
+                
+                for (NBConnectorLine* connectorLine in self.connectorLines)
+                {
+                    if ([connectorLine.connectToStageName isEqualToString:nextStageID])
+                    {
+                        [connectorLine show];
+                    }
+                }
+                
                 break;
             }
         }
@@ -193,7 +226,15 @@ static CCArray* allStageList = nil;
             
             if (nextStage.stageData.isUnlocked)
             {
-                //[self animateLineTo:[NBStage getStageByID:nextStageID] onLayer:layer];
+                for (NBConnectorLine* connectorLine in self.connectorLines)
+                {
+                    if ([connectorLine.connectToStageName isEqualToString:nextStageID])
+                    {
+                        [connectorLine animate];
+                        [self.stageData.connectedStageID addObject:nextStageID];
+                        break;
+                    }
+                }
             }
         }
     }
@@ -413,6 +454,8 @@ static CCArray* allStageList = nil;
 {
     [self.worldIcon changeParent:layer];
     [self.worldIconCompleted changeParent:layer];
+    [layer reorderChild:self.worldIcon z:10];
+    [layer reorderChild:self.worldIconCompleted z:10];
     
     self.currentLayer = layer;
 }
