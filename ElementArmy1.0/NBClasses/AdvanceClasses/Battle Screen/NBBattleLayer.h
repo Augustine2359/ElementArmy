@@ -18,6 +18,8 @@
 #import "NBFancySlidingMenuLayer.h"
 #import "NBRipples.h"
 #import "NBAreaEffect.h"
+#import "NBHUDLayer.h"
+#import "NBShakeEffect.h"
 
 #define HP_BAR_LENGTH 130
 
@@ -84,14 +86,8 @@
 
 @property (nonatomic, retain) NBFancySlidingMenuLayer *classGroupSkillMenuLayer;
 @property (nonatomic, retain) NBFancySlidingMenuLayer *itemMenuLayer;
-/*@property (nonatomic, retain) NBButton* classGroupSkillButton;
-@property (nonatomic, retain) NBButton* comboGroupSkillButton;
-@property (nonatomic, retain) NBButton* classSkillAButton;
-@property (nonatomic, retain) NBButton* classSkillBButton;
-@property (nonatomic, retain) NBButton* classSkillCButton;
-@property (nonatomic, retain) NBButton* comboSkillAButton;
-@property (nonatomic, retain) NBButton* comboSkillBButton;
-@property (nonatomic, retain) NBButton* comboSkillCButton;*/
+
+@property (nonatomic, retain) NBHUDLayer* HUDLayer;
 @property (nonatomic, retain) NBStaticObject* allyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* enemyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* HPBarPlaceholder;

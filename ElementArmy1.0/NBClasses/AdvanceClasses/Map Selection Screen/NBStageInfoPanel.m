@@ -30,7 +30,7 @@
         
         //Stage Title
         self.levelName = [CCLabelTTF labelWithString:@"" dimensions:CGSizeMake(120, 24) hAlignment:NSTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
-        self.levelName.position = CGPointMake((windowSize.width / 2), 30);
+        self.levelName.position = CGPointMake((windowSize.width / 2 / 1.2), 30);
         [self addChild:self.levelName];
         
         [layer addChild:self];

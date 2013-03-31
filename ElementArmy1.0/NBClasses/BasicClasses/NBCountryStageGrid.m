@@ -159,6 +159,8 @@
     stage.worldIconCompleted.menu.zOrder = WORLD_ICON_Z;
     [self.stageList addObject:stage];
     
+    DLog(@"width=%f, height=%f", stage.worldIcon.buttonObject.normalImage.contentSize.width, stage.worldIcon.buttonObject.contentSize.height);
+    
     //if (stage.previousStageID)
     //{
         //[stage createLineFrom:[self getStageByID:stage.previousStageID] onLayer:self];
@@ -194,7 +196,7 @@
             NSString* nextStageID = nil;
             int connectorIndex = 0;
             
-            CCARRAY_FOREACH(stage.stageData.nextStageID, nextStageID)
+            CCARRAY_FOREACH(stage.stageData.nextStageDataList, nextStageID)
             {
                 if (stage.stageData.isCompleted)
                 {

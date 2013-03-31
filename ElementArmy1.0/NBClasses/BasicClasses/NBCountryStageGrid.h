@@ -13,6 +13,7 @@
 #import "NBStage.h"
 #import "NBConnectorLine.h"
 
+#define GRID_SQUARE_SIZE 10
 #define STAGE_HORIZONTAL_CAPACITY 12
 #define STAGE_VERTICAL_CAPACITY 18
 #define GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET 16

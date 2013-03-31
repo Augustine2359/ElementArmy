@@ -37,9 +37,10 @@ static CCArray* stageDataList = nil;
         stageDataList = [[CCArray alloc] initWithCapacity:100];
         
         self.gridPoint = CGPointZero;
-        self.nextStageID = [[CCArray alloc] initWithCapacity:3];
-        self.connectedStageID = [[CCArray alloc]initWithCapacity:3];
-        self.willUnlockStageID = [[CCArray alloc]initWithCapacity:3];
+        self.nextStageDataList = [[CCArray alloc] initWithCapacity:3];
+        self.connectedStageID = [[CCArray alloc] initWithCapacity:3];
+        self.willUnlockStageID = [[CCArray alloc] initWithCapacity:3];
+        self.connectorLines = [[CCArray alloc] initWithCapacity:4];
     }
     
     return self;

@@ -514,9 +514,9 @@
 					<key>gridPoint</key>
 					<dict>
 						<key>x</key>
-						<integer>2</integer>
+						<integer>6</integer>
 						<key>y</key>
-						<integer>2</integer>
+						<integer>6</integer>
 					</dict>
 					<key>nextStageID</key>
 					<array>
@@ -1795,7 +1795,7 @@
 					<key>stageID</key>
 					<string>firestage0</string>
 					<key>stageName</key>
-					<string>A-1</string>
+					<string>Fire Stage Intro</string>
 					<key>countryID</key>
 					<string>water</string>
 					<key>availableNormalImageName</key>
@@ -1809,13 +1809,115 @@
 					<key>gridPoint</key>
 					<dict>
 						<key>x</key>
-						<integer>2</integer>
+						<integer>6</integer>
 						<key>y</key>
-						<integer>2</integer>
+						<integer>6</integer>
 					</dict>
-					<key>nextStageID</key>
+					<key>nextStageDataList</key>
 					<array>
-						<string>firestage1</string>
+						<dict>
+							<key>stageID</key>
+							<string>firestage1</string>
+							<key>connectors</key>
+							<array>
+								<dict>
+									<key>x</key>
+									<integer>6</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>7</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>8</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>9</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>10</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>11</integer>
+									<key>y</key>
+									<integer>6</integer>
+									<key>rotation</key>
+									<string>0</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>7</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>8</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>9</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>10</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>11</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>12</integer>
+									<key>rotation</key>
+									<string>270</string>
+								</dict>
+							</array>
+						</dict>
 					</array>
 					<key>willUnlockStageID</key>
 					<array>
@@ -1916,7 +2018,7 @@
 					<key>stageID</key>
 					<string>firestage1</string>
 					<key>stageName</key>
-					<string>A-2</string>
+					<string>Fire Stage 1</string>
 					<key>countryID</key>
 					<string>water</string>
 					<key>availableNormalImageName</key>
@@ -1930,13 +2032,97 @@
 					<key>gridPoint</key>
 					<dict>
 						<key>x</key>
-						<integer>6</integer>
+						<integer>18</integer>
 						<key>y</key>
-						<integer>2</integer>
+						<integer>18</integer>
 					</dict>
-					<key>nextStageID</key>
+					<key>nextStageDataList</key>
 					<array>
-						<string>stage2</string>
+						<dict>
+							<key>stageID</key>
+							<string>firestage2</string>
+							<key>connectors</key>
+							<array>
+								<dict>
+									<key>x</key>
+									<integer>6</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>7</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>8</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>9</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>10</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>11</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>6</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>7</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>8</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>9</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>10</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>11</integer>
+								</dict>
+								<dict>
+									<key>x</key>
+									<integer>12</integer>
+									<key>y</key>
+									<integer>12</integer>
+								</dict>
+							</array>
+						</dict>
 					</array>
 					<key>willUnlockStageID</key>
 					<array>
@@ -2035,9 +2221,9 @@
 				</dict>
 				<dict>
 					<key>stageID</key>
-					<string>stage2</string>
+					<string>firestage2</string>
 					<key>stageName</key>
-					<string>A-3</string>
+					<string>Fire Stage 2</string>
 					<key>countryID</key>
 					<string>water</string>
 					<key>availableNormalImageName</key>
@@ -2051,9 +2237,9 @@
 					<key>gridPoint</key>
 					<dict>
 						<key>x</key>
-						<integer>6</integer>
+						<integer>24</integer>
 						<key>y</key>
-						<integer>6</integer>
+						<integer>18</integer>
 					</dict>
 					<key>nextStageID</key>
 					<array>

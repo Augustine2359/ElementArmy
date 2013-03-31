@@ -10,7 +10,37 @@
 
 @implementation NBConnectorLine
 
--(id)initWithAtPosition:(CGPoint)newPosition withDirection:(EnumLineDirection)direction withLength:(CGFloat)length isVertical:(BOOL)isVertical onLayer:(CCLayer *)layer
+-(id)createConnectorFrom:(NSString*)originalStageName toStageName:(NSString*)destinationStageName withDotList:(CCArray*)dotList
+{
+    if (self = [super init])
+    {
+        self.ownerStageName = originalStageName;
+        self.connectToStageName = destinationStageName;
+        self.dots = [[CCArray alloc] initWithCapacity:[dotList count]];
+        self.dotsData = dotList;
+    }
+    
+    return self;
+}
+
+-(void)setupIconOnLayer:(CCLayer*)layer
+{
+    self.currentLayer = layer;
+    
+    for (NBConnectorDot* connectorDot in self.dotsData)
+    {
+        NBSingleAnimatedObject* dot = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_1.png"];
+        dot.position = CGPointMake((connectorDot.gridPosition.x - 1) * DOT_SQUARE_SIZE, (connectorDot.gridPosition.y - 1) * DOT_SQUARE_SIZE);
+        dot.rotation = connectorDot.rotation;
+        [dot addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
+        dot.visible = NO;
+        [self.dots addObject:dot];
+        
+        [layer addChild:dot z:0];
+    }
+}
+
+-(id)initAtPosition:(CGPoint)newPosition toPosition:(CGPoint)destination connectFromSide:(EnumConnectionSide)fromSide withDirection:(EnumLineDirection)direction withLength:(CGFloat)length isVertical:(BOOL)isVertical onLayer:(CCLayer *)layer
 {
     if (self = [super init])
     {
@@ -44,7 +74,17 @@
         for (int i = 1; i < objectCountNeeded; i++)
         {
             footStep = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_0.png"];
+            footStep.position = newPosition;
+            footStep.scaleX = 10 / footStep.contentSize.width;
+            footStep.scaleY = 10 / footStep.contentSize.height;
             footStep.visible = NO;
+            
+            if (fromSide == csRight)
+            
+            if (destination.x > newPosition.x)
+            {
+                direction = LineDirectionRight;
+            }
             
             switch (self.lineDirection)
             {
@@ -94,7 +134,7 @@
  
     NBSingleAnimatedObject* currentDot = (NBSingleAnimatedObject*)[self.dots objectAtIndex:currentDotIndex];
     currentDot.visible = YES;
-    [currentDot playAnimationWithDelay:0.5 informToObject:self onSelector:@selector(animationCompleted)];
+    [currentDot playAnimationWithDelay:0.3 informToObject:self onSelector:@selector(animationCompleted)];
     currentDotIndex++;
 }
 

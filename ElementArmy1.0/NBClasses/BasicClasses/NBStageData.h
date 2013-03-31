@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "NBConnectorLine.h"
 
 @interface NBStageData : NSObject
 
@@ -21,7 +22,7 @@
 @property (nonatomic, retain) NSString* completedNormalImageName;
 @property (nonatomic, retain) NSString* completedDisabledImageName;
 @property (nonatomic, assign) CGPoint gridPoint;
-@property (nonatomic, retain) CCArray* nextStageID;
+@property (nonatomic, retain) CCArray* nextStageDataList;
 @property (nonatomic, retain) CCArray* willUnlockStageID;
 @property (nonatomic, retain) CCArray* connectedStageID;
 @property (nonatomic, assign) bool isCompleted;
@@ -29,5 +30,6 @@
 @property (nonatomic, assign) int winCount;
 @property (nonatomic, assign) int loseCount;
 @property (nonatomic, retain) CCArray* enemyList;
+@property (nonatomic, retain) CCArray* connectorLines;
 
 @end
