@@ -108,44 +108,69 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     [self.cancelButton setPosition:CGPointMake(30, 25)];
     [self.cancelButton.menu setZOrder:2];
     [self.cancelButton show];
+    
+    self.canInput = YES;
+    [self openEquipmentsMenu];
 }
 
 -(void)openEquipmentsMenu{
     DLog(@"EQ");
+    if (!self.canInput) {
+        return;
+    }
+    
     if (currentOpenedMenu == self.equipmentsLayer) {
         return;
     }
     
+    self.canInput = NO;
     [self confirmAndCloseMenu];
     currentOpenedMenu = self.equipmentsLayer;
-    [self.equipmentsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], nil]];
+    CCCallFunc* onAnimCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMenuReady)];
+    [self.equipmentsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], onAnimCompleted, nil]];
 }
 
 -(void)openItemsMenu{
     DLog(@"IT");
+    if (!self.canInput) {
+        return;
+    }
+    
     if (currentOpenedMenu == self.itemsLayer) {
         return;
     }
     
+    self.canInput = NO;
     [self confirmAndCloseMenu];
     currentOpenedMenu = self.itemsLayer;
-    [self.itemsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], nil]];
+    CCCallFunc* onAnimCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMenuReady)];
+    [self.itemsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], onAnimCompleted, nil]];
 }
 
 -(void)openUnitsMenu{
     DLog(@"UN");
+    if (!self.canInput) {
+        return;
+    }
+    
     if (currentOpenedMenu == self.unitsLayer) {
         return;
     }
     
+    self.canInput = NO;
     [self confirmAndCloseMenu];
     currentOpenedMenu = self.unitsLayer;
-//    [self.unitsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], nil]];
+    CCCallFunc* onAnimCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMenuReady)];
+    [self.unitsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], onAnimCompleted, nil]];
 }
 
 -(void)confirmAndCloseMenu{
     id close = [CCMoveTo actionWithDuration:0.5 position:CGPointMake(0, -320)];
     [currentOpenedMenu runAction:close];
+}
+
+-(void)onMenuReady{
+    self.canInput = YES;
 }
 
 

@@ -64,6 +64,7 @@ static CCArray* listOfEquipments = nil;
 {
     [listOfSkills release];
     [listOfItems release];
+    [listOfEquipments release];
     [super dealloc];
 }
 
@@ -258,6 +259,10 @@ static CCArray* listOfEquipments = nil;
     }
     
     [listOfSkills retain];
+}
+
+-(void)loadPlayerData{
+    //Load all saved variables from plist
 }
 
 -(void)createCharacterList
