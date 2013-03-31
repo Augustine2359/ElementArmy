@@ -18,13 +18,15 @@
 
 @property (nonatomic, retain) NBEquipment* changingTargetEquipment;
 
-@property(nonatomic, retain) NSMutableArray* allEquipments;
+//@property(nonatomic, retain) NSMutableArray* allEquipments;
+@property(nonatomic, retain) CCArray* allEquipments;
 @property (nonatomic, retain) id mainLayer;
 
 @property (nonatomic, retain) CCLabelTTF* descriptionLabel;
 @property (nonatomic, assign) NSString* descriptionString;
 
 @property (nonatomic, retain) NBButton* confirmButton;
+@property (nonatomic, retain) NBButton* cancelButton;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseEquipmentArray;
@@ -32,6 +34,7 @@
 -(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton;
 -(void)selectTargetEquipment;
 -(void)confirmAndCloseMenu;
+-(void)cancelAndCloseMenu;
 
 
 @end

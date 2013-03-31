@@ -39,7 +39,9 @@ typedef enum
 
 @interface NBItemData : NSObject
 
-@property (nonatomic, retain) NSString* itemID;
+@property (nonatomic, retain) NSString* imageNormal;
+@property (nonatomic, retain) NSString* imageSelected;
+@property (nonatomic, retain) NSString* imageDisabled;
 @property (nonatomic, retain) NSString* itemName;
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic, retain) NSString* impactedStatus;
@@ -49,7 +51,6 @@ typedef enum
 @property (nonatomic, assign) itImpactType impactType;
 @property (nonatomic, retain) NSString* impactValue;
 @property (nonatomic, retain) NSString* specialEffect;
-@property (nonatomic, retain) NSString* frame;
 @property (nonatomic, assign) BOOL allowBeyondMaximumValue;
 @property (nonatomic, assign) int maximumAllowable;
 

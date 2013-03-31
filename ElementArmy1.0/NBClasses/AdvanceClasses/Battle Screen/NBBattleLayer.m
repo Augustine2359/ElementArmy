@@ -133,12 +133,12 @@ static Boolean isAutoStart = NO;
      [self addChild:backgroundColor];
      self.isTouchEnabled = YES;
      [self scheduleUpdate];*/
-    
+
     //Prepare Sprite Batch Node
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
-    
+
     //Prepare unit slots/arrays
     [NBSquad setupBatteFieldDimension:CGSizeMake(size.width, size.height)];
     if (!self.allySquads) self.allySquads = [[CCArray alloc] initWithCapacity:MAXIMUM_SQUAD_PER_SIDE];
@@ -430,7 +430,11 @@ static Boolean isAutoStart = NO;
     {
         NBBasicClassData* squadClassData = [self.dataManager.arrayOfAllySquad objectAtIndex:i];
         DLog(@"%@ available unit = %i", squadClassData.className, squadClassData.availableUnit);
-                                    
+
+#warning skip adding the one-unit squad, it's making the earthquake look ugly
+      if (squadClassData.availableUnit == 1)
+          continue;
+
         if (squadClassData)
         {
             tempSquad = [[NBSquad alloc] createSquadUsingBasicClassData:squadClassData onSide:Ally andSpriteBatchNode:self.characterSpritesBatchNode onLayer:self];
@@ -541,12 +545,12 @@ static Boolean isAutoStart = NO;
             case 0:
                 self.item1 = item;
                 if ([self.item1.itemData.itemName isEqualToString:@"Potion"]) self.item1.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item1.itemData.frame];
+                [self.itemMenuLayer addItemFrameName:self.item1.itemData.imageNormal];
                 break;
             case 1:
                 self.item2 = item;
                 if ([self.item2.itemData.itemName isEqualToString:@"Fury Pill"]) self.item2.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item2.itemData.frame];
+                [self.itemMenuLayer addItemFrameName:self.item2.itemData.imageNormal];
                 break;
             case 2:
                 self.item3 = item;
@@ -810,8 +814,29 @@ static Boolean isAutoStart = NO;
 }
 
 - (void)castEarthquake:(NBCharacter *)target {
+  NSMutableArray *earthquakeSprites = [NSMutableArray array];
+  NSInteger numberOfFrames = 4;
+  for (NSInteger i = 0; i < numberOfFrames; i++)
+    [earthquakeSprites addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"skill_earthquake_%d.png", i]]];
+
+  CCSprite *earthquakeSprite = [CCSprite spriteWithSpriteFrameName:@"skill_earthquake_1.png"];
+  earthquakeSprite.position = CGPointMake(target.position.x, target.position.y - 5);// target.position;
+  earthquakeSprite.scale = 1.5;
+  [self addChild:earthquakeSprite];
+
+  CGFloat frameInterval = 0.15;
+  CCAnimation *animation = [CCAnimation animationWithSpriteFrames:earthquakeSprites delay:frameInterval];
+  NSInteger numberOfAnimationLoops = 5;
+  CCAction *earthquakeAction = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:animation] times:numberOfAnimationLoops];
+  CCCallFunc *removeFromParentAction = [CCCallFunc actionWithTarget:earthquakeSprite selector:@selector(removeFromParentAndCleanup:)];
+  CCSequence *sequence = [CCSequence actionOne:earthquakeAction two:removeFromParentAction];
+  [earthquakeSprite runAction:sequence];
+
   NBRipples *earthquakeRipples = [[NBRipples alloc] init];
   earthquakeRipples.origin = target.position;
+  earthquakeRipples.amplitude = 20;
+  earthquakeRipples.rippleInterval = frameInterval * numberOfFrames/2;
+  earthquakeRipples.numberOfRipples = numberOfAnimationLoops * 2;
   earthquakeRipples.delegate = self;
   [self addChild:earthquakeRipples];
 }
@@ -829,19 +854,42 @@ static Boolean isAutoStart = NO;
 
   [self addChild:arrowSprite];
 
-  id moveAction = [CCMoveBy actionWithDuration:1 position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
-  id removeFromParentAction = [CCCallFunc actionWithTarget:arrowSprite selector:@selector(removeFromParentAndCleanup:)];
-  id compositeAction = [CCSequence actionOne:moveAction two:removeFromParentAction];
+  CGFloat arrowFlightDuration = 1;
+  CCMoveBy *moveAction = [CCMoveBy actionWithDuration:arrowFlightDuration position:CGPointMake(0, -[[CCDirector sharedDirector] winSize].height)];
+  [arrowSprite runAction:moveAction];
 
-  [arrowSprite runAction:compositeAction];
+  CCCallFuncND *callFunc = [CCCallFuncND actionWithTarget:self selector:@selector(checkArrowCollision:data:) data:arrowSprite];
+  CCDelayTime *delayAction = [CCDelayTime actionWithDuration:arrowFlightDuration];
+  [self runAction:[CCSequence actionOne:delayAction two:callFunc]];
+}
+
+- (void)checkArrowCollision:(id)object data:(id)data {
+  if ([data isKindOfClass:[CCSprite class]] == NO)
+    return;
+
+  CCSprite *arrowSprite = (CCSprite *)data;
+
+  for (NBSquad *squad in self.enemySquads) {
+    for (NBCharacter *character in squad.unitArray) {
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:arrowSprite.position withRippleAmplitude:5];
+      if (hasCollision) {
+        NSInteger damage = 5;
+        [character onAttackedBySkillWithDamage:damage];
+        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+      }
+    }
+  }
+
+  [arrowSprite removeFromParentAndCleanup:YES];
 }
 
 - (void)castArrowRain:(NBCharacter *)target {
-  id spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
-  id delayAction = [CCDelayTime actionWithDuration:0.05];
-  id compositeAction = [CCRepeat actionWithAction:[CCSequence actionOne:spawnArrowsAction two:delayAction] times:50];
+  CCCallFuncND *spawnArrowsAction = [CCCallFuncND actionWithTarget:self selector:@selector(spawnArrows:data:) data:target];
+  CCDelayTime *delayAction = [CCDelayTime actionWithDuration:0.05];
+  CCSequence *sequence = [CCSequence actionOne:spawnArrowsAction two:delayAction];
+  CCRepeat *repeatingAction = [CCRepeat actionWithAction:sequence times:50];
 
-  [self runAction:compositeAction];
+  [self runAction:repeatingAction];
 }
 
 - (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {

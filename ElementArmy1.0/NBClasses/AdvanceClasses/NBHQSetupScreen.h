@@ -6,10 +6,33 @@
 //
 //
 
-#import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
+#import "NBHQEquipments.h"
+#import "NBHQItems.h"
+#import "NBHQUnits.h"
 
 @interface NBHQSetupScreen : NBBasicScreenLayer
+
+@property (nonatomic, retain) NBButton* testButton;
+@property (nonatomic, retain) NBStaticObject* titleBanner;
+
+@property (nonatomic, retain) NBStaticObject* backgroundImage;
+@property (nonatomic, retain) NBStaticObject* headerImage;
+
+@property (nonatomic, retain) NBHQEquipments* equipmentsLayer;
+@property (nonatomic, retain) NBHQItems* itemsLayer;
+@property (nonatomic, retain) NBHQUnits* unitsLayer;
+
+@property (nonatomic, retain) NBButton *equipmentsTab;
+@property (nonatomic, retain) NBButton *itemsTab;
+@property (nonatomic, retain) NBButton *unitsTab;
+@property (nonatomic, retain) NBButton* confirmButton;
+@property (nonatomic, retain) NBButton* cancelButton;
+
+-(void)openEquipmentsMenu;
+-(void)openItemsMenu;
+-(void)openUnitsMenu;
+-(void)confirmAndCloseMenu;
 
 -(void)gotoMainMenuScreen;
 -(void)gotoMapSelectionScreen;
@@ -20,8 +43,5 @@
 
 //UI Control
 -(void)onTestButtonPressed;
-
-@property (nonatomic, retain) NBButton* testButton;
-@property (nonatomic, retain) NBStaticObject* titleBanner;
 
 @end

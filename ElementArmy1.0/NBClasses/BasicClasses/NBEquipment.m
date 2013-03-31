@@ -17,29 +17,36 @@ static NBEquipment* currentlySelectedEquipmentInBattleSetup = nil;
     return currentlySelectedEquipmentInBattleSetup;
 }
 
-+(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector// equipmentIndex:(int)index
++(id)createEquipment:(NBEquipmentData*)newEquipmentData onLayer:(id)layer onSelector:(SEL)selector
 {
     NBEquipment* equipment = [[NBEquipment alloc] init];
-    //    equipment.equipmentData = [[NBEquipmentData alloc] init];
-    //    equipment.equipmentData.equipmentID = equipmentID;
-    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:0];
+    equipment.equipmentData = newEquipmentData;
     equipment.currentLayer = layer;
     equipment.currentSelector = selector;
+    
+    [equipment setEquipmentIconWithNormalImage:equipment.equipmentData.imageNormal selectedImage:equipment.equipmentData.imageSelected disabledImage:equipment.equipmentData.imageDisabled onLayer:layer];
     
     return equipment;
 }
 
-+(id)createEquipment:(NSString*)equipmentID onLayer:(id)layer onSelector:(SEL)selector equipmentIndex:(int)index
-{
-    NBEquipment* equipment = [[NBEquipment alloc] init];
-    DLog(@"before");
-    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:index];
-    DLog(@"after = %@", equipment.equipmentData);
-    equipment.currentLayer = layer;
-    equipment.currentSelector = selector;
-    
-    return equipment;
-}
+//+(id)createEquipmentByIndex:(int)equipmentIndex onLayer:(id)layer onSelector:(SEL)selector lockedSelector:(SEL)lockedSelector
+//{
+//    NBEquipment* equipment = [NBEquipment new];
+//    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:equipmentIndex];
+////    DLog(@"equipmentDataImage = %@", equipment.equipmentData.imageNormal);
+//    equipment.currentLayer = layer;
+//    
+//    if (equipment.equipmentData.equipmentID == 0) {
+//        equipment.currentSelector = lockedSelector;
+//    }
+//    else{
+//        equipment.currentSelector = selector;
+//    }
+//    
+////    [equipment setEquipmentIconWithNormalImage:equipment.equipmentData.image selectedImage:equipment.equipmentData.image disabledImage:equipment.equipmentData.image onLayer:layer];
+//    
+//    return equipment;
+//}
 
 -(id)setEquipmentIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer
 {

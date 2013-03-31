@@ -29,19 +29,23 @@
         self.unitCounter = 10;
         self.respawnTimePerUnit = 10;
         
-        self.attributesBackground = [NBStaticObject createStaticObject:@"troopSelectionScreen_portrait.png" atPosition:CGPointMake(500, 100)];
+        self.attributesBackground = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:CGPointMake(375, 175)];
+        [self.attributesBackground setScale:1.25];
         
-        NBButton *killUnitButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(killUnit) withSize:CGSizeZero];
-        killUnitButton.position = CGPointMake(150, rect.size.height*0.25);
-        [killUnitButton show];
+        self.portraitImage = [NBStaticObject createStaticObject:@"troopSelectionScreen_portrait.png" atPosition:CGPointMake(425, 175)];
         
-        NBButton *respawnUnitsButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(respawnUnits) withSize:CGSizeZero];
-        respawnUnitsButton.position = CGPointMake(rect.size.width/2 + 50, rect.size.height*0.75);
-        [respawnUnitsButton show];
+//        NBButton *killUnitButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(killUnit) withSize:CGSizeZero];
+//        killUnitButton.position = CGPointMake(150, rect.size.height*0.25);
+//        [killUnitButton show];
+//        
+//        NBButton *respawnUnitsButton = [NBButton createWithStringHavingNormal:@"button_cancel.png" havingSelected:@"button_cancel.png" havingDisabled:@"button_cancel.png" onLayer:self respondTo:nil selector:@selector(respawnUnits) withSize:CGSizeZero];
+//        respawnUnitsButton.position = CGPointMake(rect.size.width/2 + 50, rect.size.height*0.75);
+//        [respawnUnitsButton show];
+//        
+//        NSNumber *numberOfLiveUnits = [[NSUserDefaults standardUserDefaults] objectForKey:@"numberOfLiveUnits"];
+//        if (numberOfLiveUnits == nil)
+//            self.unitCounter = 10;
         
-        NSNumber *numberOfLiveUnits = [[NSUserDefaults standardUserDefaults] objectForKey:@"numberOfLiveUnits"];
-        if (numberOfLiveUnits == nil)
-            self.unitCounter = 10;
         
         NBBasicClassData* statsList = [[[NBDataManager dataManager] listOfCharacters] objectAtIndex:0];
         CCLabelTTF* labelHP = [CCLabelTTF labelWithString:@"HP: " fontName:@"Marker Felt" fontSize:15];
@@ -107,7 +111,7 @@
         self.labelEVAStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelEVAStat];
         
-        [self schedule:@selector(respawnUnits) interval:1 repeat:INFINITY delay:0];
+//        [self schedule:@selector(respawnUnits) interval:1 repeat:INFINITY delay:0];
     }
     return self;
 }
@@ -239,6 +243,10 @@
     firstUnitDeathTime = [NSDate date];
   [[NSUserDefaults standardUserDefaults] setObject:firstUnitDeathTime forKey:@"firstUnitDeathTime"];
   [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)updateBonusStats:(NBEquipment *)equipment1 equipment2:(NBEquipment *)equipment2 equipment3:(NBEquipment *)equipment3{
+    
 }
 
 @end
