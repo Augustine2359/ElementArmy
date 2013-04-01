@@ -42,38 +42,10 @@
     [self.woodButton setPosition:CGPointMake(400, 125)];
     [self.woodButton show];
     
-    NBBasicClassData *test1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
-    NBBasicClassData *test2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
-    NBBasicClassData *test3 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
-    NBBasicClassData *test4 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
-    
-    CCSprite *sprite1 = [CCSprite spriteWithSpriteFrameName:test1.idleFrame];
-    CCSprite *sprite2 = [CCSprite spriteWithSpriteFrameName:test2.idleFrame];
-    CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:test3.idleFrame];
-    CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:test4.idleFrame];
-    
-    [sprite1 setScale:3];
-    [sprite2 setScale:3];
-    [sprite3 setScale:3];
-    [sprite4 setScale:3];
-    
-    [sprite1 setPosition:ccp(60, 250)];
-    [sprite2 setPosition:ccp(180, 250)];
-    [sprite3 setPosition:ccp(300, 250)];
-    [sprite4 setPosition:ccp(420, 250)];
-    
     self.fourUnits = [[CCArray alloc] initWithCapacity:4];
-    [self.fourUnits addObject:sprite1];
-    [self.fourUnits addObject:sprite2];
-    [self.fourUnits addObject:sprite3];
-    [self.fourUnits addObject:sprite4];
     [self.fourUnits retain];
     
-    [self addChild:sprite1];
-    [self addChild:sprite2];
-    [self addChild:sprite3];
-    [self addChild:sprite4];
-    
+    [self onFireButton:self];
     [self setPosition:ccp(0, -320)];
 }
 
@@ -82,6 +54,37 @@
 //    if ([sender isKindOfClass:[NBButton class]]) {
 //        DLog(@"YOLO");
 //    }
+    
+    NBBasicClassData *basic1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
+    NBBasicClassData *basic2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
+    NBBasicClassData *advanced1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
+    NBBasicClassData *advanced2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"firemage"];
+    
+    CCSprite *sprite1 = [CCSprite spriteWithSpriteFrameName:basic1.idleFrame];
+    CCSprite *sprite2 = [CCSprite spriteWithSpriteFrameName:basic2.idleFrame];
+    CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:advanced1.idleFrame];
+    CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:advanced2.idleFrame];
+    
+    CCSprite* thisSprite = [CCSprite new];
+    CCARRAY_FOREACH(self.fourUnits, thisSprite){
+        [self removeChild:thisSprite cleanup:YES];
+    }
+    
+    [self.fourUnits removeAllObjects];
+    [self.fourUnits addObject:sprite1];
+    [self.fourUnits addObject:sprite2];
+    [self.fourUnits addObject:sprite3];
+    [self.fourUnits addObject:sprite4];
+
+    for (int x = 0; x < [self.fourUnits count]; x++) {
+        CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
+        [thatSprite setScale:3];
+        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [self addChild:thatSprite];
+    }
+}
+
+-(void)onWaterButton{
     
     NBBasicClassData *basic1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
     NBBasicClassData *basic2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
@@ -93,31 +96,118 @@
     CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:advanced1.idleFrame];
     CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:advanced2.idleFrame];
     
-//    CCSprite* thatSprite = [CCSprite new];
-//    CCARRAY_FOREACH(self.fourUnits, thatSprite){
-//        DLog(@"%@", thatSprite);
-//    }
+    CCSprite* thisSprite = [CCSprite new];
+    CCARRAY_FOREACH(self.fourUnits, thisSprite){
+        [self removeChild:thisSprite cleanup:YES];
+    }
     
     [self.fourUnits removeAllObjects];
-//    [self.fourUnits addObject:sprite1];
-//    [self.fourUnits addObject:sprite2];
-//    [self.fourUnits addObject:sprite3];
-//    [self.fourUnits addObject:sprite4];
-}
-
--(void)onWaterButton{
+    [self.fourUnits addObject:sprite1];
+    [self.fourUnits addObject:sprite2];
+    [self.fourUnits addObject:sprite3];
+    [self.fourUnits addObject:sprite4];
     
+    for (int x = 0; x < [self.fourUnits count]; x++) {
+        CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
+        [thatSprite setScale:3];
+        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [self addChild:thatSprite];
+    }
+
 }
 
 -(void)onEarthButton{
     
+    NBBasicClassData *basic1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
+    NBBasicClassData *basic2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
+    NBBasicClassData *advanced1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
+    NBBasicClassData *advanced2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
+    
+    CCSprite *sprite1 = [CCSprite spriteWithSpriteFrameName:basic1.idleFrame];
+    CCSprite *sprite2 = [CCSprite spriteWithSpriteFrameName:basic2.idleFrame];
+    CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:advanced1.idleFrame];
+    CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:advanced2.idleFrame];
+    
+    CCSprite* thisSprite = [CCSprite new];
+    CCARRAY_FOREACH(self.fourUnits, thisSprite){
+        [self removeChild:thisSprite cleanup:YES];
+    }
+    
+    [self.fourUnits removeAllObjects];
+    [self.fourUnits addObject:sprite1];
+    [self.fourUnits addObject:sprite2];
+    [self.fourUnits addObject:sprite3];
+    [self.fourUnits addObject:sprite4];
+    
+    for (int x = 0; x < [self.fourUnits count]; x++) {
+        CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
+        [thatSprite setScale:3];
+        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [self addChild:thatSprite];
+    }
+
 }
 
 -(void)onMetalButton{
     
+    NBBasicClassData *basic1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
+    NBBasicClassData *basic2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
+    NBBasicClassData *advanced1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
+    NBBasicClassData *advanced2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"metalsoldier"];
+    
+    CCSprite *sprite1 = [CCSprite spriteWithSpriteFrameName:basic1.idleFrame];
+    CCSprite *sprite2 = [CCSprite spriteWithSpriteFrameName:basic2.idleFrame];
+    CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:advanced1.idleFrame];
+    CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:advanced2.idleFrame];
+    
+    CCSprite* thisSprite = [CCSprite new];
+    CCARRAY_FOREACH(self.fourUnits, thisSprite){
+        [self removeChild:thisSprite cleanup:YES];
+    }
+    
+    [self.fourUnits removeAllObjects];
+    [self.fourUnits addObject:sprite1];
+    [self.fourUnits addObject:sprite2];
+    [self.fourUnits addObject:sprite3];
+    [self.fourUnits addObject:sprite4];
+    
+    for (int x = 0; x < [self.fourUnits count]; x++) {
+        CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
+        [thatSprite setScale:3];
+        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [self addChild:thatSprite];
+    }
+
 }
 
 -(void)onWoodButton{
+    NBBasicClassData *basic1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
+    NBBasicClassData *basic2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
+    NBBasicClassData *advanced1 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
+    NBBasicClassData *advanced2 = [[NBDataManager dataManager] getBasicClassDataByClassName:@"woodarcher"];
+    
+    CCSprite *sprite1 = [CCSprite spriteWithSpriteFrameName:basic1.idleFrame];
+    CCSprite *sprite2 = [CCSprite spriteWithSpriteFrameName:basic2.idleFrame];
+    CCSprite *sprite3 = [CCSprite spriteWithSpriteFrameName:advanced1.idleFrame];
+    CCSprite *sprite4 = [CCSprite spriteWithSpriteFrameName:advanced2.idleFrame];
+    
+    CCSprite* thisSprite = [CCSprite new];
+    CCARRAY_FOREACH(self.fourUnits, thisSprite){
+        [self removeChild:thisSprite cleanup:YES];
+    }
+    
+    [self.fourUnits removeAllObjects];
+    [self.fourUnits addObject:sprite1];
+    [self.fourUnits addObject:sprite2];
+    [self.fourUnits addObject:sprite3];
+    [self.fourUnits addObject:sprite4];
+    
+    for (int x = 0; x < [self.fourUnits count]; x++) {
+        CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
+        [thatSprite setScale:3];
+        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [self addChild:thatSprite];
+    }
     
 }
 
