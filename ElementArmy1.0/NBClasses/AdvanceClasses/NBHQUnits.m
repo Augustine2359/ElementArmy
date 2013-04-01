@@ -79,7 +79,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }
@@ -110,10 +110,9 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
-
 }
 
 -(void)onEarthButton{
@@ -142,10 +141,9 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
-
 }
 
 -(void)onMetalButton{
@@ -174,10 +172,9 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
-
 }
 
 -(void)onWoodButton{
@@ -205,10 +202,9 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x*120 + 60, 250)];
+        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
-    
 }
 
 @end
