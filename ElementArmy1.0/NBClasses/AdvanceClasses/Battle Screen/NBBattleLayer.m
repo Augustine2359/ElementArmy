@@ -12,7 +12,6 @@
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
-#import "NBSpellProjectile.h"
 
 #define SUPER_SHORT_ANIMATION 1
 
@@ -795,6 +794,27 @@ static Boolean isAutoStart = NO;
   return nil;
 }
 
+- (NBCharacter *)findRandomCharacterFromCharacterSide:(EnumCharacterSide)characterSide {
+  NSMutableArray *characters = [NSMutableArray array];
+  if (characterSide == Ally) {
+    for (NBSquad *squad in self.allySquads)
+      for (NBCharacter *character in squad.unitArray)
+#warning isAlive is causing the game to crash
+//        if (character.isAlive)
+          [characters addObject:character];
+  }
+  else {
+    for (NBSquad *squad in self.enemySquads)
+      for (NBCharacter *character in squad.unitArray)
+//        if (character.isAlive)
+          [characters addObject:character];
+  }
+
+  NSInteger numberOfCharacters = [characters count];
+  NSInteger randomNumber = arc4random()%numberOfCharacters;
+  return [characters objectAtIndex:randomNumber];
+}
+
 - (BOOL)isSpellReady:(NSDate *)lastCastDateOfSpell cooldown:(CGFloat)cooldown{
   CGFloat timeSinceLastCastDate = [[NSDate date] timeIntervalSinceDate:lastCastDateOfSpell];
   if (timeSinceLastCastDate >= cooldown)
@@ -810,16 +830,46 @@ static Boolean isAutoStart = NO;
     if (squadWithCharacter == nil)
       return;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
-    if ([self isSpellReady:lastCastDateOfSpell cooldown:0] || (lastCastDateOfSpell == nil)) {
+    if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
 //      if (character.basicClassData.attackType == atMelee)
 //        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castEarthquake:target];
       if (character.basicClassData.attackType == atRange)
-        [self castThrowSomethingFrom:character toTarget:target];
+        [self castLaserSightFrom:character toTarget:target];
+//        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castArrowRain:target];
     }
   }
+}
+
+- (void)castLaserSightFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
+  NSMutableArray *spellProjectiles = [NSMutableArray array];
+  NBSquad *squad = [self findSquadWithCharacter:thrower];
+
+  for (NBCharacter *character in squad.unitArray) {
+    NBSpellProjectile *spellProjectile = [[NBSpellProjectile alloc] init];
+    spellProjectile.thrower = character;
+    if ([character isEqual:thrower])
+      spellProjectile.target = target;
+    else
+      spellProjectile.target = [self findRandomCharacterFromCharacterSide:Enemy];
+
+    [spellProjectiles addObject:spellProjectile];
+  }
+
+  NBLaserSight *laserSight = [[NBLaserSight alloc] initWithSpellProjectiles:spellProjectiles lockOnTime:2];
+  laserSight.delegate = self;
+  [laserSight startLockOn];
+  [self addChild:laserSight];
+}
+
+- (void)lockOnFinished:(NSTimer *)lockOnTimer {
+  NBLaserSight *laserSight = [[lockOnTimer userInfo] objectForKey:@"laserSight"];
+  for (NBSpellProjectile *spellProjectile in [laserSight spellProjectiles]) {
+    [self castThrowSomethingFrom:spellProjectile.thrower toTarget:spellProjectile.target];
+  }
+  [laserSight removeFromParentAndCleanup:YES];
 }
 
 - (void)castThrowSomethingFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {

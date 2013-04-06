@@ -193,6 +193,7 @@
 		BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC0F60116B6C846006A1C88 /* NBItem.m */; };
 		BCDA1AC116EC1C4E00438E35 /* NBBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDA1AC016EC1C4E00438E35 /* NBBasicObject.m */; };
 		F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FB91710476600D7CFBB /* NBSpellProjectile.m */; };
+		F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FBC1710767500D7CFBB /* NBLaserSight.m */; };
 		F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */; };
 		F929148716F96B63003E2B22 /* NBRipples.m in Sources */ = {isa = PBXBuildFile; fileRef = F929148616F96B63003E2B22 /* NBRipples.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
@@ -553,6 +554,8 @@
 		BCDA1AC016EC1C4E00438E35 /* NBBasicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicObject.m; sourceTree = "<group>"; };
 		F9125FB81710476600D7CFBB /* NBSpellProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSpellProjectile.h; sourceTree = "<group>"; };
 		F9125FB91710476600D7CFBB /* NBSpellProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSpellProjectile.m; sourceTree = "<group>"; };
+		F9125FBB1710767500D7CFBB /* NBLaserSight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBLaserSight.h; sourceTree = "<group>"; };
+		F9125FBC1710767500D7CFBB /* NBLaserSight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBLaserSight.m; sourceTree = "<group>"; };
 		F920EA1916DDD025006BA898 /* NBUnitRespawnContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUnitRespawnContainerLayer.h; sourceTree = "<group>"; };
 		F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUnitRespawnContainerLayer.m; sourceTree = "<group>"; };
 		F929148516F96B63003E2B22 /* NBRipples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBRipples.h; sourceTree = "<group>"; };
@@ -1153,6 +1156,8 @@
 			children = (
 				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
 				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
+				F9125FBB1710767500D7CFBB /* NBLaserSight.h */,
+				F9125FBC1710767500D7CFBB /* NBLaserSight.m */,
 				F9125FB81710476600D7CFBB /* NBSpellProjectile.h */,
 				F9125FB91710476600D7CFBB /* NBSpellProjectile.m */,
 				F929148516F96B63003E2B22 /* NBRipples.h */,
@@ -1542,6 +1547,7 @@
 				BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */,
 				BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */,
 				F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */,
+				F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1602,6 +1608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Romy Irawaty (Y43FPGUK7X)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1614,6 +1621,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "015DCA2F-9527-4AE0-BC11-DEFE4438F5F7";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1623,6 +1631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Romy Irawaty (Y43FPGUK7X)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ElementArmy1.0/Prefix.pch;
@@ -1634,6 +1643,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "015DCA2F-9527-4AE0-BC11-DEFE4438F5F7";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
