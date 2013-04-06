@@ -832,9 +832,8 @@ static Boolean isAutoStart = NO;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
     if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
-//      if (character.basicClassData.attackType == atMelee)
-//        [self castThrowSomethingFrom:character toTarget:target];
-//        [self castEarthquake:target];
+      if (character.basicClassData.attackType == atMelee)
+        [self castEarthquake:target];
       if (character.basicClassData.attackType == atRange)
         [self castLaserSightFrom:character toTarget:target];
 //        [self castThrowSomethingFrom:character toTarget:target];
@@ -962,6 +961,7 @@ static Boolean isAutoStart = NO;
   earthquakeRipples.rippleInterval = frameInterval * numberOfFrames/2;
   earthquakeRipples.numberOfRipples = numberOfAnimationLoops * 2;
   earthquakeRipples.delegate = self;
+  [earthquakeRipples startRipples];
   [self addChild:earthquakeRipples];
 }
 
