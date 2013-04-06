@@ -16,7 +16,7 @@
     
     //Guard with minimum size...
     if (size.width < (layer.layerSize.width - 32)) size = CGSizeMake((layer.layerSize.width - 32), size.height);
-    if (size.height < (layer.layerSize.height * 0.95)) size = CGSizeMake(size.width, (layer.layerSize.height * 0.95));
+    if (size.height > (layer.layerSize.height * 0.95)) size = CGSizeMake(size.width, (layer.layerSize.height * 0.95));
     
     if (self = [super initWithColor:ccc4(200, 200, 125, 255) width:size.width height:size.height])
     {
