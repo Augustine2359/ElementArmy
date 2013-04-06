@@ -64,7 +64,7 @@
     
     [self readFromDataManager];
     //Just for the time being, disable save progress.
-    //[self.dataManager saveStages];
+    [self.dataManager saveStages];
     [self readStagesFromFile];
     
     //FLAG

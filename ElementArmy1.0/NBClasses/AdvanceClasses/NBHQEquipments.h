@@ -17,6 +17,7 @@
 @property (nonatomic, retain) CCArray* allQuantityLabels;
 @property (nonatomic, assign) CCArray* allQuantityText;
 
+@property (nonatomic, retain) CCSprite* labelBackground;
 @property (nonatomic, retain) CCLabelTTF* descriptionLabel;
 @property (nonatomic, assign) NSString* descriptionString;
 
