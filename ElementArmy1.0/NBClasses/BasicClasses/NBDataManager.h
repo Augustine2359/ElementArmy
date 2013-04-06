@@ -24,6 +24,7 @@
 -(void)createProjectileList;
 -(void)loadEquipmentList;
 -(void)loadSkillList;
+-(void)loadPlayerData;
 
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 

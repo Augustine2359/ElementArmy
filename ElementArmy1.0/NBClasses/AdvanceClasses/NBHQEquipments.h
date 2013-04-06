@@ -13,6 +13,9 @@
 
 @property (nonatomic, retain) id mainLayer;
 @property (nonatomic, retain) CCArray* allEquipments;
+@property (nonatomic, retain) CCArray* allCostLabels;
+@property (nonatomic, retain) CCArray* allQuantityLabels;
+@property (nonatomic, assign) CCArray* allQuantityText;
 
 @property (nonatomic, retain) CCLabelTTF* descriptionLabel;
 @property (nonatomic, assign) NSString* descriptionString;

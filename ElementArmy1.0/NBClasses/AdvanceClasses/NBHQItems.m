@@ -41,6 +41,18 @@ NBItem* currSelectedItem = nil;
         [thatItem.itemIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
         [thatItem displayItemIcon];
         
+        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"Marker Felt" fontSize:15];
+        int initialQuantity = 0;
+        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", initialQuantity] fontName:@"Marker Felt" fontSize:15];
+        costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
+        quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
+        
+        [self addChild:costLabel];
+        [self addChild:quantityLabel];
+        [self.allCostLabels addObject:costLabel];
+        [self.allQuantityLabels addObject:quantityLabel];
+        [self.allQuantityText addObject:[NSNumber numberWithInt:initialQuantity]];
+
         if (x == 11) {
             //Do something to show the remainder on next page
             break;

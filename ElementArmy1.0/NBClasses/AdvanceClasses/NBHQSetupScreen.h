@@ -29,10 +29,13 @@
 @property (nonatomic, retain) NBButton* confirmButton;
 @property (nonatomic, retain) NBButton* cancelButton;
 
+@property (nonatomic, assign) bool canInput;
+
 -(void)openEquipmentsMenu;
 -(void)openItemsMenu;
 -(void)openUnitsMenu;
 -(void)confirmAndCloseMenu;
+-(void)onMenuReady;
 
 -(void)gotoMainMenuScreen;
 -(void)gotoMapSelectionScreen;
