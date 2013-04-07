@@ -60,8 +60,14 @@ NBEquipment* currSelectedEquipment = nil;
     }
     
     self.descriptionString = @"No equipment selected";
-    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString fontName:@"Marker Felt" fontSize:20];
-    self.descriptionLabel.position = ccp(240, 150);
+    
+    self.labelBackground = [CCSprite spriteWithSpriteFrameName:@"staticbox_gray.png"];
+    self.labelBackground.scaleX = 360 / self.labelBackground.contentSize.width;
+    self.labelBackground.scaleY = 50 / self.labelBackground.contentSize.height;
+    self.labelBackground.position = ccp(220, 130);
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"PF Ronda Seven" fontSize:10];
+    self.descriptionLabel.position = ccp(230, 130);
+    [self addChild:self.labelBackground];
     [self addChild:self.descriptionLabel];
     
     [self setPosition:ccp(0, -320)];

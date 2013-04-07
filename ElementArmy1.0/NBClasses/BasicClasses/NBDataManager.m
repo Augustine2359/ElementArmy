@@ -93,9 +93,10 @@ static CCArray* listOfEquipments = nil;
 
     //read from the app documents directory
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
     NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
+    //temporary
     dictionary = nil;
     
     //if it doesn't exist yet, use the default one
@@ -427,7 +428,7 @@ static CCArray* listOfEquipments = nil;
 
   //save the changes to the app documents directory
   NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-  NSString *path = [rootPath stringByAppendingPathComponent:@"GameSettings.plist"];
+  NSString *path = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
 
   if (plistData)
     [plistData writeToFile:path atomically:YES];

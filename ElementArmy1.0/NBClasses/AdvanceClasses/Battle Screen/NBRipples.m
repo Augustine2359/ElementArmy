@@ -35,15 +35,14 @@
     self.origin = CGPointMake(100, 100);
     self.amplitude = 50;
     self.numberOfRipples = 10;
-    self.startDate = [NSDate date];
     self.rippleInterval = 0.25;
     self.rippleDuration = 1;
   }
   return self;
 }
 
-- (void)setDelegate:(id <NBRipplesDelegate>)delegate {
-  _delegate = delegate;
+- (void)startRipples {
+  self.startDate = [NSDate date];
   NSTimer *timer = [NSTimer timerWithTimeInterval:self.rippleInterval target:self selector:@selector(rippleFinished:) userInfo:nil repeats:YES];
   timer.fireDate = [self.startDate dateByAddingTimeInterval:self.rippleDuration];
   [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];

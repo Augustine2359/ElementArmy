@@ -13,6 +13,8 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
+#define SUPER_SHORT_ANIMATION 1
+
 #pragma mark - NBBattleLayer
 
 #define UNIT_COUNT_PER_SQUAD 8
@@ -587,27 +589,31 @@ static Boolean isAutoStart = NO;
 
 -(void)entranceAnimationStep1
 {
-    CCDelayTime* delay = [CCDelayTime actionWithDuration:0.5];
+    CGFloat duration = SUPER_SHORT_ANIMATION ? 0 : 0.5;
+    CCDelayTime* delay = [CCDelayTime actionWithDuration:duration];
     NSString *stageName = self.dataManager.selectedStageData.stageName;
     if (stageName == nil)
       stageName = @"Default";
     self.stageNameBanner = [CCLabelTTF labelWithString:stageName fontName:@"Zapfino" fontSize:32];
     self.stageNameBanner.position = CGPointMake((self.layerSize.width / 2), (self.layerSize.height / 2) + 320);
     
-    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:1.80];
-    CCFadeOut* fadeOut = [CCFadeOut actionWithDuration:1.80];
-    
+    duration = SUPER_SHORT_ANIMATION ? 0 : 1.80;
+    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:duration];
+    CCFadeOut* fadeOut = [CCFadeOut actionWithDuration:duration];
+
     CCCallFuncN* animationCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep2)];
     CCSequence* sequence = [CCSequence actions:delay, fadeIn, delay, fadeOut, animationCompleted, nil];
     [self.stageNameBanner runAction:sequence];
-    
+
     [self addChild:self.stageNameBanner];
 }
 
 -(void)entranceAnimationStep2
 {
-    CCMoveTo* move = [CCMoveTo actionWithDuration:0.5 position:CGPointMake(self.position.x, 0)];
-    
+    CGFloat duration = SUPER_SHORT_ANIMATION ? 0 : 0.5;
+
+    CCMoveTo* move = [CCMoveTo actionWithDuration:duration position:CGPointMake(self.position.x, 0)];
+
     CCCallFuncN* moveCompleted = [CCCallFuncN actionWithTarget:self selector:@selector(entranceAnimationStep3)];
     CCSequence* sequence = [CCSequence actions:move, moveCompleted, nil];
     [self runAction:sequence];
@@ -788,6 +794,27 @@ static Boolean isAutoStart = NO;
   return nil;
 }
 
+- (NBCharacter *)findRandomCharacterFromCharacterSide:(EnumCharacterSide)characterSide {
+  NSMutableArray *characters = [NSMutableArray array];
+  if (characterSide == Ally) {
+    for (NBSquad *squad in self.allySquads)
+      for (NBCharacter *character in squad.unitArray)
+#warning isAlive is causing the game to crash
+//        if (character.isAlive)
+          [characters addObject:character];
+  }
+  else {
+    for (NBSquad *squad in self.enemySquads)
+      for (NBCharacter *character in squad.unitArray)
+//        if (character.isAlive)
+          [characters addObject:character];
+  }
+
+  NSInteger numberOfCharacters = [characters count];
+  NSInteger randomNumber = arc4random()%numberOfCharacters;
+  return [characters objectAtIndex:randomNumber];
+}
+
 - (BOOL)isSpellReady:(NSDate *)lastCastDateOfSpell cooldown:(CGFloat)cooldown{
   CGFloat timeSinceLastCastDate = [[NSDate date] timeIntervalSinceDate:lastCastDateOfSpell];
   if (timeSinceLastCastDate >= cooldown)
@@ -808,9 +835,105 @@ static Boolean isAutoStart = NO;
       if (character.basicClassData.attackType == atMelee)
         [self castEarthquake:target];
       if (character.basicClassData.attackType == atRange)
-        [self castArrowRain:target];
+        [self castLaserSightFrom:character toTarget:target];
+//        [self castThrowSomethingFrom:character toTarget:target];
+//        [self castArrowRain:target];
     }
   }
+}
+
+- (void)castLaserSightFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
+  NSMutableArray *spellProjectiles = [NSMutableArray array];
+  NBSquad *squad = [self findSquadWithCharacter:thrower];
+
+  for (NBCharacter *character in squad.unitArray) {
+    NBSpellProjectile *spellProjectile = [[NBSpellProjectile alloc] init];
+    spellProjectile.thrower = character;
+    if ([character isEqual:thrower])
+      spellProjectile.target = target;
+    else
+      spellProjectile.target = [self findRandomCharacterFromCharacterSide:Enemy];
+
+    [spellProjectiles addObject:spellProjectile];
+  }
+
+  NBLaserSight *laserSight = [[NBLaserSight alloc] initWithSpellProjectiles:spellProjectiles lockOnTime:2];
+  laserSight.delegate = self;
+  [laserSight startLockOn];
+  [self addChild:laserSight];
+}
+
+- (void)lockOnFinished:(NSTimer *)lockOnTimer {
+  NBLaserSight *laserSight = [[lockOnTimer userInfo] objectForKey:@"laserSight"];
+  for (NBSpellProjectile *spellProjectile in [laserSight spellProjectiles]) {
+    [self castThrowSomethingFrom:spellProjectile.thrower toTarget:spellProjectile.target];
+  }
+  [laserSight removeFromParentAndCleanup:YES];
+}
+
+- (void)castThrowSomethingFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
+  CCSprite *axeSprite = [CCSprite spriteWithSpriteFrameName:@"fireball_anim_1.png"];
+  axeSprite.position = thrower.position;
+  CCRotateBy *rotateBy = [CCRotateBy actionWithDuration:0.5 angle:360];
+  [axeSprite runAction:[CCRepeatForever actionWithAction:rotateBy]];
+
+  [self addChild:axeSprite];
+
+  NBSpellProjectile *axeSpellProjectile = [[NBSpellProjectile alloc] initWithSpeed:10];
+  axeSpellProjectile.isBoomerang = YES;
+  axeSpellProjectile.thrower = thrower;
+  axeSpellProjectile.target = target;
+
+  [self checkAxeCollision:axeSprite data:axeSpellProjectile];
+}
+
+- (void)checkAxeCollision:(id)object data:(id)data {
+  if ([object isKindOfClass:[CCSprite class]] == NO)
+    return;
+
+  CCSprite *axeSprite = (CCSprite *)object;
+  NBSpellProjectile *axeSpellProjectile = (NBSpellProjectile *)data;
+  NBCharacter *target;
+  if (axeSpellProjectile.isReturningToThrower)
+    target = axeSpellProjectile.thrower;
+  else
+    target = axeSpellProjectile.target;
+
+  NSArray *collidingCharacters = [self charactersCollidingWithPoint:axeSprite.position radius:5];
+  for (NBCharacter *character in collidingCharacters) {
+    NSInteger damage = 5;
+    [character onAttackedBySkillWithDamage:damage];
+    DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+  }
+
+  CGFloat euclideanDistance = ccpDistance(axeSprite.position, target.position);
+  CGFloat speed = axeSpellProjectile.speed;
+  CGPoint translationRequired = ccpSub(target.position, axeSprite.position);
+  if (euclideanDistance < speed)
+    translationRequired = CGPointMake(translationRequired.x, translationRequired.y);
+  else {
+    translationRequired = CGPointMake(speed*translationRequired.x/euclideanDistance, speed*translationRequired.y/euclideanDistance);
+
+    //uncomment the following for a curved trajectory
+//    CGFloat trajectoryOffset = M_PI/180.0*20.0;
+//    CGAffineTransform rotate = CGAffineTransformMakeRotation(trajectoryOffset);
+//    translationRequired = CGPointApplyAffineTransform(translationRequired, rotate);
+  }
+
+  if (CGPointEqualToPoint(CGPointZero, translationRequired)) {
+    if (axeSpellProjectile.isBoomerang && axeSpellProjectile.isReturningToThrower == NO)
+      axeSpellProjectile.isReturningToThrower = YES;
+    else {
+      [axeSprite removeFromParentAndCleanup:YES];
+      return;
+    }
+  }
+
+  CCMoveBy *moveBy = [CCMoveBy actionWithDuration:1.0/speed position:translationRequired];
+
+  CCCallFuncND *callFunc = [CCCallFuncND actionWithTarget:self selector:@selector(checkAxeCollision:data:) data:axeSpellProjectile];
+  CCSequence *sequence = [CCSequence actionOne:moveBy two:callFunc];
+  [axeSprite runAction:sequence];
 }
 
 - (void)castEarthquake:(NBCharacter *)target {
@@ -838,6 +961,7 @@ static Boolean isAutoStart = NO;
   earthquakeRipples.rippleInterval = frameInterval * numberOfFrames/2;
   earthquakeRipples.numberOfRipples = numberOfAnimationLoops * 2;
   earthquakeRipples.delegate = self;
+  [earthquakeRipples startRipples];
   [self addChild:earthquakeRipples];
 }
 
@@ -869,15 +993,11 @@ static Boolean isAutoStart = NO;
 
   CCSprite *arrowSprite = (CCSprite *)data;
 
-  for (NBSquad *squad in self.enemySquads) {
-    for (NBCharacter *character in squad.unitArray) {
-      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:arrowSprite.position withRippleAmplitude:5];
-      if (hasCollision) {
-        NSInteger damage = 5;
-        [character onAttackedBySkillWithDamage:damage];
-        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
-      }
-    }
+  NSArray *collidingCharacters = [self charactersCollidingWithPoint:arrowSprite.position radius:5];
+  for (NBCharacter *character in collidingCharacters) {
+    NSInteger damage = 5;
+    [character onAttackedBySkillWithDamage:damage];
+    DLog(@"%@ has taken %d damage from a skill", character.name, damage);
   }
 
   [arrowSprite removeFromParentAndCleanup:YES];
@@ -892,16 +1012,25 @@ static Boolean isAutoStart = NO;
   [self runAction:repeatingAction];
 }
 
-- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+- (NSArray *)charactersCollidingWithPoint:(CGPoint)point radius:(CGFloat)radius {
+  NSMutableArray *collidingCharacters = [NSMutableArray array];
   for (NBSquad *squad in self.enemySquads) {
     for (NBCharacter *character in squad.unitArray) {
-      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:rippleOrigin withRippleAmplitude:rippleAmplitude];
+      BOOL hasCollision = [self checkCharacter:character collisionWithRippleOrigin:point withRippleAmplitude:radius];
       if (hasCollision) {
-        NSInteger damage = 1;
-        [character onAttackedBySkillWithDamage:damage];
-        DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+        [collidingCharacters addObject:character];
       }
     }
+  }
+  return collidingCharacters;
+}
+
+- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+  NSArray *collidingCharacters = [self charactersCollidingWithPoint:rippleOrigin radius:rippleAmplitude];
+  for (NBCharacter *character in collidingCharacters) {
+    NSInteger damage = 1;
+    [character onAttackedBySkillWithDamage:damage];
+    DLog(@"%@ has taken %d damage from a skill", character.name, damage);
   }
 }
 

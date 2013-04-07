@@ -30,7 +30,7 @@
     for (NBConnectorDot* connectorDot in self.dotsData)
     {
         NBSingleAnimatedObject* dot = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_1.png"];
-        dot.position = CGPointMake((connectorDot.gridPosition.x - 1) * DOT_SQUARE_SIZE, (connectorDot.gridPosition.y - 1) * DOT_SQUARE_SIZE);
+        dot.position = CGPointMake((connectorDot.gridPosition.x - 1) * DOT_SQUARE_SIZE, (connectorDot.gridPosition.y) * DOT_SQUARE_SIZE);
         dot.rotation = connectorDot.rotation;
         [dot addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
         dot.visible = NO;
