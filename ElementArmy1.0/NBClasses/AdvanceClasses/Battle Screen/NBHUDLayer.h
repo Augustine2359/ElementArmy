@@ -22,6 +22,8 @@
 -(void)entranceAnimationStep2:(id)objectToRespond withSelector:(SEL)selector;
 -(void)entranceAnimationStep3:(id)objectToRespond withSelector:(SEL)selector;
 -(void)entranceAnimationStep4;
+-(void)updateAllyHPScale:(long)scaleAmount;
+-(void)updateEnemyHPScale:(long)scaleAmount;
 
 @property (nonatomic, retain) id battlefieldLayer;
 @property (nonatomic, retain) NBFancySlidingMenuLayer *itemMenuLayer;

@@ -487,94 +487,90 @@ static CCArray* enemyUnitList = nil;
     
     if (!updateIsActive) return;
     
-    if ([self.name isEqualToString:TEST_OBJECT_NAME])
+    /*if ([self.name isEqualToString:TEST_OBJECT_NAME])
     {
         DLog(@"%@ is at position x = %f, y = %f", self.name, self.position.x, self.position.y);
-    }
+    }*/
     
     NSString *currentStateString = @"Other Unknown";
     
     if (self.hitPoint <= 0 && self.currentState != Dying && self.currentState != Dead)
         [self dead];
     
-    if (self.currentState != Dead)
+    if (self.currentState != Dead && self.currentState != EnteringScene)
     {
-        if (self.previousTarget)
+        if (battleIsEngaged)
         {
-            if (self.previousTarget != self.currentTarget)
+            if (self.previousTarget)
             {
-                [self.previousTarget onTargettedByMeleeReleased:self];
+                if (self.previousTarget != self.currentTarget)
+                {
+                    [self.previousTarget onTargettedByMeleeReleased:self];
+                }
             }
-        }
-        
-        if (self.currentState != Dead)
-        {
+            
             if (!self.isAttackReady)
             {
                 self.timeUntilNextAttack -= (self.dexterityPoint * delta * 30);
                 
-                if (self.timeUntilNextAttack <= 0)
-                    self.isAttackReady = true;
-            }
-        }
-        else
-        {
-            if (self.visible) [self setVisible:NO];
-        }
-        
-        //Check if enemy is still alive
-        if (self.currentTarget.hitPoint <= 0 || self.currentTarget.currentState == Dead)
-        {
-            self.currentTarget = nil;
-            self.currentAttackPost = -1;
-        }
-        
-        //Update facing
-        if (self.currentTarget != nil)
-        {
-            if (self.currentTarget.position.x > self.position.x)
-                self.facing = Right;
-            else
-                self.facing = Left;
-        }
-        else
-        {
-            if (self.characterSide == Ally)
-                self.facing = Right;
-            else
-                self.facing = Left;
-        }
-        
-        //Update Z
-        if (self.position.y != self.previousPosition.y)
-        {
-            [self reorderMe:self.position.y];
-        }
-        
-        if (self.currentState == EnteringScene)
-        {
-            [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-            //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-            return;
-        }
-        
-        if (self.currentState != Dead && self.currentState != Dying)
-        {
-            //Below code is to automatically find a new target if the object does not have any target yet
-            if (self.currentTarget == nil)
-            {
-                self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
+                if ([self.name isEqualToString:TEST_OBJECT_NAME])
+                    DLog(@"debugging");
                 
-                if (self.currentTarget == nil)
-                    self.currentState = Idle;
-                else
+                if (self.timeUntilNextAttack <= 0)
                 {
-#if DEBUG
-                    DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
-#endif
+                    if ([self.name isEqualToString:TEST_OBJECT_NAME])
+                        DLog(@"debugging");
+                    self.isAttackReady = true;
+                }
+            }
+            
+            //Check if enemy is still alive
+            if (self.currentTarget.hitPoint <= 0 || self.currentTarget.currentState == Dead)
+            {
+                self.currentTarget = nil;
+                self.currentAttackPost = -1;
+            }
+            
+            //Update facing
+            if (self.currentTarget != nil)
+            {
+                if (self.currentTarget.position.x > self.position.x)
+                    self.facing = Right;
+                else
+                    self.facing = Left;
+            }
+            else
+            {
+                if (self.characterSide == Ally)
+                    self.facing = Right;
+                else
+                    self.facing = Left;
+            }
+            
+            //Update Z
+            if (self.position.y != self.previousPosition.y)
+            {
+                [self reorderMe:self.position.y];
+            }
+            
+            if (self.currentState != Dead && self.currentState != Dying)
+            {
+                //Below code is to automatically find a new target if the object does not have any target yet
+                if (self.currentTarget == nil)
+                {
+                    self.currentTarget = [self findNewTarget:[NBCharacter getEnemyListOf:self]];
                     
-                    self.currentState = Targetting;
-                    [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
+                    if (self.currentTarget == nil)
+                        self.currentState = Idle;
+                    else
+                    {
+    #if DEBUG
+                        DLog(@"%@ found new target %@", self.name, self.currentTarget.name);
+    #endif
+                        
+                        self.currentState = Targetting;
+                        [self.currentTarget onTargettedBy:self]; //most of the time, you want this line of code be always there
+                    }
                 }
             }
 
@@ -605,15 +601,18 @@ static CCArray* enemyUnitList = nil;
                 case Targetting:
                     currentStateString = @"Targetting";
                     
-                    if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
+                    if (self.basicClassData.attackType == atMelee)
                     {
-                        [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                        //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                    }
-                    else
-                    {
-                        [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
-                        //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        if (![self.basicClassData.walkAnimFrame isEqualToString:@""])
+                        {
+                            [self changeAnimationTo:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                            //[self.animation playAnimation:@"Walk" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        }
+                        else
+                        {
+                            [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                            //[self.animation playAnimation:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+                        }
                     }
                     
                     if (self.basicClassData.attackType == atMelee)
@@ -645,6 +644,9 @@ static CCArray* enemyUnitList = nil;
                     
                     if (self.isAttackReady)
                     {
+                        if ([self.name isEqualToString:TEST_OBJECT_NAME])
+                            DLog(@"debugging");
+                        
                         self.currentState = Attacking;
                         [self attackWithAnimation:self.currentTarget withAnimation:@"Attack"];
                     }
@@ -737,6 +739,16 @@ static CCArray* enemyUnitList = nil;
     }
     else
     {
+        if (self.currentState == EnteringScene)
+        {
+            [self changeAnimationTo:@"Idle" withDelay:0.5 andRepeatForever:YES withTarget:nil andSelector:nil];
+            self.currentState = Waiting;
+        }
+        else if (self.currentState == Dead)
+        {
+            if (self.visible) [self setVisible:NO];
+        }
+        
         if (self.currentTarget)
             [self.currentTarget onTargettedByMeleeReleased:self];
     }
@@ -766,6 +778,14 @@ static CCArray* enemyUnitList = nil;
 
 -(void)attack:(NBCharacter*)target
 {
+    [self refreshAttackState];
+    
+    if (target.currentState == Dead || target.currentState == Dying)
+    {
+        self.currentTarget = nil;
+        return;
+        
+    }
     //If melee type, this method is where the attack happen, but for range type, actually its the projectile that will register the attack.
     if (self.basicClassData.attackType == atMelee)
     {
@@ -787,14 +807,17 @@ static CCArray* enemyUnitList = nil;
     //Below here are the same for both range and melee attacj type
     if ([self.name isEqualToString:TEST_OBJECT_NAME])
         DLog(@"%@ commence attack on %@", self.name, target.name);
-    
+}
+
+-(void)refreshAttackState
+{
     int randomDelay = 300 - (arc4random() % self.dexterityPoint);
     
     self.timeUntilNextAttack = MAXIMUM_ATTACK_REFRESH_DURATION + randomDelay;
     self.isAttackReady = false;
     self.currentState = Engaged;
     
-    if (target.hitPoint <= 0)
+    if (self.currentTarget.hitPoint <= 0)
         self.currentState = Idle;
 }
 
@@ -1038,7 +1061,7 @@ static CCArray* enemyUnitList = nil;
 #if DEBUG
     DLog(@"%@ is dead", self.name);
 #endif
-    
+    self.currentState = Dead;
     [self dissapear];
 }
 
@@ -1057,8 +1080,8 @@ static CCArray* enemyUnitList = nil;
     else
         [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
     
-    if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+    //if ([self.name isEqualToString:TEST_OBJECT_NAME])
+    //    DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
     
     if (self.currentState == Waiting)
     {
@@ -1089,8 +1112,8 @@ static CCArray* enemyUnitList = nil;
     else
         [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
     
-    if ([self.name isEqualToString:TEST_OBJECT_NAME])
-        DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+    //if ([self.name isEqualToString:TEST_OBJECT_NAME])
+    //    DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
     
 #if DEBUG
     DLog(@"%@ is attacked", self.name);
@@ -1117,8 +1140,8 @@ static CCArray* enemyUnitList = nil;
   else
     [NBDamageLabel registerDamage:self.position withDamageAmount:damage toRight:NO];
 
-  if ([self.name isEqualToString:TEST_OBJECT_NAME])
-    DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
+  //if ([self.name isEqualToString:TEST_OBJECT_NAME])
+        //DLog(@"%@ hit by %i damage. Current hit point = %i", self.name, damage, self.hitPoint);
 
 #if DEBUG
   DLog(@"%@ is attacked", self.name);

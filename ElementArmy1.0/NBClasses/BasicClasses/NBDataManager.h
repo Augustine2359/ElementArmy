@@ -25,6 +25,7 @@
 -(void)loadEquipmentList;
 -(void)loadSkillList;
 -(void)loadPlayerData;
+-(void)loadGameSettingData;
 
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
@@ -37,6 +38,7 @@
 +(CCArray*)getListOfEquipments;
 
 @property (nonatomic, retain) NSString* userID;
+@property (nonatomic, retain) NSMutableDictionary* saveGameDictionary;
 
 @property (nonatomic, retain) CCArray* listOfCreatedStagesID;
 @property (nonatomic, retain) CCArray* listOfCompletedStageID;

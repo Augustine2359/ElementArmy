@@ -2147,6 +2147,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2352,6 +2354,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2473,6 +2477,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2594,6 +2600,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2715,6 +2723,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2836,6 +2846,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -2959,6 +2971,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -3080,6 +3094,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -3197,6 +3213,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 				<dict>
 					<key>stageID</key>
@@ -3314,6 +3332,8 @@
 					</array>
 					<key>winCount</key>
 					<integer>0</integer>
+					<key>battlePointAwarded</key>
+					<integer>100</integer>
 				</dict>
 			</array>
 		</dict>
@@ -8427,6 +8447,224 @@
 			<key>frequency</key>
 			<integer>1000</integer>
 			<key>canExceedMaxValue</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>General data</key>
+	<array>
+		<dict>
+			<key>gameSettingName</key>
+			<string>levelling table</string>
+			<key>levelData</key>
+			<dict>
+				<key>level - 1</key>
+				<integer>150</integer>
+				<key>level - 2</key>
+				<integer>150</integer>
+				<key>level - 3</key>
+				<integer>150</integer>
+				<key>level - 4</key>
+				<integer>150</integer>
+				<key>level - 5</key>
+				<integer>150</integer>
+				<key>level - 6</key>
+				<integer>150</integer>
+				<key>level - 7</key>
+				<integer>150</integer>
+				<key>level - 8</key>
+				<integer>150</integer>
+				<key>level - 9</key>
+				<integer>150</integer>
+				<key>level - 10</key>
+				<integer>150</integer>
+				<key>level - 11</key>
+				<integer>150</integer>
+				<key>level - 12</key>
+				<integer>150</integer>
+				<key>level - 13</key>
+				<integer>150</integer>
+				<key>level - 14</key>
+				<integer>150</integer>
+				<key>level - 15</key>
+				<integer>150</integer>
+				<key>level - 16</key>
+				<integer>150</integer>
+				<key>level - 17</key>
+				<integer>150</integer>
+				<key>level - 18</key>
+				<integer>150</integer>
+				<key>level - 19</key>
+				<integer>150</integer>
+				<key>level - 20</key>
+				<integer>150</integer>
+				<key>level - 21</key>
+				<integer>150</integer>
+				<key>level - 22</key>
+				<integer>150</integer>
+				<key>level - 23</key>
+				<integer>150</integer>
+				<key>level - 24</key>
+				<integer>150</integer>
+				<key>level - 25</key>
+				<integer>150</integer>
+				<key>level - 26</key>
+				<integer>150</integer>
+				<key>level - 27</key>
+				<integer>150</integer>
+				<key>level - 28</key>
+				<integer>150</integer>
+				<key>level - 29</key>
+				<integer>150</integer>
+				<key>level - 30</key>
+				<integer>150</integer>
+				<key>level - 31</key>
+				<integer>150</integer>
+				<key>level - 32</key>
+				<integer>150</integer>
+				<key>level - 33</key>
+				<integer>150</integer>
+				<key>level - 34</key>
+				<integer>150</integer>
+				<key>level - 35</key>
+				<integer>150</integer>
+				<key>level - 36</key>
+				<integer>150</integer>
+				<key>level - 37</key>
+				<integer>150</integer>
+				<key>level - 38</key>
+				<integer>150</integer>
+				<key>level - 39</key>
+				<integer>150</integer>
+				<key>level - 40</key>
+				<integer>150</integer>
+				<key>level - 41</key>
+				<integer>150</integer>
+				<key>level - 42</key>
+				<integer>150</integer>
+				<key>level - 43</key>
+				<integer>150</integer>
+				<key>level - 44</key>
+				<integer>150</integer>
+				<key>level - 45</key>
+				<integer>150</integer>
+				<key>level - 46</key>
+				<integer>150</integer>
+				<key>level - 47</key>
+				<integer>150</integer>
+				<key>level - 48</key>
+				<integer>150</integer>
+				<key>level - 49</key>
+				<integer>150</integer>
+				<key>level - 50</key>
+				<integer>150</integer>
+				<key>level - 51</key>
+				<integer>150</integer>
+				<key>level - 52</key>
+				<integer>150</integer>
+				<key>level - 53</key>
+				<integer>150</integer>
+				<key>level - 54</key>
+				<integer>150</integer>
+				<key>level - 55</key>
+				<integer>150</integer>
+				<key>level - 56</key>
+				<integer>150</integer>
+				<key>level - 57</key>
+				<integer>150</integer>
+				<key>level - 58</key>
+				<integer>150</integer>
+				<key>level - 59</key>
+				<integer>150</integer>
+				<key>level - 60</key>
+				<integer>150</integer>
+				<key>level - 61</key>
+				<integer>150</integer>
+				<key>level - 62</key>
+				<integer>150</integer>
+				<key>level - 63</key>
+				<integer>150</integer>
+				<key>level - 64</key>
+				<integer>150</integer>
+				<key>level - 65</key>
+				<integer>150</integer>
+				<key>level - 66</key>
+				<integer>150</integer>
+				<key>level - 67</key>
+				<integer>150</integer>
+				<key>level - 68</key>
+				<integer>150</integer>
+				<key>level - 69</key>
+				<integer>150</integer>
+				<key>level - 70</key>
+				<integer>150</integer>
+				<key>level - 71</key>
+				<integer>150</integer>
+				<key>level - 72</key>
+				<integer>150</integer>
+				<key>level - 73</key>
+				<integer>150</integer>
+				<key>level - 74</key>
+				<integer>150</integer>
+				<key>level - 75</key>
+				<integer>150</integer>
+				<key>level - 76</key>
+				<integer>150</integer>
+				<key>level - 77</key>
+				<integer>150</integer>
+				<key>level - 78</key>
+				<integer>150</integer>
+				<key>level - 79</key>
+				<integer>150</integer>
+				<key>level - 80</key>
+				<integer>150</integer>
+				<key>level - 81</key>
+				<integer>150</integer>
+				<key>level - 82</key>
+				<integer>150</integer>
+				<key>level - 83</key>
+				<integer>150</integer>
+				<key>level - 84</key>
+				<integer>150</integer>
+				<key>level - 85</key>
+				<integer>150</integer>
+				<key>level - 86</key>
+				<integer>150</integer>
+				<key>level - 87</key>
+				<integer>150</integer>
+				<key>level - 88</key>
+				<integer>150</integer>
+				<key>level - 89</key>
+				<integer>150</integer>
+				<key>level - 90</key>
+				<integer>150</integer>
+				<key>level - 91</key>
+				<integer>150</integer>
+				<key>level - 92</key>
+				<integer>150</integer>
+				<key>level - 93</key>
+				<integer>150</integer>
+				<key>level - 94</key>
+				<integer>150</integer>
+				<key>level - 95</key>
+				<integer>150</integer>
+				<key>level - 96</key>
+				<integer>150</integer>
+				<key>level - 97</key>
+				<integer>150</integer>
+				<key>level - 98</key>
+				<integer>150</integer>
+				<key>level - 99</key>
+				<integer>150</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>gameSettingName</key>
+			<string>player game state</string>
+			<key>availableBattlePoint</key>
+			<integer>0</integer>
+			<key>availableGold</key>
+			<integer>0</integer>
+			<key>availableElementalGem</key>
 			<integer>0</integer>
 		</dict>
 	</array>

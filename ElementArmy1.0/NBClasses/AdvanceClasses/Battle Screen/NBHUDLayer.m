@@ -15,6 +15,16 @@
     
 }
 
+-(void)updateAllyHPScale:(long)scaleAmount
+{
+    self.allyHPBar.scaleX = scaleAmount / self.allyHPBar.contentSize.width;
+}
+
+-(void)updateEnemyHPScale:(long)scaleAmount
+{
+    self.enemyHPBar.scaleX = scaleAmount / self.enemyHPBar.contentSize.width;
+}
+
 -(void)prepareUI:(id)battleLayer
 {
     self.battlefieldLayer = battleLayer;

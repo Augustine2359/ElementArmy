@@ -269,13 +269,15 @@ static Boolean isAutoStart = NO;
         if (totalAllyHPAtStartOfBattle > 0)
         {
             long newAllyHPBarWidth = (allyTotalHP / totalAllyHPAtStartOfBattle) * HP_BAR_LENGTH;
-            [self.allyHPBar setToCustomSize:CGSizeMake(newAllyHPBarWidth, self.allyHPBar.sizeOnScreen.height)];
+            [self.HUDLayer updateAllyHPScale:newAllyHPBarWidth];
+            //[self.allyHPBar setToCustomSize:CGSizeMake(newAllyHPBarWidth, self.allyHPBar.sizeOnScreen.height)];
         }
         
         if (totalEnemyHPAtStartOfBattle > 0)
         {
             long newEnemyHPBarWidth = (enemyTotalHP / totalEnemyHPAtStartOfBattle) * HP_BAR_LENGTH;
-            [self.enemyHPBar setToCustomSize:CGSizeMake(newEnemyHPBarWidth, self.enemyHPBar.sizeOnScreen.height)];
+            [self.HUDLayer updateEnemyHPScale:newEnemyHPBarWidth];
+            //[self.enemyHPBar setToCustomSize:CGSizeMake(newEnemyHPBarWidth, self.enemyHPBar.sizeOnScreen.height)];
         }
         
         if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
@@ -352,13 +354,15 @@ static Boolean isAutoStart = NO;
     CCSequence* sequence = [CCSequence actions:scale1, animationCompleted, nil];
     [self.battleResultText runAction:scale2];
     [self.battleResultBackground runAction:sequence];
+    
+    CCMoveTo* moveTo = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(self.layerSize.width / 2, (self.layerSize.height / 2) + 70)];
+    [self.battleResultText runAction:moveTo];
 }
 
 -(void)onBattleCompleteAnimationCompleted
 {
     if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
     {
-        
         NBSquad* squadObject = nil;
         int index = 0;
         
@@ -399,7 +403,7 @@ static Boolean isAutoStart = NO;
         self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
         
         [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
-        [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 100)];
+        [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 80)];
         
         // Add the menu to the layer
         [self addChild:self.battleCompleteMenu];
@@ -501,66 +505,6 @@ static Boolean isAutoStart = NO;
     self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 0.75) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, self.layerSize.height * 0.40)];
     
     [self.HUDLayer prepareUI:self];
-    
-    //The HP Bar
-    //**********************************************************************
-    /*self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    targetScaleXForHPBar = self.allyHPBar.scaleX;
-    targetScaleYForHPBar = self.allyHPBar.scaleY;
-    DLog(@"%f, %f", targetScaleXForHPBar, targetScaleYForHPBar);
-    self.allyHPBar.sprite.anchorPoint = CGPointMake(1, 1);
-    self.allyHPBar.scaleX = 0;*/
-    /*self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    self.enemyHPBar.sprite.anchorPoint = CGPointMake(0, 1);
-    self.enemyHPBar.scaleX = 0;*/
-    //**********************************************************************
-    
-    //The placeholder. This should be something like transparent tube later.
-    //**********************************************************************
-    //self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, -20)];
-    //self.HPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
-    //**********************************************************************
-    
-    /*self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png"];
-    self.allyFlagLogo.position = CGPointMake((-1 * (self.allyFlagLogo.sprite.contentSize.width * 2)), 30);
-    self.allyFlagLogo.visible = YES;
-    self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png"];
-    self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
-    self.enemyFlagLogo.visible = YES;*/
-    
-    //Items
-    //**********************************************************************
-    /*self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
-    self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
-    self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
-    [self addChild:self.itemMenuLayer];
-    self.itemMenuLayer.position = CGPointMake(20, -48);
-    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
-    
-    NBItem* item = nil;
-    int itemIndex = 0;
-    CCARRAY_FOREACH(self.dataManager.selectedItems, item)
-    {
-        switch (itemIndex) {
-            case 0:
-                self.item1 = item;
-                if ([self.item1.itemData.itemName isEqualToString:@"Potion"]) self.item1.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item1.itemData.imageNormal];
-                break;
-            case 1:
-                self.item2 = item;
-                if ([self.item2.itemData.itemName isEqualToString:@"Fury Pill"]) self.item2.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item2.itemData.imageNormal];
-                break;
-            case 2:
-                self.item3 = item;
-                //[self.itemMenuLayer addItemFrameName:self.item3.itemData.frame];
-                break;
-        }
-        
-        itemIndex++;
-    }*/
-    //**********************************************************************
     
     //Item Area Effect
     //**********************************************************************
