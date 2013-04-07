@@ -22,6 +22,7 @@
 -(void)initialise{
     [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
     
+    //Elemental buttons
     self.fireButton = [NBButton createWithStringHavingNormal:@"fire_country.png" havingSelected:@"fire_country.png" havingDisabled:@"fire_country.png" onLayer:self respondTo:nil selector:@selector(onFireButton:) withSize:CGSizeZero];
     [self.fireButton setPosition:CGPointMake(80, 125)];
     [self.fireButton show];
@@ -44,6 +45,51 @@
     
     self.fourUnits = [[CCArray alloc] initWithCapacity:4];
     [self.fourUnits retain];
+    
+    //Attributes labels
+    CCArray* labelArray = [[CCArray alloc] initWithCapacity:7];
+    CCLabelTTF* labelHP = [CCLabelTTF labelWithString:@"HP: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelSP = [CCLabelTTF labelWithString:@"SP: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelSTR = [CCLabelTTF labelWithString:@"STR: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelDEF = [CCLabelTTF labelWithString:@"DEF: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelINT = [CCLabelTTF labelWithString:@"INT: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelDEX = [CCLabelTTF labelWithString:@"DEX: " fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* labelEVA = [CCLabelTTF labelWithString:@"EVA: " fontName:@"Marker Felt" fontSize:15];
+    [labelArray addObject:labelHP];
+    [labelArray addObject:labelSP];
+    [labelArray addObject:labelSTR];
+    [labelArray addObject:labelDEF];
+    [labelArray addObject:labelINT];
+    [labelArray addObject:labelDEX];
+    [labelArray addObject:labelEVA];
+    for (int x = 0; x < [labelArray count]; x++) {
+        CCLabelTTF* thatLabel = [labelArray objectAtIndex:x];
+        thatLabel.position = ccp(370, 280 - x*15);
+        [self addChild:thatLabel];
+    }
+    
+    NBBasicClassData* statsList = [[[NBDataManager dataManager] listOfCharacters] objectAtIndex:0];
+    self.statsLabels = [[CCArray alloc] initWithCapacity:7];
+    [self.statsLabels retain];
+    CCLabelTTF* statHPLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentHP] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statSPLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSP] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statSTRLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSTR] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statDEFLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEF] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statINTLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentINT] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statDEXLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEX] fontName:@"Marker Felt" fontSize:15];
+    CCLabelTTF* statEVALabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentEVA] fontName:@"Marker Felt" fontSize:15];
+    [self.statsLabels addObject:statHPLabel];
+    [self.statsLabels addObject:statSPLabel];
+    [self.statsLabels addObject:statSTRLabel];
+    [self.statsLabels addObject:statDEFLabel];
+    [self.statsLabels addObject:statINTLabel];
+    [self.statsLabels addObject:statDEXLabel];
+    [self.statsLabels addObject:statEVALabel];
+    for (int x = 0; x < [self.statsLabels count]; x++) {
+        CCLabelTTF* thatLabel = [self.statsLabels objectAtIndex:x];
+        thatLabel.position = ccp(420, 280 - x*15);
+        [self addChild:thatLabel];
+    }
     
     [self onFireButton:self];
     [self setPosition:ccp(0, -320)];
@@ -79,7 +125,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
+        [thatSprite setPosition:ccp(x%2*150 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }
@@ -110,7 +156,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
+        [thatSprite setPosition:ccp(x%2*150 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }
@@ -141,7 +187,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
+        [thatSprite setPosition:ccp(x%2*150 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }
@@ -172,7 +218,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
+        [thatSprite setPosition:ccp(x%2*150 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }
@@ -202,7 +248,7 @@
     for (int x = 0; x < [self.fourUnits count]; x++) {
         CCSprite* thatSprite = [self.fourUnits objectAtIndex:x];
         [thatSprite setScale:3];
-        [thatSprite setPosition:ccp(x%2*240 + 60, 275 - x/2*75)];
+        [thatSprite setPosition:ccp(x%2*150 + 60, 275 - x/2*75)];
         [self addChild:thatSprite];
     }
 }

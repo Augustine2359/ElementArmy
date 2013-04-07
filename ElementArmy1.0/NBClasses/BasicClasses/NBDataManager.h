@@ -58,6 +58,8 @@
 @property (nonatomic, assign) long availableBattlePoint;
 @property (nonatomic, assign) long availableGold;
 @property (nonatomic, assign) long availableElementalGem;
+@property (nonatomic, assign) CCArray* availableItems;
+@property (nonatomic, assign) CCArray* availableEquipments;
 
 @property (nonatomic, retain) CCArray* arrayOfAllySquad;
 @property (nonatomic, retain) CCArray* arrayOfEnemySquad;

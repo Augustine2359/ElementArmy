@@ -12,6 +12,7 @@
 #import "NBEquipmentData.h"
 #import "NBProjectileBasicData.h"
 #import "NBSkill.h"
+#import "NBItem.h"
 //#import "NBCountryData.h"
 
 #define SQUAD_COUNT_ALLOWED 3
@@ -56,7 +57,7 @@ static CCArray* listOfEquipments = nil;
         self.selectedItems = [CCArray arrayWithCapacity:3];
         self.selectedEquipments = [CCArray arrayWithCapacity:3];
     }
-
+    [self loadPlayerData];
     return self;
 }
 
@@ -263,6 +264,56 @@ static CCArray* listOfEquipments = nil;
 
 -(void)loadPlayerData{
     //Load all saved variables from plist
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PlayerData" ofType:@"plist"];
+    NSMutableDictionary *dictionary = nil;
+    
+    //If doesnt exist create one
+    if (plistPath == NULL) {
+        DLog(@"Creating player data");
+        NSString* initialBP = @"0";
+        NSString* initialGold = @"0";
+        NSString* initialGem = @"0";
+        self.availableItems = nil;
+        self.availableEquipments = nil;
+        
+        [dictionary setObject:initialBP forKey:@"AvailableBP"];
+        [dictionary setObject:initialGold forKey:@"AvailableGold"];
+        [dictionary setObject:initialGem forKey:@"AvailableGem"];
+        [dictionary setObject:self.availableItems forKey:@"AvailableItems"];
+        [dictionary setObject:self.availableEquipments forKey:@"AvailableItems"];
+        return;
+    }
+    //Else load all data
+    else{
+        DLog(@"Loading player data");
+        dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+        NSArray *stages = [dictionary objectForKey:@"Stage data"];
+        
+        NSInteger index = 0;
+        for (NSMutableDictionary *stageDataDictionary in stages) {
+            NBStage *stage = [self.listOfStages objectAtIndex:index];
+            index++;
+            
+            //update the default stage data with any changes to the game state
+            NBStageData *stageData = stage.stageData;
+            [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
+            [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+        }
+        
+        [dictionary setObject:stages forKey:@"Stage data"];
+
+        return;
+    }
+    
+    //Save data
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+    
+    //Save path
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [rootPath stringByAppendingPathComponent:@"PlayerData.plist"];
+    
+    if (plistData)
+        [plistData writeToFile:path atomically:YES];
 }
 
 -(void)createCharacterList
