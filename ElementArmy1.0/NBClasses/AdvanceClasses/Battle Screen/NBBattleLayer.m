@@ -119,10 +119,15 @@ static Boolean isAutoStart = NO;
     [super onEnter];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
+    CCScene* scene = (CCScene*)[self parent];
     
     self.HUDLayer = [[NBHUDLayer alloc] init];
-    CCScene* scene = (CCScene*)[self parent];
     [scene addChild:self.HUDLayer];
+    
+    self.battleResultLayer = [[NBBattleResultLayer alloc] init];
+    [scene addChild:self.battleResultLayer];
+    
+    self.currentBattlePointsAwarded = 0;
     
     // ask director for the window size
     /*battleStarted = false;
@@ -313,52 +318,38 @@ static Boolean isAutoStart = NO;
         [tempCharacter battleIsOver];
     }
     
+    [self calculateBattlePointsAwarded];
+    
     if (self.allAllyUnitAnnihilated)
     {
-        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"0000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+        [self.battleResultLayer callLayerWithBattleResult:@"Defeat" battlePointsAwarded:self.currentBattlePointsAwarded];
     }
     else if (self.allEnemyUnitAnnihilated)
     {
-        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"9999" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+        [self.battleResultLayer callLayerWithBattleResult:@"Victory" battlePointsAwarded:self.currentBattlePointsAwarded];
     }
-    
-    self.battleResultText.anchorPoint = CGPointMake(0.5, 0.25);
-    self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-    self.battleResultText.scale = 0;
-    [self addChild:self.battleResultText];
-    
-    CCScaleTo* scaleTo_0 = [CCScaleTo actionWithDuration:1.0 scale:2.50];
-    CCEaseIn* easeIn_0 = [CCEaseIn actionWithAction:scaleTo_0 rate:2.0];
-    CCScaleTo* scaleTo_1 = [CCScaleTo actionWithDuration:0.75 scale:2.00];
-    CCDelayTime* delay = [CCDelayTime actionWithDuration:1.0];
-    CCScaleTo* scaleTo_2 = [CCScaleTo actionWithDuration:0.75 scale:100.00];
-    CCEaseIn* easeIn_1 = [CCEaseIn actionWithAction:scaleTo_2 rate:2.0];
-    CCCallFunc* animationScaleOut = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationStep1Completed)];
-    CCSequence* sequence = [CCSequence actions:easeIn_0, scaleTo_1, delay, easeIn_1, animationScaleOut, nil];
-    [self.battleResultText runAction:sequence];
 }
 
--(void)onBattleCompleteAnimationStep1Completed
+-(void)calculateBattlePointsAwarded
 {
-    self.battleResultBackground = [CCSprite spriteWithSpriteFrameName:@"staticbox_gray.png"];
-    self.battleResultBackground.scale = 100;
-    self.battleResultBackground.anchorPoint = CGPointMake(0.5, 0.5);
-    self.battleResultBackground.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-    [self reorderChild:self.battleResultText z:(self.battleResultBackground.zOrder + 1)];
+    self.currentBattlePointsAwarded += self.dataManager.selectedStageData.battlePointAwarded;
     
-    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:0.5];
-    [self.battleResultBackground runAction:fadeIn];
-    [self addChild:self.battleResultBackground];
+    if (self.allEnemyUnitAnnihilated)
+    {
+        NBSquad* squadObject = nil;
+        
+        CCARRAY_FOREACH(self.enemySquads, squadObject)
+        {
+            NBCharacter* squadClassData = nil;
+            
+            CCARRAY_FOREACH(squadObject.unitArray, squadClassData)
+            {
+                self.currentBattlePointsAwarded += squadClassData.basicClassData.battlePointsAward;
+            }
+        }
+    }
     
-    CCScaleTo* scale1 = [CCScaleTo actionWithDuration:1.0 scaleX:25 scaleY:15];
-    CCScaleTo* scale2 = [CCScaleTo actionWithDuration:1.0 scale:2];
-    CCCallFunc* animationCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationCompleted)];
-    CCSequence* sequence = [CCSequence actions:scale1, animationCompleted, nil];
-    [self.battleResultText runAction:scale2];
-    [self.battleResultBackground runAction:sequence];
-    
-    CCMoveTo* moveTo = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(self.layerSize.width / 2, (self.layerSize.height / 2) + 70)];
-    [self.battleResultText runAction:moveTo];
+    self.dataManager.availableBattlePoint += self.currentBattlePointsAwarded;
 }
 
 -(void)onBattleCompleteAnimationCompleted
@@ -397,18 +388,6 @@ static Boolean isAutoStart = NO;
          index++;
          }
          */
-        
-        [CCMenuItemFont setFontSize:16];
-        
-        // create and initialize a Label
-        CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoStageSelectionScreen)];
-        self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
-        
-        [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
-        [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 80)];
-        
-        // Add the menu to the layer
-        [self addChild:self.battleCompleteMenu];
     }
 }
 
@@ -507,6 +486,7 @@ static Boolean isAutoStart = NO;
     self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 0.75) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, self.layerSize.height * 0.40)];
     
     [self.HUDLayer prepareUI:self];
+    [self.battleResultLayer setupParentLayer:self selector:@selector(gotoMapSelectionScreen) withCurrentAvailableBattlePoints:self.dataManager.availableBattlePoint];
     
     //Item Area Effect
     //**********************************************************************

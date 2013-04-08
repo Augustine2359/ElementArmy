@@ -102,7 +102,7 @@
     tempBasicData.timeLastBattleCompleted = self.timeLastBattleCompleted;
     tempBasicData.enemyType = self.enemyType;
     tempBasicData.scale = self.scale;
-    tempBasicData.awardedBattlePoint = self.awardedBattlePoint;
+    tempBasicData.battlePointsAward = self.battlePointsAward;
     
     return tempBasicData;
 }

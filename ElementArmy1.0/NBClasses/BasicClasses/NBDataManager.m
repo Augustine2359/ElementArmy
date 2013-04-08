@@ -145,6 +145,7 @@ static CCArray* listOfLevelData = nil;
             stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
             stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
             stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+            stageData.battlePointAwarded = [[stageDataDictionary objectForKey:@"battlePointAwarded"] longValue];
             
             NSArray* enemyList = [stageDataDictionary objectForKey:@"Enemy List"];
             
@@ -168,6 +169,7 @@ static CCArray* listOfLevelData = nil;
                     basicClassData.currentINT = [[[enemy objectForKey:@"attributes"] objectForKey:@"INT"] intValue];
                     basicClassData.currentDEX = [[[enemy objectForKey:@"attributes"] objectForKey:@"DEX"] intValue];
                     basicClassData.currentEVA = [[[enemy objectForKey:@"attributes"] objectForKey:@"EVA"] intValue];
+                    basicClassData.battlePointsAward = [[[enemy objectForKey:@"attributes"] objectForKey:@"battlePointsAward"] longValue];
                     
                     [arrayOfEnemyData addObject:basicClassData];
                 }

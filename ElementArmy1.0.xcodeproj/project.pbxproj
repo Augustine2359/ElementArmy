@@ -53,6 +53,7 @@
 		BCB909E51706BEF600B620C6 /* NBConnectorDot.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E41706BEF500B620C6 /* NBConnectorDot.m */; };
 		BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E71708233A00B620C6 /* NBHUDLayer.m */; };
 		BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909EA17082F1900B620C6 /* NBShakeEffect.m */; };
+		BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -264,8 +265,8 @@
 		BCB909E71708233A00B620C6 /* NBHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHUDLayer.m; sourceTree = "<group>"; };
 		BCB909E917082F1800B620C6 /* NBShakeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBShakeEffect.h; path = "../Battle Screen/NBShakeEffect.h"; sourceTree = "<group>"; };
 		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBShakeEffect.m; path = "../Battle Screen/NBShakeEffect.m"; sourceTree = "<group>"; };
-		BCB909F1170FBEE700B620C6 /* pf_ronda_seven.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven.ttf; sourceTree = "<group>"; };
-		BCB909F3170FBFD800B620C6 /* pf_ronda_seven_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven_bold.ttf; sourceTree = "<group>"; };
+		BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleResultLayer.h; sourceTree = "<group>"; };
+		BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleResultLayer.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1154,6 +1155,8 @@
 				BCB909E116FD62EF00B620C6 /* NBAreaEffect.m */,
 				BCB909E61708233900B620C6 /* NBHUDLayer.h */,
 				BCB909E71708233A00B620C6 /* NBHUDLayer.m */,
+				BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */,
+				BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */,
 			);
 			path = "Battle Screen";
 			sourceTree = "<group>";
@@ -1526,6 +1529,7 @@
 				BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */,
 				F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */,
 				F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */,
+				BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

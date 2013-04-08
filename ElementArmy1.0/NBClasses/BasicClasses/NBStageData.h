@@ -31,5 +31,6 @@
 @property (nonatomic, assign) int loseCount;
 @property (nonatomic, retain) CCArray* enemyList;
 @property (nonatomic, retain) CCArray* connectorLines;
+@property (nonatomic, assign) long battlePointAwarded;
 
 @end
