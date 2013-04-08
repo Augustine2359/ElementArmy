@@ -8,19 +8,20 @@
 
 #import "CCNode.h"
 #import "NBCharacter.h"
+#import "NBSpell.h"
 
 @class NBChainLightning;
 
-@protocol NBChainLightningDelegate <NSObject>
+@protocol NBChainLightningDelegate <NBSpellDelegate>
 
+@optional
 - (void)chainLightningDamagedCharacter:(NBCharacter *)character;
 
 @end
 
-@interface NBChainLightning : CCNode
+@interface NBChainLightning : NBSpell
 
 @property (nonatomic) NSInteger numberOfTargets;
-@property (nonatomic, strong) id<NBChainLightningDelegate> delegate;
 
 - (id)initWithThrower:(NBCharacter *)thrower andTargets:(NSArray *)targets;
 - (void)startChainLightning;

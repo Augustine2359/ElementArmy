@@ -28,7 +28,7 @@
 #define HP_BAR_LENGTH 130
 
 // HelloWorldLayer
-@interface NBBattleLayer : NBBasicScreenLayer <NBRipplesDelegate, NBLaserSightDelegate, NBChainLightningDelegate>
+@interface NBBattleLayer : NBBasicScreenLayer <NBSpellDelegate>
 {
     bool battleStarted;
     bool groupClassSkillOpened;
