@@ -81,7 +81,7 @@ static CCArray* allStageList = nil;
             [dotsArray addObject:dot];
         }
         
-        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageName toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withDotList:dotsArray];
+        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageID toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withDotList:dotsArray];
         
         [stage.connectorLines addObject:connectorLine];
     }
@@ -121,12 +121,14 @@ static CCArray* allStageList = nil;
             self.listenerLayer = layer;
             self.selector = selector;
             //[self.worldIcon show];
+            [layer reorderChild:self.worldIcon.buttonObject z:10];
             
             self.worldIconCompleted = [NBButton createWithStringHavingNormal:self.stageData.completedNormalImageName havingSelected:self.stageData.completedNormalImageName havingDisabled:self.stageData.completedDisabledImageName onLayer:layer respondTo:self selector:@selector(onIconSelected) withSize:CGSizeMake(STAGE_ICON_WIDTH, STAGE_ICON_HEIGHT)];
             self.worldIconCompleted.buttonObject.anchorPoint = ccp(0, 0);
             self.listenerLayer = layer;
             self.selector = selector;
             //[self.worldIconCompleted hide];
+            [layer reorderChild:self.worldIconCompleted.buttonObject z:10];
         }
         
         for (NBConnectorLine* connectorLine in self.connectorLines)

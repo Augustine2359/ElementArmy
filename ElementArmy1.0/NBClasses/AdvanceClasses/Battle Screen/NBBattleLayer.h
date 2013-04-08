@@ -19,14 +19,16 @@
 #import "NBRipples.h"
 #import "NBSpellProjectile.h"
 #import "NBLaserSight.h"
+#import "NBChainLightning.h"
 #import "NBAreaEffect.h"
 #import "NBHUDLayer.h"
 #import "NBShakeEffect.h"
+#import "NBBattleResultLayer.h"
 
 #define HP_BAR_LENGTH 130
 
 // HelloWorldLayer
-@interface NBBattleLayer : NBBasicScreenLayer <NBRipplesDelegate, NBLaserSightDelegate>
+@interface NBBattleLayer : NBBasicScreenLayer <NBSpellDelegate>
 {
     bool battleStarted;
     bool groupClassSkillOpened;
@@ -58,7 +60,6 @@
 -(void)entranceAnimationStep3;
 -(void)entranceAnimationStep4;
 -(void)onBackgroundMoveCompleted;
--(void)onBattleCompleteAnimationStep1Completed;
 -(void)onBattleCompleteAnimationCompleted;
 
 @property (nonatomic, retain) CCLabelTTF* layerTitle;
@@ -99,7 +100,8 @@
 @property (nonatomic, retain) NBStaticObject* fieldBackground;
 @property (nonatomic, retain) NBStaticObject* skyBackground;
 @property (nonatomic, retain) CCArray* damageLabels;
-@property (nonatomic, retain) CCSprite* battleResultBackground;
+@property (nonatomic, retain) NBBattleResultLayer* battleResultLayer;
+@property (nonatomic, assign) long currentBattlePointsAwarded;
 
 @property (nonatomic, retain) NBAreaEffect* itemAreaEffect;
 @property (nonatomic, retain) NBItem* item1;

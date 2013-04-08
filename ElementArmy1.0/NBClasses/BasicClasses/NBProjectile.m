@@ -182,6 +182,7 @@ static CCArray* projectileList = nil;
                                 {
                                     collisionCount++;
                                     [self isCollidedWith:object];
+                                    self.currentState = ProjectileCollided;
                                     
                                     if (collisionCount > MAXIMUM_COLLISION_ALLOWED)
                                         continue;
@@ -201,6 +202,7 @@ static CCArray* projectileList = nil;
                 break;
                 
             case ProjectileCollided:
+                self.isActive = false;
                 break;
                 
             case ProjectileDissapearing:

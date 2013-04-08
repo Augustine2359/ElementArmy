@@ -49,5 +49,6 @@ typedef enum
 @property (nonatomic, assign) EnumLineDirection lineDirection;
 @property (nonatomic, assign) EnumConnectionSide connectFromSide;
 @property (nonatomic, retain) CCLayer* currentLayer;
+@property (nonatomic, assign) BOOL dotsInitialized;
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "NBBattleSetupUnitSelectorLayer.h"
-#import "NBSoldier.h"
-#import "NBFireMage.h"
+//#import "NBSoldier.h"
+//#import "NBFireMage.h"
 
 #define MINIMUM_TIER 0
 #define MINIMUM_ELEMENT 0

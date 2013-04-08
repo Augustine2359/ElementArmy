@@ -38,8 +38,6 @@
 		BC336A2216A665C50079596C /* NBBattleSetupUnitSelectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */; };
 		BC336A2316A665DD0079596C /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */; };
 		BC336A2416A665DD0079596C /* NBBattleSetupItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */; };
-		BC336A2516A665DD0079596C /* NBFireMage.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE716A2FBA300C9DD61 /* NBFireMage.m */; };
-		BC336A2616A665DD0079596C /* NBSoldier.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE916A2FBA300C9DD61 /* NBSoldier.m */; };
 		BC336A2716A665DD0079596C /* NBGameLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FEF16A2FBA300C9DD61 /* NBGameLoadingScreen.m */; };
 		BC336A2816A665DD0079596C /* NBMainMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF216A2FBA300C9DD61 /* NBMainMenuScreen.m */; };
 		BC336A2916A665DD0079596C /* NBMapSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FF516A2FBA300C9DD61 /* NBMapSelectionScreen.m */; };
@@ -48,8 +46,6 @@
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 		BC4EA62316FC7A50004A67C4 /* NBStageInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */; };
 		BC8A720816B511D400D890A1 /* NBStageData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A720716B511D400D890A1 /* NBStageData.m */; };
-		BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */; };
-		BC9F0F9716D8597900BD17B2 /* NBCharacterV2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */; };
 		BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
@@ -57,6 +53,7 @@
 		BCB909E51706BEF600B620C6 /* NBConnectorDot.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E41706BEF500B620C6 /* NBConnectorDot.m */; };
 		BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E71708233A00B620C6 /* NBHUDLayer.m */; };
 		BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909EA17082F1900B620C6 /* NBShakeEffect.m */; };
+		BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -194,6 +191,8 @@
 		BCDA1AC116EC1C4E00438E35 /* NBBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDA1AC016EC1C4E00438E35 /* NBBasicObject.m */; };
 		F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FB91710476600D7CFBB /* NBSpellProjectile.m */; };
 		F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FBC1710767500D7CFBB /* NBLaserSight.m */; };
+		F9125FC1171307E500D7CFBB /* NBChainLightning.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FC0171307E500D7CFBB /* NBChainLightning.m */; };
+		F9125FC4171314D700D7CFBB /* NBSpell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FC3171314D600D7CFBB /* NBSpell.m */; };
 		F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */; };
 		F929148716F96B63003E2B22 /* NBRipples.m in Sources */ = {isa = PBXBuildFile; fileRef = F929148616F96B63003E2B22 /* NBRipples.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
@@ -254,10 +253,6 @@
 		BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageInfoPanel.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
 		BC8A720716B511D400D890A1 /* NBStageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageData.m; sourceTree = "<group>"; };
-		BC9F0F9216D0EF8F00BD17B2 /* NBSoldierBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldierBoss.h; sourceTree = "<group>"; };
-		BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldierBoss.m; sourceTree = "<group>"; };
-		BC9F0F9516D8597800BD17B2 /* NBCharacterV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCharacterV2.h; sourceTree = "<group>"; };
-		BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCharacterV2.m; sourceTree = "<group>"; };
 		BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectileBasicData.h; sourceTree = "<group>"; };
 		BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectileBasicData.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
@@ -270,8 +265,10 @@
 		BCB909E41706BEF500B620C6 /* NBConnectorDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBConnectorDot.m; sourceTree = "<group>"; };
 		BCB909E61708233900B620C6 /* NBHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHUDLayer.h; sourceTree = "<group>"; };
 		BCB909E71708233A00B620C6 /* NBHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHUDLayer.m; sourceTree = "<group>"; };
-		BCB909E917082F1800B620C6 /* NBShakeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBShakeEffect.h; sourceTree = "<group>"; };
-		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBShakeEffect.m; sourceTree = "<group>"; };
+		BCB909E917082F1800B620C6 /* NBShakeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBShakeEffect.h; path = "../Battle Screen/NBShakeEffect.h"; sourceTree = "<group>"; };
+		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBShakeEffect.m; path = "../Battle Screen/NBShakeEffect.m"; sourceTree = "<group>"; };
+		BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleResultLayer.h; sourceTree = "<group>"; };
+		BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleResultLayer.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -536,8 +533,8 @@
 		BCBC73B01633AA7700B5A141 /* NBAnimatedSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAnimatedSprite.m; sourceTree = "<group>"; };
 		BCBC73B11633AA7700B5A141 /* NBAnimationDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAnimationDefinition.h; sourceTree = "<group>"; };
 		BCBC73B21633AA7700B5A141 /* NBAnimationDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAnimationDefinition.m; sourceTree = "<group>"; };
-		BCBC73B71633AA7700B5A141 /* NBCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCharacter.h; sourceTree = "<group>"; };
-		BCBC73B81633AA7700B5A141 /* NBCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBCharacter.m; sourceTree = "<group>"; };
+		BCBC73B71633AA7700B5A141 /* NBCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBCharacter.h; path = ../../BasicClasses/NBCharacter.h; sourceTree = "<group>"; };
+		BCBC73B81633AA7700B5A141 /* NBCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBCharacter.m; path = ../../BasicClasses/NBCharacter.m; sourceTree = "<group>"; };
 		BCBC73BB1633AA7700B5A141 /* NBMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMagic.h; sourceTree = "<group>"; };
 		BCBC73BC1633AA7700B5A141 /* NBMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMagic.m; sourceTree = "<group>"; };
 		BCBC73BD1633AA7700B5A141 /* NBSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSkill.h; sourceTree = "<group>"; };
@@ -556,6 +553,10 @@
 		F9125FB91710476600D7CFBB /* NBSpellProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSpellProjectile.m; sourceTree = "<group>"; };
 		F9125FBB1710767500D7CFBB /* NBLaserSight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBLaserSight.h; sourceTree = "<group>"; };
 		F9125FBC1710767500D7CFBB /* NBLaserSight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBLaserSight.m; sourceTree = "<group>"; };
+		F9125FBF171307E500D7CFBB /* NBChainLightning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBChainLightning.h; sourceTree = "<group>"; };
+		F9125FC0171307E500D7CFBB /* NBChainLightning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBChainLightning.m; sourceTree = "<group>"; };
+		F9125FC2171314D500D7CFBB /* NBSpell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSpell.h; sourceTree = "<group>"; };
+		F9125FC3171314D600D7CFBB /* NBSpell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSpell.m; sourceTree = "<group>"; };
 		F920EA1916DDD025006BA898 /* NBUnitRespawnContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUnitRespawnContainerLayer.h; sourceTree = "<group>"; };
 		F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUnitRespawnContainerLayer.m; sourceTree = "<group>"; };
 		F929148516F96B63003E2B22 /* NBRipples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBRipples.h; sourceTree = "<group>"; };
@@ -572,10 +573,6 @@
 		F9299FE216A2FBA300C9DD61 /* NBBattleSetupUnitSelectorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorLayer.m; sourceTree = "<group>"; };
 		F9299FE316A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupUnitSelectorsContainerLayer.h; sourceTree = "<group>"; };
 		F9299FE416A2FBA300C9DD61 /* NBBattleSetupUnitSelectorsContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupUnitSelectorsContainerLayer.m; sourceTree = "<group>"; };
-		F9299FE616A2FBA300C9DD61 /* NBFireMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFireMage.h; sourceTree = "<group>"; };
-		F9299FE716A2FBA300C9DD61 /* NBFireMage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFireMage.m; sourceTree = "<group>"; };
-		F9299FE816A2FBA300C9DD61 /* NBSoldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSoldier.h; sourceTree = "<group>"; };
-		F9299FE916A2FBA300C9DD61 /* NBSoldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSoldier.m; sourceTree = "<group>"; };
 		F9299FEB16A2FBA300C9DD61 /* NBIntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBIntroScreen.h; sourceTree = "<group>"; };
 		F9299FEC16A2FBA300C9DD61 /* NBIntroScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBIntroScreen.m; sourceTree = "<group>"; };
 		F9299FEE16A2FBA300C9DD61 /* NBGameLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameLoadingScreen.h; sourceTree = "<group>"; };
@@ -1074,10 +1071,6 @@
 				F9299FD716A2FB8D00C9DD61 /* NBBasicScreenLayer.m */,
 				BC2065BF168B494500745FB0 /* NBButton.h */,
 				BC2065C0168B494500745FB0 /* NBButton.m */,
-				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
-				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
-				BC9F0F9516D8597800BD17B2 /* NBCharacterV2.h */,
-				BC9F0F9616D8597900BD17B2 /* NBCharacterV2.m */,
 				BC25575D16EC211E00A7CD2C /* NBCountry.h */,
 				BC25575E16EC211E00A7CD2C /* NBCountry.m */,
 				BC25575A16EC20A800A7CD2C /* NBCountryData.h */,
@@ -1151,25 +1144,37 @@
 			path = Resources/CharacterSprites;
 			sourceTree = "<group>";
 		};
-		F9299FD916A2FBA300C9DD61 /* Battle Screen */ = {
+		F9125FBE171307B400D7CFBB /* SpellClasses */ = {
 			isa = PBXGroup;
 			children = (
-				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
-				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
 				F9125FBB1710767500D7CFBB /* NBLaserSight.h */,
 				F9125FBC1710767500D7CFBB /* NBLaserSight.m */,
 				F9125FB81710476600D7CFBB /* NBSpellProjectile.h */,
 				F9125FB91710476600D7CFBB /* NBSpellProjectile.m */,
 				F929148516F96B63003E2B22 /* NBRipples.h */,
 				F929148616F96B63003E2B22 /* NBRipples.m */,
+				F9125FBF171307E500D7CFBB /* NBChainLightning.h */,
+				F9125FC0171307E500D7CFBB /* NBChainLightning.m */,
+				F9125FC2171314D500D7CFBB /* NBSpell.h */,
+				F9125FC3171314D600D7CFBB /* NBSpell.m */,
+			);
+			name = SpellClasses;
+			sourceTree = "<group>";
+		};
+		F9299FD916A2FBA300C9DD61 /* Battle Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
+				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
+				F9125FBE171307B400D7CFBB /* SpellClasses */,
 				F9299FDC16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.h */,
 				F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */,
 				BCB909E016FD62EF00B620C6 /* NBAreaEffect.h */,
 				BCB909E116FD62EF00B620C6 /* NBAreaEffect.m */,
 				BCB909E61708233900B620C6 /* NBHUDLayer.h */,
 				BCB909E71708233A00B620C6 /* NBHUDLayer.m */,
-				BCB909E917082F1800B620C6 /* NBShakeEffect.h */,
-				BCB909EA17082F1900B620C6 /* NBShakeEffect.m */,
+				BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */,
+				BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */,
 			);
 			path = "Battle Screen";
 			sourceTree = "<group>";
@@ -1196,12 +1201,8 @@
 		F9299FE516A2FBA300C9DD61 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
-				F9299FE616A2FBA300C9DD61 /* NBFireMage.h */,
-				F9299FE716A2FBA300C9DD61 /* NBFireMage.m */,
-				F9299FE816A2FBA300C9DD61 /* NBSoldier.h */,
-				F9299FE916A2FBA300C9DD61 /* NBSoldier.m */,
-				BC9F0F9216D0EF8F00BD17B2 /* NBSoldierBoss.h */,
-				BC9F0F9316D0EF8F00BD17B2 /* NBSoldierBoss.m */,
+				BCBC73B71633AA7700B5A141 /* NBCharacter.h */,
+				BCBC73B81633AA7700B5A141 /* NBCharacter.m */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -1255,6 +1256,8 @@
 		F9299FF616A2FBA300C9DD61 /* Special Effects */ = {
 			isa = PBXGroup;
 			children = (
+				BCB909E917082F1800B620C6 /* NBShakeEffect.h */,
+				BCB909EA17082F1900B620C6 /* NBShakeEffect.m */,
 				F9299FF716A2FBA300C9DD61 /* NBFireball.h */,
 				F9299FF816A2FBA300C9DD61 /* NBFireball.m */,
 				F9299FF916A2FBA300C9DD61 /* NBFireExplosion.h */,
@@ -1385,8 +1388,6 @@
 				56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */,
 				BC336A2316A665DD0079596C /* NBBattleSetupUnitSelectorsContainerLayer.m in Sources */,
 				BC336A2416A665DD0079596C /* NBBattleSetupItems.m in Sources */,
-				BC336A2516A665DD0079596C /* NBFireMage.m in Sources */,
-				BC336A2616A665DD0079596C /* NBSoldier.m in Sources */,
 				BC336A2716A665DD0079596C /* NBGameLoadingScreen.m in Sources */,
 				BC336A2816A665DD0079596C /* NBMainMenuScreen.m in Sources */,
 				BC336A2916A665DD0079596C /* NBMapSelectionScreen.m in Sources */,
@@ -1523,8 +1524,6 @@
 				BC8A720816B511D400D890A1 /* NBStageData.m in Sources */,
 				BCC0F5FE16B6C7E0006A1C88 /* NBItemData.m in Sources */,
 				BCC0F60216B6C846006A1C88 /* NBItem.m in Sources */,
-				BC9F0F9416D0EF9000BD17B2 /* NBSoldierBoss.m in Sources */,
-				BC9F0F9716D8597900BD17B2 /* NBCharacterV2.m in Sources */,
 				BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */,
 				BC2D61FF16DEF06400797345 /* NBHQSetupScreen.m in Sources */,
 				BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */,
@@ -1548,6 +1547,9 @@
 				BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */,
 				F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */,
 				F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */,
+				BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */,
+				F9125FC1171307E500D7CFBB /* NBChainLightning.m in Sources */,
+				F9125FC4171314D700D7CFBB /* NBSpell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

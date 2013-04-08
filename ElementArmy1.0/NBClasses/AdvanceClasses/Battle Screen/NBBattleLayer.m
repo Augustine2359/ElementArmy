@@ -119,10 +119,15 @@ static Boolean isAutoStart = NO;
     [super onEnter];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
+    CCScene* scene = (CCScene*)[self parent];
     
     self.HUDLayer = [[NBHUDLayer alloc] init];
-    CCScene* scene = (CCScene*)[self parent];
     [scene addChild:self.HUDLayer];
+    
+    self.battleResultLayer = [[NBBattleResultLayer alloc] init];
+    [scene addChild:self.battleResultLayer];
+    
+    self.currentBattlePointsAwarded = 0;
     
     // ask director for the window size
     /*battleStarted = false;
@@ -271,13 +276,15 @@ static Boolean isAutoStart = NO;
         if (totalAllyHPAtStartOfBattle > 0)
         {
             long newAllyHPBarWidth = (allyTotalHP / totalAllyHPAtStartOfBattle) * HP_BAR_LENGTH;
-            [self.allyHPBar setToCustomSize:CGSizeMake(newAllyHPBarWidth, self.allyHPBar.sizeOnScreen.height)];
+            [self.HUDLayer updateAllyHPScale:newAllyHPBarWidth];
+            //[self.allyHPBar setToCustomSize:CGSizeMake(newAllyHPBarWidth, self.allyHPBar.sizeOnScreen.height)];
         }
         
         if (totalEnemyHPAtStartOfBattle > 0)
         {
             long newEnemyHPBarWidth = (enemyTotalHP / totalEnemyHPAtStartOfBattle) * HP_BAR_LENGTH;
-            [self.enemyHPBar setToCustomSize:CGSizeMake(newEnemyHPBarWidth, self.enemyHPBar.sizeOnScreen.height)];
+            [self.HUDLayer updateEnemyHPScale:newEnemyHPBarWidth];
+            //[self.enemyHPBar setToCustomSize:CGSizeMake(newEnemyHPBarWidth, self.enemyHPBar.sizeOnScreen.height)];
         }
         
         if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
@@ -311,56 +318,44 @@ static Boolean isAutoStart = NO;
         [tempCharacter battleIsOver];
     }
     
+    [self calculateBattlePointsAwarded];
+    
     if (self.allAllyUnitAnnihilated)
     {
-        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"0000" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+        [self.battleResultLayer callLayerWithBattleResult:@"Defeat" battlePointsAwarded:self.currentBattlePointsAwarded];
     }
     else if (self.allEnemyUnitAnnihilated)
     {
-        self.battleResultText = [[CCLabelAtlas alloc] initWithString:@"9999" charMapFile:@"fps_images.png" itemWidth:12 itemHeight:32 startCharMap:'.'];
+        [self.battleResultLayer callLayerWithBattleResult:@"Victory" battlePointsAwarded:self.currentBattlePointsAwarded];
     }
-    
-    self.battleResultText.anchorPoint = CGPointMake(0.5, 0.25);
-    self.battleResultText.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-    self.battleResultText.scale = 0;
-    [self addChild:self.battleResultText];
-    
-    CCScaleTo* scaleTo_0 = [CCScaleTo actionWithDuration:1.0 scale:2.50];
-    CCEaseIn* easeIn_0 = [CCEaseIn actionWithAction:scaleTo_0 rate:2.0];
-    CCScaleTo* scaleTo_1 = [CCScaleTo actionWithDuration:0.75 scale:2.00];
-    CCDelayTime* delay = [CCDelayTime actionWithDuration:1.0];
-    CCScaleTo* scaleTo_2 = [CCScaleTo actionWithDuration:0.75 scale:100.00];
-    CCEaseIn* easeIn_1 = [CCEaseIn actionWithAction:scaleTo_2 rate:2.0];
-    CCCallFunc* animationScaleOut = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationStep1Completed)];
-    CCSequence* sequence = [CCSequence actions:easeIn_0, scaleTo_1, delay, easeIn_1, animationScaleOut, nil];
-    [self.battleResultText runAction:sequence];
 }
 
--(void)onBattleCompleteAnimationStep1Completed
+-(void)calculateBattlePointsAwarded
 {
-    self.battleResultBackground = [CCSprite spriteWithSpriteFrameName:@"staticbox_gray.png"];
-    self.battleResultBackground.scale = 100;
-    self.battleResultBackground.anchorPoint = CGPointMake(0.5, 0.5);
-    self.battleResultBackground.position = CGPointMake(self.layerSize.width / 2, self.layerSize.height / 2);
-    [self reorderChild:self.battleResultText z:(self.battleResultBackground.zOrder + 1)];
+    self.currentBattlePointsAwarded += self.dataManager.selectedStageData.battlePointAwarded;
     
-    CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:0.5];
-    [self.battleResultBackground runAction:fadeIn];
-    [self addChild:self.battleResultBackground];
+    if (self.allEnemyUnitAnnihilated)
+    {
+        NBSquad* squadObject = nil;
+        
+        CCARRAY_FOREACH(self.enemySquads, squadObject)
+        {
+            NBCharacter* squadClassData = nil;
+            
+            CCARRAY_FOREACH(squadObject.unitArray, squadClassData)
+            {
+                self.currentBattlePointsAwarded += squadClassData.basicClassData.battlePointsAward;
+            }
+        }
+    }
     
-    CCScaleTo* scale1 = [CCScaleTo actionWithDuration:1.0 scaleX:25 scaleY:15];
-    CCScaleTo* scale2 = [CCScaleTo actionWithDuration:1.0 scale:2];
-    CCCallFunc* animationCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationCompleted)];
-    CCSequence* sequence = [CCSequence actions:scale1, animationCompleted, nil];
-    [self.battleResultText runAction:scale2];
-    [self.battleResultBackground runAction:sequence];
+    self.dataManager.availableBattlePoint += self.currentBattlePointsAwarded;
 }
 
 -(void)onBattleCompleteAnimationCompleted
 {
     if (self.allAllyUnitAnnihilated || self.allEnemyUnitAnnihilated)
     {
-        
         NBSquad* squadObject = nil;
         int index = 0;
         
@@ -393,18 +388,6 @@ static Boolean isAutoStart = NO;
          index++;
          }
          */
-        
-        [CCMenuItemFont setFontSize:16];
-        
-        // create and initialize a Label
-        CCMenuItem *startGameButtonMenu = [CCMenuItemFont itemWithString:@"tap here to continue..." target:self selector:@selector(gotoStageSelectionScreen)];
-        self.battleCompleteMenu = [CCMenu menuWithItems:startGameButtonMenu, nil];
-        
-        [self.battleCompleteMenu alignItemsHorizontallyWithPadding:20];
-        [self.battleCompleteMenu setPosition:ccp(self.layerSize.width / 2, 100)];
-        
-        // Add the menu to the layer
-        [self addChild:self.battleCompleteMenu];
     }
 }
 
@@ -503,66 +486,7 @@ static Boolean isAutoStart = NO;
     self.fieldBackground = [NBStaticObject createWithSize:CGSizeMake(self.layerSize.width, self.layerSize.height * 0.75) usingFrame:@"frame_item.png" atPosition:CGPointMake(240, self.layerSize.height * 0.40)];
     
     [self.HUDLayer prepareUI:self];
-    
-    //The HP Bar
-    //**********************************************************************
-    /*self.allyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_green.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    targetScaleXForHPBar = self.allyHPBar.scaleX;
-    targetScaleYForHPBar = self.allyHPBar.scaleY;
-    DLog(@"%f, %f", targetScaleXForHPBar, targetScaleYForHPBar);
-    self.allyHPBar.sprite.anchorPoint = CGPointMake(1, 1);
-    self.allyHPBar.scaleX = 0;*/
-    /*self.enemyHPBar = [NBStaticObject createWithSize:CGSizeMake(130, 12) usingFrame:@"staticbox_red.png" atPosition:CGPointMake(self.layerSize.width / 2, 25)];
-    self.enemyHPBar.sprite.anchorPoint = CGPointMake(0, 1);
-    self.enemyHPBar.scaleX = 0;*/
-    //**********************************************************************
-    
-    //The placeholder. This should be something like transparent tube later.
-    //**********************************************************************
-    //self.HPBarPlaceholder = [NBStaticObject createWithSize:CGSizeZero usingFrame:@"lifebar.png" atPosition:CGPointMake((self.layerSize.width / 2) - 5, -20)];
-    //self.HPBarPlaceholder.sprite.anchorPoint = CGPointMake(1, 1);
-    //**********************************************************************
-    
-    /*self.allyFlagLogo = [NBStaticObject createStaticObject:@"ally_logo_dummy.png"];
-    self.allyFlagLogo.position = CGPointMake((-1 * (self.allyFlagLogo.sprite.contentSize.width * 2)), 30);
-    self.allyFlagLogo.visible = YES;
-    self.enemyFlagLogo = [NBStaticObject createStaticObject:@"enemy_logo_dummy.png"];
-    self.enemyFlagLogo.position = CGPointMake(self.layerSize.width + (self.allyFlagLogo.sprite.contentSize.width * 2), 30);
-    self.enemyFlagLogo.visible = YES;*/
-    
-    //Items
-    //**********************************************************************
-    /*self.itemMenuLayer = [[NBFancySlidingMenuLayer alloc] initOnLeftSide:NO];
-    self.itemMenuLayer.layerSize = CGSizeMake(100, 50);
-    self.itemMenuLayer.contentSize = CGSizeMake(100, 50);
-    [self addChild:self.itemMenuLayer];
-    self.itemMenuLayer.position = CGPointMake(20, -48);
-    [self.itemMenuLayer setupSelectorsForItem1:@selector(onItem1Selected) forItem2:@selector(onItem2Selected) forItem3:@selector(onItem3Selected) onBattleLayer:self];
-    
-    NBItem* item = nil;
-    int itemIndex = 0;
-    CCARRAY_FOREACH(self.dataManager.selectedItems, item)
-    {
-        switch (itemIndex) {
-            case 0:
-                self.item1 = item;
-                if ([self.item1.itemData.itemName isEqualToString:@"Potion"]) self.item1.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item1.itemData.imageNormal];
-                break;
-            case 1:
-                self.item2 = item;
-                if ([self.item2.itemData.itemName isEqualToString:@"Fury Pill"]) self.item2.itemData.availableAmount = 100; //For testing purpose
-                [self.itemMenuLayer addItemFrameName:self.item2.itemData.imageNormal];
-                break;
-            case 2:
-                self.item3 = item;
-                //[self.itemMenuLayer addItemFrameName:self.item3.itemData.frame];
-                break;
-        }
-        
-        itemIndex++;
-    }*/
-    //**********************************************************************
+    [self.battleResultLayer setupParentLayer:self selector:@selector(gotoMapSelectionScreen) withCurrentAvailableBattlePoints:self.dataManager.availableBattlePoint];
     
     //Item Area Effect
     //**********************************************************************
@@ -830,16 +754,40 @@ static Boolean isAutoStart = NO;
     if (squadWithCharacter == nil)
       return;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
-    if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
+    if ([self isSpellReady:lastCastDateOfSpell cooldown:10] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
-      if (character.basicClassData.attackType == atMelee)
-        [self castEarthquake:target];
+//      if (character.basicClassData.attackType == atMelee)
+//        [self castEarthquake:target];
       if (character.basicClassData.attackType == atRange)
-        [self castLaserSightFrom:character toTarget:target];
+        [self castChainLightningFrom:character toTarget:target];
+//        [self castLaserSightFrom:character toTarget:target];
 //        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castArrowRain:target];
     }
   }
+}
+
+- (void)chainLightningDamagedCharacter:(NBCharacter *)character {
+  NSInteger damage = 5;
+  [character onAttackedBySkillWithDamage:damage];
+  DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+}
+
+- (void)castChainLightningFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
+  NSMutableArray *targets = [NSMutableArray array];
+  for (NBSquad *squad in self.enemySquads) {
+    [targets addObjectsFromArray:[squad unitArray]];
+  }
+
+  if ([targets containsObject:target]) {
+    [targets removeObject:target];
+    [targets insertObject:target atIndex:0];
+  }
+
+  NBChainLightning *chainLightning = [[NBChainLightning alloc] initWithThrower:thrower andTargets:targets];
+  chainLightning.delegate = self;
+  [self addChild:chainLightning];
+  [chainLightning startChainLightning];
 }
 
 - (void)castLaserSightFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {

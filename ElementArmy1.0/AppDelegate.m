@@ -194,7 +194,7 @@ static NBDataManager* dataManager = nil;
     
     basicClassData = [[NBDataManager dataManager] getBasicClassDataByClassName:@"berserker"];
     basicClassData.level = 1;
-    basicClassData.availableUnit = 1;
+    basicClassData.availableUnit = 2;
     basicClassData.totalUnit = 8;
     basicClassData.timeLastBattleCompleted = [NSDate date];
     

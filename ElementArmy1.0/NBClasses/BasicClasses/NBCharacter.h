@@ -21,7 +21,7 @@
 #define MAXIMUM_CHARACTER_CAPACITY 100
 #define MAXIMUM_PROJECTILE_COUNT 50
 #define MAXIMUM_ATTACK_REFRESH_DURATION 1800    //2 Seconds??
-#define TEST_OBJECT_NAME @"EnemyNBSoldier"
+#define TEST_OBJECT_NAME @"Allywoodarcher4"
 #define ENABLE_REMAINING_ATK_TIME_LOG
 
 @interface NBCharacter : NBBasicObject
@@ -71,6 +71,7 @@
 -(void)applyPassiveRevolvingSkill;
 -(void)applyPassiveBuffs;
 -(void)changeAnimationTo:(NSString*)animationName withDelay:(CGFloat)delay andRepeatForever:(bool)repeat withTarget:(id)target andSelector:(SEL)selector;
+-(void)refreshAttackState;
 
 //Events
 -(void)onStateChangedTo:(EnumCharacterState)newState from:(EnumCharacterState)oldState;

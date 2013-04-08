@@ -27,16 +27,29 @@
 {
     self.currentLayer = layer;
     
-    for (NBConnectorDot* connectorDot in self.dotsData)
+    if (self.dotsInitialized)
     {
-        NBSingleAnimatedObject* dot = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_1.png"];
-        dot.position = CGPointMake((connectorDot.gridPosition.x - 1) * DOT_SQUARE_SIZE, (connectorDot.gridPosition.y) * DOT_SQUARE_SIZE);
-        dot.rotation = connectorDot.rotation;
-        [dot addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
-        dot.visible = NO;
-        [self.dots addObject:dot];
+        for (NBSingleAnimatedObject* dot in self.dots)
+        {
+            [dot removeFromParentAndCleanup:NO];
+            [layer addChild:dot z:0];
+        }
+    }
+    else
+    {
+        for (NBConnectorDot* connectorDot in self.dotsData)
+        {
+            NBSingleAnimatedObject* dot = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"footStep_1.png"];
+            dot.position = CGPointMake((connectorDot.gridPosition.x - 1) * DOT_SQUARE_SIZE, (connectorDot.gridPosition.y) * DOT_SQUARE_SIZE);
+            dot.rotation = connectorDot.rotation;
+            [dot addAnimationFrameName:@"footStep" withAnimationCount:2 fileExtension:@"png"];
+            dot.visible = NO;
+            [self.dots addObject:dot];
+            
+            [layer addChild:dot z:0];
+        }
         
-        [layer addChild:dot z:0];
+        self.dotsInitialized = YES;
     }
 }
 
@@ -126,7 +139,7 @@
 
 -(void)animate
 {
-    if (currentDotIndex == [self.dots count])
+    if (currentDotIndex >= [self.dots count])
     {
         currentDotIndex = 0;
         return;
