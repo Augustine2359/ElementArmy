@@ -191,6 +191,7 @@
 		BCDA1AC116EC1C4E00438E35 /* NBBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDA1AC016EC1C4E00438E35 /* NBBasicObject.m */; };
 		F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FB91710476600D7CFBB /* NBSpellProjectile.m */; };
 		F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FBC1710767500D7CFBB /* NBLaserSight.m */; };
+		F9125FC1171307E500D7CFBB /* NBChainLightning.m in Sources */ = {isa = PBXBuildFile; fileRef = F9125FC0171307E500D7CFBB /* NBChainLightning.m */; };
 		F920EA1B16DDD025006BA898 /* NBUnitRespawnContainerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */; };
 		F929148716F96B63003E2B22 /* NBRipples.m in Sources */ = {isa = PBXBuildFile; fileRef = F929148616F96B63003E2B22 /* NBRipples.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
@@ -551,6 +552,8 @@
 		F9125FB91710476600D7CFBB /* NBSpellProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBSpellProjectile.m; sourceTree = "<group>"; };
 		F9125FBB1710767500D7CFBB /* NBLaserSight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBLaserSight.h; sourceTree = "<group>"; };
 		F9125FBC1710767500D7CFBB /* NBLaserSight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBLaserSight.m; sourceTree = "<group>"; };
+		F9125FBF171307E500D7CFBB /* NBChainLightning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBChainLightning.h; sourceTree = "<group>"; };
+		F9125FC0171307E500D7CFBB /* NBChainLightning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBChainLightning.m; sourceTree = "<group>"; };
 		F920EA1916DDD025006BA898 /* NBUnitRespawnContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUnitRespawnContainerLayer.h; sourceTree = "<group>"; };
 		F920EA1A16DDD025006BA898 /* NBUnitRespawnContainerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUnitRespawnContainerLayer.m; sourceTree = "<group>"; };
 		F929148516F96B63003E2B22 /* NBRipples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBRipples.h; sourceTree = "<group>"; };
@@ -1138,17 +1141,27 @@
 			path = Resources/CharacterSprites;
 			sourceTree = "<group>";
 		};
-		F9299FD916A2FBA300C9DD61 /* Battle Screen */ = {
+		F9125FBE171307B400D7CFBB /* SpellClasses */ = {
 			isa = PBXGroup;
 			children = (
-				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
-				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
 				F9125FBB1710767500D7CFBB /* NBLaserSight.h */,
 				F9125FBC1710767500D7CFBB /* NBLaserSight.m */,
 				F9125FB81710476600D7CFBB /* NBSpellProjectile.h */,
 				F9125FB91710476600D7CFBB /* NBSpellProjectile.m */,
 				F929148516F96B63003E2B22 /* NBRipples.h */,
 				F929148616F96B63003E2B22 /* NBRipples.m */,
+				F9125FBF171307E500D7CFBB /* NBChainLightning.h */,
+				F9125FC0171307E500D7CFBB /* NBChainLightning.m */,
+			);
+			name = SpellClasses;
+			sourceTree = "<group>";
+		};
+		F9299FD916A2FBA300C9DD61 /* Battle Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F9299FDA16A2FBA300C9DD61 /* NBBattleLayer.h */,
+				F9299FDB16A2FBA300C9DD61 /* NBBattleLayer.m */,
+				F9125FBE171307B400D7CFBB /* SpellClasses */,
 				F9299FDC16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.h */,
 				F9299FDD16A2FBA300C9DD61 /* NBFancySlidingMenuLayer.m */,
 				BCB909E016FD62EF00B620C6 /* NBAreaEffect.h */,
@@ -1530,6 +1543,7 @@
 				F9125FBA1710476600D7CFBB /* NBSpellProjectile.m in Sources */,
 				F9125FBD1710767500D7CFBB /* NBLaserSight.m in Sources */,
 				BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */,
+				F9125FC1171307E500D7CFBB /* NBChainLightning.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
