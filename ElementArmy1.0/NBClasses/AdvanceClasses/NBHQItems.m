@@ -36,14 +36,26 @@ NBItem* currSelectedItem = nil;
 }
 
 -(void)initialiseItemUI{
+    self.allCostLabels = [CCArray new];
+    self.allQuantityLabels = [CCArray new];
+    CCArray* allHeldItems = [[NBDataManager dataManager] availableItems];
+    
     for (int x = 0; x < [self.allItems count]; x++) {
         NBItem* thatItem = [self.allItems objectAtIndex:x];
         [thatItem.itemIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
         [thatItem displayItemIcon];
         
+        int quantityHeld = 0;
+        for (int y = 0; y < [allHeldItems count]; y++) {
+            NBItem* thisItem = [allHeldItems objectAtIndex:y];
+            if (thisItem.itemData.itemName == thatItem.itemData.itemName) {
+                quantityHeld = thisItem.itemData.availableAmount;
+                break;
+            }
+        }
+        
         CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"Marker Felt" fontSize:15];
-        int initialQuantity = 0;
-        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", initialQuantity] fontName:@"Marker Felt" fontSize:15];
+        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"Marker Felt" fontSize:15];
         costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
         quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
         
@@ -51,7 +63,6 @@ NBItem* currSelectedItem = nil;
         [self addChild:quantityLabel];
         [self.allCostLabels addObject:costLabel];
         [self.allQuantityLabels addObject:quantityLabel];
-        [self.allQuantityText addObject:[NSNumber numberWithInt:initialQuantity]];
 
         if (x == 11) {
             //Do something to show the remainder on next page
@@ -64,10 +75,15 @@ NBItem* currSelectedItem = nil;
     self.labelBackground.scaleX = 360 / self.labelBackground.contentSize.width;
     self.labelBackground.scaleY = 50 / self.labelBackground.contentSize.height;
     self.labelBackground.position = ccp(220, 130);
-    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"PF Ronda Seven" fontSize:10];
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:20];
     self.descriptionLabel.position = ccp(230, 130);
     [self addChild:self.labelBackground];
     [self addChild:self.descriptionLabel];
+    
+    self.buyButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(buyTargetItem) withSize:CGSizeZero];
+    [self.buyButton setPosition:CGPointMake(400, 125)];
+    [self.buyButton.menu setZOrder:2];
+    [self.buyButton show];
     
     [self setPosition:ccp(0, -320)];
 }
@@ -91,10 +107,26 @@ NBItem* currSelectedItem = nil;
             break;
             
         default:{
-            //Quantity + 1
+            [self buyTargetItem];
         }
             break;
     }
+}
+
+-(void)buyTargetItem{
+    NBItem *thatItem = [NBItem getCurrentlySelectedItem];
+    int itemIndex = [[NBDataManager getListOfItems] indexOfObject:thatItem.itemData];
+    
+    if (itemIndex == 0) {
+        return;
+    }
+    
+    //Check enough gold
+    //Add quantity
+    int quantityHeld = ++thatItem.itemData.availableAmount;
+    //Update label
+    CCLabelTTF* thatLabel = (CCLabelTTF*)[self.allQuantityLabels objectAtIndex:itemIndex];
+    [thatLabel setString:[NSString stringWithFormat:@"x %i", quantityHeld]];
 }
 
 @end

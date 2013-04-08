@@ -36,14 +36,26 @@ NBEquipment* currSelectedEquipment = nil;
 }
 
 -(void)initialiseEquipmentUI{
+    self.allCostLabels = [CCArray new];
+    self.allQuantityLabels = [CCArray new];
+    CCArray* allHeldEquipments = [[NBDataManager dataManager] availableEquipments];
+    
     for (int x = 0; x < [self.allEquipments count]; x++) {
         NBEquipment* thatEquipment = [self.allEquipments objectAtIndex:x];
         [thatEquipment.equipmentIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
         [thatEquipment displayEquipmentIcon];
         
+        int quantityHeld = 0;
+        for (int y = 0; y < [allHeldEquipments count]; y++) {
+            NBEquipment* thisEquipment = [allHeldEquipments objectAtIndex:y];
+            if (thisEquipment.equipmentData.equipmentName == thatEquipment.equipmentData.equipmentName) {
+                quantityHeld = thisEquipment.equipmentData.availableAmount;
+                break;
+            }
+        }
+        
         CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"Marker Felt" fontSize:15];
-        int initialQuantity = 0;
-        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", initialQuantity] fontName:@"Marker Felt" fontSize:15];
+        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"Marker Felt" fontSize:15];
         costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
         quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
         
@@ -51,7 +63,6 @@ NBEquipment* currSelectedEquipment = nil;
         [self addChild:quantityLabel];
         [self.allCostLabels addObject:costLabel];
         [self.allQuantityLabels addObject:quantityLabel];
-        [self.allQuantityText addObject:[NSNumber numberWithInt:initialQuantity]];
         
         if (x == 11) {
             //Do something to show the remainder on next page
@@ -65,10 +76,15 @@ NBEquipment* currSelectedEquipment = nil;
     self.labelBackground.scaleX = 360 / self.labelBackground.contentSize.width;
     self.labelBackground.scaleY = 50 / self.labelBackground.contentSize.height;
     self.labelBackground.position = ccp(220, 130);
-    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"PF Ronda Seven" fontSize:10];
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:20];
     self.descriptionLabel.position = ccp(230, 130);
     [self addChild:self.labelBackground];
     [self addChild:self.descriptionLabel];
+    
+    self.buyButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(buyTargetEquipment) withSize:CGSizeZero];
+    [self.buyButton setPosition:CGPointMake(400, 125)];
+    [self.buyButton.menu setZOrder:2];
+    [self.buyButton show];
     
     [self setPosition:ccp(0, -320)];
 }
@@ -92,10 +108,27 @@ NBEquipment* currSelectedEquipment = nil;
         break;
             
         default:{
-            //Quantity + 1
+            [self buyTargetEquipment];
         }
         break;
     }
 }
+
+-(void)buyTargetEquipment{
+    NBEquipment *thatEquipment = [NBEquipment getCurrentlySelectedEquipment];
+    int equipmentIndex = [[NBDataManager getListOfEquipments] indexOfObject:thatEquipment.equipmentData];
+    
+    if (equipmentIndex == 0) {
+        return;
+    }
+    
+    //Check enough gold
+    //Add quantity
+    int quantityHeld = ++thatEquipment.equipmentData.availableAmount;
+    //Update label
+    CCLabelTTF* thatLabel = (CCLabelTTF*)[self.allQuantityLabels objectAtIndex:equipmentIndex];
+    [thatLabel setString:[NSString stringWithFormat:@"x %i", quantityHeld]];
+}
+
 
 @end

@@ -25,7 +25,7 @@
 -(void)loadEquipmentList;
 -(void)loadSkillList;
 -(void)loadPlayerData;
-
+-(void)savePlayerData;
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
 +(id)getSkillBySkillName:(NSString*)lookupName;
@@ -55,9 +55,9 @@
 @property (nonatomic, assign) int numberOfItem;
 @property (nonatomic, retain) NSString* selectedWeaponID;
 
-@property (nonatomic, assign) long availableBattlePoint;
-@property (nonatomic, assign) long availableGold;
-@property (nonatomic, assign) long availableElementalGem;
+@property (nonatomic, assign) int availableBattlePoint;
+@property (nonatomic, assign) int availableGold;
+@property (nonatomic, assign) int availableElementalGem;
 @property (nonatomic, assign) CCArray* availableItems;
 @property (nonatomic, assign) CCArray* availableEquipments;
 

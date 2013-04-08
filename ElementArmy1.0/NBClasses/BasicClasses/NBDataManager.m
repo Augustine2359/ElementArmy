@@ -69,6 +69,72 @@ static CCArray* listOfEquipments = nil;
     [super dealloc];
 }
 
+-(void)loadPlayerData{
+    //Load all saved variables from plist
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"SaveGame" ofType:@"plist"];
+    NSMutableDictionary *dictionary = nil;
+    
+    //If doesnt exist create one
+    if (plistPath == NULL) {
+        DLog(@"Creating player data");
+        NSString* initialBP = @"0";
+        NSString* initialGold = @"0";
+        NSString* initialGem = @"0";
+        self.availableItems = nil;
+        self.availableEquipments = nil;
+        
+        [dictionary setObject:initialBP forKey:@"AvailableBP"];
+        [dictionary setObject:initialGold forKey:@"AvailableGold"];
+        [dictionary setObject:initialGem forKey:@"AvailableGem"];
+        [dictionary setObject:self.availableItems forKey:@"AvailableItems"];
+        [dictionary setObject:self.availableEquipments forKey:@"AvailableEquipments"];
+        
+        //Save data
+        NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+        
+        //Save path
+        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *path = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
+        
+        if (plistData)
+            [plistData writeToFile:path atomically:YES];
+        
+        return;
+    }
+    //Else load all data
+    else{
+        DLog(@"Loading player data");
+        dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+        self.availableBattlePoint = [[dictionary objectForKey:@"AvailableBP"] longValue];
+        self.availableGold = [[dictionary objectForKey:@"AvailableGold"] longValue];
+        self.availableElementalGem = [[dictionary objectForKey:@"AvailableGem"] longValue];
+        self.availableItems = [dictionary objectForKey:@"AvailableItems"];
+        self.availableEquipments = [dictionary objectForKey:@"AvailableEquipments"];
+        
+        return;
+    }
+}
+
+-(void)savePlayerData{
+    NSMutableDictionary *dictionary = nil;
+    [dictionary setObject:[NSString stringWithFormat:@"%i", self.availableBattlePoint] forKey:@"AvailableBP"];
+    [dictionary setObject:[NSString stringWithFormat:@"%i", self.availableGold] forKey:@"AvailableGold"];
+    [dictionary setObject:[NSString stringWithFormat:@"%i", self.availableElementalGem] forKey:@"AvailableGem"];
+    [dictionary setObject:self.availableItems forKey:@"AvailableItems"];
+    [dictionary setObject:self.availableEquipments forKey:@"AvailableEquipments"];
+    
+    //Data to save
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+    
+    //Path to save
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
+    
+    if (plistData)
+        [plistData writeToFile:path atomically:YES];
+    
+}
+
 -(NBStageData*)getStageDataByStageID:(NSString*)stageID
 {
     NBStageData* stageData = nil;
@@ -261,60 +327,6 @@ static CCArray* listOfEquipments = nil;
     }
     
     [listOfSkills retain];
-}
-
--(void)loadPlayerData{
-    //Load all saved variables from plist
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PlayerData" ofType:@"plist"];
-    NSMutableDictionary *dictionary = nil;
-    
-    //If doesnt exist create one
-    if (plistPath == NULL) {
-        DLog(@"Creating player data");
-        NSString* initialBP = @"0";
-        NSString* initialGold = @"0";
-        NSString* initialGem = @"0";
-        self.availableItems = nil;
-        self.availableEquipments = nil;
-        
-        [dictionary setObject:initialBP forKey:@"AvailableBP"];
-        [dictionary setObject:initialGold forKey:@"AvailableGold"];
-        [dictionary setObject:initialGem forKey:@"AvailableGem"];
-        [dictionary setObject:self.availableItems forKey:@"AvailableItems"];
-        [dictionary setObject:self.availableEquipments forKey:@"AvailableItems"];
-        return;
-    }
-    //Else load all data
-    else{
-        DLog(@"Loading player data");
-        dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-        NSArray *stages = [dictionary objectForKey:@"Stage data"];
-        
-        NSInteger index = 0;
-        for (NSMutableDictionary *stageDataDictionary in stages) {
-            NBStage *stage = [self.listOfStages objectAtIndex:index];
-            index++;
-            
-            //update the default stage data with any changes to the game state
-            NBStageData *stageData = stage.stageData;
-            [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
-            [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
-        }
-        
-        [dictionary setObject:stages forKey:@"Stage data"];
-
-        return;
-    }
-    
-    //Save data
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
-    
-    //Save path
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [rootPath stringByAppendingPathComponent:@"PlayerData.plist"];
-    
-    if (plistData)
-        [plistData writeToFile:path atomically:YES];
 }
 
 -(void)createCharacterList

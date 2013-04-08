@@ -38,7 +38,8 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
 
 -(void)onItemSelected
 {
-    if ([[NBBasicScreenLayer getCurrentScreenName] isEqualToString:@"NBBattleSetupScreen"])
+    if ([[NBBasicScreenLayer getCurrentScreenName] isEqualToString:@"NBBattleSetupScreen"] ||
+        [[NBBasicScreenLayer getCurrentScreenName] isEqualToString:@"NBHQSetupScreen"])
     {
         currentlySelectedItemInBattleSetup = self;
         [self.currentLayer performSelector:self.currentSelector];
