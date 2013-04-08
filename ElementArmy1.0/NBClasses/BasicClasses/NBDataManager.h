@@ -26,6 +26,8 @@
 -(void)loadSkillList;
 -(void)loadPlayerData;
 -(void)savePlayerData;
+-(void)loadGameSettingData;
+
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
 +(id)getSkillBySkillName:(NSString*)lookupName;
