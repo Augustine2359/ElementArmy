@@ -54,6 +54,8 @@
 		BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E71708233A00B620C6 /* NBHUDLayer.m */; };
 		BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909EA17082F1900B620C6 /* NBShakeEffect.m */; };
 		BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */; };
+		BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */; };
+		BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -267,6 +269,8 @@
 		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBShakeEffect.m; path = "../Battle Screen/NBShakeEffect.m"; sourceTree = "<group>"; };
 		BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleResultLayer.h; sourceTree = "<group>"; };
 		BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleResultLayer.m; sourceTree = "<group>"; };
+		BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven_bold.ttf; sourceTree = "<group>"; };
+		BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven.ttf; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1264,6 +1268,8 @@
 		F9C43AD316EDBB990036FA29 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */,
+				BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */,
 				F9C43AD416EDBB990036FA29 /* sampleFont.fnt */,
 				F9C43AD516EDBB990036FA29 /* sampleFont.png */,
 			);
@@ -1341,6 +1347,8 @@
 				F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */,
 				F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */,
 				F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */,
+				BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */,
+				BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

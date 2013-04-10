@@ -19,7 +19,7 @@
         
         DLog(@"test pos x = %f, y = %f", self.position.x, self.position.y);
         
-        self.background = [CCSprite spriteWithSpriteFrameName:@"staticbox_gray.png"];
+        self.background = [CCSprite spriteWithSpriteFrameName:@"frame_001_lvl_char.png"];
         self.background.scaleX = 256 / self.background.contentSize.width;
         self.background.scaleY = 48 / self.background.contentSize.height;
         [self addChild:self.background];
@@ -31,6 +31,7 @@
         //Stage Title
         self.levelName = [CCLabelTTF labelWithString:@"" dimensions:CGSizeMake(120, 24) hAlignment:NSTextAlignmentLeft fontName:@"Zapfino" fontSize:10];
         self.levelName.position = CGPointMake((windowSize.width / 2 / 1.2), 30);
+        self.levelName.visible = NO;
         [self addChild:self.levelName];
         
         [layer addChild:self];
@@ -56,6 +57,21 @@
     
     NBBasicClassData* classData = nil;
     int enemyIndex = 0;
+    int enemyClassCount = [stageData.enemyList count];
+    int positionStart = 0;
+    
+    if (enemyClassCount == 1)
+    {
+        positionStart = 0;
+    }
+    else if (enemyClassCount == 2)
+    {
+        positionStart = 25;
+    }
+    else if (enemyClassCount == 3)
+    {
+        positionStart = 50;
+    }
     
     CCARRAY_FOREACH(stageData.enemyList, classData)
     {
@@ -79,7 +95,7 @@
         }
         
         [self addChild:newEnemyImage];
-        newEnemyImage.position = CGPointMake(((windowSize.width / 2) + 48) + (enemyIndex * 30), 30);
+        newEnemyImage.position = CGPointMake(((windowSize.width / 2) - positionStart) + (enemyIndex * 50), 30);
 
         enemyIndex++;
     }
