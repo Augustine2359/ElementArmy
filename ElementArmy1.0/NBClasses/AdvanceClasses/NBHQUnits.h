@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NBButton* metalButton;
 @property (nonatomic, retain) NBButton* woodButton;
 @property (nonatomic, retain) CCArray* fourUnits;
+@property (nonatomic, retain) CCArray* statsLabels;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialise;

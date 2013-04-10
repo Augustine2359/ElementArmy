@@ -30,4 +30,6 @@ typedef enum
 @property (nonatomic, retain) NSString* imageSelected;
 @property (nonatomic, retain) NSString* imageDisabled;
 
+@property (nonatomic, assign) int availableAmount;
+
 @end

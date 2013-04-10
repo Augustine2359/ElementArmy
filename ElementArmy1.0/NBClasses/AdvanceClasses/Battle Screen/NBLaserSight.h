@@ -8,11 +8,13 @@
 
 #import "CCNode.h"
 #import "NBSpellProjectile.h"
+#import "NBSpell.h"
 
 @class NBLaserSight;
 
-@protocol NBLaserSightDelegate <NSObject>
+@protocol NBLaserSightDelegate <NBSpellDelegate>
 
+@optional
 - (void)lockOnFinished:(NBLaserSight *)laserSight;
 
 @end
@@ -20,7 +22,7 @@
 @interface NBLaserSight : CCNode
 
 @property (nonatomic, strong) NSArray *spellProjectiles;
-@property (nonatomic, strong) id <NBLaserSightDelegate> delegate; //inform the delegate when lock-on is complete
+@property (nonatomic, strong) id <NBSpellDelegate> delegate; //inform the delegate when lock-on is complete
 
 - (id)initWithSpellProjectiles:(NSArray *)projectiles lockOnTime:(CGFloat)time;
 - (void)startLockOn;

@@ -754,16 +754,40 @@ static Boolean isAutoStart = NO;
     if (squadWithCharacter == nil)
       return;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
-    if ([self isSpellReady:lastCastDateOfSpell cooldown:5] || (lastCastDateOfSpell == nil)) {
+    if ([self isSpellReady:lastCastDateOfSpell cooldown:10] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
-      if (character.basicClassData.attackType == atMelee)
-        [self castEarthquake:target];
+//      if (character.basicClassData.attackType == atMelee)
+//        [self castEarthquake:target];
       if (character.basicClassData.attackType == atRange)
-        [self castLaserSightFrom:character toTarget:target];
+        [self castChainLightningFrom:character toTarget:target];
+//        [self castLaserSightFrom:character toTarget:target];
 //        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castArrowRain:target];
     }
   }
+}
+
+- (void)chainLightningDamagedCharacter:(NBCharacter *)character {
+  NSInteger damage = 5;
+  [character onAttackedBySkillWithDamage:damage];
+  DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+}
+
+- (void)castChainLightningFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
+  NSMutableArray *targets = [NSMutableArray array];
+  for (NBSquad *squad in self.enemySquads) {
+    [targets addObjectsFromArray:[squad unitArray]];
+  }
+
+  if ([targets containsObject:target]) {
+    [targets removeObject:target];
+    [targets insertObject:target atIndex:0];
+  }
+
+  NBChainLightning *chainLightning = [[NBChainLightning alloc] initWithThrower:thrower andTargets:targets];
+  chainLightning.delegate = self;
+  [self addChild:chainLightning];
+  [chainLightning startChainLightning];
 }
 
 - (void)castLaserSightFrom:(NBCharacter *)thrower toTarget:(NBCharacter *)target {
