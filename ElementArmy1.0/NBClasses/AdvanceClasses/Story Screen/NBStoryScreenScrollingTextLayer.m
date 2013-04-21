@@ -17,8 +17,8 @@
 - (id)init {
   self = [super init];
   if (self) {
-    NSString *text = @"The quick brown fox jumps over the lazy dog";
-    CCLabelTTF *label0 = [CCLabelTTF labelWithString:text fontName:@"Zapfino" fontSize:16];
+    NSString *text = @"Kingdoms of Nebula, a prosperous union, .......................................................";
+    CCLabelTTF *label0 = [CCLabelTTF labelWithString:text fontName:@"Zapfino" fontSize:12];
     [self addChild:label0];
 
     CGPoint position = label0.position;
