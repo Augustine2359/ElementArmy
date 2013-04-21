@@ -164,7 +164,7 @@
 
 -(void)update:(ccTime)delta
 {
-    [self.currentCountryStage update];
+    [self.currentCountryStage update:delta];
 }
 
 -(void)gotoBattleSetupScreen

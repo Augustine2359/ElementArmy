@@ -42,6 +42,8 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
 {
 	[super onEnter];
     
+    CGSize winsize = [[CCDirector sharedDirector] winSize];
+    
     UI_USER_INTERFACE_IDIOM();
     
     //Prepare Sprite Batch Node
@@ -57,10 +59,13 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     self.backgroundImage = [NBStaticObject createStaticObject:@"troopSelectionScreen_background.png" atPosition:CGPointMake(240, 160)];
     
     //Display Title
-    self.headerImage = [NBStaticObject createStaticObject:@"HQ_Title.png" atPosition:CGPointMake(240, 300)];
+    self.headerImage = [CCSprite spriteWithSpriteFrameName:@"HQ_Title.png"];
+    self.headerImage.anchorPoint = ccp(0, 0);
+    self.headerImage.position = ccp(5, winsize.height - self.headerImage.boundingBox.size.height - 5);
+    [self addChild:self.headerImage];
     
     //Display Title in the middle of the screen
-    [self displayLayerTitle:@"HQ Scene"];
+    //[self displayLayerTitle:@"HQ Scene"];
     
     [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
     [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
@@ -75,6 +80,10 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     //self.testButton = [NBButton createWithSize:CGSizeMake(100, 40)];
     //self.testButton.position = CGPointMake(200, 200);
     //[self.testButton addHandler:self selector:@selector(onTestButtonPressed)];
+    
+    self.gameResourcePanel = [NBGameResourcePanel getGamePanel];
+    [self.gameResourcePanel removeFromParentAndCleanup:NO];
+    [self addChild:self.gameResourcePanel];
     
     //Init all other layers in same scene
     self.equipmentsLayer = [[NBHQEquipments alloc] initWithLayer:self];
@@ -111,6 +120,11 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     
     self.canInput = YES;
     [self openEquipmentsMenu];
+}
+
+-(void)update:(ccTime)delta
+{
+    [self.gameResourcePanel updateResourceInfo];
 }
 
 -(void)openEquipmentsMenu{

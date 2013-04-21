@@ -46,6 +46,7 @@
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 		BC4EA62316FC7A50004A67C4 /* NBStageInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */; };
 		BC8A720816B511D400D890A1 /* NBStageData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A720716B511D400D890A1 /* NBStageData.m */; };
+		BC8BEC1B17239D0800530B5D /* NBGameResourcePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */; };
 		BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
@@ -259,6 +260,8 @@
 		BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageInfoPanel.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
 		BC8A720716B511D400D890A1 /* NBStageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageData.m; sourceTree = "<group>"; };
+		BC8BEC1917239D0800530B5D /* NBGameResourcePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameResourcePanel.h; sourceTree = "<group>"; };
+		BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameResourcePanel.m; sourceTree = "<group>"; };
 		BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectileBasicData.h; sourceTree = "<group>"; };
 		BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectileBasicData.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
@@ -1095,14 +1098,16 @@
 				BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */,
 				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
-				BCC0F60016B6C846006A1C88 /* NBItem.h */,
-				BCC0F60116B6C846006A1C88 /* NBItem.m */,
-				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
-				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
 				568EC19916EC584D00815563 /* NBEquipment.h */,
 				568EC19A16EC584D00815563 /* NBEquipment.m */,
 				568EC19C16EC58B600815563 /* NBEquipmentData.h */,
 				568EC19D16EC58B600815563 /* NBEquipmentData.m */,
+				BC8BEC1917239D0800530B5D /* NBGameResourcePanel.h */,
+				BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */,
+				BCC0F60016B6C846006A1C88 /* NBItem.h */,
+				BCC0F60116B6C846006A1C88 /* NBItem.m */,
+				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
+				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
 				BCBC73BC1633AA7700B5A141 /* NBMagic.m */,
 				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
@@ -1111,6 +1116,8 @@
 				BC06C250163461E700F091F0 /* NBProjectile.m */,
 				BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */,
 				BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */,
+				BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */,
+				BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */,
 				BCBC73BD1633AA7700B5A141 /* NBSkill.h */,
 				BCBC73BE1633AA7700B5A141 /* NBSkill.m */,
 				BCBC73C11633AA7700B5A141 /* NBSquad.h */,
@@ -1124,8 +1131,6 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
-				BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */,
-				BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1580,6 +1585,7 @@
 				BCB90A00171AB1CD00B620C6 /* NBStorySet1.m in Sources */,
 				BCB90A031720DE6D00B620C6 /* NBStorySet2.m in Sources */,
 				BCB90A061720E77200B620C6 /* NBFlashingScreen.m in Sources */,
+				BC8BEC1B17239D0800530B5D /* NBGameResourcePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

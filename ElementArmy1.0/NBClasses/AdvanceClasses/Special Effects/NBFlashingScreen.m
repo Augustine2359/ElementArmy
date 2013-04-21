@@ -35,6 +35,7 @@
 
 -(void)invokeFlash
 {
+    self.isFlashingNow = true;
     self.currentFlashIndex++;
     CCFadeIn* fadeIn = [CCFadeIn actionWithDuration:0.15];
     CCFadeOut* fadeOut = [CCFadeOut actionWithDuration:0.25];
@@ -59,6 +60,7 @@
     else
     {
         self.currentFlashIndex = 0;
+        self.isFlashingNow = false;
         [self.screenOwner performSelector:self.screenSelector];
         return;
     }

@@ -18,5 +18,6 @@
 @property (nonatomic, assign) short currentFlashIndex;
 @property (nonatomic, retain) id screenOwner;
 @property (nonatomic, assign) SEL screenSelector;
+@property (nonatomic, assign) bool isFlashingNow;
 
 @end

@@ -12,6 +12,7 @@
 #import "NBItem.h"
 #import "NBBattleSetupEquipments.h"
 #import "NBEquipment.h"
+#import "NBGameResourcePanel.h"
 
 @interface NBBattleSetupScreen : NBBasicScreenLayer
 
@@ -26,8 +27,10 @@
 -(void)gotoStoryScreen;
 -(void)gotoBattleScreen;
 
+@property (nonatomic, retain) NBGameResourcePanel* gameResourcePanel;
+
 @property (nonatomic, retain) NBStaticObject* background;
-@property (nonatomic, retain) NBStaticObject *battleSetupTitle;
+@property (nonatomic, retain) CCSprite *battleSetupTitle;
 @property (nonatomic, retain) NBButton *battleSetupOk;
 @property (nonatomic, retain) NBButton *battleSetupCancel;
 

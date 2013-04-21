@@ -32,5 +32,12 @@
 @property (nonatomic, retain) CCSprite* storyBackgroundImage1;
 @property (nonatomic, retain) CCSprite* storyBackgroundImage2;
 @property (nonatomic, retain) NBFlashingScreen* flashingScreen;
+@property (nonatomic, retain) CCSprite* redFlash;
+@property (nonatomic, retain) CCSprite* whiteFlash;
+@property (nonatomic, retain) CCLabelTTF* gameTitle1;
+@property (nonatomic, retain) CCLabelTTF* gameTitle2;
+
+//Actors
+@property (nonatomic, retain) CCSprite* darkLordImage;
 
 @end

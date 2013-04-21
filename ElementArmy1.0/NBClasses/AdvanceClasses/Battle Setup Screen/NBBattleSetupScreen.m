@@ -50,6 +50,8 @@ int objectsLeftToTransit = 6;
 {
 	[super onEnter];
     
+    CGSize winsize = [[CCDirector sharedDirector] winSize];
+    
     UI_USER_INTERFACE_IDIOM();
     
     CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -66,7 +68,17 @@ int objectsLeftToTransit = 6;
     self.background = [NBStaticObject createStaticObject:@"troopSelectionScreen_background.png" atPosition:CGPointMake(240, 160)];
     
     //Display Title
-    self.battleSetupTitle = [NBStaticObject createStaticObject:@"troopSelectionScreen_header.png" atPosition:CGPointMake(240, 350)];
+    //self.battleSetupTitle = [NBStaticObject createStaticObject:@"troopSelectionScreen_header.png" atPosition:CGPointMake(240, 350)];
+    
+    //Display Title
+    self.battleSetupTitle = [CCSprite spriteWithSpriteFrameName:@"troopSelectionScreen_header.png"];
+    self.battleSetupTitle.anchorPoint = ccp(0, 0);
+    self.battleSetupTitle.position = ccp(5, winsize.height - self.battleSetupTitle.boundingBox.size.height - 5);
+    [self addChild:self.battleSetupTitle];
+    
+    self.gameResourcePanel = [NBGameResourcePanel getGamePanel];
+    [self.gameResourcePanel removeFromParentAndCleanup:NO];
+    [self addChild:self.gameResourcePanel];
     
     //Display Characters
     [self createUnitSelectors];
@@ -156,7 +168,7 @@ int objectsLeftToTransit = 6;
     
     [self.unitRespawnContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(285, 100)], nil]];
     [self.unitSelectorsContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(10, 100)], nil]];
-    [self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
+    //[self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
     [self.battleSetupCancel.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
     [self.battleSetupOk.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];
     

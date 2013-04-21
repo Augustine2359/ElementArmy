@@ -10,6 +10,7 @@
 #import "NBHQEquipments.h"
 #import "NBHQItems.h"
 #import "NBHQUnits.h"
+#import "NBGameResourcePanel.h"
 
 @interface NBHQSetupScreen : NBBasicScreenLayer
 
@@ -17,7 +18,7 @@
 @property (nonatomic, retain) NBStaticObject* titleBanner;
 
 @property (nonatomic, retain) NBStaticObject* backgroundImage;
-@property (nonatomic, retain) NBStaticObject* headerImage;
+@property (nonatomic, retain) CCSprite* headerImage;
 
 @property (nonatomic, retain) NBHQEquipments* equipmentsLayer;
 @property (nonatomic, retain) NBHQItems* itemsLayer;
@@ -30,6 +31,8 @@
 @property (nonatomic, retain) NBButton* cancelButton;
 
 @property (nonatomic, assign) bool canInput;
+
+@property (nonatomic, retain) NBGameResourcePanel* gameResourcePanel;
 
 -(void)openEquipmentsMenu;
 -(void)openItemsMenu;
