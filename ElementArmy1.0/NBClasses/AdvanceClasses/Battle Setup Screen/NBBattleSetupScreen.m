@@ -68,10 +68,6 @@ int objectsLeftToTransit = 6;
     //Display Title
     self.battleSetupTitle = [NBStaticObject createStaticObject:@"troopSelectionScreen_header.png" atPosition:CGPointMake(240, 350)];
     
-    //Display Characters
-    [self createUnitSelectors];
-    [self createUnitRespawnContainerLayer];
-
     //Display buttons Navigation
     //OK
     self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
@@ -120,6 +116,11 @@ int objectsLeftToTransit = 6;
     [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
     [self.selectedEquipment3 displayEquipmentIcon];
     
+    
+    //Display Characters
+    [self createUnitSelectors];
+    [self createUnitRespawnContainerLayer];
+
     [self initialiseTransition];
 }
 
@@ -233,7 +234,11 @@ int objectsLeftToTransit = 6;
     }
 
     NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
-    [self.setupEquipmentsFrame toggleEquipmentSelection:equipment];
+    [self.setupEquipmentsFrame toggleEquipmentSelection:equipment confirmSel:@selector(updateBonusStats)];
+}
+
+-(void)updateBonusStats{
+    [self.unitRespawnContainerLayer updateBonusStats:self.selectedEquipment1 equipment2:self.selectedEquipment2 equipment3:self.selectedEquipment3];
 }
 
 @end

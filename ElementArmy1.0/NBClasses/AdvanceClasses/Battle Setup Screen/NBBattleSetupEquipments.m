@@ -7,6 +7,7 @@
 //
 
 #import "NBBattleSetupEquipments.h"
+#import "NBBattleSetupScreen.h"
 
 @implementation NBBattleSetupEquipments
 
@@ -74,7 +75,7 @@
     [self setPosition:ccp(0, -320)];
 }
 
--(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton{
+-(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton confirmSel:(SEL)confirmSel{
     
     //Is already closed
     if (!self.equipmentSelectionOpen) {
@@ -83,6 +84,7 @@
         self.equipmentSelectionOpen = YES;
         
         self.changingTargetEquipment = selectedEquipmentButton;
+        self.updateStatSelector = confirmSel;
     }
     
     //Is already opened
@@ -98,6 +100,7 @@
             [newEquipment displayEquipmentIcon];
             
             [self.changingTargetEquipment hideEquipmentIcon];
+            [self.mainLayer performSelector:self.updateStatSelector];
         }
     }
 }
@@ -110,11 +113,11 @@
 
 -(void)confirmAndCloseMenu{
     NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
-    [self toggleEquipmentSelection:equipment];
+    [self toggleEquipmentSelection:equipment confirmSel:nil];
 }
 
 -(void)cancelAndCloseMenu{
-    [self toggleEquipmentSelection:nil];
+    [self toggleEquipmentSelection:nil confirmSel:nil];
 }
 
 @end

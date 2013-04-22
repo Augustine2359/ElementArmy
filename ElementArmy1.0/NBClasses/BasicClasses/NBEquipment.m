@@ -29,25 +29,6 @@ static NBEquipment* currentlySelectedEquipmentInBattleSetup = nil;
     return equipment;
 }
 
-//+(id)createEquipmentByIndex:(int)equipmentIndex onLayer:(id)layer onSelector:(SEL)selector lockedSelector:(SEL)lockedSelector
-//{
-//    NBEquipment* equipment = [NBEquipment new];
-//    equipment.equipmentData = (NBEquipmentData*)[[[NBDataManager dataManager] listOfEquipments] objectAtIndex:equipmentIndex];
-////    DLog(@"equipmentDataImage = %@", equipment.equipmentData.imageNormal);
-//    equipment.currentLayer = layer;
-//    
-//    if (equipment.equipmentData.equipmentID == 0) {
-//        equipment.currentSelector = lockedSelector;
-//    }
-//    else{
-//        equipment.currentSelector = selector;
-//    }
-//    
-////    [equipment setEquipmentIconWithNormalImage:equipment.equipmentData.image selectedImage:equipment.equipmentData.image disabledImage:equipment.equipmentData.image onLayer:layer];
-//    
-//    return equipment;
-//}
-
 -(id)setEquipmentIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer
 {
     self.equipmentIcon = [NBButton createWithStringHavingNormal:normalImage havingSelected:selectedImage havingDisabled:disabledImage onLayer:layer respondTo:self selector:@selector(onEquipmentSelected) withSize:CGSizeZero];
@@ -72,5 +53,75 @@ static NBEquipment* currentlySelectedEquipmentInBattleSetup = nil;
     if (self.equipmentIcon)
         [self.equipmentIcon hide];
 }
+
+-(CCArray*)statsEffectOfEquipment{
+    //0 is HP
+    //1 is SP
+    //2 is STR
+    //3 is DEF
+    //4 is INT
+    //5 is DEX
+    //6 is EVA
+    CCArray* statsModifierArray = [[CCArray alloc] initWithCapacity:7];
+    for (int x = 0; x < [statsModifierArray capacity]; x++) {
+        [statsModifierArray addObject:@"1"];
+    }
+    
+    NSArray* impactedStatusList = [self.equipmentData.impactedStatus componentsSeparatedByString:@";"];
+    NSArray* impactedValueList = [self.equipmentData.impactValue componentsSeparatedByString:@";"];
+    for (int effectIndex = 0; effectIndex < [impactedStatusList count]; effectIndex++)
+    {
+        NSString* impactedStatus = [impactedStatusList objectAtIndex:effectIndex];
+        if ([impactedStatus length] < 1) continue;
+    
+//        NSString* valueString = nil;        
+        float impactedStatusValue = [[impactedValueList objectAtIndex:effectIndex] floatValue];
+//        valueString = [valueString stringByAppendingFormat:@"%f", impactedStatusValue];
+        
+        if ([impactedStatus isEqualToString:@"HP"])
+        {
+            [statsModifierArray replaceObjectAtIndex:0 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"SP"])
+        {
+            [statsModifierArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"ATK"])
+        {
+            [statsModifierArray replaceObjectAtIndex:2 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"DEF"])
+        {
+            [statsModifierArray replaceObjectAtIndex:3 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"INT"])
+        {
+            [statsModifierArray replaceObjectAtIndex:4 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"DEX"])
+        {
+            [statsModifierArray replaceObjectAtIndex:5 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else if ([impactedStatus isEqualToString:@"EVA"])
+        {
+            [statsModifierArray replaceObjectAtIndex:6 withObject:[NSNumber numberWithFloat:impactedStatusValue]];
+        }
+        else
+        {
+            DLog(@"error: unknown attribute: %@", impactedStatus);
+        }
+        DLog(@"%@ = %f", impactedStatus, impactedStatusValue);
+        DLog(@"FK0 = %@", [statsModifierArray objectAtIndex:0]);
+        DLog(@"FK1 = %@", [statsModifierArray objectAtIndex:1]);
+        DLog(@"FK2 = %@", [statsModifierArray objectAtIndex:2]);
+        DLog(@"FK3 = %@", [statsModifierArray objectAtIndex:3]);
+        DLog(@"FK4 = %@", [statsModifierArray objectAtIndex:4]);
+        DLog(@"FK5 = %@", [statsModifierArray objectAtIndex:5]);
+        DLog(@"FK6 = %@", [statsModifierArray objectAtIndex:6]);
+    }
+    DLog(@"end");
+    return statsModifierArray;
+}
+
 
 @end

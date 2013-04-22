@@ -25,13 +25,8 @@
 @property(nonatomic, retain)CCLabelTTF* labelINTStat;
 @property(nonatomic, retain)CCLabelTTF* labelDEXStat;
 @property(nonatomic, retain)CCLabelTTF* labelEVAStat;
-@property(nonatomic, assign)int bonusHP;
-@property(nonatomic, assign)int bonusSP;
-@property(nonatomic, assign)int bonusSTR;
-@property(nonatomic, assign)int bonusDEF;
-@property(nonatomic, assign)int bonusINT;
-@property(nonatomic, assign)int bonusDEX;
-@property(nonatomic, assign)int bonusEVA;
+
+@property(nonatomic, retain)CCArray* bonusLabels;
 
 -(id)initWithRect:(CGRect)rect;
 -(void)updateBonusStats:(NBEquipment*)equipment1 equipment2:(NBEquipment*)equipment2 equipment3:(NBEquipment*)equipment3;
