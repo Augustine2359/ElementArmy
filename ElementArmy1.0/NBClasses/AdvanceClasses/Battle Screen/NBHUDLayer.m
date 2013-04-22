@@ -32,7 +32,7 @@
     CGSize winsize = [[CCDirector sharedDirector] winSize];
     
     self.allyHPBar = [CCSprite spriteWithSpriteFrameName:@"staticbox_green.png"];
-    self.allyHPBar.scaleX = 130 / self.allyHPBar.contentSize.width;
+    self.allyHPBar.scaleX = 180 / self.allyHPBar.contentSize.width;
     self.allyHPBar.scaleY = 12 / self.allyHPBar.contentSize.height;
     targetScaleXForHPBar = self.allyHPBar.scaleX;
     targetScaleYForHPBar = self.allyHPBar.scaleY;
@@ -42,7 +42,7 @@
     [self addChild:self.allyHPBar];
     
     self.enemyHPBar = [CCSprite spriteWithSpriteFrameName:@"staticbox_red.png"];
-    self.enemyHPBar.scaleX = 130 / self.enemyHPBar.contentSize.width;
+    self.enemyHPBar.scaleX = 180 / self.enemyHPBar.contentSize.width;
     self.enemyHPBar.scaleY = 12 / self.enemyHPBar.contentSize.height;
     self.enemyHPBar.anchorPoint = CGPointMake(0, 1);
     self.enemyHPBar.scaleX = 0;
@@ -50,7 +50,9 @@
     [self addChild:self.enemyHPBar];
     
     self.HPBarPlaceholder = [CCSprite spriteWithSpriteFrameName:@"lifebar.png"];
-    self.HPBarPlaceholder.position = CGPointMake((winsize.width / 2) - 5, -20);
+    self.HPBarPlaceholder.anchorPoint = ccp(0.5, 0.5);
+    self.HPBarPlaceholder.scaleX = 370 / self.HPBarPlaceholder.contentSize.width;
+    self.HPBarPlaceholder.position = CGPointMake((winsize.width / 2), -20);
     [self addChild:self.HPBarPlaceholder];
     
     self.allyFlagLogo = [CCSprite spriteWithSpriteFrameName:@"ally_logo_dummy.png"];
@@ -117,7 +119,7 @@
     
     CCMoveTo* move2_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake(winsize.width / 2, self.enemyFlagLogo.position.y)];
     CCMoveTo* move2_1 = [CCMoveTo actionWithDuration:1.5 position:CGPointMake(winsize.width * 0.775, self.enemyFlagLogo.position.y)];
-    CCMoveTo* move3_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake((winsize.width / 2) - 5, 20)];
+    CCMoveTo* move3_0 = [CCMoveTo actionWithDuration:2.0 position:CGPointMake((winsize.width / 2), 20)];
     
     CCEaseIn* ease2 = [CCEaseIn actionWithAction:move2_0 rate:2];
     CCEaseIn* ease3 = [CCEaseIn actionWithAction:move3_0 rate:2];

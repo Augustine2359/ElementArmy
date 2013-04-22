@@ -46,6 +46,7 @@
 		BC336A2C16A665DD0079596C /* NBStoryScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FFD16A2FBA300C9DD61 /* NBStoryScreen.m */; };
 		BC4EA62316FC7A50004A67C4 /* NBStageInfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */; };
 		BC8A720816B511D400D890A1 /* NBStageData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A720716B511D400D890A1 /* NBStageData.m */; };
+		BC8BEC1B17239D0800530B5D /* NBGameResourcePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */; };
 		BC9F0F9A16D8DCC600BD17B2 /* NBProjectileBasicData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */; };
 		BCB258E516AA51430010BB36 /* NBTestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E416AA51430010BB36 /* NBTestScreen.m */; };
 		BCB258E816AB94220010BB36 /* NBStageSelectionScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB258E716AB94220010BB36 /* NBStageSelectionScreen.m */; };
@@ -54,6 +55,12 @@
 		BCB909E81708233A00B620C6 /* NBHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909E71708233A00B620C6 /* NBHUDLayer.m */; };
 		BCB909EB17082F1A00B620C6 /* NBShakeEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909EA17082F1900B620C6 /* NBShakeEffect.m */; };
 		BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */; };
+		BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */; };
+		BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */; };
+		BCB909FD171AB0B900B620C6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB909FC171AB0B800B620C6 /* Default.png */; };
+		BCB90A00171AB1CD00B620C6 /* NBStorySet1.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB909FF171AB1CD00B620C6 /* NBStorySet1.m */; };
+		BCB90A031720DE6D00B620C6 /* NBStorySet2.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB90A021720DE6B00B620C6 /* NBStorySet2.m */; };
+		BCB90A061720E77200B620C6 /* NBFlashingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB90A051720E77200B620C6 /* NBFlashingScreen.m */; };
 		BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72161633A98700B5A141 /* QuartzCore.framework */; };
 		BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC72181633A98700B5A141 /* OpenGLES.framework */; };
 		BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC721A1633A98700B5A141 /* OpenAL.framework */; };
@@ -253,6 +260,8 @@
 		BC4EA62216FC7A50004A67C4 /* NBStageInfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageInfoPanel.m; sourceTree = "<group>"; };
 		BC8A720616B511D400D890A1 /* NBStageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStageData.h; sourceTree = "<group>"; };
 		BC8A720716B511D400D890A1 /* NBStageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStageData.m; sourceTree = "<group>"; };
+		BC8BEC1917239D0800530B5D /* NBGameResourcePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGameResourcePanel.h; sourceTree = "<group>"; };
+		BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGameResourcePanel.m; sourceTree = "<group>"; };
 		BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectileBasicData.h; sourceTree = "<group>"; };
 		BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectileBasicData.m; sourceTree = "<group>"; };
 		BCB258E316AA51430010BB36 /* NBTestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTestScreen.h; sourceTree = "<group>"; };
@@ -269,6 +278,15 @@
 		BCB909EA17082F1900B620C6 /* NBShakeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBShakeEffect.m; path = "../Battle Screen/NBShakeEffect.m"; sourceTree = "<group>"; };
 		BCB909F51712C30800B620C6 /* NBBattleResultLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleResultLayer.h; sourceTree = "<group>"; };
 		BCB909F61712C30800B620C6 /* NBBattleResultLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleResultLayer.m; sourceTree = "<group>"; };
+		BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven_bold.ttf; sourceTree = "<group>"; };
+		BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_ronda_seven.ttf; sourceTree = "<group>"; };
+		BCB909FC171AB0B800B620C6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BCB909FE171AB1CC00B620C6 /* NBStorySet1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStorySet1.h; sourceTree = "<group>"; };
+		BCB909FF171AB1CD00B620C6 /* NBStorySet1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStorySet1.m; sourceTree = "<group>"; };
+		BCB90A011720DE6900B620C6 /* NBStorySet2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStorySet2.h; sourceTree = "<group>"; };
+		BCB90A021720DE6B00B620C6 /* NBStorySet2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStorySet2.m; sourceTree = "<group>"; };
+		BCB90A041720E77200B620C6 /* NBFlashingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBFlashingScreen.h; sourceTree = "<group>"; };
+		BCB90A051720E77200B620C6 /* NBFlashingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBFlashingScreen.m; sourceTree = "<group>"; };
 		BCBC72121633A98700B5A141 /* ElementArmy1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElementArmy1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBC72161633A98700B5A141 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCBC72181633A98700B5A141 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -643,6 +661,7 @@
 		BCBC72071633A98700B5A141 = {
 			isa = PBXGroup;
 			children = (
+				BCB909FC171AB0B800B620C6 /* Default.png */,
 				BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */,
 				BCBC72281633A98700B5A141 /* ElementArmy1.0 */,
 				BCBC72151633A98700B5A141 /* Frameworks */,
@@ -1079,14 +1098,16 @@
 				BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */,
 				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
 				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
-				BCC0F60016B6C846006A1C88 /* NBItem.h */,
-				BCC0F60116B6C846006A1C88 /* NBItem.m */,
-				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
-				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
 				568EC19916EC584D00815563 /* NBEquipment.h */,
 				568EC19A16EC584D00815563 /* NBEquipment.m */,
 				568EC19C16EC58B600815563 /* NBEquipmentData.h */,
 				568EC19D16EC58B600815563 /* NBEquipmentData.m */,
+				BC8BEC1917239D0800530B5D /* NBGameResourcePanel.h */,
+				BC8BEC1A17239D0800530B5D /* NBGameResourcePanel.m */,
+				BCC0F60016B6C846006A1C88 /* NBItem.h */,
+				BCC0F60116B6C846006A1C88 /* NBItem.m */,
+				BCC0F5FC16B6C7DF006A1C88 /* NBItemData.h */,
+				BCC0F5FD16B6C7E0006A1C88 /* NBItemData.m */,
 				BCBC73BB1633AA7700B5A141 /* NBMagic.h */,
 				BCBC73BC1633AA7700B5A141 /* NBMagic.m */,
 				BC2065BC168B44E000745FB0 /* NBMessageBox.h */,
@@ -1095,6 +1116,8 @@
 				BC06C250163461E700F091F0 /* NBProjectile.m */,
 				BC9F0F9816D8DCC500BD17B2 /* NBProjectileBasicData.h */,
 				BC9F0F9916D8DCC600BD17B2 /* NBProjectileBasicData.m */,
+				BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */,
+				BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */,
 				BCBC73BD1633AA7700B5A141 /* NBSkill.h */,
 				BCBC73BE1633AA7700B5A141 /* NBSkill.m */,
 				BCBC73C11633AA7700B5A141 /* NBSquad.h */,
@@ -1108,8 +1131,6 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
-				BC25576016F58AD000A7CD2C /* NBSingleAnimatedObject.h */,
-				BC25576116F58AD100A7CD2C /* NBSingleAnimatedObject.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1262,6 +1283,8 @@
 				F9299FF816A2FBA300C9DD61 /* NBFireball.m */,
 				F9299FF916A2FBA300C9DD61 /* NBFireExplosion.h */,
 				F9299FFA16A2FBA300C9DD61 /* NBFireExplosion.m */,
+				BCB90A041720E77200B620C6 /* NBFlashingScreen.h */,
+				BCB90A051720E77200B620C6 /* NBFlashingScreen.m */,
 			);
 			path = "Special Effects";
 			sourceTree = "<group>";
@@ -1275,6 +1298,10 @@
 				F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */,
 				F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */,
 				F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */,
+				BCB909FE171AB1CC00B620C6 /* NBStorySet1.h */,
+				BCB909FF171AB1CD00B620C6 /* NBStorySet1.m */,
+				BCB90A011720DE6900B620C6 /* NBStorySet2.h */,
+				BCB90A021720DE6B00B620C6 /* NBStorySet2.m */,
 			);
 			path = "Story Screen";
 			sourceTree = "<group>";
@@ -1282,6 +1309,8 @@
 		F9C43AD316EDBB990036FA29 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				BCB909F817159E8800B620C6 /* pf_ronda_seven_bold.ttf */,
+				BCB909F917159E8800B620C6 /* pf_ronda_seven.ttf */,
 				F9C43AD416EDBB990036FA29 /* sampleFont.fnt */,
 				F9C43AD516EDBB990036FA29 /* sampleFont.png */,
 			);
@@ -1359,6 +1388,9 @@
 				F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */,
 				F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */,
 				F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */,
+				BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */,
+				BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */,
+				BCB909FD171AB0B900B620C6 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,6 +1582,10 @@
 				BCB909F71712C30800B620C6 /* NBBattleResultLayer.m in Sources */,
 				F9125FC1171307E500D7CFBB /* NBChainLightning.m in Sources */,
 				F9125FC4171314D700D7CFBB /* NBSpell.m in Sources */,
+				BCB90A00171AB1CD00B620C6 /* NBStorySet1.m in Sources */,
+				BCB90A031720DE6D00B620C6 /* NBStorySet2.m in Sources */,
+				BCB90A061720E77200B620C6 /* NBFlashingScreen.m in Sources */,
+				BC8BEC1B17239D0800530B5D /* NBGameResourcePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1564,7 +1600,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Romy Irawaty (Y43FPGUK7X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Romy Irawaty (Y43FPGUK7X)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1577,6 +1614,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "55194B79-A31A-4E2A-8156-B4FAF29C500A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55194B79-A31A-4E2A-8156-B4FAF29C500A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

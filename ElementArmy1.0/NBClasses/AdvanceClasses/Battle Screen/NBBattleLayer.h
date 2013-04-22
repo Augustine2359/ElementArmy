@@ -91,11 +91,11 @@
 @property (nonatomic, retain) NBFancySlidingMenuLayer *itemMenuLayer;
 
 @property (nonatomic, retain) NBHUDLayer* HUDLayer;
-@property (nonatomic, retain) NBStaticObject* allyFlagLogo;
+/*@property (nonatomic, retain) NBStaticObject* allyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* enemyFlagLogo;
 @property (nonatomic, retain) NBStaticObject* HPBarPlaceholder;
 @property (nonatomic, retain) NBStaticObject* allyHPBar;
-@property (nonatomic, retain) NBStaticObject* enemyHPBar;
+@property (nonatomic, retain) NBStaticObject* enemyHPBar;*/
 @property (nonatomic, retain) NBButton* startBattleButton;
 @property (nonatomic, retain) NBStaticObject* fieldBackground;
 @property (nonatomic, retain) NBStaticObject* skyBackground;

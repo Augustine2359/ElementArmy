@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "NBBasicScreenLayer.h"
+#import "NBStorySet2.h"
 
 @interface NBStoryScreen : NBBasicScreenLayer
+
+@property (nonatomic, retain) NBStorySet2* storyLayer;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;

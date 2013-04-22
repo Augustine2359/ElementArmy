@@ -110,7 +110,7 @@
     [self.background runAction:fadeIn];
     self.background.visible = YES;
     
-    CCScaleTo* scale1 = [CCScaleTo actionWithDuration:1.0 scaleX:25 scaleY:15];
+    CCScaleTo* scale1 = [CCScaleTo actionWithDuration:1.0 scaleX:TARGET_BACKGROUND_SCALEX scaleY:TARGET_BACKGROUND_SCALEY];
     CCScaleTo* scale2 = [CCScaleTo actionWithDuration:1.0 scale:2];
     CCCallFunc* animationCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onBattleCompleteAnimationStep2Completed)];
     CCSequence* sequence = [CCSequence actions:scale1, animationCompleted, nil];

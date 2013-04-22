@@ -17,17 +17,32 @@
 #define STAGE_HORIZONTAL_CAPACITY 12
 #define STAGE_VERTICAL_CAPACITY 18
 #define GRID_LAYER_MAXIMUM_HORIZONTAL_OFFSET 16
+#define FRAME_RATE 60
+#define BOUNCE_TIME 0.2f
+
+typedef enum
+{
+	BounceDirectionGoingUp = 1,
+	BounceDirectionStayingStill = 0,
+	BounceDirectionGoingDown = -1,
+	BounceDirectionGoingLeft = 2,
+	BounceDirectionGoingRight = 3
+} BounceDirection;
 
 @interface NBCountryStageGrid : CCLayerColor
 {
     bool isEntering;
+    bool isDragging;
+    BounceDirection direction;
+    float lasty;
+	float xvel;
 }
 
 -(id)initOnLayer:(NBBasicScreenLayer*)layer withSize:(CGSize)size withCountryData:(NBCountryData*)newCountryData respondToSelector:(SEL)selector;
 -(void)displayAllStages;
 -(void)addStage:(NBStage*)stage;
 -(NBStage*)getStageByID:(NSString*)compareStageID;
--(void)update;
+-(void)update:(ccTime)delta;
 -(void)onEnter:(CCLayer*)mainLayer;
 -(void)onEnteringAnimationCompleted;
 

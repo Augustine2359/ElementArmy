@@ -48,26 +48,39 @@
 {
 	[super onEnter];
     
+    CCScene* scene = (CCScene*)[self parent];
+    
+    self.storyLayer = [[NBStorySet2 alloc] init];
+    [self.storyLayer setupParentLayer:self withSelector:@selector(onStorySkipped)];
+    [scene addChild:self.storyLayer];
+    
     UI_USER_INTERFACE_IDIOM();
     
     //Prepare Sprite Batch Node
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CharacterSprites.plist"];
     self.characterSpritesBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"CharacterSprites.png"];
     [self addChild:self.characterSpritesBatchNode z:0 tag:0];
+    
+    [self.storyLayer startStory];
 
-  self.scrollingPicturesLayer = [[NBStoryScreenScrollingPicturesLayer alloc] init];
-  self.scrollingPicturesLayer.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [self addChild:self.scrollingPicturesLayer];
+    /*self.scrollingPicturesLayer = [[NBStoryScreenScrollingPicturesLayer alloc] init];
+    self.scrollingPicturesLayer.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:self.scrollingPicturesLayer];*/
 
-  self.scrollingTextLayer = [[NBStoryScreenScrollingTextLayer alloc] init];
-  self.scrollingTextLayer.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
-  [self addChild:self.scrollingTextLayer];
+    /*self.scrollingTextLayer = [[NBStoryScreenScrollingTextLayer alloc] init];
+    self.scrollingTextLayer.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
+    [self addChild:self.scrollingTextLayer];*/
 
-    [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
+    /*[self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
     [self addStandardMenuString:@"Battle Setup" withSelector:@selector(gotoBattleSetupScreen)];
     [self addStandardMenuString:@"Map Selection" withSelector:@selector(gotoMapSelectionScreen)];
     [self addStandardMenuString:@"Main Menu" withSelector:@selector(gotoMainMenuScreen)];
-    [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
+    [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];*/
+}
+
+-(void)onStorySkipped
+{
+    [self gotoMapSelectionScreen];
 }
 
 -(void)gotoIntroScreen

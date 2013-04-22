@@ -58,6 +58,7 @@
 @property (nonatomic, assign) int numberOfItem;
 @property (nonatomic, retain) NSString* selectedWeaponID;
 
+@property (nonatomic, assign) int availableEnergy;
 @property (nonatomic, assign) int availableBattlePoint;
 @property (nonatomic, assign) int availableGold;
 @property (nonatomic, assign) int availableElementalGem;
