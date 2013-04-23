@@ -10,6 +10,7 @@
 #import "NBHQEquipments.h"
 #import "NBHQItems.h"
 #import "NBHQUnits.h"
+#import "NBHQAppStore.h"
 #import "NBGameResourcePanel.h"
 
 @interface NBHQSetupScreen : NBBasicScreenLayer
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) NBHQEquipments* equipmentsLayer;
 @property (nonatomic, retain) NBHQItems* itemsLayer;
 @property (nonatomic, retain) NBHQUnits* unitsLayer;
+@property (nonatomic, retain) NBHQAppStore* appStoreLayer;
 
 @property (nonatomic, retain) NBButton *equipmentsTab;
 @property (nonatomic, retain) NBButton *itemsTab;
@@ -37,6 +39,7 @@
 -(void)openEquipmentsMenu;
 -(void)openItemsMenu;
 -(void)openUnitsMenu;
+-(void)openAppStoreMenu;
 -(void)confirmAndCloseMenu;
 -(void)onMenuReady;
 

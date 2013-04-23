@@ -234,7 +234,9 @@
     [equipmentsStatsArray addObject:equip1Stats];
     [equipmentsStatsArray addObject:equip2Stats];
     [equipmentsStatsArray addObject:equip3Stats];
-    
+    DLog(@"EQ 1 = %@", equipment1.equipmentData.equipmentName);
+    DLog(@"EQ 2 = %@", equipment2.equipmentData.equipmentName);
+    DLog(@"EQ 3 = %@", equipment3.equipmentData.equipmentName);
     //Initialise the 7 stats as array
     CCArray* combinedBonusStats = [[CCArray alloc] initWithCapacity:7];
     for (int x = 0; x < [combinedBonusStats capacity]; x++) {
@@ -245,7 +247,7 @@
     for (int x = 0; x < [equipmentsStatsArray count]; x++) {
         CCArray* thatEquipmentStats = (CCArray*)[equipmentsStatsArray objectAtIndex:x];
         for (int y = 0; y < [thatEquipmentStats count]; y++) {
-            DLog(@"HAYO = %@", [thatEquipmentStats objectAtIndex:y]);
+//            DLog(@"HAYO = %@", [thatEquipmentStats objectAtIndex:y]);
             float value = [[thatEquipmentStats objectAtIndex:y] floatValue];
             if (value == 1.00) {
                 continue;
@@ -258,10 +260,9 @@
             else{
                 combinedValue += value;
             }
-//            NSString* combinedString = [NSString stringWithFormat:@"%f", combinedValue];
-//            [combinedBonusStats replaceObjectAtIndex:y withObject:combinedString];
+            
             [combinedBonusStats replaceObjectAtIndex:y withObject:[NSNumber numberWithFloat:combinedValue]];
-            DLog(@"combined value = %f", combinedValue);
+//            DLog(@"combined value = %f", combinedValue);
         }
     }
     

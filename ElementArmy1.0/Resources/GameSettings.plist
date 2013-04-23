@@ -2,6 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppStore data</key>
+	<array>
+		<dict>
+			<key>ProductName</key>
+			<string>Preview Pack</string>
+			<key>Cost</key>
+			<real>0.99</real>
+			<key>QuantityInBundle</key>
+			<integer>3</integer>
+			<key>Description</key>
+			<string>Just need a bit more to...</string>
+		</dict>
+		<dict>
+			<key>ProductName</key>
+			<string>Standard Pack</string>
+			<key>Cost</key>
+			<real>2.49</real>
+			<key>QuantityInBundle</key>
+			<integer>10</integer>
+			<key>Description</key>
+			<string>Suitable pack for both young and old</string>
+		</dict>
+		<dict>
+			<key>ProductName</key>
+			<string>Hardcore pack</string>
+			<key>Cost</key>
+			<real>9.99</real>
+			<key>QuantityInBundle</key>
+			<integer>50</integer>
+			<key>Description</key>
+			<string>Shit just got real</string>
+		</dict>
+	</array>
 	<key>Character data</key>
 	<array>
 		<dict>

@@ -10,6 +10,7 @@
 #import "NBStage.h"
 #import "NBItemData.h"
 #import "NBEquipmentData.h"
+#import "NBAppStoreProductData.h"
 #import "NBProjectileBasicData.h"
 #import "NBSkill.h"
 #import "NBItem.h"
@@ -24,6 +25,7 @@ static CCArray* listOfSkills = nil;
 static CCArray* listOfItems = nil;
 static CCArray* listOfEquipments = nil;
 static CCArray* listOfLevelData = nil;
+static CCArray* listOfAppStoreProducts = nil;
 
 @implementation NBDataManager
 
@@ -52,6 +54,7 @@ static CCArray* listOfLevelData = nil;
         listOfSkills = [[CCArray alloc] initWithCapacity:100];
         listOfItems = [[CCArray alloc] initWithCapacity:100];
         listOfLevelData = [[CCArray alloc] initWithCapacity:100];
+        listOfAppStoreProducts = [[CCArray alloc] initWithCapacity:10];
 
         //[self createStages];
         //[self createItems];
@@ -68,6 +71,7 @@ static CCArray* listOfLevelData = nil;
     [listOfSkills release];
     [listOfItems release];
     [listOfEquipments release];
+    [listOfAppStoreProducts release];
     [super dealloc];
 }
 
@@ -332,6 +336,27 @@ static CCArray* listOfLevelData = nil;
     [listOfSkills retain];
 }
 
+-(void)loadAppStoreProducts{
+    listOfAppStoreProducts = [CCArray array];
+    [listOfAppStoreProducts retain];
+    
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray *skills = [dictionary objectForKey:@"AppStore data"];
+    
+    for (NSDictionary *productDictionary in skills)
+    {
+        NBAppStoreProductData *productData = [NBAppStoreProductData new];
+        productData.name = [productDictionary objectForKey:@"ProductName"];
+        productData.description = [productDictionary objectForKey:@"Description"];
+        productData.cost = [[productDictionary objectForKey:@"Cost"] floatValue];
+        productData.quantityInBundle = [[productDictionary objectForKey:@"QuantityInBundle"] intValue];
+        
+        [listOfAppStoreProducts addObject:productData];
+    }
+
+}
+
 -(void)createCharacterList
 {
     if (!self.listOfCharacters) self.listOfCharacters = [CCArray array];
@@ -580,5 +605,10 @@ static CCArray* listOfLevelData = nil;
 +(CCArray*)getListOfEquipments
 {
     return listOfEquipments;
+}
+
++(CCArray*)getListOfAppStoreProducts
+{
+    return listOfAppStoreProducts;
 }
 @end

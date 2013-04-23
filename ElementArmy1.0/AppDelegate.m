@@ -179,6 +179,7 @@ static NBDataManager* dataManager = nil;
     [dataManager createStages];
     [dataManager loadItemList];
     [dataManager createProjectileList];
+    [dataManager loadAppStoreProducts];
     
     //Temporary Code
     //-------------------------------------------------------------------------------

@@ -13,6 +13,9 @@
 		568EC18E16EC480300815563 /* NBBattleSetupEquipments.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC18D16EC480200815563 /* NBBattleSetupEquipments.m */; };
 		568EC19B16EC584D00815563 /* NBEquipment.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC19A16EC584D00815563 /* NBEquipment.m */; };
 		568EC19E16EC58B600815563 /* NBEquipmentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 568EC19D16EC58B600815563 /* NBEquipmentData.m */; };
+		56940C7B1726CF57008F90B9 /* NBHQAppStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C7A1726CF57008F90B9 /* NBHQAppStore.m */; };
+		56940C7F1726DB49008F90B9 /* NBAppStoreProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C7E1726DB49008F90B9 /* NBAppStoreProduct.m */; };
+		56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C841726E447008F90B9 /* NBAppStoreProductData.m */; };
 		56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */; };
@@ -222,6 +225,12 @@
 		568EC19A16EC584D00815563 /* NBEquipment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBEquipment.m; sourceTree = "<group>"; };
 		568EC19C16EC58B600815563 /* NBEquipmentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBEquipmentData.h; sourceTree = "<group>"; };
 		568EC19D16EC58B600815563 /* NBEquipmentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBEquipmentData.m; sourceTree = "<group>"; };
+		56940C791726CF57008F90B9 /* NBHQAppStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQAppStore.h; sourceTree = "<group>"; };
+		56940C7A1726CF57008F90B9 /* NBHQAppStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQAppStore.m; sourceTree = "<group>"; };
+		56940C7D1726DB49008F90B9 /* NBAppStoreProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAppStoreProduct.h; sourceTree = "<group>"; };
+		56940C7E1726DB49008F90B9 /* NBAppStoreProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAppStoreProduct.m; sourceTree = "<group>"; };
+		56940C831726E447008F90B9 /* NBAppStoreProductData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAppStoreProductData.h; sourceTree = "<group>"; };
+		56940C841726E447008F90B9 /* NBAppStoreProductData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAppStoreProductData.m; sourceTree = "<group>"; };
 		569CC7EE16A56C2700818B56 /* NBBattleSetupItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupItems.h; sourceTree = "<group>"; };
 		569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupItems.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
@@ -645,6 +654,8 @@
 				568D969D1707FC1E009371D7 /* NBHQItems.m */,
 				568D969F170801EF009371D7 /* NBHQUnits.h */,
 				568D96A0170801EF009371D7 /* NBHQUnits.m */,
+				56940C791726CF57008F90B9 /* NBHQAppStore.h */,
+				56940C7A1726CF57008F90B9 /* NBHQAppStore.m */,
 			);
 			name = "HQ Screen";
 			sourceTree = "<group>";
@@ -1131,6 +1142,10 @@
 				BCBC73C31633AA7700B5A141 /* NBUpdatableCharacter.h */,
 				BC2065C2168B4A4200745FB0 /* NBUserInterface.h */,
 				BC2065C3168B4A4200745FB0 /* NBUserInterface.m */,
+				56940C7D1726DB49008F90B9 /* NBAppStoreProduct.h */,
+				56940C7E1726DB49008F90B9 /* NBAppStoreProduct.m */,
+				56940C831726E447008F90B9 /* NBAppStoreProductData.h */,
+				56940C841726E447008F90B9 /* NBAppStoreProductData.m */,
 			);
 			name = BasicClasses;
 			path = NBClasses/BasicClasses;
@@ -1586,6 +1601,9 @@
 				BCB90A031720DE6D00B620C6 /* NBStorySet2.m in Sources */,
 				BCB90A061720E77200B620C6 /* NBFlashingScreen.m in Sources */,
 				BC8BEC1B17239D0800530B5D /* NBGameResourcePanel.m in Sources */,
+				56940C7B1726CF57008F90B9 /* NBHQAppStore.m in Sources */,
+				56940C7F1726DB49008F90B9 /* NBAppStoreProduct.m in Sources */,
+				56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

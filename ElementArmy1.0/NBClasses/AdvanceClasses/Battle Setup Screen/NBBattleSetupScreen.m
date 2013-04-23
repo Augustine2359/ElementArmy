@@ -109,9 +109,9 @@ int objectsLeftToTransit = 6;
     [self addChild:self.setupEquipmentsFrame z:1];
     
     //Display buttons Equipments
-    NBEquipmentData* currentEquipment1 = [NBDataManager getEquipmentDataByEquipmentName:@"Golden Armor"];
+    NBEquipmentData* currentEquipment1 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
     NBEquipmentData* currentEquipment2 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
-    NBEquipmentData* currentEquipment3 = [NBDataManager getEquipmentDataByEquipmentName:@"Winged Boots"];
+    NBEquipmentData* currentEquipment3 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
     self.selectedEquipment1 = [NBEquipment createEquipment:currentEquipment1 onLayer:self onSelector:@selector(openEquipmentSelection)];
     self.selectedEquipment2 = [NBEquipment createEquipment:currentEquipment2 onLayer:self onSelector:@selector(openEquipmentSelection)];
     self.selectedEquipment3 = [NBEquipment createEquipment:currentEquipment3 onLayer:self onSelector:@selector(openEquipmentSelection)];

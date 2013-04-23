@@ -89,24 +89,31 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     self.equipmentsLayer = [[NBHQEquipments alloc] initWithLayer:self];
     self.itemsLayer = [[NBHQItems alloc] initWithLayer:self];
     self.unitsLayer = [[NBHQUnits alloc] initWithLayer:self];
+    self.appStoreLayer = [[NBHQAppStore alloc] initWithLayer:self];
     [self addChild:self.equipmentsLayer z:1];
     [self addChild:self.itemsLayer z:1];
     [self addChild:self.unitsLayer z:1];
+    [self addChild:self.appStoreLayer z:1];
     
     self.equipmentsTab = [NBButton createWithStringHavingNormal:@"setup_title.png" havingSelected:@"setup_title.png" havingDisabled:@"setup_title.png" onLayer:self respondTo:nil selector:@selector(openEquipmentsMenu) withSize:CGSizeZero];
-    [self.equipmentsTab setPosition:CGPointMake(120, 250)];
+    [self.equipmentsTab setPosition:CGPointMake(60, 250)];
     [self.equipmentsTab.buttonObject setScale:0.75];
     [self.equipmentsTab show];
     
     self.itemsTab = [NBButton createWithStringHavingNormal:@"setup_title.png" havingSelected:@"setup_title.png" havingDisabled:@"setup_title.png" onLayer:self respondTo:nil selector:@selector(openItemsMenu) withSize:CGSizeZero];
-    [self.itemsTab setPosition:CGPointMake(240, 250)];
+    [self.itemsTab setPosition:CGPointMake(180, 250)];
     [self.itemsTab.buttonObject setScale:0.75];
     [self.itemsTab show];
     
     self.unitsTab = [NBButton createWithStringHavingNormal:@"setup_title.png" havingSelected:@"setup_title.png" havingDisabled:@"setup_title.png" onLayer:self respondTo:nil selector:@selector(openUnitsMenu) withSize:CGSizeZero];
-    [self.unitsTab setPosition:CGPointMake(360, 250)];
+    [self.unitsTab setPosition:CGPointMake(300, 250)];
     [self.unitsTab.buttonObject setScale:0.75];
     [self.unitsTab show];
+    
+    NBButton* appStoreTab = [NBButton createWithStringHavingNormal:@"setup_title.png" havingSelected:@"setup_title.png" havingDisabled:@"setup_title.png" onLayer:self respondTo:nil selector:@selector(openAppStoreMenu) withSize:CGSizeZero];
+    [appStoreTab setPosition:CGPointMake(420, 250)];
+    [appStoreTab.buttonObject setScale:0.75];
+    [appStoreTab show];
     
     self.confirmButton = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     [self.confirmButton setPosition:CGPointMake(450, 25)];
@@ -176,6 +183,23 @@ NBBasicScreenLayer* currentOpenedMenu = nil;
     currentOpenedMenu = self.unitsLayer;
     CCCallFunc* onAnimCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMenuReady)];
     [self.unitsLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], onAnimCompleted, nil]];
+}
+
+-(void)openAppStoreMenu{
+    DLog(@"AP");
+    if (!self.canInput) {
+        return;
+    }
+    
+    if (currentOpenedMenu == self.appStoreLayer) {
+        return;
+    }
+    
+    self.canInput = NO;
+    [self confirmAndCloseMenu];
+    currentOpenedMenu = self.appStoreLayer;
+    CCCallFunc* onAnimCompleted = [CCCallFunc actionWithTarget:self selector:@selector(onMenuReady)];
+    [self.appStoreLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5 position:ccp(0, -100)], onAnimCompleted, nil]];
 }
 
 -(void)confirmAndCloseMenu{

@@ -96,10 +96,11 @@
         if (selectedEquipmentButton != nil) {
             SEL thatSelector = self.changingTargetEquipment.currentSelector;
             NBEquipment* newEquipment = [NBEquipment createEquipment:selectedEquipmentButton.equipmentData onLayer:self.mainLayer onSelector:thatSelector];
-            [newEquipment.equipmentIcon setPosition:ccp([self.changingTargetEquipment.equipmentIcon getPosition].x, [self.changingTargetEquipment.equipmentIcon getPosition].y)];
+            [newEquipment.equipmentIcon setPosition:[self.changingTargetEquipment.equipmentIcon getPosition]];
             [newEquipment displayEquipmentIcon];
             
             [self.changingTargetEquipment hideEquipmentIcon];
+            [self.changingTargetEquipment release];
             [self.mainLayer performSelector:self.updateStatSelector];
         }
     }
