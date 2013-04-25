@@ -1689,6 +1689,9 @@
 				56940C7F1726DB49008F90B9 /* NBAppStoreProduct.m in Sources */,
 				56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */,
 				569D4DEF17295FC50031B3E4 /* NBHQSettings.m in Sources */,
+				F955F4AA1726E7BC00892260 /* NBDataManager.m in Sources */,
+				F955F4AB1726E7BC00892260 /* NBInAppPurchaseManager.m in Sources */,
+				F955F5AE1728E71800892260 /* NBAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
