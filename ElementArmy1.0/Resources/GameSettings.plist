@@ -235,7 +235,7 @@
 			<key>basicINT</key>
 			<integer>10</integer>
 			<key>basicDEX</key>
-			<integer>90</integer>
+			<integer>10</integer>
 			<key>basicEVA</key>
 			<string>30</string>
 			<key>minHPAdd</key>
