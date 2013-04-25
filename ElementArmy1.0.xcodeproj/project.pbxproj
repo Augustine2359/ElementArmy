@@ -625,18 +625,9 @@
 		F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBInAppPurchaseManager.m; path = NBClasses/Managers/NBInAppPurchaseManager.m; sourceTree = "<group>"; };
 		F955F4B11727BC0900892260 /* ContentInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ContentInfo.plist; sourceTree = "<group>"; };
 		F955F5881727BC1C00892260 /* ElementArmy1.0 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ElementArmy1.0 copy-Info.plist"; path = "/Users/augustine/Workspace/2359media/elementarmy1.0/ElementArmy1.0 copy-Info.plist"; sourceTree = "<absolute>"; };
-		F955F58E1727BCB900892260 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		F955F5911727BCB900892260 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F955F5921727BCB900892260 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F955F5931727BCB900892260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F955F5961727BCBA00892260 /* ElementArmy1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ElementArmy1-Info.plist"; sourceTree = "<group>"; };
-		F955F5981727BCBA00892260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F955F59A1727BCBA00892260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F955F59C1727BCBA00892260 /* ElementArmy1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ElementArmy1-Prefix.pch"; sourceTree = "<group>"; };
-		F955F59E1727BCBA00892260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		F955F5A01727BCBA00892260 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F955F5A11727BCBA00892260 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F955F5A41727BCBA00892260 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F9B870FE16BE906500F9321A /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameSettings.plist; path = Resources/GameSettings.plist; sourceTree = "<group>"; };
 		F9C43AD416EDBB990036FA29 /* sampleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleFont.fnt; sourceTree = "<group>"; };
 		F9C43AD516EDBB990036FA29 /* sampleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleFont.png; sourceTree = "<group>"; };
@@ -696,7 +687,6 @@
 				BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */,
 				BCBC72281633A98700B5A141 /* ElementArmy1.0 */,
 				F955F4AF1727BC0900892260 /* ElementArmy */,
-				F955F5941727BCB900892260 /* ElementArmy1 */,
 				BCBC72151633A98700B5A141 /* Frameworks */,
 				BCBC72131633A98700B5A141 /* Products */,
 				F955F5881727BC1C00892260 /* ElementArmy1.0 copy-Info.plist */,
@@ -724,7 +714,6 @@
 				BCBC72241633A98700B5A141 /* CoreGraphics.framework */,
 				BCBC72261633A98700B5A141 /* GameKit.framework */,
 				F955F49F1726DC6D00892260 /* StoreKit.framework */,
-				F955F58E1727BCB900892260 /* Cocoa.framework */,
 				F955F5901727BCB900892260 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -1383,29 +1372,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		F955F5941727BCB900892260 /* ElementArmy1 */ = {
-			isa = PBXGroup;
-			children = (
-				F955F5A01727BCBA00892260 /* AppDelegate.h */,
-				F955F5A11727BCBA00892260 /* AppDelegate.m */,
-				F955F5A31727BCBA00892260 /* MainMenu.xib */,
-				F955F5951727BCBA00892260 /* Supporting Files */,
-			);
-			path = ElementArmy1;
-			sourceTree = "<group>";
-		};
-		F955F5951727BCBA00892260 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F955F5961727BCBA00892260 /* ElementArmy1-Info.plist */,
-				F955F5971727BCBA00892260 /* InfoPlist.strings */,
-				F955F59A1727BCBA00892260 /* main.m */,
-				F955F59C1727BCBA00892260 /* ElementArmy1-Prefix.pch */,
-				F955F59D1727BCBA00892260 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		F9C43AD316EDBB990036FA29 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1694,33 +1660,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F955F5971727BCBA00892260 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F955F5981727BCBA00892260 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F955F59D1727BCBA00892260 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F955F59E1727BCBA00892260 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		F955F5A31727BCBA00892260 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F955F5A41727BCBA00892260 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BCBC73A91633A98900B5A141 /* Debug */ = {
