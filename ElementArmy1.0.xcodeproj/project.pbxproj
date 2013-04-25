@@ -209,6 +209,11 @@
 		F955F4A11726DC8600892260 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F49F1726DC6D00892260 /* StoreKit.framework */; };
 		F955F4AA1726E7BC00892260 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F4A71726E7BC00892260 /* NBDataManager.m */; };
 		F955F4AB1726E7BC00892260 /* NBInAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */; };
+		F955F5AB1728E65A00892260 /* hadouken.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5AA1728E65A00892260 /* hadouken.wav */; };
+		F955F5AE1728E71800892260 /* NBAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F5AD1728E71800892260 /* NBAudioManager.m */; };
+		F955F5B11728EA3800892260 /* die.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5AF1728EA3800892260 /* die.wav */; };
+		F955F5B21728EA3800892260 /* tatsumakisenpuukyaku.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */; };
+		F955F5B41728EB9000892260 /* shoryuken.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5B31728EB9000892260 /* shoryuken.wav */; };
 		F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9B870FE16BE906500F9321A /* GameSettings.plist */; };
 		F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD416EDBB990036FA29 /* sampleFont.fnt */; };
 		F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD516EDBB990036FA29 /* sampleFont.png */; };
@@ -628,6 +633,12 @@
 		F955F5911727BCB900892260 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F955F5921727BCB900892260 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F955F5931727BCB900892260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F955F5AA1728E65A00892260 /* hadouken.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hadouken.wav; path = Resources/Audio/hadouken.wav; sourceTree = "<group>"; };
+		F955F5AC1728E71800892260 /* NBAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBAudioManager.h; path = NBClasses/Managers/NBAudioManager.h; sourceTree = "<group>"; };
+		F955F5AD1728E71800892260 /* NBAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBAudioManager.m; path = NBClasses/Managers/NBAudioManager.m; sourceTree = "<group>"; };
+		F955F5AF1728EA3800892260 /* die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = die.wav; path = Resources/Audio/die.wav; sourceTree = "<group>"; };
+		F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tatsumakisenpuukyaku.wav; path = Resources/Audio/tatsumakisenpuukyaku.wav; sourceTree = "<group>"; };
+		F955F5B31728EB9000892260 /* shoryuken.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shoryuken.wav; path = Resources/Audio/shoryuken.wav; sourceTree = "<group>"; };
 		F9B870FE16BE906500F9321A /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameSettings.plist; path = Resources/GameSettings.plist; sourceTree = "<group>"; };
 		F9C43AD416EDBB990036FA29 /* sampleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleFont.fnt; sourceTree = "<group>"; };
 		F9C43AD516EDBB990036FA29 /* sampleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleFont.png; sourceTree = "<group>"; };
@@ -739,6 +750,7 @@
 		BCBC72291633A98700B5A141 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F955F5A91728E65000892260 /* Audio */,
 				F9C43AD316EDBB990036FA29 /* Fonts */,
 				BCBC73D71633B06400B5A141 /* CharacterSprites */,
 				BCBC722A1633A98700B5A141 /* Default.png */,
@@ -1342,6 +1354,8 @@
 				F955F4A71726E7BC00892260 /* NBDataManager.m */,
 				F955F4A81726E7BC00892260 /* NBInAppPurchaseManager.h */,
 				F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */,
+				F955F5AC1728E71800892260 /* NBAudioManager.h */,
+				F955F5AD1728E71800892260 /* NBAudioManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1370,6 +1384,17 @@
 				F955F5931727BCB900892260 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F955F5A91728E65000892260 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F955F5AF1728EA3800892260 /* die.wav */,
+				F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */,
+				F955F5B31728EB9000892260 /* shoryuken.wav */,
+				F955F5AA1728E65A00892260 /* hadouken.wav */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		F9C43AD316EDBB990036FA29 /* Fonts */ = {
@@ -1457,6 +1482,10 @@
 				BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */,
 				BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */,
 				BCB909FD171AB0B900B620C6 /* Default.png in Resources */,
+				F955F5AB1728E65A00892260 /* hadouken.wav in Resources */,
+				F955F5B11728EA3800892260 /* die.wav in Resources */,
+				F955F5B21728EA3800892260 /* tatsumakisenpuukyaku.wav in Resources */,
+				F955F5B41728EB9000892260 /* shoryuken.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1656,6 +1685,7 @@
 				56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */,
 				F955F4AA1726E7BC00892260 /* NBDataManager.m in Sources */,
 				F955F4AB1726E7BC00892260 /* NBInAppPurchaseManager.m in Sources */,
+				F955F5AE1728E71800892260 /* NBAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
