@@ -351,10 +351,12 @@ static CCArray* listOfAppStoreProducts = nil;
         productData.description = [productDictionary objectForKey:@"Description"];
         productData.cost = [[productDictionary objectForKey:@"Cost"] floatValue];
         productData.quantityInBundle = [[productDictionary objectForKey:@"QuantityInBundle"] intValue];
+        productData.imageNormal = [productDictionary objectForKey:@"ImageNormal"];
+        productData.imageSelected = [productDictionary objectForKey:@"ImageSelected"];
+        productData.imageDisabled = [productDictionary objectForKey:@"ImageDisabled"];
         
         [listOfAppStoreProducts addObject:productData];
     }
-
 }
 
 -(void)createCharacterList

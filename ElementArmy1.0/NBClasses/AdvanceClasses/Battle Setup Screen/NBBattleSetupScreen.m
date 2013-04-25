@@ -142,8 +142,9 @@ int objectsLeftToTransit = 6;
   startColor.g = 255;
   startColor.b = 255;
   startColor.a = 255;
-
-  self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
+    
+    self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] init];
+//    self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
   self.unitSelectorsContainerLayer.position = CGPointMake(-300, 100);
   [self addChild:self.unitSelectorsContainerLayer];
 }

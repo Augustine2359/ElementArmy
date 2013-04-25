@@ -12,7 +12,13 @@
 			<key>QuantityInBundle</key>
 			<integer>3</integer>
 			<key>Description</key>
-			<string>Just need a bit more to...</string>
+			<string>Some will do..</string>
+			<key>ImageNormal</key>
+			<string>Winged_boots.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
 		</dict>
 		<dict>
 			<key>ProductName</key>
@@ -23,6 +29,12 @@
 			<integer>10</integer>
 			<key>Description</key>
 			<string>Suitable pack for both young and old</string>
+			<key>ImageNormal</key>
+			<string>Potion.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
 		</dict>
 		<dict>
 			<key>ProductName</key>
@@ -33,6 +45,12 @@
 			<integer>50</integer>
 			<key>Description</key>
 			<string>Shit just got real</string>
+			<key>ImageNormal</key>
+			<string>Potion.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
 		</dict>
 	</array>
 	<key>Character data</key>

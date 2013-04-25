@@ -10,11 +10,13 @@
 #import "NBAppStoreProductData.h"
 
 @interface NBAppStoreProduct : NSObject
-    
+
+@property (nonatomic, retain) NBAppStoreProductData* productData;
 @property (nonatomic, retain) NBButton* productIcon;
 @property (nonatomic, retain) id currentLayer;
 @property (nonatomic, assign) SEL onPressedSelector;
 
-+(id)createProduct:(NBAppStoreProductData*)productName onLayer:(id)layer onSelector:(SEL)selector;
-
++(id)createProduct:(NBAppStoreProductData*)newProductData onLayer:(id)layer onSelector:(SEL)selector;
+-(id)setProductIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer;
+-(void)onProductSelected;
 @end

@@ -16,6 +16,7 @@
 		56940C7B1726CF57008F90B9 /* NBHQAppStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C7A1726CF57008F90B9 /* NBHQAppStore.m */; };
 		56940C7F1726DB49008F90B9 /* NBAppStoreProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C7E1726DB49008F90B9 /* NBAppStoreProduct.m */; };
 		56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56940C841726E447008F90B9 /* NBAppStoreProductData.m */; };
+		569D4DEF17295FC50031B3E4 /* NBHQSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 569D4DEE17295FC50031B3E4 /* NBHQSettings.m */; };
 		56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */; };
@@ -233,6 +234,8 @@
 		56940C841726E447008F90B9 /* NBAppStoreProductData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAppStoreProductData.m; sourceTree = "<group>"; };
 		569CC7EE16A56C2700818B56 /* NBBattleSetupItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBattleSetupItems.h; sourceTree = "<group>"; };
 		569CC7EF16A56C2700818B56 /* NBBattleSetupItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBattleSetupItems.m; sourceTree = "<group>"; };
+		569D4DED17295FC50031B3E4 /* NBHQSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBHQSettings.h; sourceTree = "<group>"; };
+		569D4DEE17295FC50031B3E4 /* NBHQSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBHQSettings.m; sourceTree = "<group>"; };
 		BC06C24F163461E700F091F0 /* NBProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProjectile.h; sourceTree = "<group>"; };
 		BC06C250163461E700F091F0 /* NBProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectile.m; sourceTree = "<group>"; };
 		BC0EBEDB16E4DE7200F4D927 /* NBDamageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDamageLabel.h; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 				568D96A0170801EF009371D7 /* NBHQUnits.m */,
 				56940C791726CF57008F90B9 /* NBHQAppStore.h */,
 				56940C7A1726CF57008F90B9 /* NBHQAppStore.m */,
+				569D4DED17295FC50031B3E4 /* NBHQSettings.h */,
+				569D4DEE17295FC50031B3E4 /* NBHQSettings.m */,
 			);
 			name = "HQ Screen";
 			sourceTree = "<group>";
@@ -1604,6 +1609,7 @@
 				56940C7B1726CF57008F90B9 /* NBHQAppStore.m in Sources */,
 				56940C7F1726DB49008F90B9 /* NBAppStoreProduct.m in Sources */,
 				56940C851726E447008F90B9 /* NBAppStoreProductData.m in Sources */,
+				569D4DEF17295FC50031B3E4 /* NBHQSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

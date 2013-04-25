@@ -16,5 +16,8 @@
 @property (nonatomic, retain) NSString* description;
 @property (nonatomic, assign) float cost;
 @property (nonatomic, assign) int quantityInBundle;
+@property (nonatomic, retain) NSString* imageNormal;
+@property (nonatomic, retain) NSString* imageSelected;
+@property (nonatomic, retain) NSString* imageDisabled;
 
 @end

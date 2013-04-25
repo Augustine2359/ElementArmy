@@ -44,7 +44,7 @@
 
     for (int x = 0; x < [selectorArray count]; x++) {
         NBBattleSetupUnitSelectorLayer* newSelector = (NBBattleSetupUnitSelectorLayer*)[selectorArray objectAtIndex:x];
-        newSelector = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];
+        newSelector = [[NBBattleSetupUnitSelectorLayer alloc] init];//initWithColor:startColor width:80 height:130];
         newSelector.position = ccp(x*90 + 5, 5);
 //        CGPoint backgroundPosition = ccp(newSelector.position.x + 15, 160);
 //        NBStaticObject* background = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:backgroundPosition];

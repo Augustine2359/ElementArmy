@@ -15,17 +15,18 @@
 {
     if ((self = [super init]))
     {
-//        [self initialiseProductsArray];
+        [self initialiseProductsArray];
         [self initialiseAppStoreUI];
     }
     return self;
 }
 
 -(void)initialiseProductsArray{
+    [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
     self.allProducts = [CCArray new];
     
     NBAppStoreProductData* productData = nil;
-    CCARRAY_FOREACH([NBDataManager getListOfEquipments], productData)
+    CCARRAY_FOREACH([NBDataManager getListOfAppStoreProducts], productData)
     {
         NBAppStoreProduct* product = [NBAppStoreProduct createProduct:productData onLayer:self onSelector:@selector(selectTargetProduct)];
         [self.allProducts addObject:product];
@@ -33,45 +34,29 @@
 }
 
 -(void)initialiseAppStoreUI{
-    [self setCurrentBackgroundWithFileName:@"frame_item.png" stretchToScreen:YES];
-    /*
-    CCArray* allHeldEquipments = [[NBDataManager dataManager] availableEquipments];
+    [self setPosition:ccp(0, -320)];
     
     for (int x = 0; x < [self.allProducts count]; x++) {
         NBAppStoreProduct* thatProduct = [self.allProducts objectAtIndex:x];
-        [thatProduct.equipmentIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
-        [thatProduct displayEquipmentIcon];
+        [thatProduct.productIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
         
-        int quantityHeld = 0;
-        for (int y = 0; y < [allHeldEquipments count]; y++) {
-            NBAppStoreProduct* thisEquipment = [allHeldEquipments objectAtIndex:y];
-            if (thisEquipment.equipmentData.equipmentName == thatProduct.equipmentData.equipmentName) {
-                quantityHeld = thisEquipment.equipmentData.availableAmount;
-                break;
-            }
-        }
-        
-        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"Marker Felt" fontSize:15];
-        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"Marker Felt" fontSize:15];
-        costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
-        quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
+        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%.2f", thatProduct.productData.cost] fontName:@"Marker Felt" fontSize:15];
+        costLabel.position = ccp(thatProduct.productIcon.getPosition.x, thatProduct.productIcon.getPosition.y - 35);
         
         [self addChild:costLabel];
-        [self addChild:quantityLabel];
-        [self.allCostLabels addObject:costLabel];
-        [self.allQuantityLabels addObject:quantityLabel];
         
         if (x == 11) {
             //Do something to show the remainder on next page
             break;
         }
-    }*/
-    
-    [self setPosition:ccp(0, -320)];
+    }
 }
 
 -(void)selectTargetProduct{
     //Confirm msg to buy
+    DLog(@"Confirmation here..");
+
+    
     //Really purchase from app store
     DLog(@"IAP here..");
 }
