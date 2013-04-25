@@ -20,7 +20,6 @@
 		56EDAED416AD82E2007F94CD /* NBBattleSetupScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9299FE016A2FBA300C9DD61 /* NBBattleSetupScreen.m */; };
 		BC06C251163461E700F091F0 /* NBProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = BC06C250163461E700F091F0 /* NBProjectile.m */; };
 		BC0EBEDD16E4DE7300F4D927 /* NBDamageLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */; };
-		BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894216A0F74C00DAAA19 /* NBDataManager.m */; };
 		BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */; };
 		BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14894D16A2C01B00DAAA19 /* NBStage.m */; };
 		BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = BC14895116A5AA2E00DAAA19 /* NBCountryStageGrid.m */; };
@@ -208,6 +207,14 @@
 		F929148716F96B63003E2B22 /* NBRipples.m in Sources */ = {isa = PBXBuildFile; fileRef = F929148616F96B63003E2B22 /* NBRipples.m */; };
 		F948EDEA16A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */; };
 		F948EDEE16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */; };
+		F955F4A11726DC8600892260 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F49F1726DC6D00892260 /* StoreKit.framework */; };
+		F955F4AA1726E7BC00892260 /* NBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F4A71726E7BC00892260 /* NBDataManager.m */; };
+		F955F4AB1726E7BC00892260 /* NBInAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */; };
+		F955F5AB1728E65A00892260 /* hadouken.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5AA1728E65A00892260 /* hadouken.wav */; };
+		F955F5AE1728E71800892260 /* NBAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F955F5AD1728E71800892260 /* NBAudioManager.m */; };
+		F955F5B11728EA3800892260 /* die.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5AF1728EA3800892260 /* die.wav */; };
+		F955F5B21728EA3800892260 /* tatsumakisenpuukyaku.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */; };
+		F955F5B41728EB9000892260 /* shoryuken.wav in Resources */ = {isa = PBXBuildFile; fileRef = F955F5B31728EB9000892260 /* shoryuken.wav */; };
 		F9B870FF16BE906500F9321A /* GameSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9B870FE16BE906500F9321A /* GameSettings.plist */; };
 		F9C43AD616EDBB990036FA29 /* sampleFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD416EDBB990036FA29 /* sampleFont.fnt */; };
 		F9C43AD716EDBB990036FA29 /* sampleFont.png in Resources */ = {isa = PBXBuildFile; fileRef = F9C43AD516EDBB990036FA29 /* sampleFont.png */; };
@@ -240,8 +247,6 @@
 		BC06C250163461E700F091F0 /* NBProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBProjectile.m; sourceTree = "<group>"; };
 		BC0EBEDB16E4DE7200F4D927 /* NBDamageLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDamageLabel.h; sourceTree = "<group>"; };
 		BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDamageLabel.m; sourceTree = "<group>"; };
-		BC14894116A0F74C00DAAA19 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDataManager.h; sourceTree = "<group>"; };
-		BC14894216A0F74C00DAAA19 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDataManager.m; sourceTree = "<group>"; };
 		BC14894516A0FF1900DAAA19 /* NBBasicClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBBasicClassData.h; sourceTree = "<group>"; };
 		BC14894616A0FF1900DAAA19 /* NBBasicClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBBasicClassData.m; sourceTree = "<group>"; };
 		BC14894C16A2C01B00DAAA19 /* NBStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStage.h; sourceTree = "<group>"; };
@@ -621,6 +626,22 @@
 		F948EDE916A84595004124C6 /* NBStoryScreenScrollingPicturesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingPicturesLayer.m; sourceTree = "<group>"; };
 		F948EDEC16A8489B004124C6 /* NBStoryScreenScrollingTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBStoryScreenScrollingTextLayer.h; sourceTree = "<group>"; };
 		F948EDED16A8489C004124C6 /* NBStoryScreenScrollingTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBStoryScreenScrollingTextLayer.m; sourceTree = "<group>"; };
+		F955F49F1726DC6D00892260 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F955F4A61726E7BC00892260 /* NBDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBDataManager.h; path = NBClasses/Managers/NBDataManager.h; sourceTree = "<group>"; };
+		F955F4A71726E7BC00892260 /* NBDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBDataManager.m; path = NBClasses/Managers/NBDataManager.m; sourceTree = "<group>"; };
+		F955F4A81726E7BC00892260 /* NBInAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBInAppPurchaseManager.h; path = NBClasses/Managers/NBInAppPurchaseManager.h; sourceTree = "<group>"; };
+		F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBInAppPurchaseManager.m; path = NBClasses/Managers/NBInAppPurchaseManager.m; sourceTree = "<group>"; };
+		F955F4B11727BC0900892260 /* ContentInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ContentInfo.plist; sourceTree = "<group>"; };
+		F955F5881727BC1C00892260 /* ElementArmy1.0 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ElementArmy1.0 copy-Info.plist"; path = "/Users/augustine/Workspace/2359media/elementarmy1.0/ElementArmy1.0 copy-Info.plist"; sourceTree = "<absolute>"; };
+		F955F5911727BCB900892260 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F955F5921727BCB900892260 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F955F5931727BCB900892260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F955F5AA1728E65A00892260 /* hadouken.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hadouken.wav; path = Resources/Audio/hadouken.wav; sourceTree = "<group>"; };
+		F955F5AC1728E71800892260 /* NBAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBAudioManager.h; path = NBClasses/Managers/NBAudioManager.h; sourceTree = "<group>"; };
+		F955F5AD1728E71800892260 /* NBAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBAudioManager.m; path = NBClasses/Managers/NBAudioManager.m; sourceTree = "<group>"; };
+		F955F5AF1728EA3800892260 /* die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = die.wav; path = Resources/Audio/die.wav; sourceTree = "<group>"; };
+		F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tatsumakisenpuukyaku.wav; path = Resources/Audio/tatsumakisenpuukyaku.wav; sourceTree = "<group>"; };
+		F955F5B31728EB9000892260 /* shoryuken.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shoryuken.wav; path = Resources/Audio/shoryuken.wav; sourceTree = "<group>"; };
 		F9B870FE16BE906500F9321A /* GameSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameSettings.plist; path = Resources/GameSettings.plist; sourceTree = "<group>"; };
 		F9C43AD416EDBB990036FA29 /* sampleFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sampleFont.fnt; sourceTree = "<group>"; };
 		F9C43AD516EDBB990036FA29 /* sampleFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleFont.png; sourceTree = "<group>"; };
@@ -631,6 +652,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F955F4A11726DC8600892260 /* StoreKit.framework in Frameworks */,
 				BCBC72171633A98700B5A141 /* QuartzCore.framework in Frameworks */,
 				BCBC72191633A98700B5A141 /* OpenGLES.framework in Frameworks */,
 				BCBC721B1633A98700B5A141 /* OpenAL.framework in Frameworks */,
@@ -680,8 +702,10 @@
 				BCB909FC171AB0B800B620C6 /* Default.png */,
 				BCBC73D51633AC8900B5A141 /* Default-568h@2x.png */,
 				BCBC72281633A98700B5A141 /* ElementArmy1.0 */,
+				F955F4AF1727BC0900892260 /* ElementArmy */,
 				BCBC72151633A98700B5A141 /* Frameworks */,
 				BCBC72131633A98700B5A141 /* Products */,
+				F955F5881727BC1C00892260 /* ElementArmy1.0 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -705,6 +729,8 @@
 				BCBC72221633A98700B5A141 /* Foundation.framework */,
 				BCBC72241633A98700B5A141 /* CoreGraphics.framework */,
 				BCBC72261633A98700B5A141 /* GameKit.framework */,
+				F955F49F1726DC6D00892260 /* StoreKit.framework */,
+				F955F5901727BCB900892260 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -714,6 +740,7 @@
 			children = (
 				BCBC73CE1633AA8100B5A141 /* AdvanceClasses */,
 				BCBC73AE1633AA7700B5A141 /* BasicClasses */,
+				F955F4A51726E73900892260 /* Managers */,
 				BCBC73A01633A98900B5A141 /* AppDelegate.h */,
 				BCBC73A11633A98900B5A141 /* AppDelegate.m */,
 				BCBC73A61633A98900B5A141 /* IntroLayer.h */,
@@ -728,6 +755,7 @@
 		BCBC72291633A98700B5A141 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F955F5A91728E65000892260 /* Audio */,
 				F9C43AD316EDBB990036FA29 /* Fonts */,
 				BCBC73D71633B06400B5A141 /* CharacterSprites */,
 				BCBC722A1633A98700B5A141 /* Default.png */,
@@ -1112,8 +1140,6 @@
 				BC25575B16EC20A800A7CD2C /* NBCountryData.m */,
 				BC0EBEDB16E4DE7200F4D927 /* NBDamageLabel.h */,
 				BC0EBEDC16E4DE7300F4D927 /* NBDamageLabel.m */,
-				BC14894116A0F74C00DAAA19 /* NBDataManager.h */,
-				BC14894216A0F74C00DAAA19 /* NBDataManager.m */,
 				568EC19916EC584D00815563 /* NBEquipment.h */,
 				568EC19A16EC584D00815563 /* NBEquipment.m */,
 				568EC19C16EC58B600815563 /* NBEquipmentData.h */,
@@ -1326,6 +1352,56 @@
 			path = "Story Screen";
 			sourceTree = "<group>";
 		};
+		F955F4A51726E73900892260 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F955F4A61726E7BC00892260 /* NBDataManager.h */,
+				F955F4A71726E7BC00892260 /* NBDataManager.m */,
+				F955F4A81726E7BC00892260 /* NBInAppPurchaseManager.h */,
+				F955F4A91726E7BC00892260 /* NBInAppPurchaseManager.m */,
+				F955F5AC1728E71800892260 /* NBAudioManager.h */,
+				F955F5AD1728E71800892260 /* NBAudioManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		F955F4AF1727BC0900892260 /* ElementArmy */ = {
+			isa = PBXGroup;
+			children = (
+				F955F4B01727BC0900892260 /* Supporting Files */,
+			);
+			path = ElementArmy;
+			sourceTree = "<group>";
+		};
+		F955F4B01727BC0900892260 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F955F4B11727BC0900892260 /* ContentInfo.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F955F5901727BCB900892260 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F955F5911727BCB900892260 /* AppKit.framework */,
+				F955F5921727BCB900892260 /* CoreData.framework */,
+				F955F5931727BCB900892260 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F955F5A91728E65000892260 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F955F5AF1728EA3800892260 /* die.wav */,
+				F955F5B01728EA3800892260 /* tatsumakisenpuukyaku.wav */,
+				F955F5B31728EB9000892260 /* shoryuken.wav */,
+				F955F5AA1728E65A00892260 /* hadouken.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
 		F9C43AD316EDBB990036FA29 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1411,6 +1487,10 @@
 				BCB909FA17159E8800B620C6 /* pf_ronda_seven_bold.ttf in Resources */,
 				BCB909FB17159E8800B620C6 /* pf_ronda_seven.ttf in Resources */,
 				BCB909FD171AB0B900B620C6 /* Default.png in Resources */,
+				F955F5AB1728E65A00892260 /* hadouken.wav in Resources */,
+				F955F5B11728EA3800892260 /* die.wav in Resources */,
+				F955F5B21728EA3800892260 /* tatsumakisenpuukyaku.wav in Resources */,
+				F955F5B41728EB9000892260 /* shoryuken.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1565,7 +1645,6 @@
 				BC2065BE168B44E100745FB0 /* NBMessageBox.m in Sources */,
 				BC2065C1168B494600745FB0 /* NBButton.m in Sources */,
 				BC2065C4168B4A4300745FB0 /* NBUserInterface.m in Sources */,
-				BC14894316A0F74C00DAAA19 /* NBDataManager.m in Sources */,
 				BC14894716A0FF1900DAAA19 /* NBBasicClassData.m in Sources */,
 				BC14894E16A2C01B00DAAA19 /* NBStage.m in Sources */,
 				BC14895216A5AA2E00DAAA19 /* NBCountryStageGrid.m in Sources */,

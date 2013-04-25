@@ -12,6 +12,7 @@
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
+#import "NBAudioManager.h"
 
 #define SUPER_SHORT_ANIMATION 1
 

@@ -7,6 +7,7 @@
 //
 
 #import "NBCharacter.h"
+#import "NBAudioManager.h"
 
 #define SKILL_PROC_CHANCE 100
 
@@ -793,6 +794,7 @@ static CCArray* enemyUnitList = nil;
         {
             if ([NBCharacter calculateAttackSuccessWithAttacker:self andDefender:target])
             {
+                [[NBAudioManager sharedInstance] playSoundEffect:@"shoryuken.wav"];
                 [target onAttacked:self];
             }
 
@@ -830,7 +832,8 @@ static CCArray* enemyUnitList = nil;
     if (self.basicClassData.attackType == atRange)
     {
         NBProjectile* tempProjectile;
-        
+        [[NBAudioManager sharedInstance] playSoundEffect:@"hadouken.wav"];
+      
         CCARRAY_FOREACH(self.projectileArrayList, tempProjectile)
         {
             [tempProjectile setTargetLocation:self.currentTarget.position];
@@ -1061,6 +1064,7 @@ static CCArray* enemyUnitList = nil;
 #if DEBUG
     DLog(@"%@ is dead", self.name);
 #endif
+    [[NBAudioManager sharedInstance] playSoundEffect:@"die.wav"];
     self.currentState = Dead;
     [self dissapear];
 }
