@@ -14,6 +14,7 @@
 #import "NBIntroScreen.h"
 #import "NBMainMenuScreen.h"
 #import "NBDataManager.h"
+#import "NBInAppPurchaseManager.h"
 
 static NBDataManager* dataManager = nil;
 
@@ -179,6 +180,7 @@ static NBDataManager* dataManager = nil;
     [dataManager createStages];
     [dataManager loadItemList];
     [dataManager createProjectileList];
+    [dataManager loadAppStoreProducts];
     
     //Temporary Code
     //-------------------------------------------------------------------------------
@@ -211,6 +213,8 @@ static NBDataManager* dataManager = nil;
     dataManager.arrayOfAllySquad = arrayOfAllyData;
     //-------------------------------------------------------------------------------
 
+    [NBInAppPurchaseManager sharedInstance];
 }
+
 @end
 

@@ -10,6 +10,7 @@
 #import "NBStage.h"
 #import "NBItemData.h"
 #import "NBEquipmentData.h"
+#import "NBAppStoreProductData.h"
 #import "NBProjectileBasicData.h"
 #import "NBSkill.h"
 #import "NBItem.h"
@@ -24,6 +25,7 @@ static CCArray* listOfSkills = nil;
 static CCArray* listOfItems = nil;
 static CCArray* listOfEquipments = nil;
 static CCArray* listOfLevelData = nil;
+static CCArray* listOfAppStoreProducts = nil;
 
 @implementation NBDataManager
 
@@ -52,6 +54,7 @@ static CCArray* listOfLevelData = nil;
         listOfSkills = [[CCArray alloc] initWithCapacity:100];
         listOfItems = [[CCArray alloc] initWithCapacity:100];
         listOfLevelData = [[CCArray alloc] initWithCapacity:100];
+        listOfAppStoreProducts = [[CCArray alloc] initWithCapacity:10];
 
         //[self createStages];
         //[self createItems];
@@ -68,6 +71,7 @@ static CCArray* listOfLevelData = nil;
     [listOfSkills release];
     [listOfItems release];
     [listOfEquipments release];
+    [listOfAppStoreProducts release];
     [super dealloc];
 }
 
@@ -295,8 +299,7 @@ static CCArray* listOfLevelData = nil;
         NBEquipmentData *equipmentData = [[NBEquipmentData alloc] init];
         equipmentData.equipmentName = [equipmentDataDictionary objectForKey:@"equipmentName"];
         equipmentData.description = [equipmentDataDictionary objectForKey:@"description"];
-        equipmentData.statusImpacted = [equipmentDataDictionary objectForKey:@"statusImpacted"];
-        equipmentData.impactType = [equipmentDataDictionary objectForKey:@"impactType"];
+        equipmentData.impactedStatus = [equipmentDataDictionary objectForKey:@"impactedStatus"];
         equipmentData.impactValue = [equipmentDataDictionary objectForKey:@"impactValue"];
         equipmentData.requiredLevel = [[equipmentDataDictionary objectForKey:@"requiredLevel"] integerValue];
         equipmentData.imageNormal = [equipmentDataDictionary objectForKey:@"imageNormal"];
@@ -331,6 +334,29 @@ static CCArray* listOfLevelData = nil;
     }
     
     [listOfSkills retain];
+}
+
+-(void)loadAppStoreProducts{
+    listOfAppStoreProducts = [CCArray array];
+    [listOfAppStoreProducts retain];
+    
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray *skills = [dictionary objectForKey:@"AppStore data"];
+    
+    for (NSDictionary *productDictionary in skills)
+    {
+        NBAppStoreProductData *productData = [NBAppStoreProductData new];
+        productData.name = [productDictionary objectForKey:@"ProductName"];
+        productData.description = [productDictionary objectForKey:@"Description"];
+        productData.cost = [[productDictionary objectForKey:@"Cost"] floatValue];
+        productData.quantityInBundle = [[productDictionary objectForKey:@"QuantityInBundle"] intValue];
+        productData.imageNormal = [productDictionary objectForKey:@"ImageNormal"];
+        productData.imageSelected = [productDictionary objectForKey:@"ImageSelected"];
+        productData.imageDisabled = [productDictionary objectForKey:@"ImageDisabled"];
+        
+        [listOfAppStoreProducts addObject:productData];
+    }
 }
 
 -(void)createCharacterList
@@ -581,5 +607,10 @@ static CCArray* listOfLevelData = nil;
 +(CCArray*)getListOfEquipments
 {
     return listOfEquipments;
+}
+
++(CCArray*)getListOfAppStoreProducts
+{
+    return listOfAppStoreProducts;
 }
 @end

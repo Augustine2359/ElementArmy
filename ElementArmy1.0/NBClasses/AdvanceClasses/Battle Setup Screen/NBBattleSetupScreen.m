@@ -80,10 +80,6 @@ int objectsLeftToTransit = 6;
     [self.gameResourcePanel removeFromParentAndCleanup:NO];
     [self addChild:self.gameResourcePanel];
     
-    //Display Characters
-    [self createUnitSelectors];
-    [self createUnitRespawnContainerLayer];
-
     //Display buttons Navigation
     //OK
     self.battleSetupOk = [NBButton createWithStringHavingNormal:@"button_confirm.png" havingSelected:@"button_confirm.png" havingDisabled:@"button_confirm.png" onLayer:self respondTo:nil selector:@selector(gotoBattleScreen) withSize:CGSizeZero];
@@ -113,9 +109,9 @@ int objectsLeftToTransit = 6;
     [self addChild:self.setupEquipmentsFrame z:1];
     
     //Display buttons Equipments
-    NBEquipmentData* currentEquipment1 = [NBDataManager getEquipmentDataByEquipmentName:@"Golden Armor"];
+    NBEquipmentData* currentEquipment1 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
     NBEquipmentData* currentEquipment2 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
-    NBEquipmentData* currentEquipment3 = [NBDataManager getEquipmentDataByEquipmentName:@"Winged Boots"];
+    NBEquipmentData* currentEquipment3 = [NBDataManager getEquipmentDataByEquipmentName:@"Fury Pill"];
     self.selectedEquipment1 = [NBEquipment createEquipment:currentEquipment1 onLayer:self onSelector:@selector(openEquipmentSelection)];
     self.selectedEquipment2 = [NBEquipment createEquipment:currentEquipment2 onLayer:self onSelector:@selector(openEquipmentSelection)];
     self.selectedEquipment3 = [NBEquipment createEquipment:currentEquipment3 onLayer:self onSelector:@selector(openEquipmentSelection)];
@@ -132,6 +128,11 @@ int objectsLeftToTransit = 6;
     [self.selectedEquipment3.equipmentIcon setPosition:ccp(screenSize.width*0.5 + spriteSize.width*0.5, -screenSize.height*0.2)];
     [self.selectedEquipment3 displayEquipmentIcon];
     
+    
+    //Display Characters
+    [self createUnitSelectors];
+    [self createUnitRespawnContainerLayer];
+
     [self initialiseTransition];
 }
 
@@ -141,8 +142,9 @@ int objectsLeftToTransit = 6;
   startColor.g = 255;
   startColor.b = 255;
   startColor.a = 255;
-
-  self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
+    
+    self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] init];
+//    self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
   self.unitSelectorsContainerLayer.position = CGPointMake(-300, 100);
   [self addChild:self.unitSelectorsContainerLayer];
 }
@@ -245,7 +247,11 @@ int objectsLeftToTransit = 6;
     }
 
     NBEquipment *equipment = [NBEquipment getCurrentlySelectedEquipment];
-    [self.setupEquipmentsFrame toggleEquipmentSelection:equipment];
+    [self.setupEquipmentsFrame toggleEquipmentSelection:equipment confirmSel:@selector(updateBonusStats)];
+}
+
+-(void)updateBonusStats{
+    [self.unitRespawnContainerLayer updateBonusStats:self.selectedEquipment1 equipment2:self.selectedEquipment2 equipment3:self.selectedEquipment3];
 }
 
 @end

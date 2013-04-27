@@ -20,6 +20,7 @@
 -(void)openEquipmentSelection;
 -(void)gotoAppStore;
 -(void)initialiseTransition;
+-(void)updateBonusStats;
 
 -(void)gotoIntroScreen;
 -(void)gotoMainMenuScreen;

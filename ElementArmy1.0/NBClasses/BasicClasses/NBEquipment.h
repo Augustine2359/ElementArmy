@@ -12,12 +12,12 @@
 @interface NBEquipment : NSObject
 
 +(NBEquipment*)getCurrentlySelectedEquipment;
-+(id)createEquipment:(NBEquipmentData*)newEquipmentData onLayer:(id)layer onSelector:(SEL)selector;// equipmentIndex:(int)index;
-//+(id)createEquipmentByIndex:(int)equipmentIndex onLayer:(id)layer onSelector:(SEL)selector lockedSelector:(SEL)lockedSelector;
++(id)createEquipment:(NBEquipmentData*)newEquipmentData onLayer:(id)layer onSelector:(SEL)selector;
 -(id)setEquipmentIconWithNormalImage:(NSString*)normalImage selectedImage:(NSString*)selectedImage disabledImage:(NSString*)disabledImage onLayer:(CCLayer*)layer;
 -(void)displayEquipmentIcon;
 -(void)hideEquipmentIcon;
 -(void)onEquipmentSelected;
+-(CCArray*)statsEffectOfEquipment;
 
 @property (nonatomic, retain) NBEquipmentData* equipmentData;
 @property (nonatomic, retain) NBButton* equipmentIcon;

@@ -27,6 +27,7 @@
 -(void)loadPlayerData;
 -(void)savePlayerData;
 -(void)loadGameSettingData;
+-(void)loadAppStoreProducts;
 
 -(NBBasicClassData*)getBasicClassDataByClassName:(NSString*)className;
 
@@ -37,6 +38,7 @@
 +(CCArray*)getListOfCountries;
 +(CCArray*)getListOfItems;
 +(CCArray*)getListOfEquipments;
++(CCArray*)getListOfAppStoreProducts;
 
 @property (nonatomic, retain) NSString* userID;
 @property (nonatomic, retain) NSMutableDictionary* saveGameDictionary;
@@ -46,6 +48,7 @@
 @property (nonatomic, retain) CCArray* listOfUnlockedSkillID;
 @property (nonatomic, retain) CCArray* listOfUnlockedItemID;
 @property (nonatomic, retain) CCArray* listOfUnlockedWeaponID;
+//@property (nonatomic, retain) CCArray* listOfAppStoreProducts;
 
 @property (nonatomic, retain) CCArray* listOfStages;
 @property (nonatomic, retain) CCArray* listOfCharacters;

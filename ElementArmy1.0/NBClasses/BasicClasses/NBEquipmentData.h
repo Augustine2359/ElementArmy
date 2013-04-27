@@ -22,8 +22,7 @@ typedef enum
 
 @property (nonatomic, retain) NSString* equipmentName;
 @property (nonatomic, retain) NSString* description;
-@property (nonatomic, retain) NSString* statusImpacted;
-@property (nonatomic, retain) NSString* impactType;
+@property (nonatomic, retain) NSString* impactedStatus;
 @property (nonatomic, retain) NSString* impactValue;
 @property (nonatomic, assign) NSInteger requiredLevel;
 @property (nonatomic, retain) NSString* imageNormal;

@@ -27,11 +27,12 @@
 
 @property (nonatomic, retain) NBButton* confirmButton;
 @property (nonatomic, retain) NBButton* cancelButton;
+@property (nonatomic, assign) SEL updateStatSelector;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseEquipmentArray;
 -(void)initialiseEquipmentUI;
--(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton;
+-(void)toggleEquipmentSelection:(NBEquipment*)selectedEquipmentButton confirmSel:(SEL)confirmSel;
 -(void)selectTargetEquipment;
 -(void)confirmAndCloseMenu;
 -(void)cancelAndCloseMenu;

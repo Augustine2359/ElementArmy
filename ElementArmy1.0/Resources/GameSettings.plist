@@ -2,6 +2,57 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppStore data</key>
+	<array>
+		<dict>
+			<key>ProductName</key>
+			<string>Preview Pack</string>
+			<key>Cost</key>
+			<real>0.99</real>
+			<key>QuantityInBundle</key>
+			<integer>3</integer>
+			<key>Description</key>
+			<string>Some will do..</string>
+			<key>ImageNormal</key>
+			<string>Winged_boots.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
+		</dict>
+		<dict>
+			<key>ProductName</key>
+			<string>Standard Pack</string>
+			<key>Cost</key>
+			<real>2.49</real>
+			<key>QuantityInBundle</key>
+			<integer>10</integer>
+			<key>Description</key>
+			<string>Suitable pack for both young and old</string>
+			<key>ImageNormal</key>
+			<string>Potion.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
+		</dict>
+		<dict>
+			<key>ProductName</key>
+			<string>Hardcore pack</string>
+			<key>Cost</key>
+			<real>9.99</real>
+			<key>QuantityInBundle</key>
+			<integer>50</integer>
+			<key>Description</key>
+			<string>Shit just got real</string>
+			<key>ImageNormal</key>
+			<string>Potion.png</string>
+			<key>ImageSelected</key>
+			<string>Potion.png</string>
+			<key>ImageDisabled</key>
+			<string>Potion.png</string>
+		</dict>
+	</array>
 	<key>Character data</key>
 	<array>
 		<dict>
@@ -20,7 +71,7 @@
 			<key>basicSP</key>
 			<integer>0</integer>
 			<key>basicSTR</key>
-			<integer>20</integer>
+			<integer>0</integer>
 			<key>basicDEF</key>
 			<integer>10</integer>
 			<key>basicINT</key>
@@ -8310,12 +8361,12 @@
 			<string>NULL</string>
 			<key>description</key>
 			<string>No equipment selected</string>
-			<key>statusImpacted</key>
-			<string>NULL</string>
+			<key>impactedStatus</key>
+			<string>NULL;</string>
 			<key>impactType</key>
-			<string>NULL</string>
+			<string>NULL;</string>
 			<key>impactValue</key>
-			<string>NULL</string>
+			<string>NULL;</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
@@ -8327,15 +8378,31 @@
 		</dict>
 		<dict>
 			<key>equipmentName</key>
+			<string>Power Drink</string>
+			<key>description</key>
+			<string>A refreshing drink before a battle!</string>
+			<key>impactedStatus</key>
+			<string>ATK;DEX;</string>
+			<key>impactValue</key>
+			<string>1.50;1.50;</string>
+			<key>requiredLevel</key>
+			<integer>1</integer>
+			<key>imageNormal</key>
+			<string>Potion.png</string>
+			<key>imageSelected</key>
+			<string>Potion.png</string>
+			<key>imageDisabled</key>
+			<string>Potion.png</string>
+		</dict>
+		<dict>
+			<key>equipmentName</key>
 			<string>Winged Boots</string>
 			<key>description</key>
 			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
-			<key>statusImpacted</key>
-			<string>ATK;DEX;</string>
-			<key>impactType</key>
-			<string>0;2;</string>
+			<key>impactedStatus</key>
+			<string>DEX;EVA</string>
 			<key>impactValue</key>
-			<string>50;1.5;</string>
+			<string>2.00;1.50</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
@@ -8347,35 +8414,13 @@
 		</dict>
 		<dict>
 			<key>equipmentName</key>
-			<string>Winged Boots</string>
+			<string>Potion</string>
 			<key>description</key>
-			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
-			<key>statusImpacted</key>
-			<string>ATK;DEX;</string>
-			<key>impactType</key>
-			<string>0;2;</string>
+			<string>A weird solution which somehow boosts offense and defense</string>
+			<key>impactedStatus</key>
+			<string>ATK;DEF;</string>
 			<key>impactValue</key>
-			<string>50;1.5;</string>
-			<key>requiredLevel</key>
-			<integer>1</integer>
-			<key>imageNormal</key>
-			<string>Winged_boots.png</string>
-			<key>imageSelected</key>
-			<string>Winged_boots.png</string>
-			<key>imageDisabled</key>
-			<string>Winged_boots.png</string>
-		</dict>
-		<dict>
-			<key>equipmentName</key>
-			<string>Winged Boots</string>
-			<key>description</key>
-			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
-			<key>statusImpacted</key>
-			<string>ATK;DEX;</string>
-			<key>impactType</key>
-			<string>0;2;</string>
-			<key>impactValue</key>
-			<string>50;1.5;</string>
+			<string>1.50;1.50;</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
@@ -8389,13 +8434,11 @@
 			<key>equipmentName</key>
 			<string>Fury Pill</string>
 			<key>description</key>
-			<string>Rawrrr</string>
-			<key>statusImpacted</key>
-			<string>ATK;DEX;</string>
-			<key>impactType</key>
-			<string>0;2;</string>
+			<string>Rawrrr! Adrenaline rush!</string>
+			<key>impactedStatus</key>
+			<string>HP;SP;</string>
 			<key>impactValue</key>
-			<string>50;1.5;</string>
+			<string>2.00;1.50;</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
@@ -8407,15 +8450,13 @@
 		</dict>
 		<dict>
 			<key>equipmentName</key>
-			<string>Winged Boots</string>
+			<string>Shield of Wind</string>
 			<key>description</key>
-			<string>Believed to have fallen from heaven. Those who wear this boots will receive additional 50 ATK and 50% more DEX.</string>
-			<key>statusImpacted</key>
-			<string>ATK;DEX;</string>
-			<key>impactType</key>
-			<string>0;2;</string>
+			<string>A gentle breeze surrounds this shield</string>
+			<key>impactedStatus</key>
+			<string>INT;DEX;EVA;</string>
 			<key>impactValue</key>
-			<string>50;1.5;</string>
+			<string>1.50;2.00;1.50;</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>
@@ -8429,13 +8470,11 @@
 			<key>equipmentName</key>
 			<string>Golden Armor</string>
 			<key>description</key>
-			<string>Armor which was used by the mighty Son of Thor. This armor adds an extreme 200 DEF to those who wear it.</string>
-			<key>statusImpacted</key>
+			<string>Armor which was used by the mighty Son of Thor. This armor more than doubles DEF to those who wear it.</string>
+			<key>impactedStatus</key>
 			<string>DEF;</string>
-			<key>impactType</key>
-			<string>0;</string>
 			<key>impactValue</key>
-			<string>200;</string>
+			<string>2.50;</string>
 			<key>requiredLevel</key>
 			<integer>1</integer>
 			<key>imageNormal</key>

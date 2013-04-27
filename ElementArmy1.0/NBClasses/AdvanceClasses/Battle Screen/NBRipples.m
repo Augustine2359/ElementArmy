@@ -17,7 +17,7 @@
 
 @implementation NBRipples
 
-- (id)initWithPosition:(CGPoint)theOrigin amplitude:(CGFloat)theAmplitude numberOfRipples:(NSInteger)theNumberOfRipples rippleInterval:(CGFloat)theRippleInterval rippleDuration:(CGFloat)theRippleDuration{
+- (id)initWithPosition:(CGPoint)theOrigin amplitude:(CGFloat)theAmplitude numberOfRipples:(NSInteger)theNumberOfRipples rippleInterval:(CGFloat)theRippleInterval rippleDuration:(CGFloat)theRippleDuration rippleType:(enum RippleType)theRippleType {
   self = [self init];
   if (self) {
     self.origin = theOrigin;
@@ -25,6 +25,7 @@
     self.numberOfRipples = theNumberOfRipples;
     self.rippleInterval = theRippleInterval;
     self.rippleDuration = theRippleDuration;
+    self.rippleType = theRippleType;
   }
   return self;
 }
@@ -37,6 +38,7 @@
     self.numberOfRipples = 10;
     self.rippleInterval = 0.25;
     self.rippleDuration = 1;
+    self.rippleType = RippleTypeEarthquake;
   }
   return self;
 }
@@ -51,7 +53,7 @@
 - (void)rippleFinished:(NSTimer *)timer {
   static NSInteger numberOfFinishedRipples = 0;
   numberOfFinishedRipples++;
-  [self.delegate rippleFinished:self.origin rippleAmplitude:self.amplitude];
+  [(id<NBRipplesDelegate>)self.delegate rippleFinished:self.origin rippleAmplitude:self.amplitude rippleType:self.rippleType];
 
   if (numberOfFinishedRipples >= self.numberOfRipples)
     [timer invalidate];

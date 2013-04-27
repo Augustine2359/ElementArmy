@@ -22,6 +22,7 @@
 -(void)activate;
 -(void)deactivate;
 -(void)implementEffect:(NBCharacter*)characterObject;
+-(CCArray*)statsEffectOfItem;
 
 @property (nonatomic, retain) NBItemData* itemData;
 @property (nonatomic, retain) NBButton* itemIcon;

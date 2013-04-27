@@ -190,4 +190,83 @@ static NBItem* currentlySelectedItemInBattleSetup = nil;
     }
 }
 
+-(CCArray*)statsEffectOfItem{
+    //0 is HP
+    //1 is SP
+    //2 is STR
+    //3 is DEF
+    //4 is INT
+    //5 is DEX
+    //6 is EVA
+    CCArray* statsModifierArray = [[CCArray alloc] initWithCapacity:7];
+    for (int x = 0; x < [statsModifierArray count]; x++) {
+        [statsModifierArray addObject:@""];
+    }
+    
+    NSArray* impactedStatusList = [self.itemData.impactedStatus componentsSeparatedByString:@";"];
+    NSArray* impactedValueList = [self.itemData.impactValue componentsSeparatedByString:@";"];
+
+    for (int effectIndex = 0; effectIndex < [impactedStatusList count]; effectIndex++)
+    {
+        NSString* impactedStatus = (NSString*)[impactedStatusList objectAtIndex:effectIndex];
+        if ([impactedStatus length] < 1) continue;
+        
+        NSString* valueString = nil;
+        if (self.itemData.impactType == itimAdd)
+        {
+            valueString = [valueString stringByAppendingString:@"+"];
+        }
+        else if (self.itemData.impactType == itimSubstract)
+        {
+            valueString = [valueString stringByAppendingString:@"-"];
+        }
+        else if (self.itemData.impactType == itimMultiply)
+        {
+            valueString = [valueString stringByAppendingString:@"*"];
+        }
+        else if (self.itemData.impactType == itimDivide)
+        {
+            valueString = [valueString stringByAppendingString:@"/"];
+        }
+        
+        CGFloat impactedStatusValue = (int)[impactedValueList objectAtIndex:effectIndex];
+        valueString = [valueString stringByAppendingFormat:@"%f", impactedStatusValue];
+        
+        if ([impactedStatus isEqualToString:@"HP"])
+        {
+            [statsModifierArray replaceObjectAtIndex:0 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"SP"])
+        {
+            [statsModifierArray replaceObjectAtIndex:1 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"ATK"])
+        {
+            [statsModifierArray replaceObjectAtIndex:2 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"DEF"])
+        {
+            [statsModifierArray replaceObjectAtIndex:3 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"INT"])
+        {
+            [statsModifierArray replaceObjectAtIndex:4 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"DEX"])
+        {
+            [statsModifierArray replaceObjectAtIndex:5 withObject:valueString];
+        }
+        else if ([impactedStatus isEqualToString:@"EVA"])
+        {
+            [statsModifierArray replaceObjectAtIndex:6 withObject:valueString];
+        }
+        else
+        {
+            DLog(@"error: unknown attribute: %@", impactedStatus);
+        }
+    }
+    
+    return statsModifierArray;
+}
+
 @end
