@@ -184,9 +184,9 @@
 			<key>basicINT</key>
 			<integer>10</integer>
 			<key>basicDEX</key>
-			<integer>90</integer>
+			<integer>30</integer>
 			<key>basicEVA</key>
-			<string>30</string>
+			<string>10</string>
 			<key>minHPAdd</key>
 			<integer>8</integer>
 			<key>maxHPAdd</key>
