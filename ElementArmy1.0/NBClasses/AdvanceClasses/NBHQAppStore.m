@@ -17,6 +17,7 @@
     {
         [self initialiseProductsArray];
         [self initialiseAppStoreUI];
+        self.IAPManager = [NBInAppPurchaseManager sharedInstance];
     }
     return self;
 }
@@ -55,7 +56,8 @@
 -(void)selectTargetProduct{
     //Confirm msg to buy
     DLog(@"Confirmation here..");
-
+    
+    [self.IAPManager makePurchase:@"gem.test.100"];
     
     //Really purchase from app store
     DLog(@"IAP here..");

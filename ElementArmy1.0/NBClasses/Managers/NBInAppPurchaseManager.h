@@ -11,6 +11,9 @@
 
 @interface NBInAppPurchaseManager : NSObject
 
-+ (NBInAppPurchaseManager *)sharedInstance;
++(NBInAppPurchaseManager*)sharedInstance;
+-(void)makePurchase:(NSString*)productID;
+
+@property (nonatomic, retain) NSArray* productList;
 
 @end

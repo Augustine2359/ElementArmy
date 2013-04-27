@@ -758,10 +758,11 @@ static Boolean isAutoStart = NO;
     if ([self isSpellReady:lastCastDateOfSpell cooldown:10] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
       if (character.basicClassData.attackType == atMelee)
-        [self castEarthquake:target];
-      if (character.basicClassData.attackType == atRange)
+        [self castPushingRoarFrom:character];
+//        [self castEarthquake:target];
+//      if (character.basicClassData.attackType == atRange)
 //        [self castChainLightningFrom:character toTarget:target];
-        [self castLaserSightFrom:character toTarget:target];
+//        [self castLaserSightFrom:character toTarget:target];
 //        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castArrowRain:target];
     }
