@@ -351,6 +351,8 @@ static Boolean isAutoStart = NO;
     }
     
     self.dataManager.availableBattlePoint += self.currentBattlePointsAwarded;
+    
+    [self.dataManager saveStage:self.dataManager.currentStageID];
 }
 
 -(void)onBattleCompleteAnimationCompleted

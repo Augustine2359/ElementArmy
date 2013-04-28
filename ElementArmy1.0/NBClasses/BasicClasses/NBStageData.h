@@ -24,6 +24,7 @@
 @property (nonatomic, assign) CGPoint gridPoint;
 @property (nonatomic, retain) CCArray* nextStageDataList;
 @property (nonatomic, retain) CCArray* willUnlockStageID;
+@property (nonatomic, retain) NSString* willUnlockCountry;
 @property (nonatomic, retain) CCArray* connectedStageID;
 @property (nonatomic, assign) bool isCompleted;
 @property (nonatomic, assign) bool isUnlocked;

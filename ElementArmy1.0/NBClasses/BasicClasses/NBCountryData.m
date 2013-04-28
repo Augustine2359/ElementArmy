@@ -26,6 +26,7 @@ static CCArray* worldList = nil;
     {
         self.countryName = [NSString stringWithFormat:@"country%i", [worldList count]];
         self.stageList = [[CCArray alloc] initWithCapacity:MAX_NUM_OF_STAGE_PER_WORLD];
+        self.listOfCreatedStagesID = [CCArray arrayWithCapacity:100];
         
         [worldList addObject:self];
     }

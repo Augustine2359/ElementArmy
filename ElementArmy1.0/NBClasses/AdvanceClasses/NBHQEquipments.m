@@ -54,8 +54,8 @@ NBEquipment* currSelectedEquipment = nil;
             }
         }
         
-        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"Marker Felt" fontSize:15];
-        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"Marker Felt" fontSize:15];
+        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"PF Ronda Seven" fontSize:15];
+        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"PF Ronda Seven" fontSize:15];
         costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
         quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
         
@@ -76,7 +76,7 @@ NBEquipment* currSelectedEquipment = nil;
     self.labelBackground.scaleX = 360 / self.labelBackground.contentSize.width;
     self.labelBackground.scaleY = 50 / self.labelBackground.contentSize.height;
     self.labelBackground.position = ccp(220, 130);
-    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:20];
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString dimensions:CGSizeMake(350, 50) hAlignment:kCCTextAlignmentLeft fontName:@"PF Ronda Seven" fontSize:20];
     self.descriptionLabel.position = ccp(230, 130);
     [self addChild:self.labelBackground];
     [self addChild:self.descriptionLabel];

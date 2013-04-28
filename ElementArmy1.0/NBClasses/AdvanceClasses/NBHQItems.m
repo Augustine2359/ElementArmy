@@ -55,7 +55,7 @@ NBItem* currSelectedItem = nil;
         }
         
         CCLabelTTF* costLabel = [CCLabelTTF labelWithString:@"$9999" fontName:@"PF Ronda Seven" fontSize:15];
-        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"Marker Felt" fontSize:15];
+        CCLabelTTF* quantityLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x %i", quantityHeld] fontName:@"PF Ronda Seven" fontSize:15];
         costLabel.position = ccp(x%4 * 100 + 75, 240 - x/4 * 75);
         quantityLabel.position = ccp(x%4 * 100 + 125, 275 - x/4 * 75);
         

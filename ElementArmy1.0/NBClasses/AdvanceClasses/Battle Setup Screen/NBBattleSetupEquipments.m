@@ -60,7 +60,7 @@
     }
     
     self.descriptionString = @"No equipment selected";
-    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString fontName:@"Marker Felt" fontSize:20];
+    self.descriptionLabel = [CCLabelTTF labelWithString:self.descriptionString fontName:@"PF Ronda Seven" fontSize:20];
     self.descriptionLabel.position = ccp(240, 75);
     [self addChild:self.descriptionLabel];
     

@@ -32,7 +32,7 @@
     CGSize winsize = [[CCDirector sharedDirector] winSize];
     
     self.allyHPBar = [CCSprite spriteWithSpriteFrameName:@"staticbox_green.png"];
-    self.allyHPBar.scaleX = 180 / self.allyHPBar.contentSize.width;
+    self.allyHPBar.scaleX = HP_BAR_LENGTH / self.allyHPBar.contentSize.width;
     self.allyHPBar.scaleY = 12 / self.allyHPBar.contentSize.height;
     targetScaleXForHPBar = self.allyHPBar.scaleX;
     targetScaleYForHPBar = self.allyHPBar.scaleY;
@@ -42,7 +42,7 @@
     [self addChild:self.allyHPBar];
     
     self.enemyHPBar = [CCSprite spriteWithSpriteFrameName:@"staticbox_red.png"];
-    self.enemyHPBar.scaleX = 180 / self.enemyHPBar.contentSize.width;
+    self.enemyHPBar.scaleX = HP_BAR_LENGTH / self.enemyHPBar.contentSize.width;
     self.enemyHPBar.scaleY = 12 / self.enemyHPBar.contentSize.height;
     self.enemyHPBar.anchorPoint = CGPointMake(0, 1);
     self.enemyHPBar.scaleX = 0;

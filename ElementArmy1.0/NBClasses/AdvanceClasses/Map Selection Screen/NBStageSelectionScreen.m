@@ -10,6 +10,8 @@
 #import "NBStageSelectionScreen.h"
 #import "NBBasicClassData.h"
 
+static bool firstTimeAfterGameLoaded = true;
+
 @implementation NBStageSelectionScreen
 
 // Helper class method that creates a Scene with the NBBattleLayer as the only child.
@@ -37,7 +39,7 @@
 	return scene;
 }
 
--(void) onEnter
+-(void)onEnter
 {
 	[super onEnter];
     
@@ -62,10 +64,11 @@
     self.backToWorldSelectionButton = [NBButton createWithStringHavingNormal:@"previous_arrow.png" havingSelected:@"previous_arrow.png" havingDisabled:@"previous_arrow.png" onLayer:self respondTo:nil selector:@selector(gotoMapSelectionScreen) withSize:CGSizeZero];
     self.backToWorldSelectionButton.menu.position = CGPointMake(20, 20);
     
+    [self readStagesFromFile];
     [self readFromDataManager];
     //Just for the time being, disable save progress.
-    [self.dataManager saveStages];
-    [self readStagesFromFile];
+    //[self.dataManager saveStages];
+    //[self readStagesFromFile];
     
     //FLAG
     self.flagCursor = [[NBSingleAnimatedObject alloc] initWithSpriteFrameName:@"flagSelection_0.png"];
@@ -117,22 +120,84 @@
         if (self.dataManager.battleWon)
         {
             stage = [self.currentCountryStage getStageByID:stageData.stageID];
-            NSString* unlockingStageID = nil;
             
-            CCARRAY_FOREACH(stage.stageData.willUnlockStageID, unlockingStageID)
+            for (NSDictionary* nextStage in stage.stageData.nextStageDataList)
+            {
+                NSString* nextStageName = [nextStage objectForKey:@"stageID"];
+                NBStage* unlockingStage = nil;
+                unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:nextStageName];
+                unlockingStage.stageData.isUnlocked = true;
+            }
+            
+            if (![stage.stageData.willUnlockCountry isEqualToString:@""])
+            {
+                CCArray* listOfCountryData = [NBDataManager getListOfCountries];
+                
+                for (NBCountryData* countryData in listOfCountryData)
+                {
+                    if ([countryData.countryName isEqualToString:stage.stageData.willUnlockCountry])
+                    {
+                        countryData.isUnlocked = YES;
+                        break;
+                    }
+                }
+            }
+            
+            //NSString* unlockingStageID = nil;
+            
+            /*CCARRAY_FOREACH(stage.stageData.willUnlockStageID, unlockingStageID)
             {
                 NBStage* unlockingStage = nil;
                 unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:unlockingStageID];
                 unlockingStage.stageData.isUnlocked = true;
-            }
+            }*/
         }
     }
     
-    /*for (NBStage *stage in self.dataManager.listOfStages)
+    if (firstTimeAfterGameLoaded)
     {
-        [self.currentCountryStage addStage:stage];
-        [stage createCompletedLines];
-    }*/
+        for (NBStageData* stageData in self.dataManager.selectedCountryData.listOfCreatedStagesID)
+        {
+            if (stageData.isCompleted)
+            {
+                stage = [self.currentCountryStage getStageByID:stageData.stageID];
+                
+                for (NSDictionary* nextStage in stage.stageData.nextStageDataList)
+                {
+                    NSString* nextStageName = [nextStage objectForKey:@"stageID"];
+                    NBStage* unlockingStage = nil;
+                    unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:nextStageName];
+                    unlockingStage.stageData.isUnlocked = true;
+                }
+                
+                if (![stage.stageData.willUnlockCountry isEqualToString:@""])
+                {
+                    CCArray* listOfCountryData = [NBDataManager getListOfCountries];
+                    
+                    for (NBCountryData* countryData in listOfCountryData)
+                    {
+                        if ([countryData.countryName isEqualToString:stage.stageData.willUnlockCountry])
+                        {
+                            countryData.isUnlocked = YES;
+                            break;
+                        }
+                    }
+                }
+                
+                /*NSString* unlockingStageID = nil;
+                
+                CCARRAY_FOREACH(stage.stageData.willUnlockStageID, unlockingStageID)
+                {
+                    NBStage* unlockingStage = nil;
+                    unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:unlockingStageID];
+                    unlockingStage.stageData.isUnlocked = true;
+                    [stage.stageData.connectedStageID addObject:unlockingStageID];
+                }*/
+            }
+        }
+        
+        firstTimeAfterGameLoaded = false;
+    }
 }
 
 -(void)readStagesFromFile
@@ -156,6 +221,7 @@
 {
     NBStage* stage = [NBStage getCurrentlySelectedStage];
     self.dataManager.selectedStageData = stage.stageData;
+    self.dataManager.currentStageID = stage.stageData.stageID;
     DLog(@"StageID selected: %@", stage.stageData.stageID);
     
     self.flagCursor.position = stage.worldIcon.menu.position;

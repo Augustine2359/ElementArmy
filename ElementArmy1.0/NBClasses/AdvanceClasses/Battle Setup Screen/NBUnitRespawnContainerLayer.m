@@ -48,37 +48,37 @@
         
         
         NBBasicClassData* statsList = [[[NBDataManager dataManager] listOfCharacters] objectAtIndex:0];
-        self.labelHPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"HP: %i x ", statsList.currentHP] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelHPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"HP: %i x ", statsList.currentHP] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelHPStat.position = ccp(rect.size.width*0.15, rect.size.height*0.8);
         self.labelHPStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelHPStat];
         
-        self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SP: %i x ", statsList.currentSP] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"SP: %i x ", statsList.currentSP] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelSPStat.position = ccp(rect.size.width*0.15, rect.size.height*0.7);
         self.labelSPStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelSPStat];
         
-        self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"STR: %i x ", statsList.currentSTR] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"STR: %i x ", statsList.currentSTR] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelSPStat.position = ccp(rect.size.width*0.15, rect.size.height*0.6);
         self.labelSPStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelSPStat];
         
-        self.labelDEFStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"DEF: %i x ", statsList.currentDEF] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelDEFStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"DEF: %i x ", statsList.currentDEF] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelDEFStat.position = ccp(rect.size.width*0.15, rect.size.height*0.5);
         self.labelDEFStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelDEFStat];
         
-        self.labelINTStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"INT: %i x ", statsList.currentINT] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelINTStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"INT: %i x ", statsList.currentINT] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelINTStat.position = ccp(rect.size.width*0.15, rect.size.height*0.4);
         self.labelINTStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelINTStat];
         
-        self.labelDEXStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"DEX: %i x ", statsList.currentDEX] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelDEXStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"DEX: %i x ", statsList.currentDEX] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelDEXStat.position = ccp(rect.size.width*0.15, rect.size.height*0.3);
         self.labelDEXStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelDEXStat];
         
-        self.labelEVAStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"EVA: %i x ", statsList.currentEVA] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"Marker Felt" fontSize:15];
+        self.labelEVAStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"EVA: %i x ", statsList.currentEVA] dimensions:CGSizeMake(rect.size.width*0.5, rect.size.height*0.15) hAlignment:kCCTextAlignmentRight fontName:@"PF Ronda Seven" fontSize:15];
         self.labelEVAStat.position = ccp(rect.size.width*0.15, rect.size.height*0.2);
         self.labelEVAStat.color = ccc3(100, 100, 100);
         [self addChild:self.labelEVAStat];
@@ -87,7 +87,7 @@
         
         self.bonusLabels = [[CCArray alloc] initWithCapacity:7];
         for (int x = 0; x < [self.bonusLabels capacity]; x++) {
-            CCLabelTTF* thatLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"1.0"] dimensions:CGSizeMake(rect.size.width*0.25, rect.size.height*0.15) hAlignment:kCCTextAlignmentLeft fontName:@"Marker Felt" fontSize:15];
+            CCLabelTTF* thatLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"1.0"] dimensions:CGSizeMake(rect.size.width*0.25, rect.size.height*0.15) hAlignment:kCCTextAlignmentLeft fontName:@"PF Ronda Seven" fontSize:15];
             thatLabel.position = ccp(rect.size.width*0.55, rect.size.height*0.8 - x*rect.size.height*0.1);
             thatLabel.color = ccc3(0, 0, 255);
             [self.bonusLabels addObject:thatLabel];
@@ -119,65 +119,65 @@
 //      self.unitCounter = 10;
 //
 //      NBBasicClassData* statsList = [[[NBDataManager dataManager] listOfCharacters] objectAtIndex:0];
-//      CCLabelTTF* labelHP = [CCLabelTTF labelWithString:@"HP: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelHP = [CCLabelTTF labelWithString:@"HP: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelHP.position = ccp(w*0.2, h*0.8);
 //      labelHP.color = ccc3(100, 100, 100);
 //      [self addChild:labelHP];
-//      self.labelHPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentHP] fontName:@"Marker Felt" fontSize:15];
+//      self.labelHPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentHP] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelHPStat.position = ccp(w*0.4, h*0.8);
 //      self.labelHPStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelHPStat];
 //      
-//      CCLabelTTF* labelSP = [CCLabelTTF labelWithString:@"SP: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelSP = [CCLabelTTF labelWithString:@"SP: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelSP.position = ccp(w*0.2, h*0.7);
 //      labelSP.color = ccc3(100, 100, 100);
 //      [self addChild:labelSP];
-//      self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSP] fontName:@"Marker Felt" fontSize:15];
+//      self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSP] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelSPStat.position = ccp(w*0.4, h*0.7);
 //      self.labelSPStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelSPStat];
 //      
-//      CCLabelTTF* labelSTR = [CCLabelTTF labelWithString:@"STR: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelSTR = [CCLabelTTF labelWithString:@"STR: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelSTR.position = ccp(w*0.2, h*0.6);
 //      labelSTR.color = ccc3(100, 100, 100);
 //      [self addChild:labelSTR];
-//      self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSTR] fontName:@"Marker Felt" fontSize:15];
+//      self.labelSPStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentSTR] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelSPStat.position = ccp(w*0.4, h*0.6);
 //      self.labelSPStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelSPStat];
 //      
-//      CCLabelTTF* labelDEF = [CCLabelTTF labelWithString:@"DEF: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelDEF = [CCLabelTTF labelWithString:@"DEF: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelDEF.position = ccp(w*0.2, h*0.5);
 //      labelDEF.color = ccc3(100, 100, 100);
 //      [self addChild:labelDEF];
-//      self.labelDEFStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEF] fontName:@"Marker Felt" fontSize:15];
+//      self.labelDEFStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEF] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelDEFStat.position = ccp(w*0.4, h*0.5);
 //      self.labelDEFStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelDEFStat];
 //      
-//      CCLabelTTF* labelINT = [CCLabelTTF labelWithString:@"INT: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelINT = [CCLabelTTF labelWithString:@"INT: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelINT.position = ccp(w*0.2, h*0.4);
 //      labelINT.color = ccc3(100, 100, 100);
 //      [self addChild:labelINT];
-//      self.labelINTStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentINT] fontName:@"Marker Felt" fontSize:15];
+//      self.labelINTStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentINT] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelINTStat.position = ccp(w*0.4, h*0.4);
 //      self.labelINTStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelINTStat];
 //      
-//      CCLabelTTF* labelDEX = [CCLabelTTF labelWithString:@"DEX: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelDEX = [CCLabelTTF labelWithString:@"DEX: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelDEX.position = ccp(w*0.2, h*0.3);
 //      labelDEX.color = ccc3(100, 100, 100);
 //      [self addChild:labelDEX];
-//      self.labelDEXStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEX] fontName:@"Marker Felt" fontSize:15];
+//      self.labelDEXStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentDEX] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelDEXStat.position = ccp(w*0.4, h*0.3);
 //      self.labelDEXStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelDEXStat];
 //      
-//      CCLabelTTF* labelEVA = [CCLabelTTF labelWithString:@"EVA: " fontName:@"Marker Felt" fontSize:15];
+//      CCLabelTTF* labelEVA = [CCLabelTTF labelWithString:@"EVA: " fontName:@"PF Ronda Seven" fontSize:15];
 //      labelEVA.position = ccp(w*0.2, h*0.2);
 //      labelEVA.color = ccc3(100, 100, 100);
 //      [self addChild:labelEVA];
-//      self.labelEVAStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentEVA] fontName:@"Marker Felt" fontSize:15];
+//      self.labelEVAStat = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i", statsList.currentEVA] fontName:@"PF Ronda Seven" fontSize:15];
 //      self.labelEVAStat.position = ccp(w*0.4, h*0.2);
 //      self.labelEVAStat.color = ccc3(100, 100, 100);
 //      [self addChild:self.labelEVAStat];

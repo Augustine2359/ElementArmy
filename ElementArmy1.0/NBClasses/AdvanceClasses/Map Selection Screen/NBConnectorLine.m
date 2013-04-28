@@ -10,6 +10,67 @@
 
 @implementation NBConnectorLine
 
+-(id)createConnectorFrom:(NSString*)originalStageName withGridPoint:(CGPoint)startGrid toStageName:(NSString*)destinationStageName withGridPoint:(CGPoint)endGrid
+{
+    if (self = [super init])
+    {
+        self.ownerStageName = originalStageName;
+        self.connectToStageName = destinationStageName;
+        self.dots = [CCArray array];
+        self.dotsData = [CCArray array];
+        [self createHorizontalLineFrom:startGrid to:endGrid];
+        [self createVerticalLineFrom:lastPointAfterHorizontalIsCreated to:endGrid];
+    }
+    
+    return self;
+}
+
+-(void)createHorizontalLineFrom:(CGPoint)start to:(CGPoint)end
+{
+    if (start.x != end.x)
+    {
+        int count = start.x - end.x;
+        int factor = count /  (ABS(count));
+        
+        for (int i = 0; i < ABS(count); i++)
+        {
+            NBConnectorDot* dot = [[NBConnectorDot alloc] init];
+            dot.gridPosition = CGPointMake(start.x + (i * factor) + factor, start.y);
+            
+            lastPointAfterHorizontalIsCreated = dot.gridPosition;
+            
+            if (factor > 0)
+                dot.rotation = 0;
+            else
+                dot.rotation = 180;
+            
+            [self.dotsData addObject:dot];
+        }
+    }
+}
+
+-(void)createVerticalLineFrom:(CGPoint)start to:(CGPoint)end
+{
+    if (start.y != end.y)
+    {
+        int count = start.y - end.y;
+        int factor = count /  (ABS(count));
+        
+        for (int i = 0; i < ABS(count); i++)
+        {
+            NBConnectorDot* dot = [[NBConnectorDot alloc] init];
+            dot.gridPosition = CGPointMake(start.x, start.y + (i * factor) + factor);
+            
+            if (factor > 0)
+                dot.rotation = 270;
+            else
+                dot.rotation = 90;
+            
+            [self.dotsData addObject:dot];
+        }
+    }
+}
+
 -(id)createConnectorFrom:(NSString*)originalStageName toStageName:(NSString*)destinationStageName withDotList:(CCArray*)dotList
 {
     if (self = [super init])
@@ -147,7 +208,7 @@
  
     NBSingleAnimatedObject* currentDot = (NBSingleAnimatedObject*)[self.dots objectAtIndex:currentDotIndex];
     currentDot.visible = YES;
-    [currentDot playAnimationWithDelay:0.3 informToObject:self onSelector:@selector(animationCompleted)];
+    [currentDot playAnimationWithDelay:0.1 informToObject:self onSelector:@selector(animationCompleted)];
     currentDotIndex++;
 }
 

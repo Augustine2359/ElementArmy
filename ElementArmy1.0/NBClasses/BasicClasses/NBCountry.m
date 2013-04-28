@@ -32,6 +32,18 @@ static NBCountryData* currentlySelectedCountry = nil;
     return self;
 }
 
+-(void)update
+{
+    if (self.countryData.isUnlocked)
+    {
+        [self.icon enable];
+    }
+    else
+    {
+        [self.icon disable];
+    }
+}
+
 -(void)onIconSelected
 {
     DLog(@"%@ selected", self.countryData.countryName);

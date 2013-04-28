@@ -70,7 +70,7 @@ static CCArray* allStageList = nil;
     
     for (NSDictionary* nextStageDataDictionary in stage.stageData.nextStageDataList)
     {
-        NSArray* tempArray = [nextStageDataDictionary objectForKey:@"connectors"];
+        /*NSArray* tempArray = [nextStageDataDictionary objectForKey:@"connectors"];
         CCArray* dotsArray = [CCArray arrayWithCapacity:[tempArray count]];
         
         for (NSDictionary* dotData in tempArray)
@@ -79,9 +79,12 @@ static CCArray* allStageList = nil;
             dot.gridPosition = CGPointMake([[dotData objectForKey:@"x"] floatValue], [[dotData objectForKey:@"y"] floatValue]);
             dot.rotation = [[dotData objectForKey:@"rotation"] floatValue];
             [dotsArray addObject:dot];
-        }
+        }*/
         
-        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageID toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withDotList:dotsArray];
+        CGFloat gridPointX = [[[nextStageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
+        CGFloat gridPointY = [[[nextStageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
+        CGPoint destinationGrid = CGPointMake(gridPointX, gridPointY);
+        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageID withGridPoint:stage.stageData.gridPoint toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withGridPoint:destinationGrid];
         
         [stage.connectorLines addObject:connectorLine];
     }
