@@ -7,7 +7,10 @@
 //
 
 #import "NBHQAppStore.h"
+#import "NBInAppPurchaseManager.h"
 
+@interface NBHQAppStore() <NBInAppPurchaseManagerDelegate>
+@end
 
 @implementation NBHQAppStore
 
@@ -18,6 +21,7 @@
         [self initialiseProductsArray];
         [self initialiseAppStoreUI];
         self.IAPManager = [NBInAppPurchaseManager sharedInstance];
+        self.IAPManager.delegate = self;
     }
     return self;
 }
@@ -54,13 +58,13 @@
 }
 
 -(void)selectTargetProduct{
-    //Confirm msg to buy
-    DLog(@"Confirmation here..");
-    
     [self.IAPManager makePurchase:@"gem.test.100"];
-    
-    //Really purchase from app store
-    DLog(@"IAP here..");
+}
+
+- (void)finishPurchaseForProductWithProductIdentifier:(NSString *)productIdentifier {
+  if ([productIdentifier isEqualToString:GEMS_TEST_100]) {
+    DLog(@"YOU GOT 100 GEMS");
+  }
 }
 
 @end
