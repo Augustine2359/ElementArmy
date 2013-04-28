@@ -121,9 +121,8 @@ static bool firstTimeAfterGameLoaded = true;
         {
             stage = [self.currentCountryStage getStageByID:stageData.stageID];
             
-            for (NSDictionary* nextStage in stage.stageData.nextStageDataList)
+            for (NSString* nextStageName in stage.stageData.nextStageDataList)
             {
-                NSString* nextStageName = [nextStage objectForKey:@"stageID"];
                 NBStage* unlockingStage = nil;
                 unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:nextStageName];
                 unlockingStage.stageData.isUnlocked = true;
@@ -162,9 +161,8 @@ static bool firstTimeAfterGameLoaded = true;
             {
                 stage = [self.currentCountryStage getStageByID:stageData.stageID];
                 
-                for (NSDictionary* nextStage in stage.stageData.nextStageDataList)
+                for (NSString* nextStageName in stage.stageData.nextStageDataList)
                 {
-                    NSString* nextStageName = [nextStage objectForKey:@"stageID"];
                     NBStage* unlockingStage = nil;
                     unlockingStage = (NBStage*)[self.currentCountryStage getStageByID:nextStageName];
                     unlockingStage.stageData.isUnlocked = true;

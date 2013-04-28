@@ -29,7 +29,7 @@
 {
     if (start.x != end.x)
     {
-        int count = start.x - end.x;
+        int count = (end.x - start.x) / 2;
         int factor = count /  (ABS(count));
         
         for (int i = 0; i < ABS(count); i++)
@@ -53,7 +53,7 @@
 {
     if (start.y != end.y)
     {
-        int count = start.y - end.y;
+        int count = (end.y - start.y) / 2;
         int factor = count /  (ABS(count));
         
         for (int i = 0; i < ABS(count); i++)
