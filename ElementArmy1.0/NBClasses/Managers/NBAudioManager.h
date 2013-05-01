@@ -11,6 +11,15 @@
 @interface NBAudioManager : NSObject
 
 + (NBAudioManager *)sharedInstance;
+- (NSInteger)bgmVolume;
+- (BOOL)isMute;
+
 - (void)playSoundEffect:(NSString *)soundEffect;
+- (void)playBGM:(NSString *)bgmString;
+- (void)stopBGM;
+
+- (void)decreaseBGMVolume;
+- (void)increaseBGMVolume;
+- (void)toggleMute;
 
 @end
