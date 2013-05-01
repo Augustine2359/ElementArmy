@@ -514,9 +514,9 @@ static CCArray* enemyUnitList = nil;
             {
                 self.timeUntilNextAttack -= (self.dexterityPoint * delta * 30);
                 
-                if ([self.name isEqualToString:TEST_OBJECT_NAME])
-                    DLog(@"debugging");
-                
+//                if ([self.name isEqualToString:TEST_OBJECT_NAME])
+//                    DLog(@"debugging");
+              
                 if (self.timeUntilNextAttack <= 0)
                 {
                     if ([self.name isEqualToString:TEST_OBJECT_NAME])

@@ -30,8 +30,10 @@ typedef enum
 @interface NBConnectorLine : NSObject
 {
     int currentDotIndex;
+    CGPoint lastPointAfterHorizontalIsCreated;
 }
 
+-(id)createConnectorFrom:(NSString*)originalStageName withGridPoint:(CGPoint)startGrid toStageName:(NSString*)destinationStageName withGridPoint:(CGPoint)endGrid;
 -(id)createConnectorFrom:(NSString*)originalStageName toStageName:(NSString*)destinationStageName withDotList:(CCArray*)dotList;
 -(void)setupIconOnLayer:(CCLayer*)layer;
 -(id)initAtPosition:(CGPoint)newPosition toPosition:(CGPoint)destination connectFromSide:(EnumConnectionSide)fromSide withDirection:(EnumLineDirection)direction withLength:(CGFloat)length isVertical:(BOOL)isVertical onLayer:(CCLayer *)layer;

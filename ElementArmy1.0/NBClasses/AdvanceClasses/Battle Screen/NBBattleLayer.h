@@ -25,8 +25,6 @@
 #import "NBShakeEffect.h"
 #import "NBBattleResultLayer.h"
 
-#define HP_BAR_LENGTH 130
-
 // HelloWorldLayer
 @interface NBBattleLayer : NBBasicScreenLayer <NBSpellDelegate>
 {

@@ -19,6 +19,7 @@
 -(void)createStages;
 -(void)loadItemList;
 -(void)saveStages;
+-(void)saveStage:(NSString*)stageID;
 -(void)saveItems;
 -(void)createCharacterList;
 -(void)createProjectileList;
@@ -36,6 +37,7 @@
 +(id)getEquipmentDataByEquipmentName:(NSString*)lookupName;
 +(CCArray*)getListOfProjectiles;
 +(CCArray*)getListOfCountries;
++(CCArray*)getlistOfCreatedCountries;
 +(CCArray*)getListOfItems;
 +(CCArray*)getListOfEquipments;
 +(CCArray*)getListOfAppStoreProducts;

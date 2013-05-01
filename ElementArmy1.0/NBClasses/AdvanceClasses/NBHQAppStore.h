@@ -8,12 +8,13 @@
 
 #import "NBBasicScreenLayer.h"
 #import "NBAppStoreProduct.h"
-
+#import "NBInAppPurchaseManager.h"
 
 @interface NBHQAppStore : NBBasicScreenLayer
 
 @property (nonatomic, retain) id mainLayer;
 @property (nonatomic, retain) CCArray* allProducts;
+@property (nonatomic, retain) NBInAppPurchaseManager* IAPManager;
 
 -(id)initWithLayer:(id)layer;
 -(void)initialiseAppStoreUI;

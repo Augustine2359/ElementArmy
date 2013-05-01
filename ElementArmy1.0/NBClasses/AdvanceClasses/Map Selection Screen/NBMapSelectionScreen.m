@@ -49,6 +49,11 @@
     //Display background
     [self setCurrentBackgroundWithFileName:@"NB_worldMap_960x480.png" stretchToScreen:NO];
     
+    if (!self.countryList)
+    {
+        self.countryList = [CCArray array];
+    }
+    
     NBCountryData* countryData = nil;
     NBCountry* newCountry = nil;
     
@@ -57,13 +62,21 @@
         if (![countryData.countryName isEqualToString:@"unknown"])
         {
             newCountry = [[NBCountry alloc] initWithCountryData:countryData onLayer:self respondToSelector:@selector(onCountrySelected)];
+            [self.countryList addObject:newCountry];
         }
-        //[self addChild:newCountry.icon];
     }
     
     [self addStandardMenuString:@"Battle" withSelector:@selector(gotoBattleScreen)];
     [self addStandardMenuString:@"Story" withSelector:@selector(gotoStoryScreen)];
     [self addStandardMenuString:@"Intro" withSelector:@selector(gotoIntroScreen)];
+}
+
+-(void)update:(ccTime)delta
+{
+    for (NBCountry* country in self.countryList)
+    {
+        [country update];
+    }
 }
 
 -(void)gotoIntroScreen

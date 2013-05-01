@@ -351,6 +351,8 @@ static Boolean isAutoStart = NO;
     }
     
     self.dataManager.availableBattlePoint += self.currentBattlePointsAwarded;
+    
+    [self.dataManager saveStage:self.dataManager.currentStageID];
 }
 
 -(void)onBattleCompleteAnimationCompleted
@@ -757,14 +759,35 @@ static Boolean isAutoStart = NO;
     NSDate *lastCastDateOfSpell = [squadWithCharacter lastCastDateOfSpell];
     if ([self isSpellReady:lastCastDateOfSpell cooldown:10] || (lastCastDateOfSpell == nil)) {
       squadWithCharacter.lastCastDateOfSpell = [NSDate date];
-//      if (character.basicClassData.attackType == atMelee)
+      if (character.basicClassData.attackType == atMelee)
+        [self castPushingRoarFrom:character];
 //        [self castEarthquake:target];
-      if (character.basicClassData.attackType == atRange)
-        [self castChainLightningFrom:character toTarget:target];
+//      if (character.basicClassData.attackType == atRange)
+//        [self castChainLightningFrom:character toTarget:target];
 //        [self castLaserSightFrom:character toTarget:target];
 //        [self castThrowSomethingFrom:character toTarget:target];
 //        [self castArrowRain:target];
     }
+  }
+}
+
+- (void)castPushingRoarFrom:(NBCharacter *)character {
+  CGFloat frameInterval = 0.15;
+  NSInteger numberOfAnimationLoops = 1;
+  
+  NBRipples *roarRipples = [[NBRipples alloc] init];
+  roarRipples.origin = character.position;
+  roarRipples.amplitude = 40;
+  roarRipples.rippleInterval = frameInterval;
+  roarRipples.numberOfRipples = numberOfAnimationLoops * 2;
+  roarRipples.delegate = self;
+  roarRipples.rippleType = RippleTypePushingRoar;
+  [roarRipples startRipples];
+  [self addChild:roarRipples];
+  
+  NSArray *collidingCharacters = [self charactersCollidingWithPoint:roarRipples.origin radius:roarRipples.amplitude];
+  for (NBCharacter *character in collidingCharacters) {
+    [self repositionCharacter:character fromRippleOrigin:roarRipples.origin rippleAmplitude:roarRipples.amplitude];
   }
 }
 
@@ -974,13 +997,24 @@ static Boolean isAutoStart = NO;
   return collidingCharacters;
 }
 
-- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+- (void)rippleFinished:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude rippleType:(enum RippleType)rippleType {
+
   NSArray *collidingCharacters = [self charactersCollidingWithPoint:rippleOrigin radius:rippleAmplitude];
   for (NBCharacter *character in collidingCharacters) {
     NSInteger damage = 1;
     [character onAttackedBySkillWithDamage:damage];
     DLog(@"%@ has taken %d damage from a skill", character.name, damage);
+//    if (rippleType == RippleTypePushingRoar)
+//      [self repositionCharacter:character fromRippleOrigin:rippleOrigin rippleAmplitude:rippleAmplitude];
   }
+}
+
+- (void)repositionCharacter:(NBCharacter *)character fromRippleOrigin:(CGPoint)rippleOrigin rippleAmplitude:(CGFloat)rippleAmplitude {
+  CGPoint displacementFromRippleOrigin = ccpSub(character.position, rippleOrigin);
+  CGFloat distanceFromRippleOrigin = ccpDistance(character.position, rippleOrigin);
+  CGFloat ratioOfDisplacements = rippleAmplitude / distanceFromRippleOrigin;
+  CGPoint newDisplacementFromRippleOrigin = CGPointMake(displacementFromRippleOrigin.x * ratioOfDisplacements, displacementFromRippleOrigin.y * ratioOfDisplacements);
+  [character moveToPosition:ccpAdd(character.position, newDisplacementFromRippleOrigin) forDurationOf:2];
 }
 
 - (BOOL)checkCharacter:(NBCharacter *)character collisionWithRippleOrigin:(CGPoint)rippleOrigin withRippleAmplitude:(CGFloat)rippleAmplitude {

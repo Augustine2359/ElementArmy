@@ -15,6 +15,7 @@
 +(NBCountryData*)getCurrentSelectedCountry;
 -(id)initWithCountryData:(NBCountryData*)newCountryData onLayer:(CCLayer*)layer respondToSelector:(SEL)selector;
 -(void)onIconSelected;
+-(void)update;
 
 @property (nonatomic, retain) NBCountryData* countryData;
 @property (nonatomic, retain) NBButton* icon;

@@ -21,6 +21,7 @@
 static NBDataManager* dataManager = nil;
 static CCArray* listOfProjectiles = nil;
 static CCArray* listOfCountries = nil;
+static CCArray* listOfCreatedCountries = nil;
 static CCArray* listOfSkills = nil;
 static CCArray* listOfItems = nil;
 static CCArray* listOfEquipments = nil;
@@ -50,6 +51,7 @@ static CCArray* listOfAppStoreProducts = nil;
         self.listOfCharacters = [[CCArray alloc] initWithCapacity:100];
         listOfProjectiles = [[CCArray alloc] initWithCapacity:50];
         listOfCountries = [[CCArray alloc] initWithCapacity:10];
+        listOfCreatedCountries = [[CCArray alloc] initWithCapacity:10];
         listOfEquipments = [[CCArray alloc] initWithCapacity:100];
         listOfSkills = [[CCArray alloc] initWithCapacity:100];
         listOfItems = [[CCArray alloc] initWithCapacity:100];
@@ -145,8 +147,10 @@ static CCArray* listOfAppStoreProducts = nil;
 {
     NBStageData* stageData = nil;
     
-    CCARRAY_FOREACH(self.listOfCreatedStagesID, stageData)
+    for(NBStage* stage in self.listOfStages)
     {
+        stageData = stage.stageData;
+        
         if ([stageData.stageID isEqualToString:stageID])
         {
             return stageData;
@@ -166,18 +170,18 @@ static CCArray* listOfAppStoreProducts = nil;
     //read from the app documents directory
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    self.saveGameDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
-    //temporary
-    //dictionary = nil;
+#warning uncomment here to reset the stage data
+    self.saveGameDictionary = nil;
     
     //if it doesn't exist yet, use the default one
-    if (dictionary == nil) {
+    if (self.saveGameDictionary == nil) {
       plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
-      dictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+      self.saveGameDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     }
 
-    NSArray *countries = [dictionary objectForKey:@"Stage data"];
+    NSArray *countries = [self.saveGameDictionary objectForKey:@"Stage data"];
     
     for (NSDictionary *countryDataDictionary in countries)
     {
@@ -188,6 +192,7 @@ static CCArray* listOfAppStoreProducts = nil;
         countryData.iconSpriteDisabled = [countryDataDictionary objectForKey:@"iconSpriteDisabled"];
         countryData.gridBackgroundImage = [countryDataDictionary objectForKey:@"gridBackgroundImage"];
         countryData.majorElementID = [[countryDataDictionary objectForKey:@"majorElementID"] intValue];
+        countryData.isUnlocked = [[countryDataDictionary objectForKey:@"isUnlocked"] boolValue];
         int countryHorizontalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"horizontal"] intValue];
         int countryVerticalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"vertical"] intValue];
         countryData.gridBoardSize = CGSizeMake(countryHorizontalGridCount, countryVerticalGridCount);
@@ -202,7 +207,7 @@ static CCArray* listOfAppStoreProducts = nil;
             NBStageData *stageData = [[NBStageData alloc] init];
             stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
             stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
-            stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
+            stageData.countryID = countryData.countryName;
             stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
             stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
             stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
@@ -214,6 +219,7 @@ static CCArray* listOfAppStoreProducts = nil;
             stageData.nextStageDataList = [CCArray arrayWithNSArray:tempArray];
             tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
             stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
+            stageData.willUnlockCountry = [stageDataDictionary objectForKey:@"willUnlockCountry"];
             stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
             stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
             stageData.battlePointAwarded = [[stageDataDictionary objectForKey:@"battlePointAwarded"] longValue];
@@ -458,29 +464,256 @@ static CCArray* listOfAppStoreProducts = nil;
     
     //The following is specific for save stage related
     //Grab the default stage data
-    NSArray *stages = [self.saveGameDictionary objectForKey:@"Stage data"];
-
-    NSInteger index = 0;
-    for (NSMutableDictionary *stageDataDictionary in stages)
+    NSMutableDictionary* tempSaveGameDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.saveGameDictionary];
+    NSMutableArray *countries = [tempSaveGameDictionary objectForKey:@"Stage data"];
+    
+    for (NSMutableDictionary* country in countries)
     {
-        NBStage *stage = [self.listOfStages objectAtIndex:index];
-        index++;
+        //NSMutableDictionary* tempCountry = [[NSMutableDictionary alloc] initWithDictionary:country];
+        NSMutableArray* stages = [country objectForKey:@"stageList"];
+        
+        //NSInteger index = 0;
+        for (NSMutableDictionary *stageDataDictionary in stages)
+        {
+            NSMutableDictionary* tempStageDataDictionary = [[NSMutableDictionary alloc] initWithDictionary:stageDataDictionary];
+            NSString* stageID = [tempStageDataDictionary objectForKey:@"stageID"];
+            
+            for (NBStageData* stageData in self.listOfStages)
+            {
+                if (stageData && [stageData.stageID isEqualToString:stageID])
+                {
+                    //update the default stage data with any changes to the game state
+                    //NBStageData *stageData = stage.stageData;
+                    [tempStageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
+                    [tempStageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+                    break;
+                }
+            }
+            
+            //NBStage *stage = [self.listOfStages objectAtIndex:index];
+            //index++;
+            
+            stageDataDictionary = tempStageDataDictionary;
+        }
+        
+        //country = tempCountry;
+    }
+    
+    [tempSaveGameDictionary setObject:countries forKey:@"Stage data"];
+    self.saveGameDictionary = tempSaveGameDictionary;
+    //[self.saveGameDictionary setObject:countries forKey:@"Stage data"];
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:self.saveGameDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
+    
+    //save the changes to the app documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
+    
+    if (plistData)
+        [plistData writeToFile:path atomically:YES];
+}
 
-        //update the default stage data with any changes to the game state
-        NBStageData *stageData = stage.stageData;
-        [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isCompleted] forKey:@"isCompleted"];
-        [stageDataDictionary setObject:[NSNumber numberWithBool:stageData.isUnlocked] forKey:@"isUnlocked"];
+-(void)saveStage:(NSString*)stageID
+{
+    if (self.listOfStages == nil)
+        return;
+    
+    //load self.saveGameDictionary once
+    if (!self.saveGameDictionary)
+    {
+        NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GameSettings" ofType:@"plist"];
+        self.saveGameDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    }
+    
+    NBStageData* stageToBeSaved = [self getStageDataByStageID:stageID];
+    
+    //The following is specific for save stage related
+    //Grab the default stage data
+    NSMutableDictionary* tempSaveGameDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.saveGameDictionary];
+    NSMutableArray* countries = [tempSaveGameDictionary objectForKey:@"Stage data"];
+    NSMutableArray* mutableCountries = [NSMutableArray arrayWithArray:countries];
+    NSMutableDictionary* mutableCountry = nil;
+    bool dataSavedToTempStorage = false;
+    int countryIndex = 0;
+    
+    for (NSMutableDictionary* country in countries)
+    {
+        mutableCountry = [[NSMutableDictionary alloc] initWithDictionary:country];
+        NSString* countryID = [country objectForKey:@"countryName"];
+        
+        if ([countryID isEqualToString:stageToBeSaved.countryID])
+        {
+            //NSMutableDictionary* tempCountry = [[NSMutableDictionary alloc] initWithDictionary:country];
+            NSMutableArray* stages = [country objectForKey:@"stageList"];
+            NSMutableArray* mutableStages = [NSMutableArray arrayWithArray:stages];
+            NSMutableDictionary* tempStageDataDictionary = nil;
+            int stageIndex = 0;
+            
+            for (NSMutableDictionary *stageDataDictionary in stages)
+            {
+                tempStageDataDictionary = [[NSMutableDictionary alloc] initWithDictionary:stageDataDictionary];
+                NSString* storageStageID = [tempStageDataDictionary objectForKey:@"stageID"];
+                
+                if ([storageStageID isEqualToString:stageToBeSaved.stageID])
+                {
+                    [tempStageDataDictionary setObject:[NSNumber numberWithBool:stageToBeSaved.isCompleted] forKey:@"isCompleted"];
+                    [tempStageDataDictionary setObject:[NSNumber numberWithBool:stageToBeSaved.isUnlocked] forKey:@"isUnlocked"];
+                    dataSavedToTempStorage = true;
+                    //stageDataDictionary = tempStageDataDictionary;
+                    break;
+                }
+                
+                stageIndex++;
+            }
+        
+            if (dataSavedToTempStorage)
+            {
+                [mutableStages replaceObjectAtIndex:stageIndex withObject:tempStageDataDictionary];
+                [mutableCountry setObject:mutableStages forKey:@"stageList"];
+                //[self test2:country];
+                break;
+            }
+        }
+        
+        countryIndex++;
     }
 
-    [self.saveGameDictionary setObject:stages forKey:@"Stage data"];
+    [mutableCountries replaceObjectAtIndex:countryIndex withObject:mutableCountry];
+    [tempSaveGameDictionary setObject:mutableCountries forKey:@"Stage data"];
+    self.saveGameDictionary = tempSaveGameDictionary;
+    //[self.saveGameDictionary setObject:countries forKey:@"Stage data"];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:self.saveGameDictionary format:NSPropertyListXMLFormat_v1_0 errorDescription:nil];
 
     //save the changes to the app documents directory
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *path = [rootPath stringByAppendingPathComponent:@"SaveGame.plist"];
+    
+    //[self test];
 
     if (plistData)
         [plistData writeToFile:path atomically:YES];
+}
+
+
+#warning to be removed soon
+-(void)test2:(NSMutableDictionary*)countryTest
+{
+    NSMutableDictionary* countryDataDictionary = countryTest;
+    
+    NBCountryData* countryData = [[NBCountryData alloc] init];
+    countryData.countryName = [countryDataDictionary objectForKey:@"countryName"];
+    countryData.iconSpriteNormal = [countryDataDictionary objectForKey:@"iconSpriteNormal"];
+    countryData.iconSpriteSelected = [countryDataDictionary objectForKey:@"iconSpriteSelected"];
+    countryData.iconSpriteDisabled = [countryDataDictionary objectForKey:@"iconSpriteDisabled"];
+    countryData.gridBackgroundImage = [countryDataDictionary objectForKey:@"gridBackgroundImage"];
+    countryData.majorElementID = [[countryDataDictionary objectForKey:@"majorElementID"] intValue];
+    int countryHorizontalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"horizontal"] intValue];
+    int countryVerticalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"vertical"] intValue];
+    countryData.gridBoardSize = CGSizeMake(countryHorizontalGridCount, countryVerticalGridCount);
+    CGFloat countryX = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"x"] floatValue];
+    CGFloat countryY = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"y"] floatValue];
+    countryData.positionInWorld = CGPointMake(countryX, countryY);
+    
+    if ([countryData.countryName isEqualToString:@"fire"])
+    {
+        NSArray *stages = [countryDataDictionary objectForKey:@"stageList"];
+        
+        for (NSDictionary *stageDataDictionary in stages)
+        {
+            NBStageData *stageData = [[NBStageData alloc] init];
+            stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+            stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
+            stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
+            stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
+            stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
+            stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
+            stageData.completedDisabledImageName = [stageDataDictionary objectForKey:@"completedDisabledImageName"];
+            CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
+            CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
+            stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
+            NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageDataList"];
+            stageData.nextStageDataList = [CCArray arrayWithNSArray:tempArray];
+            tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+            stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
+            stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
+            stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+            stageData.battlePointAwarded = [[stageDataDictionary objectForKey:@"battlePointAwarded"] longValue];
+        }
+    }
+}
+
+#warning to be removed soon
+-(void)test1:(NSMutableDictionary*)dictionaryTest
+{
+    NSMutableDictionary* stageDataDictionary = dictionaryTest;
+    
+    NBStageData *stageData = [[NBStageData alloc] init];
+    stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+    stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
+    stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
+    stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
+    stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
+    stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
+    stageData.completedDisabledImageName = [stageDataDictionary objectForKey:@"completedDisabledImageName"];
+    CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
+    CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
+    stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
+    NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageDataList"];
+    stageData.nextStageDataList = [CCArray arrayWithNSArray:tempArray];
+    tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+    stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
+    stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
+    stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+    stageData.battlePointAwarded = [[stageDataDictionary objectForKey:@"battlePointAwarded"] longValue];
+}
+
+#warning to be removed soon
+-(void)test
+{
+    NSArray *countries = [self.saveGameDictionary objectForKey:@"Stage data"];
+    
+    for (NSDictionary *countryDataDictionary in countries)
+    {
+        NBCountryData* countryData = [[NBCountryData alloc] init];
+        countryData.countryName = [countryDataDictionary objectForKey:@"countryName"];
+        countryData.iconSpriteNormal = [countryDataDictionary objectForKey:@"iconSpriteNormal"];
+        countryData.iconSpriteSelected = [countryDataDictionary objectForKey:@"iconSpriteSelected"];
+        countryData.iconSpriteDisabled = [countryDataDictionary objectForKey:@"iconSpriteDisabled"];
+        countryData.gridBackgroundImage = [countryDataDictionary objectForKey:@"gridBackgroundImage"];
+        countryData.majorElementID = [[countryDataDictionary objectForKey:@"majorElementID"] intValue];
+        int countryHorizontalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"horizontal"] intValue];
+        int countryVerticalGridCount = [[[countryDataDictionary objectForKey:@"gridBoardSize"] objectForKey:@"vertical"] intValue];
+        countryData.gridBoardSize = CGSizeMake(countryHorizontalGridCount, countryVerticalGridCount);
+        CGFloat countryX = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"x"] floatValue];
+        CGFloat countryY = [[[countryDataDictionary objectForKey:@"positionInWorld"] objectForKey:@"y"] floatValue];
+        countryData.positionInWorld = CGPointMake(countryX, countryY);
+        
+        if ([countryData.countryName isEqualToString:@"fire"])
+        {
+            NSArray *stages = [countryDataDictionary objectForKey:@"stageList"];
+            
+            for (NSDictionary *stageDataDictionary in stages)
+            {
+                NBStageData *stageData = [[NBStageData alloc] init];
+                stageData.stageID = [stageDataDictionary objectForKey:@"stageID"];
+                stageData.stageName = [stageDataDictionary objectForKey:@"stageName"];
+                stageData.countryID = [stageDataDictionary objectForKey:@"countryID"];
+                stageData.availableNormalImageName = [stageDataDictionary objectForKey:@"availableNormalImageName"];
+                stageData.availableDisabledImageName = [stageDataDictionary objectForKey:@"availableDisabledImageName"];
+                stageData.completedNormalImageName = [stageDataDictionary objectForKey:@"completedNormalImageName"];
+                stageData.completedDisabledImageName = [stageDataDictionary objectForKey:@"completedDisabledImageName"];
+                CGFloat gridPointX = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"x"] floatValue];
+                CGFloat gridPointY = [[[stageDataDictionary objectForKey:@"gridPoint"] objectForKey:@"y"] floatValue];
+                stageData.gridPoint = CGPointMake(gridPointX, gridPointY);
+                NSArray* tempArray = [stageDataDictionary objectForKey:@"nextStageDataList"];
+                stageData.nextStageDataList = [CCArray arrayWithNSArray:tempArray];
+                tempArray = [stageDataDictionary objectForKey:@"willUnlockStageID"];
+                stageData.willUnlockStageID = [CCArray arrayWithNSArray:tempArray];
+                stageData.isCompleted = [[stageDataDictionary objectForKey:@"isCompleted"] boolValue];
+                stageData.isUnlocked = [[stageDataDictionary objectForKey:@"isUnlocked"] boolValue];
+                stageData.battlePointAwarded = [[stageDataDictionary objectForKey:@"battlePointAwarded"] longValue];
+            }
+        }
+    }
 }
 
 -(void)saveItems
@@ -597,6 +830,11 @@ static CCArray* listOfAppStoreProducts = nil;
 +(CCArray*)getListOfCountries
 {
     return listOfCountries;
+}
+
++(CCArray*)getlistOfCreatedCountries
+{
+    return listOfCreatedCountries;
 }
 
 +(CCArray*)getListOfItems

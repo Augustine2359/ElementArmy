@@ -12,6 +12,8 @@
 #import "NBUserInterface.h"
 #import "NBAreaEffect.h"
 
+#define HP_BAR_LENGTH 180
+
 @interface NBHUDLayer : NBBasicScreenLayer
 {
     CGFloat targetScaleXForHPBar;

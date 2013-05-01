@@ -7,7 +7,10 @@
 //
 
 #import "NBHQAppStore.h"
+#import "NBInAppPurchaseManager.h"
 
+@interface NBHQAppStore() <NBInAppPurchaseManagerDelegate>
+@end
 
 @implementation NBHQAppStore
 
@@ -17,6 +20,8 @@
     {
         [self initialiseProductsArray];
         [self initialiseAppStoreUI];
+        self.IAPManager = [NBInAppPurchaseManager sharedInstance];
+        self.IAPManager.delegate = self;
     }
     return self;
 }
@@ -40,7 +45,7 @@
         NBAppStoreProduct* thatProduct = [self.allProducts objectAtIndex:x];
         [thatProduct.productIcon setPosition:ccp(x%4 * 100 + 75, 275 - x/4 * 75)];
         
-        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%.2f", thatProduct.productData.cost] fontName:@"Marker Felt" fontSize:15];
+        CCLabelTTF* costLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"$%.2f", thatProduct.productData.cost] fontName:@"PF Ronda Seven" fontSize:15];
         costLabel.position = ccp(thatProduct.productIcon.getPosition.x, thatProduct.productIcon.getPosition.y - 35);
         
         [self addChild:costLabel];
@@ -53,12 +58,13 @@
 }
 
 -(void)selectTargetProduct{
-    //Confirm msg to buy
-    DLog(@"Confirmation here..");
+    [self.IAPManager makePurchase:@"gem.test.100"];
+}
 
-    
-    //Really purchase from app store
-    DLog(@"IAP here..");
+- (void)finishPurchaseForProductWithProductIdentifier:(NSString *)productIdentifier {
+  if ([productIdentifier isEqualToString:GEMS_TEST_100]) {
+    DLog(@"YOU GOT 100 GEMS");
+  }
 }
 
 @end

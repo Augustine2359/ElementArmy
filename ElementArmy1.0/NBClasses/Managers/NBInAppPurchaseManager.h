@@ -9,8 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
+#define GEMS_TEST_100 @"gem.test.100"
+
+@protocol NBInAppPurchaseManagerDelegate <NSObject>
+
+- (void)finishPurchaseForProductWithProductIdentifier:(NSString *)productIdentifier;
+
+@end
+
 @interface NBInAppPurchaseManager : NSObject
 
-+ (NBInAppPurchaseManager *)sharedInstance;
++(NBInAppPurchaseManager*)sharedInstance;
+
+@property (nonatomic, strong) id<NBInAppPurchaseManagerDelegate> delegate;
+
+-(void)makePurchase:(NSString*)productID;
 
 @end

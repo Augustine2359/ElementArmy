@@ -66,26 +66,6 @@ static CCArray* allStageList = nil;
     stage.isConnecting = false;
     stage.nextStageLineCreatedStatus = [CCArray arrayWithNSArray:[NSArray arrayWithObjects:@"0", @"0", @"0", nil]];
     
-    stage.connectorLines = [[CCArray alloc] initWithCapacity:4];
-    
-    for (NSDictionary* nextStageDataDictionary in stage.stageData.nextStageDataList)
-    {
-        NSArray* tempArray = [nextStageDataDictionary objectForKey:@"connectors"];
-        CCArray* dotsArray = [CCArray arrayWithCapacity:[tempArray count]];
-        
-        for (NSDictionary* dotData in tempArray)
-        {
-            NBConnectorDot* dot = [[NBConnectorDot alloc] init];
-            dot.gridPosition = CGPointMake([[dotData objectForKey:@"x"] floatValue], [[dotData objectForKey:@"y"] floatValue]);
-            dot.rotation = [[dotData objectForKey:@"rotation"] floatValue];
-            [dotsArray addObject:dot];
-        }
-        
-        NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:stage.stageData.stageID toStageName:[nextStageDataDictionary objectForKey:@"stageID"] withDotList:dotsArray];
-        
-        [stage.connectorLines addObject:connectorLine];
-    }
-    
     if (!allStageList)
     {
         allStageList = [[CCArray alloc] initWithCapacity:100];
@@ -129,6 +109,31 @@ static CCArray* allStageList = nil;
             self.selector = selector;
             //[self.worldIconCompleted hide];
             [layer reorderChild:self.worldIconCompleted.buttonObject z:10];
+        }
+        
+        if (!self.connectorLines)
+        {
+            self.connectorLines = [[CCArray alloc] initWithCapacity:4];
+            
+            for (NSString* nextStageName in self.stageData.nextStageDataList)
+            {
+                /*NSArray* tempArray = [nextStageDataDictionary objectForKey:@"connectors"];
+                 CCArray* dotsArray = [CCArray arrayWithCapacity:[tempArray count]];
+                 
+                 for (NSDictionary* dotData in tempArray)
+                 {
+                 NBConnectorDot* dot = [[NBConnectorDot alloc] init];
+                 dot.gridPosition = CGPointMake([[dotData objectForKey:@"x"] floatValue], [[dotData objectForKey:@"y"] floatValue]);
+                 dot.rotation = [[dotData objectForKey:@"rotation"] floatValue];
+                 [dotsArray addObject:dot];
+                 }*/
+                
+                NBStage* nextStage = [NBStage getStageByID:nextStageName];
+                
+                NBConnectorLine* connectorLine = [[NBConnectorLine alloc] createConnectorFrom:self.stageData.stageID withGridPoint:self.stageData.gridPoint toStageName:nextStageName withGridPoint:nextStage.stageData.gridPoint];
+                
+                [self.connectorLines addObject:connectorLine];
+            }
         }
         
         for (NBConnectorLine* connectorLine in self.connectorLines)
@@ -199,10 +204,9 @@ static CCArray* allStageList = nil;
         [self createLineTo:nextStage onLayer:layer];
     }*/
     
-    CCARRAY_FOREACH(self.stageData.nextStageDataList, nextStageDataDictionary)
+    for(NSString* nextStageID in self.stageData.nextStageDataList)
     {
         bool alreadyConnected = false;
-        NSString* nextStageID = [nextStageDataDictionary objectForKey:@"stageID"];
         
         CCARRAY_FOREACH(self.stageData.connectedStageID, connectedStageID)
         {

@@ -24,5 +24,6 @@
 @property (nonatomic, retain) CCArray* stageList;
 @property (nonatomic, retain) CCArray* listOfCreatedStagesID;
 @property (nonatomic, assign) int majorElementID;
+@property (nonatomic, assign) BOOL isUnlocked;
 
 @end
