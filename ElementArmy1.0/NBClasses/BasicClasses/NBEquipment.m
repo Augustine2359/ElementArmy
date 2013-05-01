@@ -110,14 +110,7 @@ static NBEquipment* currentlySelectedEquipmentInBattleSetup = nil;
         {
             DLog(@"error: unknown attribute: %@", impactedStatus);
         }
-        DLog(@"%@ = %f", impactedStatus, impactedStatusValue);
-        DLog(@"FK0 = %@", [statsModifierArray objectAtIndex:0]);
-        DLog(@"FK1 = %@", [statsModifierArray objectAtIndex:1]);
-        DLog(@"FK2 = %@", [statsModifierArray objectAtIndex:2]);
-        DLog(@"FK3 = %@", [statsModifierArray objectAtIndex:3]);
-        DLog(@"FK4 = %@", [statsModifierArray objectAtIndex:4]);
-        DLog(@"FK5 = %@", [statsModifierArray objectAtIndex:5]);
-        DLog(@"FK6 = %@", [statsModifierArray objectAtIndex:6]);
+        DLog(@"%@ = x%f", impactedStatus, impactedStatusValue);
     }
     DLog(@"end");
     return statsModifierArray;

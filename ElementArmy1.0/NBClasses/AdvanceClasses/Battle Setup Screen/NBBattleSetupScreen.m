@@ -145,7 +145,6 @@ int objectsLeftToTransit = 6;
     
     self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] init];
 //    self.unitSelectorsContainerLayer = [[NBBattleSetupUnitSelectorsContainerLayer alloc] initWithColor:startColor width:270 height:140];
-  self.unitSelectorsContainerLayer.position = CGPointMake(-300, 100);
   [self addChild:self.unitSelectorsContainerLayer];
 }
 
@@ -169,7 +168,7 @@ int objectsLeftToTransit = 6;
     CGSize spriteSize;
     
     [self.unitRespawnContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(285, 100)], nil]];
-    [self.unitSelectorsContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(10, 100)], nil]];
+    [self.unitSelectorsContainerLayer runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(0, 0)], nil]];
     //[self.battleSetupTitle runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(240, 280)], nil]];
     [self.battleSetupCancel.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(30, 50)], nil]];
     [self.battleSetupOk.menu runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(450, 50)], nil]];

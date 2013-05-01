@@ -21,6 +21,25 @@
 
 @implementation NBBattleSetupUnitSelectorsContainerLayer
 
+-(id)init{
+    if ([super init]) {
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        CCSprite* backgroundImage = [CCSprite spriteWithSpriteFrameName:@"frame_item.png"];
+        [backgroundImage setPosition:ccp(140, 170)];
+        float newXScale = 240/backgroundImage.boundingBox.size.width;
+        float newYScale = 150/backgroundImage.boundingBox.size.height;
+        [backgroundImage setScaleX:newXScale];
+        [backgroundImage setScaleY:newYScale];
+        [self addChild:backgroundImage z:1];
+        
+        [self addUnitSelectors];
+        [self addSwipeGestureRecognizers];
+        
+        [self setPosition:ccp(-screenSize.width, 0)];
+    }
+    return self;
+}
+
 - (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h {
   self = [super initWithColor:color width:w height:h];
   if (self) {
@@ -45,11 +64,8 @@
     for (int x = 0; x < [selectorArray count]; x++) {
         NBBattleSetupUnitSelectorLayer* newSelector = (NBBattleSetupUnitSelectorLayer*)[selectorArray objectAtIndex:x];
         newSelector = [[NBBattleSetupUnitSelectorLayer alloc] init];//initWithColor:startColor width:80 height:130];
-        newSelector.position = ccp(x*90 + 5, 5);
-//        CGPoint backgroundPosition = ccp(newSelector.position.x + 15, 160);
-//        NBStaticObject* background = [NBStaticObject createStaticObject:@"troopSelectionScreen_box_large.png" atPosition:backgroundPosition];
-//        [background setZOrder:1];
-        [self addChild:newSelector];
+        newSelector.position = ccp(x*80 + 60, 0);
+        [self addChild:newSelector z:2];
     }
     
 //  self.unitSelectorA = [[NBBattleSetupUnitSelectorLayer alloc] initWithColor:startColor width:80 height:130];

@@ -41,6 +41,26 @@ enum UnitChangeType {
 
 @implementation NBBattleSetupUnitSelectorLayer
 
+-(id)init{
+    if ([super init]) {
+        CCSprite* backgroundImage = [CCSprite spriteWithSpriteFrameName:@"frame_item.png"];
+        [backgroundImage setPosition:ccp(0, 170)];
+        [self addChild:backgroundImage];
+        
+        self.tier = 0;
+        self.element = 0;
+        self.isLocked = NO;
+        
+        [self prepareElementsArray];
+        
+        self.currentBasicClassData = [[self.elementsArray objectAtIndex:self.element] objectAtIndex:self.tier];
+        self.currentUnitSprite = [self generateSpriteFromBasicClassData:self.currentBasicClassData];
+        [self.currentUnitSprite setPosition:ccp(0, 170)];
+        [self addChild:self.currentUnitSprite];
+    }
+    return self;
+}
+
 - (id)initWithColor:(ccColor4B)color width:(GLfloat)w height:(GLfloat)h {
   self = [super initWithColor:color width:w height:h];
   if (self) {
@@ -57,25 +77,25 @@ enum UnitChangeType {
   return self;
 }
 
-- (void)visit {
-
-  CGPoint origin = [self convertToWorldSpace:CGPointZero];
-
-  //increase the dimensions for retina
-  CGRect rectToClipTo = CGRectMake(origin.x, origin.y, self.contentSize.width, self.contentSize.height);
-  if ([[CCDirector sharedDirector] enableRetinaDisplay:YES]) {
-    rectToClipTo.origin.x *= 2;
-    rectToClipTo.origin.y *= 2;
-    rectToClipTo.size.width *= 2;
-    rectToClipTo.size.height *= 2;
-  }
-
-  //clips the layer so that the sprites inside don't appear outside of the layer
-	glEnable(GL_SCISSOR_TEST);
-  glScissor(rectToClipTo.origin.x, rectToClipTo.origin.y, rectToClipTo.size.width, rectToClipTo.size.height);
-	[super visit];
-	glDisable(GL_SCISSOR_TEST);
-}
+//- (void)visit {
+//
+//  CGPoint origin = [self convertToWorldSpace:CGPointZero];
+//
+//  //increase the dimensions for retina
+//  CGRect rectToClipTo = CGRectMake(origin.x, origin.y, self.contentSize.width, self.contentSize.height);
+//  if ([[CCDirector sharedDirector] enableRetinaDisplay:YES]) {
+//    rectToClipTo.origin.x *= 2;
+//    rectToClipTo.origin.y *= 2;
+//    rectToClipTo.size.width *= 2;
+//    rectToClipTo.size.height *= 2;
+//  }
+//
+//  //clips the layer so that the sprites inside don't appear outside of the layer
+//	glEnable(GL_SCISSOR_TEST);
+//  glScissor(rectToClipTo.origin.x, rectToClipTo.origin.y, rectToClipTo.size.width, rectToClipTo.size.height);
+//	[super visit];
+//	glDisable(GL_SCISSOR_TEST);
+//}
 
 - (void)prepareElementsArray {
   self.elementsArray = [CCArray array];
@@ -99,7 +119,6 @@ enum UnitChangeType {
 
 - (CCSprite *)generateSpriteFromBasicClassData:(NBBasicClassData *)basicClassData {
   CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:basicClassData.idleFrame];
-  sprite.position = CGPointMake(self.contentSize.width/2, self.contentSize.height/2);
   return sprite;
 }
 

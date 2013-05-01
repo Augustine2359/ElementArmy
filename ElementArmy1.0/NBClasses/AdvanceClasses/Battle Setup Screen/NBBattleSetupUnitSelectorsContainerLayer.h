@@ -14,6 +14,7 @@
 @property(nonatomic, retain) NBStaticObject* columnBackground;
 
 //pass in 0, 1 or 2 and it'll return the character in the appropriate slot
+- (id)init;
 - (NBBasicClassData *)basicClassDataInUnitSelector:(NSInteger)selector;
 - (void)addSwipeGestureRecognizers;
 - (void)removeSwipeGestureRecognizersFromDirector;
