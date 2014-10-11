@@ -13,7 +13,7 @@
 @interface NBAppStoreProductData : NSObject
 
 @property (nonatomic, retain) NSString* name;
-@property (nonatomic, retain) NSString* description;
+@property (nonatomic, retain) NSString* theDescription;
 @property (nonatomic, assign) float cost;
 @property (nonatomic, assign) int quantityInBundle;
 @property (nonatomic, retain) NSString* imageNormal;

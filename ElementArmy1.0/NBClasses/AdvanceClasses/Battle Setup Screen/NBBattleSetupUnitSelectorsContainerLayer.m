@@ -155,10 +155,12 @@
   touchLocation.y -= self.position.y;
 
   for (NBBattleSetupUnitSelectorLayer *unitSelector in self.children) {
-    if ([unitSelector isTouchingMe:touchLocation]) {
-      if ([unitSelector isLocked] == NO)
-        [self sendSwipe:swipeGestureRecognizer toUnitSelector:unitSelector];
-      break;
+    if ([unitSelector respondsToSelector:@selector(isTouchingMe:)]) {
+      if ([unitSelector isTouchingMe:touchLocation]) {
+        if ([unitSelector isLocked] == NO)
+          [self sendSwipe:swipeGestureRecognizer toUnitSelector:unitSelector];
+        break;
+      }
     }
   }
 }

@@ -106,7 +106,7 @@ float slideDuration = 0.5f;
 
 -(void)selectTargetItem{
     NBItem* item = [NBItem getCurrentlySelectedItem];
-    self.descriptionString = item.itemData.description;
+    self.descriptionString = item.itemData.theDescription;
     self.descriptionLabel.string = self.descriptionString;
 }
 

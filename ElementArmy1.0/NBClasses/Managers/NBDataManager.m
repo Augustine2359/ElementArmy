@@ -274,7 +274,7 @@ static CCArray* listOfAppStoreProducts = nil;
     {
         NBItemData *itemData = [[NBItemData alloc] init];
         itemData.itemName = [itemDataDictionary objectForKey:@"itemName"];
-        itemData.description = [itemDataDictionary objectForKey:@"description"];
+        itemData.theDescription = [itemDataDictionary objectForKey:@"description"];
         itemData.impactedStatus = [itemDataDictionary objectForKey:@"impactedStatus"];
         itemData.effectToUnitSide = [[itemDataDictionary objectForKey:@"effectToUnitSide"] integerValue];
         itemData.usageType = [[itemDataDictionary objectForKey:@"usageType"] integerValue];
@@ -304,7 +304,7 @@ static CCArray* listOfAppStoreProducts = nil;
     {
         NBEquipmentData *equipmentData = [[NBEquipmentData alloc] init];
         equipmentData.equipmentName = [equipmentDataDictionary objectForKey:@"equipmentName"];
-        equipmentData.description = [equipmentDataDictionary objectForKey:@"description"];
+        equipmentData.theDescription = [equipmentDataDictionary objectForKey:@"description"];
         equipmentData.impactedStatus = [equipmentDataDictionary objectForKey:@"impactedStatus"];
         equipmentData.impactValue = [equipmentDataDictionary objectForKey:@"impactValue"];
         equipmentData.requiredLevel = [[equipmentDataDictionary objectForKey:@"requiredLevel"] integerValue];
@@ -354,7 +354,7 @@ static CCArray* listOfAppStoreProducts = nil;
     {
         NBAppStoreProductData *productData = [NBAppStoreProductData new];
         productData.name = [productDictionary objectForKey:@"ProductName"];
-        productData.description = [productDictionary objectForKey:@"Description"];
+        productData.theDescription = [productDictionary objectForKey:@"Description"];
         productData.cost = [[productDictionary objectForKey:@"Cost"] floatValue];
         productData.quantityInBundle = [[productDictionary objectForKey:@"QuantityInBundle"] intValue];
         productData.imageNormal = [productDictionary objectForKey:@"ImageNormal"];

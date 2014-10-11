@@ -101,7 +101,7 @@ NBItem* currSelectedItem = nil;
     
     switch (self.tapCount) {
         case 1:{
-            self.descriptionString = thatItem.itemData.description;
+            self.descriptionString = thatItem.itemData.theDescription;
             self.descriptionLabel.string = self.descriptionString;
         }
             break;

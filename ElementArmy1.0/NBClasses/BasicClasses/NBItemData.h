@@ -43,7 +43,7 @@ typedef enum
 @property (nonatomic, retain) NSString* imageSelected;
 @property (nonatomic, retain) NSString* imageDisabled;
 @property (nonatomic, retain) NSString* itemName;
-@property (nonatomic, retain) NSString* description;
+@property (nonatomic, retain) NSString* theDescription;
 @property (nonatomic, retain) NSString* impactedStatus;
 @property (nonatomic, assign) itUnitSide effectToUnitSide;
 @property (nonatomic, assign) itUsageType usageType;
